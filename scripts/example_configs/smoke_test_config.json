@@ -1,0 +1,113 @@
+{
+  "endpoints": [
+    {
+      "name": "health_check",
+      "url": "https://devtest.comda.co.il/health",
+      "method": "GET",
+      "expected_status": 200,
+      "timeout_seconds": 5,
+      "max_retries": 3,
+      "retry_delay_seconds": 1.0,
+      "validation_rules": {
+        "response_contains": ["status", "timestamp"],
+        "json_structure": true,
+        "content_type": "application/json"
+      }
+    },
+    {
+      "name": "api_status",
+      "url": "https://devtest.comda.co.il/api/status",
+      "method": "GET",
+      "expected_status": 200,
+      "timeout_seconds": 10,
+      "validation_rules": {
+        "response_contains": ["version", "environment"],
+        "json_structure": true
+      }
+    },
+    {
+      "name": "home_page",
+      "url": "https://devtest.comda.co.il",
+      "method": "GET",
+      "expected_status": 200,
+      "timeout_seconds": 10,
+      "validation_rules": {
+        "response_contains": ["WeSign", "DOCTYPE"],
+        "content_type": "text/html"
+      }
+    },
+    {
+      "name": "auth_login_page",
+      "url": "https://devtest.comda.co.il/login",
+      "method": "GET",
+      "expected_status": 200,
+      "timeout_seconds": 10,
+      "validation_rules": {
+        "response_contains": ["login", "password"],
+        "content_type": "text/html"
+      }
+    },
+    {
+      "name": "api_auth_test",
+      "url": "https://devtest.comda.co.il/api/auth/test",
+      "method": "POST",
+      "payload": {"test": true},
+      "expected_status": 401,
+      "timeout_seconds": 5,
+      "validation_rules": {
+        "json_structure": true
+      }
+    }
+  ],
+  "databases": [
+    {
+      "name": "wesign_main",
+      "connection_string": "Data Source=wesign.db",
+      "db_type": "sqlite",
+      "test_query": "SELECT COUNT(*) FROM sqlite_master WHERE type='table'",
+      "timeout_seconds": 10
+    },
+    {
+      "name": "wesign_postgres",
+      "connection_string": "postgresql://user:password@localhost:5432/wesign",
+      "db_type": "postgresql",
+      "test_query": "SELECT version()",
+      "timeout_seconds": 15
+    }
+  ],
+  "services": [
+    {
+      "name": "web_server",
+      "host": "devtest.comda.co.il",
+      "port": 443,
+      "protocol": "tcp",
+      "timeout_seconds": 5
+    },
+    {
+      "name": "database_server",
+      "host": "localhost",
+      "port": 5432,
+      "protocol": "tcp",
+      "timeout_seconds": 5
+    },
+    {
+      "name": "local_backend",
+      "host": "localhost",
+      "port": 8082,
+      "protocol": "tcp",
+      "timeout_seconds": 3
+    },
+    {
+      "name": "local_frontend",
+      "host": "localhost",
+      "port": 3001,
+      "protocol": "tcp",
+      "timeout_seconds": 3
+    }
+  ],
+  "performance_thresholds": {
+    "endpoint_response_time_ms": 3000,
+    "database_query_time_ms": 1000,
+    "service_connection_time_ms": 1000
+  }
+}

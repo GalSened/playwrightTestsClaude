@@ -1,0 +1,57 @@
+# WeSign Test Suite - Python Dependencies
+# Core testing frameworks
+pytest>=8.0.0
+pytest-asyncio>=0.21.0
+pytest-html>=4.0.0
+pytest-xdist>=3.3.0
+pytest-rerunfailures>=12.0
+
+# Playwright and browser automation
+playwright>=1.40.0
+
+# Test reporting and visualization
+allure-pytest>=2.13.0
+allure-python-commons>=2.13.0
+
+# API testing
+requests>=2.31.0
+httpx>=0.25.0
+
+# Data handling and utilities
+pydantic>=2.0.0
+dataclasses-json>=0.6.0
+python-dotenv>=1.0.0
+
+# File operations and utilities
+pathlib2>=2.3.7
+pillow>=10.0.0
+
+# Async support
+asyncio-throttle>=1.0.2
+aiofiles>=23.0.0
+
+# Performance and monitoring
+psutil>=5.9.0
+memory-profiler>=0.60.0
+
+# Configuration and environment
+pyyaml>=6.0
+toml>=0.10.2
+
+# Date and time utilities
+python-dateutil>=2.8.0
+
+# Logging and debugging
+structlog>=23.0.0
+colorlog>=6.7.0
+
+# Random data generation for testing
+faker>=20.0.0
+
+# PDF and document handling
+pypdf2>=3.0.0
+python-docx>=1.1.0
+
+# Image processing for screenshot comparison
+opencv-python>=4.8.0
+scikit-image>=0.21.0

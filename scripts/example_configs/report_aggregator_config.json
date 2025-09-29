@@ -1,0 +1,108 @@
+{
+  "qa_intelligence": {
+    "enabled": true,
+    "base_url": "http://localhost:8082",
+    "api_key": "${QA_INTELLIGENCE_API_KEY}",
+    "timeout_seconds": 30,
+    "retry_count": 3
+  },
+  "artifact_patterns": [
+    "*.trx",
+    "*newman*.html",
+    "*playwright*.html",
+    "playwright-report/**/*.html",
+    "*.har",
+    "screenshots/*.png",
+    "screenshots/*.jpg",
+    "videos/*.mp4",
+    "videos/*.webm",
+    "test-results/**/*",
+    "coverage/**/*",
+    "artifacts/**/*"
+  ],
+  "scoring_weights": {
+    "build": 0.20,
+    "smoke": 0.20,
+    "api": 0.30,
+    "e2e": 0.30
+  },
+  "scoring_thresholds": {
+    "excellent": 90.0,
+    "good": 80.0,
+    "acceptable": 70.0,
+    "poor": 50.0
+  },
+  "penalties": {
+    "missing_component": 10.0,
+    "critical_failure": 25.0,
+    "timeout": 15.0,
+    "no_tests": 50.0
+  },
+  "artifact_size_limits": {
+    "max_single_file_mb": 100,
+    "max_total_archive_mb": 500,
+    "max_screenshot_mb": 10,
+    "max_video_mb": 50
+  },
+  "retention_policy": {
+    "keep_successful_runs_days": 7,
+    "keep_failed_runs_days": 30,
+    "archive_old_runs": true,
+    "compress_artifacts": true
+  },
+  "notification_rules": {
+    "notify_on_failure": true,
+    "notify_on_success": false,
+    "notify_on_score_below": 70.0,
+    "notification_channels": [
+      {
+        "type": "webhook",
+        "url": "${WEBHOOK_URL_FAILURE}",
+        "conditions": ["failure", "score_below_threshold"]
+      },
+      {
+        "type": "email",
+        "to": "${NOTIFICATION_EMAIL_TO}",
+        "conditions": ["critical_failure"]
+      }
+    ]
+  },
+  "report_formats": {
+    "trx": {
+      "enabled": true,
+      "parser": "TRXParser",
+      "category": "build"
+    },
+    "newman-html": {
+      "enabled": true,
+      "parser": "NewmanHTMLParser",
+      "category": "api"
+    },
+    "playwright-html": {
+      "enabled": true,
+      "parser": "PlaywrightHTMLParser",
+      "category": "e2e"
+    },
+    "junit": {
+      "enabled": false,
+      "parser": "JUnitParser",
+      "category": "unit"
+    }
+  },
+  "integration": {
+    "jenkins": {
+      "enabled": true,
+      "base_url": "${JENKINS_URL}",
+      "job_name": "${JENKINS_JOB_NAME}",
+      "build_number": "${BUILD_NUMBER}",
+      "username": "${JENKINS_USERNAME}",
+      "token": "${JENKINS_TOKEN}"
+    },
+    "git": {
+      "enabled": true,
+      "commit_hash": "${GIT_COMMIT}",
+      "branch": "${GIT_BRANCH}",
+      "repository": "${GIT_URL}"
+    }
+  }
+}

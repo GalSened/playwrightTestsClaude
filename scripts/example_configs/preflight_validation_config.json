@@ -1,0 +1,129 @@
+{
+  "network_endpoints": [
+    {
+      "name": "wesign_devtest",
+      "host": "devtest.comda.co.il",
+      "port": 443,
+      "protocol": "https"
+    },
+    {
+      "name": "wesign_staging",
+      "host": "staging.comda.co.il",
+      "port": 443,
+      "protocol": "https"
+    },
+    {
+      "name": "local_backend",
+      "host": "localhost",
+      "port": 8082,
+      "protocol": "tcp"
+    },
+    {
+      "name": "local_frontend",
+      "host": "localhost",
+      "port": 3001,
+      "protocol": "tcp"
+    },
+    {
+      "name": "database_server",
+      "host": "localhost",
+      "port": 5432,
+      "protocol": "tcp"
+    }
+  ],
+  "services": [
+    {
+      "name": "iis",
+      "service_name": "W3SVC",
+      "display_name": "World Wide Web Publishing Service",
+      "required_status": "running"
+    },
+    {
+      "name": "winrm",
+      "service_name": "WinRM",
+      "display_name": "Windows Remote Management",
+      "required_status": "running"
+    },
+    {
+      "name": "sql_server",
+      "service_name": "MSSQLSERVER",
+      "display_name": "SQL Server (MSSQLSERVER)",
+      "required_status": "running"
+    },
+    {
+      "name": "postgresql",
+      "service_name": "postgresql-x64-14",
+      "display_name": "PostgreSQL Server 14",
+      "required_status": "running"
+    }
+  ],
+  "software_dependencies": [
+    {
+      "name": "node",
+      "executable": "node",
+      "version_arg": "--version",
+      "version_pattern": "v(\\d+\\.\\d+\\.\\d+)",
+      "minimum_version": "18.0.0",
+      "installation_url": "https://nodejs.org/"
+    },
+    {
+      "name": "npm",
+      "executable": "npm",
+      "version_arg": "--version",
+      "minimum_version": "8.0.0"
+    },
+    {
+      "name": "python",
+      "executable": "python",
+      "version_arg": "--version",
+      "version_pattern": "Python (\\d+\\.\\d+\\.\\d+)",
+      "minimum_version": "3.8.0"
+    },
+    {
+      "name": "git",
+      "executable": "git",
+      "version_arg": "--version",
+      "version_pattern": "git version (\\d+\\.\\d+\\.\\d+)",
+      "minimum_version": "2.30.0"
+    },
+    {
+      "name": "dotnet",
+      "executable": "dotnet",
+      "version_arg": "--version",
+      "minimum_version": "6.0.0"
+    },
+    {
+      "name": "powershell",
+      "executable": "pwsh",
+      "version_arg": "--version",
+      "version_pattern": "PowerShell (\\d+\\.\\d+\\.\\d+)",
+      "minimum_version": "7.0.0"
+    },
+    {
+      "name": "docker",
+      "executable": "docker",
+      "version_arg": "--version",
+      "version_pattern": "Docker version (\\d+\\.\\d+\\.\\d+)",
+      "minimum_version": "20.0.0"
+    }
+  ],
+  "disk_requirements": {
+    "minimum_free_gb": 10.0,
+    "minimum_free_percent": 15.0,
+    "drives": ["C:\\", "D:\\"]
+  },
+  "winrm_tests": [
+    {
+      "host": "localhost",
+      "username": "administrator",
+      "password": "${WINRM_PASSWORD}",
+      "timeout_seconds": 30
+    }
+  ],
+  "performance_thresholds": {
+    "max_network_latency_ms": 1000,
+    "max_disk_check_ms": 5000,
+    "max_service_check_ms": 3000,
+    "max_software_check_ms": 10000
+  }
+}

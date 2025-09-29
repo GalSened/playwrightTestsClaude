@@ -1,0 +1,72 @@
+{
+  "name": "qa-intelligence-workspace",
+  "version": "1.0.0",
+  "description": "QA Intelligence Platform - Multi-agent orchestration for automated testing",
+  "private": true,
+  "workspaces": [
+    "apps/frontend/dashboard",
+    "backend"
+  ],
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd apps/frontend/dashboard && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "cd apps/frontend/dashboard && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:ui": "npx playwright test --ui",
+    "test:report": "npx playwright show-report",
+    "test:codegen": "npx playwright codegen",
+    "test:typescript": "npx playwright test tests/*.spec.ts",
+    "test:python": "py -m pytest tests/ -v --alluredir=artifacts/allure-results",
+    "test:unit": "cd tests/unit && npm run test",
+    "test:integration": "cd tests/integration && npm run test",
+    "test:e2e": "cd tests/e2e && npm run test",
+    "lint": "npm run lint:frontend && npm run lint:backend",
+    "lint:frontend": "cd apps/frontend/dashboard && npm run lint",
+    "lint:backend": "cd backend && npm run lint",
+    "clean": "npm run clean:frontend && npm run clean:backend",
+    "clean:frontend": "cd apps/frontend/dashboard && rm -rf node_modules dist",
+    "clean:backend": "cd backend && rm -rf node_modules dist",
+    "install:all": "npm install && npm run install:frontend && npm run install:backend",
+    "install:frontend": "cd apps/frontend/dashboard && npm install",
+    "install:backend": "cd backend && npm install"
+  },
+  "keywords": [
+    "qa",
+    "testing",
+    "automation",
+    "playwright",
+    "ai",
+    "multi-agent",
+    "orchestration"
+  ],
+  "author": "QA Intelligence Team",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^24.3.1",
+    "allure-playwright": "^3.3.3",
+    "concurrently": "^8.2.2",
+    "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-org/qa-intelligence.git"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.4.1"
+  }
+}

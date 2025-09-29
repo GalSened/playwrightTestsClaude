@@ -1,0 +1,103 @@
+{
+  "environments": {
+    "dev": {
+      "name": "Development",
+      "baseUrl": "https://devtest.comda.co.il/userapi/ui/v3",
+      "description": "Development environment for WeSign API testing",
+      "credentials": {
+        "default": {
+          "email": "test.user@loadtest.com",
+          "password": "LoadTest123!"
+        }
+      },
+      "thresholds": {
+        "relaxed": true,
+        "http_req_duration": ["p(95)<5000"],
+        "http_req_failed": ["rate<0.05"],
+        "auth_success_rate": ["rate>0.95"]
+      },
+      "limits": {
+        "maxVUs": 200,
+        "maxDuration": "30m"
+      },
+      "features": {
+        "enableDetailedLogs": true,
+        "enableMetrics": true,
+        "enableRetries": true
+      }
+    },
+    "staging": {
+      "name": "Staging",
+      "baseUrl": "https://staging.comda.co.il/userapi/ui/v3",
+      "description": "Staging environment for pre-production testing",
+      "credentials": {
+        "default": {
+          "email": "staging.user@loadtest.com",
+          "password": "StagingTest123!"
+        }
+      },
+      "thresholds": {
+        "relaxed": false,
+        "http_req_duration": ["p(95)<3000"],
+        "http_req_failed": ["rate<0.02"],
+        "auth_success_rate": ["rate>0.98"]
+      },
+      "limits": {
+        "maxVUs": 300,
+        "maxDuration": "1h"
+      },
+      "features": {
+        "enableDetailedLogs": true,
+        "enableMetrics": true,
+        "enableRetries": false
+      }
+    },
+    "prod": {
+      "name": "Production",
+      "baseUrl": "https://app.comda.co.il/userapi/ui/v3",
+      "description": "Production environment - use with extreme caution",
+      "credentials": {
+        "default": {
+          "email": "prod.monitoring@loadtest.com",
+          "password": "ProdMonitor456!"
+        }
+      },
+      "thresholds": {
+        "relaxed": false,
+        "http_req_duration": ["p(95)<2000"],
+        "http_req_failed": ["rate<0.01"],
+        "auth_success_rate": ["rate>0.99"]
+      },
+      "limits": {
+        "maxVUs": 100,
+        "maxDuration": "15m"
+      },
+      "features": {
+        "enableDetailedLogs": false,
+        "enableMetrics": true,
+        "enableRetries": false
+      },
+      "warnings": [
+        "Production environment - minimize load impact",
+        "Coordinate with operations team before testing",
+        "Monitor system resources during execution"
+      ]
+    }
+  },
+  "common": {
+    "timeouts": {
+      "http_req_timeout": "30s",
+      "http_req_connecting": "10s",
+      "http_req_tls_handshaking": "10s"
+    },
+    "userAgent": "WeSign-K6-LoadTest/1.0",
+    "headers": {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    "retrySettings": {
+      "maxRetries": 3,
+      "retryDelay": "1s"
+    }
+  }
+}

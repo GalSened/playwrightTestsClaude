@@ -1,0 +1,86 @@
+{
+  "default_environment": "dev",
+  "test_categories": {
+    "auth": {
+      "name": "Authentication Tests",
+      "description": "Login, logout, security, and user management tests",
+      "priority": "high",
+      "estimated_duration": "5-10 minutes"
+    },
+    "documents": {
+      "name": "Document Management Tests",
+      "description": "Document upload, download, management, and processing tests",
+      "priority": "high",
+      "estimated_duration": "10-15 minutes"
+    },
+    "templates": {
+      "name": "Template Management Tests",
+      "description": "Template creation, editing, and management tests",
+      "priority": "medium",
+      "estimated_duration": "5-8 minutes"
+    },
+    "contacts": {
+      "name": "Contact Management Tests",
+      "description": "Contact creation, management, and interaction tests",
+      "priority": "medium",
+      "estimated_duration": "3-5 minutes"
+    },
+    "self_signing": {
+      "name": "Self-Signing Tests",
+      "description": "Document self-signing workflow and validation tests",
+      "priority": "high",
+      "estimated_duration": "8-12 minutes"
+    }
+  },
+  "execution_modes": {
+    "smoke": {
+      "description": "Quick validation tests - one test per category",
+      "estimated_duration": "2-3 minutes",
+      "tests_per_category": 1
+    },
+    "regression": {
+      "description": "Core functionality tests",
+      "estimated_duration": "15-25 minutes",
+      "include_categories": ["auth", "documents", "templates"]
+    },
+    "full": {
+      "description": "Complete test suite",
+      "estimated_duration": "30-50 minutes",
+      "include_categories": ["auth", "documents", "templates", "contacts", "self_signing"]
+    }
+  },
+  "environments": {
+    "local": {
+      "description": "Local development environment",
+      "recommended_for": ["development", "debugging"],
+      "browser_headless": false
+    },
+    "dev": {
+      "description": "Development environment",
+      "recommended_for": ["feature testing", "integration testing"],
+      "browser_headless": true
+    },
+    "staging": {
+      "description": "Staging environment",
+      "recommended_for": ["pre-release testing", "user acceptance testing"],
+      "browser_headless": true
+    },
+    "production": {
+      "description": "Production environment",
+      "recommended_for": ["smoke testing", "production monitoring"],
+      "browser_headless": true,
+      "safety_mode": true
+    }
+  },
+  "reporting": {
+    "default_format": "html",
+    "save_screenshots": true,
+    "save_videos_on_failure": true,
+    "generate_allure_reports": false
+  },
+  "timeouts": {
+    "test_timeout": 120,
+    "page_timeout": 30,
+    "element_timeout": 10
+  }
+}

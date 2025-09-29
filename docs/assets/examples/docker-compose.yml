@@ -1,0 +1,452 @@
+# QA Intelligence - Docker Compose Configuration
+# Complete development and production environment setup
+
+version: '3.8'
+
+networks:
+  qa-intelligence:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  qa_logs:
+    driver: local
+  qa_uploads:
+    driver: local
+  jenkins_home:
+    driver: local
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: qa-intelligence-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: qa_intelligence
+      POSTGRES_USER: qa_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secure_password_here}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/database/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U qa_user -d qa_intelligence"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    networks:
+      - qa-intelligence
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: qa-intelligence-redis
+    restart: unless-stopped
+    command: redis-server --requirepass ${REDIS_PASSWORD:-redis_password_here} --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    networks:
+      - qa-intelligence
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # QA Intelligence Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: production
+    container_name: qa-intelligence-backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      # Application Configuration
+      NODE_ENV: production
+      PORT: 8082
+      API_PREFIX: /api
+
+      # Database Configuration
+      DATABASE_URL: postgresql://qa_user:${POSTGRES_PASSWORD:-secure_password_here}@postgres:5432/qa_intelligence
+      DB_POOL_MAX: 20
+      DB_POOL_MIN: 5
+
+      # Redis Configuration
+      REDIS_URL: redis://:${REDIS_PASSWORD:-redis_password_here}@redis:6379
+
+      # Authentication
+      JWT_SECRET: ${JWT_SECRET:-your-super-secure-jwt-secret-here}
+      JWT_EXPIRES_IN: 24h
+
+      # WeSign Integration
+      WESIGN_BASE_URL: ${WESIGN_BASE_URL:-https://devtest.comda.co.il}
+      WESIGN_API_KEY: ${WESIGN_API_KEY}
+      WESIGN_TEST_EMAIL: ${WESIGN_TEST_EMAIL}
+      WESIGN_TEST_PASSWORD: ${WESIGN_TEST_PASSWORD}
+
+      # Python Configuration
+      PYTHON_PATH: /usr/bin/python3
+      PLAYWRIGHT_TESTS_PATH: /app/tests/playwright
+
+      # Logging
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      LOG_FILE: /app/logs/backend.log
+
+      # Performance
+      MAX_WORKERS: ${MAX_WORKERS:-4}
+      TIMEOUT_MS: 30000
+      RETRY_ATTEMPTS: 3
+
+      # Feature Flags
+      ENABLE_MONITORING: true
+      ENABLE_AI_HEALING: true
+      ENABLE_WESIGN_INTEGRATION: true
+    volumes:
+      - qa_logs:/app/logs
+      - qa_uploads:/app/uploads
+      - ./backend/test-data:/app/test-data:ro
+    ports:
+      - "8082:8082"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8082/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    networks:
+      - qa-intelligence
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  # QA Intelligence Frontend
+  frontend:
+    build:
+      context: ./apps/frontend/dashboard
+      dockerfile: Dockerfile
+      target: production
+    container_name: qa-intelligence-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+
+      # API Configuration
+      NEXT_PUBLIC_API_URL: http://backend:8082/api
+      NEXT_PUBLIC_WS_URL: ws://backend:8082
+
+      # Application Configuration
+      NEXT_PUBLIC_APP_NAME: QA Intelligence
+      NEXT_PUBLIC_VERSION: 2.0.0
+
+      # WeSign Integration
+      NEXT_PUBLIC_WESIGN_URL: ${WESIGN_BASE_URL:-https://devtest.comda.co.il}
+      NEXT_PUBLIC_WESIGN_EMBED_MODE: true
+
+      # Feature Flags
+      NEXT_PUBLIC_ENABLE_ANALYTICS: true
+      NEXT_PUBLIC_ENABLE_REALTIME: true
+      NEXT_PUBLIC_ENABLE_WESIGN: true
+
+      # Development
+      NEXT_PUBLIC_DEBUG: false
+      NEXT_PUBLIC_LOG_LEVEL: warn
+    ports:
+      - "3001:3001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    networks:
+      - qa-intelligence
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  # Jenkins CI/CD Server
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: qa-intelligence-jenkins
+    restart: unless-stopped
+    user: root
+    environment:
+      JAVA_OPTS: >
+        -Djenkins.install.runSetupWizard=false
+        -Dhudson.security.csrf.DefaultCrumbIssuer.EXCLUDE_SESSION_ID=true
+        -Xmx2g
+        -Xms512m
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./jenkins/plugins.txt:/usr/share/jenkins/ref/plugins.txt:ro
+      - ./jenkins/init.groovy.d:/usr/share/jenkins/ref/init.groovy.d:ro
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/login"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 120s
+    networks:
+      - qa-intelligence
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: qa-intelligence-nginx
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+      frontend:
+        condition: service_healthy
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - qa_logs:/var/log/nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    networks:
+      - qa-intelligence
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Prometheus Monitoring
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: qa-intelligence-prometheus
+    restart: unless-stopped
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=30d'
+      - '--web.enable-lifecycle'
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/rules:/etc/prometheus/rules:ro
+    ports:
+      - "9090:9090"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    networks:
+      - qa-intelligence
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
+
+  # Grafana Dashboard
+  grafana:
+    image: grafana/grafana:latest
+    container_name: qa-intelligence-grafana
+    restart: unless-stopped
+    depends_on:
+      prometheus:
+        condition: service_healthy
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin123}
+      GF_USERS_ALLOW_SIGN_UP: false
+      GF_INSTALL_PLUGINS: grafana-clock-panel,grafana-simple-json-datasource
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    networks:
+      - qa-intelligence
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
+
+  # ELK Stack for Logging (Optional)
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: qa-intelligence-elasticsearch
+    restart: unless-stopped
+    environment:
+      discovery.type: single-node
+      ES_JAVA_OPTS: "-Xmx1g -Xms1g"
+      xpack.security.enabled: false
+      xpack.security.enrollment.enabled: false
+    volumes:
+      - ./elk/elasticsearch/config:/usr/share/elasticsearch/config:ro
+    ports:
+      - "9200:9200"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200/_cluster/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+    networks:
+      - qa-intelligence
+    profiles:
+      - monitoring
+      - full
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
+
+  # Logstash
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.11.0
+    container_name: qa-intelligence-logstash
+    restart: unless-stopped
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    volumes:
+      - ./elk/logstash/config:/usr/share/logstash/config:ro
+      - ./elk/logstash/pipeline:/usr/share/logstash/pipeline:ro
+      - qa_logs:/var/log/qa-intelligence:ro
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+    networks:
+      - qa-intelligence
+    profiles:
+      - monitoring
+      - full
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
+
+  # Kibana
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.11.0
+    container_name: qa-intelligence-kibana
+    restart: unless-stopped
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    volumes:
+      - ./elk/kibana/config:/usr/share/kibana/config:ro
+    ports:
+      - "5601:5601"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5601/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 120s
+    networks:
+      - qa-intelligence
+    profiles:
+      - monitoring
+      - full
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
+
+  # Test Runner Service (for scheduled test execution)
+  test-runner:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.test-runner
+    container_name: qa-intelligence-test-runner
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://qa_user:${POSTGRES_PASSWORD:-secure_password_here}@postgres:5432/qa_intelligence
+      REDIS_URL: redis://:${REDIS_PASSWORD:-redis_password_here}@redis:6379
+      PYTHON_PATH: /usr/bin/python3
+      PLAYWRIGHT_TESTS_PATH: /app/tests/playwright
+      WESIGN_BASE_URL: ${WESIGN_BASE_URL:-https://devtest.comda.co.il}
+      MAX_CONCURRENT_EXECUTIONS: ${MAX_CONCURRENT_EXECUTIONS:-4}
+    volumes:
+      - qa_logs:/app/logs
+      - qa_uploads:/app/uploads
+      - ./backend/test-data:/app/test-data:ro
+    networks:
+      - qa-intelligence
+    profiles:
+      - production
+      - full
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

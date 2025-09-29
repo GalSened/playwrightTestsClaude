@@ -1,0 +1,18 @@
+מסמך בדיקה בעברית - WeSign Test Document
+
+זהו מסמך בדיקה לבדיקת תמיכה בקבצים עם שמות בעברית.
+
+תכולת הבדיקה:
+- תמיכה בשמות קבצים בעברית
+- עיבוד תוכן עברי
+- תמיכה ב-Unicode
+- בדיקת אנקודינג
+
+WeSign Platform Testing
+- Hebrew filename support
+- Unicode text processing
+- Right-to-left text validation
+- Mixed language content support
+
+תאריך: 2024-09-28
+סטטוס: מוכן לבדיקה

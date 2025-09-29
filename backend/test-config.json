@@ -1,0 +1,43 @@
+{
+  "system": "WeSign Test Platform",
+  "version": "3.2.0",
+  "api": {
+    "baseUrl": "https://devtest.comda.co.il",
+    "endpoints": {
+      "login": "/login",
+      "upload": "/api/upload",
+      "documents": "/api/documents",
+      "signatures": "/api/signatures"
+    }
+  },
+  "features": {
+    "documentUpload": true,
+    "digitalSignatures": true,
+    "contactManagement": true,
+    "templateSystem": true,
+    "fileMerging": true,
+    "bilingualSupport": true
+  },
+  "authentication": {
+    "method": "email-password",
+    "demo": {
+      "email": "admin@demo.com",
+      "password": "demo123"
+    },
+    "sessionTimeout": 3600
+  },
+  "languages": ["English", "Hebrew"],
+  "ui": {
+    "theme": "modern",
+    "responsiveDesign": true,
+    "accessibility": "WCAG 2.1"
+  },
+  "testing": {
+    "framework": "Playwright",
+    "browsers": ["Chromium", "Firefox", "Safari"],
+    "testData": {
+      "samplePdf": "fixtures/sample-document.pdf",
+      "sampleDocx": "fixtures/sample-contract.docx"
+    }
+  }
+}

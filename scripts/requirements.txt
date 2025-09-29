@@ -1,0 +1,192 @@
+# WeSign CI/CD Python Utilities Dependencies
+# =========================================
+# Production-grade dependencies for WeSign CI/CD pipeline utilities
+# Install with: pip install -r requirements.txt
+
+# Core HTTP and API libraries
+requests>=2.31.0
+urllib3>=2.0.0
+
+# JSON schema validation and data structures
+pydantic>=2.0.0
+jsonschema>=4.17.0
+
+# Environment and configuration management
+python-dotenv>=1.0.0
+configparser>=5.3.0
+
+# XML and HTML parsing
+lxml>=4.9.0
+beautifulsoup4>=4.12.0
+html5lib>=1.1
+
+# System monitoring and information
+psutil>=5.9.0
+
+# Windows-specific libraries (Windows platform only)
+WMI>=1.5.1; sys_platform == "win32"
+pywin32>=306; sys_platform == "win32"
+pypiwin32>=223; sys_platform == "win32"
+
+# Database connectivity
+# SQLite is built into Python
+# Optional PostgreSQL support
+psycopg2-binary>=2.9.0; extra == "postgresql"
+
+# Optional SQL Server support
+pyodbc>=4.0.35; extra == "sqlserver"
+
+# Cryptography and security
+cryptography>=41.0.0
+keyring>=24.0.0
+
+# Network and WebSocket support
+websockets>=11.0.0
+paramiko>=3.2.0  # For SSH connections
+
+# Archive and compression
+zipfile36>=0.1.3; python_version < "3.6"
+
+# Image processing (optional for screenshot analysis)
+Pillow>=10.0.0; extra == "imaging"
+
+# Testing and validation frameworks
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-mock>=3.11.0
+pytest-cov>=4.1.0
+
+# Code quality and formatting (development)
+black>=23.0.0; extra == "dev"
+flake8>=6.0.0; extra == "dev"
+mypy>=1.5.0; extra == "dev"
+bandit>=1.7.5; extra == "dev"
+
+# Documentation generation (development)
+sphinx>=7.1.0; extra == "docs"
+sphinx-rtd-theme>=1.3.0; extra == "docs"
+
+# Performance and profiling (optional)
+memory-profiler>=0.61.0; extra == "profiling"
+py-spy>=0.3.14; extra == "profiling"
+
+# Logging and monitoring
+structlog>=23.1.0
+colorlog>=6.7.0
+
+# Date and time handling
+python-dateutil>=2.8.2
+pytz>=2023.3
+
+# Regular expressions (enhanced)
+regex>=2023.8.8
+
+# File system monitoring (optional)
+watchdog>=3.0.0; extra == "monitoring"
+
+# Email notifications (optional)
+smtplib; extra == "notifications"
+email-validator>=2.0.0; extra == "notifications"
+
+# Retry and backoff utilities
+tenacity>=8.2.0
+backoff>=2.2.1
+
+# Progress bars and CLI enhancements
+tqdm>=4.66.0
+click>=8.1.0
+rich>=13.5.0
+
+# Data serialization
+msgpack>=1.0.5
+orjson>=3.9.0
+
+# Concurrent processing
+concurrent-futures>=3.1.1; python_version < "3.2"
+
+# Version comparison utilities
+packaging>=23.1
+
+# Platform detection
+platform>=1.0.8
+
+# Network utilities
+netifaces>=0.11.0
+ping3>=4.0.4
+
+# Hash and checksum utilities
+hashlib>=20081119  # Built-in, but specified for completeness
+
+# Temporary file handling
+tempfile>=3.11.0  # Built-in
+
+# Configuration file formats
+toml>=0.10.2
+PyYAML>=6.0.1
+
+# Windows Registry access (Windows only)
+winreg; sys_platform == "win32"  # Built-in on Windows
+
+# Process management
+subprocess>=3.11.0  # Built-in
+
+# Path manipulation
+pathlib>=3.11.0  # Built-in
+
+# Data classes (Python < 3.7 backport)
+dataclasses>=0.8; python_version < "3.7"
+
+# Type hints (Python < 3.5 backport)
+typing>=3.10.0; python_version < "3.5"
+
+# Development and testing utilities (optional)
+factory-boy>=3.3.0; extra == "dev"
+freezegun>=1.2.2; extra == "dev"
+responses>=0.23.3; extra == "dev"
+httpx>=0.24.0; extra == "dev"
+
+# CI/CD specific utilities
+jenkins-cli>=1.0.1; extra == "jenkins"
+python-gitlab>=3.15.0; extra == "gitlab"
+
+# Monitoring and alerting integrations
+prometheus-client>=0.17.1; extra == "monitoring"
+statsd>=4.0.1; extra == "monitoring"
+
+# Security scanning
+safety>=2.3.5; extra == "security"
+pip-audit>=2.6.1; extra == "security"
+
+# Performance optimization
+cython>=3.0.2; extra == "performance"
+numpy>=1.25.2; extra == "performance"
+
+# Windows PowerShell integration (Windows only)
+# Note: PowerShell integration typically done via subprocess calls to powershell.exe
+
+# Additional Windows-specific utilities
+winsound; sys_platform == "win32"  # Built-in on Windows
+msvcrt; sys_platform == "win32"   # Built-in on Windows
+
+# Network protocol implementations
+ftplib>=3.11.0    # Built-in
+smtplib>=3.11.0   # Built-in
+poplib>=3.11.0    # Built-in
+imaplib>=3.11.0   # Built-in
+
+# Compression libraries
+gzip>=3.11.0      # Built-in
+bz2>=3.11.0       # Built-in
+tarfile>=3.11.0   # Built-in
+
+# Unicode and text processing
+unicodedata>=3.11.0  # Built-in
+codecs>=3.11.0       # Built-in
+
+# Mathematics and statistics (if needed for metrics)
+statistics>=3.11.0   # Built-in
+math>=3.11.0         # Built-in
+
+# Memory and garbage collection utilities
+gc>=3.11.0           # Built-in
+weakref>=3.11.0      # Built-in

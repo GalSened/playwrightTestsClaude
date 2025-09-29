@@ -1,0 +1,20 @@
+WeSign Test Document - Plain Text
+
+This is a test text document for the WeSign platform testing suite.
+
+Test Contents:
+- Basic text content
+- Multiple lines
+- Special characters: @#$%^&*()
+- Unicode support: מסמך בדיקה עברית
+- Numbers: 1234567890
+
+Document created for:
+✓ File upload testing
+✓ Document processing validation
+✓ Content type verification
+✓ Unicode filename support
+
+Test timestamp: 2024-09-28
+File size: Small test file for automation
+Status: Ready for testing

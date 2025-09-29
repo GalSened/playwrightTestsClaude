@@ -1,0 +1,42 @@
+{
+  "name": "playwright-system-tests",
+  "version": "1.0.0",
+  "description": "Comprehensive Enterprise Test Suite for Playwright Smart Test Management Platform",
+  "main": "run-comprehensive-tests.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:core": "npx playwright test tests/core/",
+    "test:scheduler": "npx playwright test tests/scheduler/",
+    "test:monitoring": "npx playwright test tests/monitoring/",
+    "test:enterprise": "npx playwright test tests/enterprise/",
+    "test:execution": "npx playwright test tests/execution/",
+    "test:e2e": "npx playwright test tests/e2e/",
+    "test:performance": "npx playwright test tests/performance/",
+    "test:security": "npx playwright test tests/security/",
+    "test:comprehensive": "node run-comprehensive-tests.js",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:ui": "npx playwright test --ui",
+    "test:chromium": "npx playwright test --project=chromium",
+    "test:firefox": "npx playwright test --project=firefox",
+    "test:webkit": "npx playwright test --project=webkit",
+    "test:mobile": "npx playwright test --project=mobile-chrome --project=mobile-safari",
+    "report": "npx playwright show-report",
+    "install-browsers": "npx playwright install"
+  },
+  "keywords": [
+    "playwright",
+    "testing",
+    "enterprise",
+    "automation", 
+    "wesign",
+    "test-management",
+    "end-to-end"
+  ],
+  "author": "Enterprise Testing Team",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "@playwright/test": "^1.55.0"
+  }
+}

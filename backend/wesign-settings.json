@@ -1,0 +1,46 @@
+{
+  "api": {
+    "baseUrl": "https://devtest.comda.co.il",
+    "timeout": 30000,
+    "retries": 3
+  },
+  "features": {
+    "documentUpload": {
+      "enabled": true,
+      "maxFileSize": "10MB",
+      "supportedFormats": ["PDF", "DOCX", "DOC", "JPEG", "PNG"]
+    },
+    "digitalSignatures": {
+      "enabled": true,
+      "provider": "WeSign Internal",
+      "certificateValidation": true
+    },
+    "contactManagement": {
+      "enabled": true,
+      "maxContacts": 1000,
+      "importFormats": ["CSV", "Excel"]
+    },
+    "templateSystem": {
+      "enabled": true,
+      "maxTemplates": 50,
+      "customFields": true
+    }
+  },
+  "authentication": {
+    "method": "credential-based",
+    "sessionDuration": 3600,
+    "twoFactorAuth": false
+  },
+  "languages": {
+    "default": "English",
+    "supported": ["English", "Hebrew"],
+    "rtl": true
+  },
+  "ui": {
+    "theme": "corporate",
+    "brandColors": {
+      "primary": "#0066CC",
+      "secondary": "#FF6600"
+    }
+  }
+}

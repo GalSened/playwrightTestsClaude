@@ -1,0 +1,16 @@
+{
+  "extractionDate": "2025-09-15T05:52:43.763Z",
+  "originalEntries": 3,
+  "newEntries": 0,
+  "totalEntries": 3,
+  "newKnowledgeEntries": [],
+  "integrationInstructions": {
+    "note": "This file contains extracted knowledge ready for integration",
+    "steps": [
+      "1. Review the newKnowledgeEntries array",
+      "2. Add selected entries to smartWeSignKnowledge.ts initializeKnowledgeBase method",
+      "3. Test the updated knowledge base",
+      "4. Deploy the enhanced system"
+    ]
+  }
+}

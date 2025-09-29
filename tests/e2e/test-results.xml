@@ -1,0 +1,114 @@
+<testsuites id="" name="" tests="5" failures="1" skipped="0" errors="0" time="34.963533">
+<testsuite name="test-bank-navigation.spec.ts" timestamp="2025-09-07T07:42:54.626Z" hostname="chromium" tests="1" failures="0" skipped="0" time="12.359" errors="0">
+<testcase name="Test Bank Navigation Fix › Click Test Bank and debug navigation" classname="test-bank-navigation.spec.ts" time="12.359">
+<system-out>
+<![CDATA[🔧 FIXING: Test Bank Navigation Issue
+📍 Step 1: Loading dashboard
+🎯 Step 2: Attempting to click Test Bank
+Found 1 Test Bank links
+Clicking Test Bank link...
+✅ Test Bank clicked successfully
+Found 1 nav Test Bank elements
+Clicking nav Test Bank...
+✅ Nav Test Bank clicked successfully
+🔗 Step 3: Trying direct URL navigation
+📍 Current URL: http://localhost:3001/test-bank
+📄 Page contains "Test Bank": YES
+📄 Page contains "404": NO
+📄 Page contains "Not Found": NO
+📊 Page headers found:
+   1. QA Intelligence
+   2. Test Bank
+🚨 Error elements on page: 0
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="test-bank-navigation.spec.ts" timestamp="2025-09-07T07:42:54.626Z" hostname="firefox" tests="1" failures="1" skipped="0" time="30.036" errors="0">
+<testcase name="Test Bank Navigation Fix › Click Test Bank and debug navigation" classname="test-bank-navigation.spec.ts" time="30.036">
+<failure message="test-bank-navigation.spec.ts:4:7 Click Test Bank and debug navigation" type="FAILURE">
+<![CDATA[  [firefox] › test-bank-navigation.spec.ts:4:7 › Test Bank Navigation Fix › Click Test Bank and debug navigation 
+
+    Test timeout of 30000ms exceeded while setting up "page".
+
+    Error: browserContext.newPage: Test timeout of 30000ms exceeded.
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="test-bank-navigation.spec.ts" timestamp="2025-09-07T07:42:54.626Z" hostname="webkit" tests="1" failures="0" skipped="0" time="14.528" errors="0">
+<testcase name="Test Bank Navigation Fix › Click Test Bank and debug navigation" classname="test-bank-navigation.spec.ts" time="14.528">
+<system-out>
+<![CDATA[🔧 FIXING: Test Bank Navigation Issue
+📍 Step 1: Loading dashboard
+🎯 Step 2: Attempting to click Test Bank
+Found 1 Test Bank links
+Clicking Test Bank link...
+✅ Test Bank clicked successfully
+Found 1 nav Test Bank elements
+Clicking nav Test Bank...
+✅ Nav Test Bank clicked successfully
+🔗 Step 3: Trying direct URL navigation
+📍 Current URL: http://localhost:3001/test-bank
+📄 Page contains "Test Bank": YES
+📄 Page contains "404": NO
+📄 Page contains "Not Found": NO
+📊 Page headers found:
+   1. QA Intelligence
+   2. Test Bank
+🚨 Error elements on page: 0
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="test-bank-navigation.spec.ts" timestamp="2025-09-07T07:42:54.626Z" hostname="mobile-chrome" tests="1" failures="0" skipped="0" time="14.662" errors="0">
+<testcase name="Test Bank Navigation Fix › Click Test Bank and debug navigation" classname="test-bank-navigation.spec.ts" time="14.662">
+<system-out>
+<![CDATA[🔧 FIXING: Test Bank Navigation Issue
+📍 Step 1: Loading dashboard
+🎯 Step 2: Attempting to click Test Bank
+Found 1 Test Bank links
+Clicking Test Bank link...
+✅ Test Bank clicked successfully
+Found 1 nav Test Bank elements
+Clicking nav Test Bank...
+✅ Nav Test Bank clicked successfully
+🔗 Step 3: Trying direct URL navigation
+📍 Current URL: http://localhost:3001/test-bank
+📄 Page contains "Test Bank": YES
+📄 Page contains "404": NO
+📄 Page contains "Not Found": NO
+📊 Page headers found:
+   1. QA Intelligence
+   2. Test Bank
+🚨 Error elements on page: 0
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="test-bank-navigation.spec.ts" timestamp="2025-09-07T07:42:54.626Z" hostname="mobile-safari" tests="1" failures="0" skipped="0" time="14.839" errors="0">
+<testcase name="Test Bank Navigation Fix › Click Test Bank and debug navigation" classname="test-bank-navigation.spec.ts" time="14.839">
+<system-out>
+<![CDATA[🔧 FIXING: Test Bank Navigation Issue
+📍 Step 1: Loading dashboard
+🎯 Step 2: Attempting to click Test Bank
+Found 1 Test Bank links
+Clicking Test Bank link...
+✅ Test Bank clicked successfully
+Found 1 nav Test Bank elements
+Clicking nav Test Bank...
+✅ Nav Test Bank clicked successfully
+🔗 Step 3: Trying direct URL navigation
+📍 Current URL: http://localhost:3001/test-bank
+📄 Page contains "Test Bank": YES
+📄 Page contains "404": NO
+📄 Page contains "Not Found": NO
+📊 Page headers found:
+   1. QA Intelligence
+   2. Test Bank
+🚨 Error elements on page: 0
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

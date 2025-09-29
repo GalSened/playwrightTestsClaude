@@ -1,0 +1,170 @@
+{
+  "testProfiles": {
+    "smoke": {
+      "name": "Smoke Testing",
+      "description": "Basic functionality validation with minimal load",
+      "purpose": "Verify core functions work before comprehensive testing",
+      "targetLoad": {
+        "minVUs": 1,
+        "maxVUs": 5,
+        "duration": "1-3m"
+      },
+      "scenarios": [
+        "smoke-basic",
+        "smoke-auth"
+      ],
+      "thresholds": {
+        "http_req_duration": ["p(95)<3000"],
+        "http_req_failed": ["rate<0.01"],
+        "checks": ["rate>0.99"]
+      },
+      "executionOrder": "sequential",
+      "frequency": "every commit"
+    },
+    "load": {
+      "name": "Load Testing",
+      "description": "Normal expected load conditions",
+      "purpose": "Validate performance under expected user load",
+      "targetLoad": {
+        "minVUs": 10,
+        "maxVUs": 100,
+        "duration": "10-30m"
+      },
+      "scenarios": [
+        "load-user-journey",
+        "load-documents"
+      ],
+      "thresholds": {
+        "http_req_duration": ["p(95)<4000"],
+        "http_req_failed": ["rate<0.02"],
+        "checks": ["rate>0.95"]
+      },
+      "executionOrder": "parallel",
+      "frequency": "nightly"
+    },
+    "stress": {
+      "name": "Stress Testing",
+      "description": "Beyond normal capacity to find breaking points",
+      "purpose": "Identify system limits and failure modes",
+      "targetLoad": {
+        "minVUs": 50,
+        "maxVUs": 500,
+        "duration": "15-45m"
+      },
+      "scenarios": [
+        "stress-auth"
+      ],
+      "thresholds": {
+        "http_req_duration": ["p(95)<8000"],
+        "http_req_failed": ["rate<0.10"],
+        "checks": ["rate>0.80"]
+      },
+      "executionOrder": "sequential",
+      "frequency": "weekly"
+    },
+    "spike": {
+      "name": "Spike Testing",
+      "description": "Sudden traffic increases",
+      "purpose": "Test system response to traffic spikes",
+      "targetLoad": {
+        "minVUs": 1,
+        "maxVUs": 300,
+        "duration": "5-10m"
+      },
+      "scenarios": [
+        "spike-login",
+        "spike-documents"
+      ],
+      "thresholds": {
+        "http_req_duration": ["p(95)<15000"],
+        "http_req_failed": ["rate<0.20"],
+        "checks": ["rate>0.70"]
+      },
+      "executionOrder": "sequential",
+      "frequency": "weekly"
+    },
+    "soak": {
+      "name": "Soak Testing",
+      "description": "Extended duration testing",
+      "purpose": "Detect memory leaks and long-term degradation",
+      "targetLoad": {
+        "minVUs": 20,
+        "maxVUs": 50,
+        "duration": "2-8h"
+      },
+      "scenarios": [
+        "soak-endurance"
+      ],
+      "thresholds": {
+        "http_req_duration": ["p(95)<5000"],
+        "http_req_failed": ["rate<0.02"],
+        "checks": ["rate>0.95"]
+      },
+      "executionOrder": "sequential",
+      "frequency": "monthly",
+      "warnings": [
+        "Long duration test - plan execution time carefully",
+        "Monitor system resources throughout execution",
+        "Consider running during low-traffic periods"
+      ]
+    },
+    "volume": {
+      "name": "Volume Testing",
+      "description": "Incremental load increase to find limits",
+      "purpose": "Identify performance breakpoints and optimal capacity",
+      "targetLoad": {
+        "minVUs": 10,
+        "maxVUs": 500,
+        "duration": "30-60m"
+      },
+      "scenarios": [
+        "breakpoint-analysis"
+      ],
+      "thresholds": {
+        "http_req_duration": ["p(95)<10000"],
+        "http_req_failed": ["rate<0.25"],
+        "checks": ["rate>0.70"]
+      },
+      "executionOrder": "sequential",
+      "frequency": "monthly"
+    }
+  },
+  "scenarioDetails": {
+    "smoke-basic": {
+      "file": "scenarios/smoke/smoke-basic.js",
+      "description": "Basic API endpoint validation"
+    },
+    "smoke-auth": {
+      "file": "scenarios/smoke/smoke-auth.js",
+      "description": "Authentication system validation"
+    },
+    "load-user-journey": {
+      "file": "scenarios/load/load-user-journey.js",
+      "description": "Complete user workflow simulation"
+    },
+    "load-documents": {
+      "file": "scenarios/load/load-documents.js",
+      "description": "Document operations load testing"
+    },
+    "stress-auth": {
+      "file": "scenarios/stress/stress-auth.js",
+      "description": "Authentication system under stress"
+    },
+    "spike-login": {
+      "file": "scenarios/spike/spike-login.js",
+      "description": "Login endpoint traffic spike"
+    },
+    "spike-documents": {
+      "file": "scenarios/spike/spike-documents.js",
+      "description": "Document operations traffic spike"
+    },
+    "soak-endurance": {
+      "file": "scenarios/soak/soak-endurance.js",
+      "description": "Long-term endurance testing"
+    },
+    "breakpoint-analysis": {
+      "file": "scenarios/volume/breakpoint-analysis.js",
+      "description": "Incremental load increase analysis"
+    }
+  }
+}

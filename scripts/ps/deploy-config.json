@@ -1,0 +1,283 @@
+{
+  "deploymentConfig": {
+    "environments": {
+      "DevTest": {
+        "description": "Development and Testing Environment",
+        "databaseServer": "devtest-sql.contoso.com",
+        "databaseName": "WeSign_DevTest",
+        "redisServer": "devtest-redis.contoso.com",
+        "logLevel": "Debug",
+        "enableDetailedErrors": true,
+        "compilationDebug": true,
+        "customErrors": "Off",
+        "sessionTimeout": 20,
+        "cacheTimeout": 300,
+        "healthCheckUrl": "http://devtest",
+        "servers": [
+          "devtest.contoso.com",
+          "devtest-web01.contoso.com"
+        ]
+      },
+      "Staging": {
+        "description": "Staging Environment",
+        "databaseServer": "staging-sql.contoso.com",
+        "databaseName": "WeSign_Staging",
+        "redisServer": "staging-redis.contoso.com",
+        "logLevel": "Information",
+        "enableDetailedErrors": false,
+        "compilationDebug": false,
+        "customErrors": "RemoteOnly",
+        "sessionTimeout": 30,
+        "cacheTimeout": 600,
+        "healthCheckUrl": "http://staging",
+        "servers": [
+          "staging-web01.contoso.com",
+          "staging-web02.contoso.com"
+        ]
+      },
+      "Production": {
+        "description": "Production Environment",
+        "databaseServer": "prod-sql.contoso.com",
+        "databaseName": "WeSign_Production",
+        "redisServer": "prod-redis.contoso.com",
+        "logLevel": "Warning",
+        "enableDetailedErrors": false,
+        "compilationDebug": false,
+        "customErrors": "RemoteOnly",
+        "sessionTimeout": 60,
+        "cacheTimeout": 1800,
+        "healthCheckUrl": "https://wesign.contoso.com",
+        "servers": [
+          "prod-web01.contoso.com",
+          "prod-web02.contoso.com",
+          "prod-web03.contoso.com"
+        ]
+      }
+    },
+    "appPools": {
+      "UserApi": {
+        "name": "UserApi",
+        "healthEndpoint": "/api/user/health",
+        "dependencies": [],
+        "startupTimeout": 60,
+        "stopTimeout": 30,
+        "criticalForDeployment": true
+      },
+      "SignerApi": {
+        "name": "SignerApi",
+        "healthEndpoint": "/api/signer/health",
+        "dependencies": ["UserApi"],
+        "startupTimeout": 60,
+        "stopTimeout": 30,
+        "criticalForDeployment": true
+      },
+      "ManagementApi": {
+        "name": "ManagementApi",
+        "healthEndpoint": "/WeSignManagement/health",
+        "dependencies": ["UserApi"],
+        "startupTimeout": 60,
+        "stopTimeout": 30,
+        "criticalForDeployment": true
+      },
+      "DefaultAppPool": {
+        "name": "DefaultAppPool",
+        "healthEndpoint": "/health",
+        "dependencies": [],
+        "startupTimeout": 30,
+        "stopTimeout": 15,
+        "criticalForDeployment": false
+      },
+      "PdfConvertorService": {
+        "name": "PdfConvertorService",
+        "healthEndpoint": "/api/pdf/health",
+        "dependencies": ["UserApi"],
+        "startupTimeout": 90,
+        "stopTimeout": 45,
+        "criticalForDeployment": false
+      }
+    },
+    "paths": {
+      "deployDirectory": "C:\\inetpub\\WeSign",
+      "stagingDirectory": "C:\\deploy",
+      "backupRoot": "C:\\backup\\WeSign",
+      "tempExtract": "C:\\temp\\wesign_deploy",
+      "logDirectory": "C:\\Logs\\WeSignDeployment"
+    },
+    "timeouts": {
+      "deploymentTimeout": 1800,
+      "backupTimeout": 600,
+      "extractionTimeout": 300,
+      "healthCheckTimeout": 30,
+      "winrmSessionTimeout": 300
+    },
+    "validation": {
+      "requiredFiles": [
+        "bin/*.dll",
+        "web.config",
+        "Global.asax"
+      ],
+      "requiredDirectories": [
+        "bin",
+        "Content",
+        "Scripts",
+        "Views"
+      ],
+      "criticalEndpoints": [
+        "/health",
+        "/WeSignManagement/health"
+      ],
+      "optionalEndpoints": [
+        "/api/user/status",
+        "/api/signer/status",
+        "/api/pdf/status"
+      ]
+    },
+    "smokeTests": {
+      "endpoints": {
+        "HealthCheck": {
+          "url": "/health",
+          "method": "GET",
+          "expectedStatus": 200,
+          "expectedContent": "healthy",
+          "timeout": 30,
+          "critical": true,
+          "description": "Main application health check"
+        },
+        "ManagementHealth": {
+          "url": "/WeSignManagement/health",
+          "method": "GET",
+          "expectedStatus": 200,
+          "expectedContent": "",
+          "timeout": 30,
+          "critical": true,
+          "description": "WeSign Management API health check"
+        },
+        "UserApiStatus": {
+          "url": "/api/user/status",
+          "method": "GET",
+          "expectedStatus": 200,
+          "expectedContent": "",
+          "timeout": 30,
+          "critical": false,
+          "description": "User API status endpoint"
+        },
+        "SignerApiStatus": {
+          "url": "/api/signer/status",
+          "method": "GET",
+          "expectedStatus": 200,
+          "expectedContent": "",
+          "timeout": 30,
+          "critical": false,
+          "description": "Signer API status endpoint"
+        },
+        "PdfConverterStatus": {
+          "url": "/api/pdf/status",
+          "method": "GET",
+          "expectedStatus": 200,
+          "expectedContent": "",
+          "timeout": 45,
+          "critical": false,
+          "description": "PDF Converter service status"
+        },
+        "StaticContent": {
+          "url": "/Content/css/site.css",
+          "method": "GET",
+          "expectedStatus": 200,
+          "expectedContent": "css",
+          "timeout": 15,
+          "critical": false,
+          "description": "Static content accessibility"
+        }
+      },
+      "databaseTests": {
+        "ConnectionTest": {
+          "query": "SELECT 1 as TestValue",
+          "timeout": 30,
+          "critical": true,
+          "description": "Database connectivity test"
+        },
+        "UserTableTest": {
+          "query": "SELECT TOP 1 UserId FROM Users",
+          "timeout": 30,
+          "critical": false,
+          "description": "User table accessibility test"
+        },
+        "DocumentTableTest": {
+          "query": "SELECT TOP 1 DocumentId FROM Documents",
+          "timeout": 30,
+          "critical": false,
+          "description": "Document table accessibility test"
+        }
+      },
+      "serviceDependencies": {
+        "MSSQL": {
+          "serviceName": "MSSQLSERVER",
+          "required": true,
+          "description": "SQL Server Database Engine"
+        },
+        "IIS": {
+          "serviceName": "W3SVC",
+          "required": true,
+          "description": "IIS World Wide Web Publishing Service"
+        },
+        "WAS": {
+          "serviceName": "WAS",
+          "required": true,
+          "description": "Windows Process Activation Service"
+        }
+      },
+      "scoring": {
+        "criticalWeight": 10,
+        "nonCriticalWeight": 3,
+        "passingScore": 80
+      }
+    },
+    "security": {
+      "encryptSections": [
+        "connectionStrings",
+        "appSettings"
+      ],
+      "secureKeys": [
+        "password",
+        "connectionstring",
+        "key",
+        "secret",
+        "token"
+      ],
+      "redactInLogs": true,
+      "securityHeaders": {
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-Content-Type-Options": "nosniff",
+        "X-XSS-Protection": "1; mode=block",
+        "Referrer-Policy": "strict-origin-when-cross-origin"
+      }
+    },
+    "notifications": {
+      "qaIntelligenceIntegration": {
+        "enabled": true,
+        "baseUrl": "http://localhost:8082",
+        "endpoints": {
+          "deploymentStatus": "/api/deployment/status",
+          "deploymentStep": "/api/deployment/step",
+          "deploymentComplete": "/api/deployment/complete"
+        },
+        "timeout": 30
+      },
+      "emailNotifications": {
+        "enabled": false,
+        "smtpServer": "smtp.contoso.com",
+        "recipients": [
+          "qa-team@contoso.com",
+          "dev-team@contoso.com"
+        ]
+      }
+    },
+    "defaults": {
+      "environment": "DevTest",
+      "retryAttempts": 3,
+      "retryDelay": 5,
+      "maxConcurrentSessions": 5,
+      "logRetentionDays": 30
+    }
+  }
+}

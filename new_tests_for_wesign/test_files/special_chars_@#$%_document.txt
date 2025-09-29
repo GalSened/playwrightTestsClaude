@@ -1,0 +1,19 @@
+WeSign Test Document with Special Characters
+
+This file tests handling of special characters in filenames:
+- @ (at symbol)
+- # (hash)
+- $ (dollar sign)
+- % (percent)
+- _ (underscore)
+
+Content validation for special filename characters in the WeSign testing platform.
+
+Test Cases:
+✓ File upload with special characters
+✓ Filename parsing and display
+✓ Database storage handling
+✓ URL encoding/decoding
+✓ Cross-platform compatibility
+
+Status: Ready for automated testing

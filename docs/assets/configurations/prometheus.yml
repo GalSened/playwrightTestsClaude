@@ -1,0 +1,170 @@
+# QA Intelligence - Prometheus Configuration
+# Comprehensive monitoring configuration for all system components
+
+global:
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'qa-intelligence'
+    environment: 'production'
+
+rule_files:
+  - "rules/*.yml"
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
+
+scrape_configs:
+  # Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+    scrape_interval: 30s
+    metrics_path: /metrics
+
+  # QA Intelligence Backend
+  - job_name: 'qa-intelligence-backend'
+    static_configs:
+      - targets: ['backend:8082']
+    scrape_interval: 15s
+    metrics_path: /api/metrics
+    scrape_timeout: 10s
+    honor_labels: true
+    params:
+      format: ['prometheus']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'qa-backend'
+      - target_label: service
+        replacement: 'backend'
+
+  # QA Intelligence Frontend (if metrics enabled)
+  - job_name: 'qa-intelligence-frontend'
+    static_configs:
+      - targets: ['frontend:3001']
+    scrape_interval: 30s
+    metrics_path: /api/metrics
+    scrape_timeout: 10s
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'qa-frontend'
+      - target_label: service
+        replacement: 'frontend'
+
+  # PostgreSQL Database
+  - job_name: 'postgresql'
+    static_configs:
+      - targets: ['postgres-exporter:9187']
+    scrape_interval: 30s
+    relabel_configs:
+      - target_label: service
+        replacement: 'database'
+
+  # Redis Cache
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis-exporter:9121']
+    scrape_interval: 30s
+    relabel_configs:
+      - target_label: service
+        replacement: 'cache'
+
+  # Node Exporter (System metrics)
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+    scrape_interval: 15s
+    relabel_configs:
+      - target_label: service
+        replacement: 'system'
+
+  # Jenkins CI/CD
+  - job_name: 'jenkins'
+    static_configs:
+      - targets: ['jenkins:8080']
+    scrape_interval: 30s
+    metrics_path: /prometheus/
+    params:
+      format: ['prometheus']
+    relabel_configs:
+      - target_label: service
+        replacement: 'jenkins'
+
+  # Nginx Reverse Proxy
+  - job_name: 'nginx'
+    static_configs:
+      - targets: ['nginx-exporter:9113']
+    scrape_interval: 15s
+    relabel_configs:
+      - target_label: service
+        replacement: 'proxy'
+
+  # WeSign Integration Health Check
+  - job_name: 'wesign-health'
+    static_configs:
+      - targets: ['backend:8082']
+    scrape_interval: 60s
+    metrics_path: /api/wesign/health
+    params:
+      format: ['prometheus']
+    relabel_configs:
+      - target_label: service
+        replacement: 'wesign-integration'
+
+  # Docker Container Metrics (if Docker host is accessible)
+  - job_name: 'docker'
+    static_configs:
+      - targets: ['cadvisor:8080']
+    scrape_interval: 30s
+    relabel_configs:
+      - target_label: service
+        replacement: 'containers'
+
+  # Test Execution Metrics
+  - job_name: 'test-execution'
+    static_configs:
+      - targets: ['backend:8082']
+    scrape_interval: 30s
+    metrics_path: /api/metrics/tests
+    params:
+      format: ['prometheus']
+    relabel_configs:
+      - target_label: service
+        replacement: 'test-execution'
+
+  # API Performance Monitoring
+  - job_name: 'api-performance'
+    static_configs:
+      - targets: ['backend:8082']
+    scrape_interval: 15s
+    metrics_path: /api/metrics/performance
+    params:
+      format: ['prometheus']
+    relabel_configs:
+      - target_label: service
+        replacement: 'api-performance'
+
+# Remote write configuration (for long-term storage)
+# remote_write:
+#   - url: "https://prometheus-remote-storage.company.com/api/v1/write"
+#     basic_auth:
+#       username: "qa-intelligence"
+#       password: "secure-password"
+#     write_relabel_configs:
+#       - source_labels: [__name__]
+#         regex: 'qa_intelligence_.*'
+#         action: keep
+
+# Remote read configuration (for federated setup)
+# remote_read:
+#   - url: "https://prometheus-remote-storage.company.com/api/v1/read"
+#     basic_auth:
+#       username: "qa-intelligence"
+#       password: "secure-password"

@@ -1,0 +1,58 @@
+{
+  "name": "wesign-k6-load-testing",
+  "version": "1.0.0",
+  "description": "K6 Load Testing Suite for WeSign API",
+  "main": "run-tests.js",
+  "scripts": {
+    "test:smoke": "k6 run --env ENVIRONMENT=dev scenarios/smoke/smoke-basic.js",
+    "test:smoke:auth": "k6 run --env ENVIRONMENT=dev scenarios/smoke/smoke-auth.js",
+    "test:load": "k6 run --env ENVIRONMENT=dev scenarios/load/load-user-journey.js",
+    "test:load:docs": "k6 run --env ENVIRONMENT=dev scenarios/load/load-documents.js",
+    "test:stress": "k6 run --env ENVIRONMENT=dev scenarios/stress/stress-auth.js",
+    "test:spike:login": "k6 run --env ENVIRONMENT=dev scenarios/spike/spike-login.js",
+    "test:spike:docs": "k6 run --env ENVIRONMENT=dev scenarios/spike/spike-documents.js",
+    "test:soak": "k6 run --env ENVIRONMENT=dev scenarios/soak/soak-endurance.js",
+    "test:volume": "k6 run --env ENVIRONMENT=dev scenarios/volume/breakpoint-analysis.js",
+    "test:all:dev": "bash run-tests.sh all dev",
+    "test:all:staging": "bash run-tests.sh all staging",
+    "test:quick": "bash run-tests.sh smoke dev",
+    "validate:config": "node scripts/validate-config.js",
+    "clean:reports": "rimraf reports/* data/* logs/*",
+    "setup": "npm install && node scripts/setup-environment.js"
+  },
+  "keywords": [
+    "k6",
+    "load-testing",
+    "performance",
+    "wesign",
+    "api-testing",
+    "qa",
+    "testing"
+  ],
+  "author": "WeSign QA Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0",
+    "k6": ">=0.45.0"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wesign/load-testing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wesign/load-testing/issues"
+  },
+  "homepage": "https://github.com/wesign/load-testing#readme",
+  "directories": {
+    "test": "scenarios",
+    "doc": "docs"
+  },
+  "config": {
+    "defaultEnvironment": "dev",
+    "reportFormat": "html",
+    "maxConcurrentTests": 1
+  }
+}
