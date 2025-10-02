@@ -83,17 +83,19 @@ export class ContextSlicer {
         totalRedacted++;
       }
 
-      // 4. Calculate byte size
+      // 4. Calculate byte size and token estimate
       const byteSize = BudgetTracker.calculateBytes(content);
+      const contentJson = JSON.stringify(content);
+      const tokenEstimate = BudgetTracker.estimateTokens(contentJson);
 
       // 5. Check budget
-      if (!budget.canAdd(byteSize)) {
+      if (!budget.canAdd(byteSize, tokenEstimate)) {
         totalDroppedBudget++;
         continue;
       }
 
       // 6. Add to slice
-      budget.add(byteSize);
+      budget.add(byteSize, tokenEstimate);
       slicedItems.push({
         original: result,
         redactedContent: opaDecision.redact ? content : undefined,

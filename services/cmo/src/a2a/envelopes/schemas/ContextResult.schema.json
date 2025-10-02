@@ -77,6 +77,100 @@
           },
           "uniqueItems": true,
           "description": "Data sources used for retrieval"
+        },
+        "explain": {
+          "type": "object",
+          "description": "Explainability metadata (H4R ranker decisions, SCS budgeting)",
+          "properties": {
+            "ranker": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["ref", "score", "signals", "kept"],
+                "properties": {
+                  "ref": {
+                    "type": "string",
+                    "description": "Result reference ID"
+                  },
+                  "score": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Final aggregated score"
+                  },
+                  "signals": {
+                    "type": "object",
+                    "required": [
+                      "recency",
+                      "frequency",
+                      "importance",
+                      "causality",
+                      "novelty_penalty",
+                      "trust",
+                      "sensitivity_penalty"
+                    ],
+                    "properties": {
+                      "recency": {"type": "number", "minimum": 0, "maximum": 1},
+                      "frequency": {"type": "number", "minimum": 0, "maximum": 1},
+                      "importance": {"type": "number", "minimum": 0, "maximum": 1},
+                      "causality": {"type": "number", "minimum": 0, "maximum": 1},
+                      "novelty_penalty": {"type": "number", "minimum": 0, "maximum": 1},
+                      "trust": {"type": "number", "minimum": 0, "maximum": 1},
+                      "sensitivity_penalty": {"type": "number", "minimum": 0, "maximum": 1}
+                    },
+                    "additionalProperties": false
+                  },
+                  "kept": {
+                    "type": "boolean",
+                    "description": "Whether item passed threshold"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "description": "Human-readable explanation"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "description": "Per-item ranking decisions"
+            },
+            "slicing": {
+              "type": "object",
+              "properties": {
+                "total_redacted": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Number of items blocked/redacted by policy"
+                },
+                "total_dropped_budget": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Number of items dropped due to budget"
+                },
+                "budget_used": {
+                  "type": "object",
+                  "properties": {
+                    "bytes": {"type": "integer", "minimum": 0},
+                    "estimated_tokens": {"type": "integer", "minimum": 0},
+                    "items": {"type": "integer", "minimum": 0}
+                  }
+                },
+                "policy_degraded": {
+                  "type": "boolean",
+                  "description": "True if OPA unavailable and fallback rules used"
+                }
+              }
+            },
+            "timings": {
+              "type": "object",
+              "properties": {
+                "retrieval_ms": {"type": "integer", "minimum": 0},
+                "slicing_ms": {"type": "integer", "minimum": 0},
+                "summarization_ms": {"type": "integer", "minimum": 0},
+                "total_ms": {"type": "integer", "minimum": 0}
+              }
+            }
+          },
+          "additionalProperties": false
         }
       },
       "additionalProperties": false
