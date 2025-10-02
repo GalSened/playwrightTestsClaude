@@ -1,0 +1,225 @@
+{
+  "type": "plan",
+  "project": "WeSign-Demo-Suite",
+  "version": "v1.4",
+  "timestamp": "2025-09-08T13:50:00Z", 
+  "owner": "Claude",
+  "goal": "Add real WeSign business logic testing (login, document workflows)",
+  "priority": "HIGH",
+  "steps": [
+    {
+      "id": "BUSINESS-NEW-01",
+      "desc": "Add comprehensive login functionality testing",
+      "tools": ["write"],
+      "success": "Test validates actual login process with real credentials",
+      "details": {
+        "test_name": "BUSINESS-NEW-01: WeSign Login Workflow Validation",
+        "functionality": "End-to-end login process testing",
+        "scope": "Login form, authentication, session management, redirects",
+        "test_cases": [
+          "Valid login credentials - successful authentication",
+          "Invalid credentials - proper error handling", 
+          "Empty form submission - validation messages",
+          "Session persistence - stay logged in",
+          "Logout functionality - clean session termination"
+        ],
+        "implementation": {
+          "step_1": "Navigate to login page and validate form structure",
+          "step_2": "Test valid login with demo credentials",
+          "step_3": "Verify successful redirect to dashboard/main page",
+          "step_4": "Test invalid credentials and error handling",
+          "step_5": "Test logout and session cleanup"
+        },
+        "assertions": [
+          "Login form has username/email and password fields",
+          "Valid credentials lead to authenticated state",
+          "Invalid credentials show appropriate error messages", 
+          "Post-login pages are accessible",
+          "Logout properly clears session"
+        ]
+      }
+    },
+    {
+      "id": "BUSINESS-NEW-02", 
+      "desc": "Add document upload workflow testing",
+      "tools": ["write"],
+      "success": "Test validates document upload and initial processing",
+      "details": {
+        "test_name": "BUSINESS-NEW-02: Document Upload Workflow",
+        "functionality": "Document upload process from start to processing", 
+        "scope": "File selection, upload validation, processing status",
+        "test_cases": [
+          "Valid document upload (PDF) - successful processing",
+          "Invalid file type - proper rejection and error",
+          "File size validation - appropriate limits",
+          "Upload progress indication - user feedback",
+          "Post-upload document status - tracking capability"
+        ],
+        "implementation": {
+          "step_1": "Navigate to document upload page (after login)",
+          "step_2": "Test file selection and validation UI",
+          "step_3": "Upload valid test document (PDF)",
+          "step_4": "Verify upload progress and completion feedback",
+          "step_5": "Check document appears in user's document list"
+        },
+        "assertions": [
+          "Upload interface is accessible and functional",
+          "Valid documents upload successfully",
+          "Invalid files are rejected with clear messages",
+          "Upload progress is visible to user",
+          "Uploaded documents appear in document management area"
+        ]
+      }
+    },
+    {
+      "id": "BUSINESS-NEW-03",
+      "desc": "Add document signing workflow testing", 
+      "tools": ["write"],
+      "success": "Test validates digital signing process",
+      "details": {
+        "test_name": "BUSINESS-NEW-03: Document Signing Workflow",
+        "functionality": "Digital document signing process",
+        "scope": "Document preview, signature placement, signing completion",
+        "test_cases": [
+          "Document preview - proper rendering and navigation",
+          "Signature placement - drag/drop or click positioning",
+          "Digital signature creation - drawing or typed signature",
+          "Sign document - complete signing process",
+          "Signed document status - verification and download"
+        ],
+        "implementation": {
+          "step_1": "Open document for signing (use uploaded document)",
+          "step_2": "Verify document preview/viewer functionality",
+          "step_3": "Test signature placement interface",
+          "step_4": "Complete digital signature process",
+          "step_5": "Verify signed document status and download capability"
+        },
+        "assertions": [
+          "Document viewer displays content properly",
+          "Signature placement tools are functional",
+          "Digital signature can be created and applied",
+          "Signing process completes successfully",
+          "Signed document shows completed status"
+        ]
+      }
+    },
+    {
+      "id": "BUSINESS-NEW-04",
+      "desc": "Add form submission and validation testing",
+      "tools": ["write"],
+      "success": "Test validates form functionality across WeSign application",
+      "details": {
+        "test_name": "BUSINESS-NEW-04: Form Submission and Validation",
+        "functionality": "Form handling, validation, and error management",
+        "scope": "Contact forms, settings forms, document metadata forms",
+        "test_cases": [
+          "Valid form submission - successful processing",
+          "Required field validation - appropriate error messages",
+          "Input format validation - email, phone, etc.",
+          "Form state preservation - maintain data on errors", 
+          "Success feedback - confirmation messages"
+        ],
+        "implementation": {
+          "step_1": "Identify key forms in WeSign application",
+          "step_2": "Test valid form submissions",
+          "step_3": "Test required field validation",
+          "step_4": "Test input format validation",
+          "step_5": "Verify success and error feedback"
+        },
+        "assertions": [
+          "Forms submit successfully with valid data",
+          "Required fields show validation errors when empty",
+          "Input formats are validated (email, phone, etc.)",
+          "Form state is preserved during validation errors",
+          "Success messages appear after successful submission"
+        ]
+      }
+    },
+    {
+      "id": "BUSINESS-NEW-05",
+      "desc": "Add user journey end-to-end testing",
+      "tools": ["write"],
+      "success": "Test validates complete user workflows from start to finish",
+      "details": {
+        "test_name": "BUSINESS-NEW-05: Complete User Journey Testing",
+        "functionality": "End-to-end user workflows combining multiple features",
+        "scope": "Login → Upload → Sign → Download complete flow",
+        "test_cases": [
+          "New user registration and first document signing",
+          "Returning user - login and document management",
+          "Multi-document workflow - batch processing",
+          "Error recovery - handling failures gracefully",
+          "Session management - timeout and renewal"
+        ],
+        "implementation": {
+          "step_1": "Complete user registration process",
+          "step_2": "Login and navigate to document upload",
+          "step_3": "Upload, review, and sign document",
+          "step_4": "Download signed document",
+          "step_5": "Verify all steps complete successfully"
+        },
+        "assertions": [
+          "Complete workflow can be executed without manual intervention",
+          "Each step transitions properly to the next",
+          "Error states are handled gracefully with recovery options",
+          "User receives appropriate feedback at each stage",
+          "Final deliverable (signed document) meets requirements"
+        ]
+      }
+    },
+    {
+      "id": "BUSINESS-NEW-06",
+      "desc": "Add error handling and edge case testing",
+      "tools": ["write"], 
+      "success": "Test validates application handles errors and edge cases properly",
+      "details": {
+        "test_name": "BUSINESS-NEW-06: Error Handling and Edge Cases",
+        "functionality": "Application resilience and error recovery",
+        "scope": "Network failures, invalid inputs, system limits",
+        "test_cases": [
+          "Network connectivity issues - graceful degradation",
+          "File upload failures - retry and error messaging",
+          "Authentication timeouts - session renewal",
+          "Invalid document formats - clear rejection", 
+          "System overload scenarios - queue management"
+        ],
+        "implementation": {
+          "step_1": "Test network failure scenarios during critical operations",
+          "step_2": "Test file upload with corrupted/invalid documents",
+          "step_3": "Test authentication timeout during long operations",
+          "step_4": "Test system behavior at capacity limits",
+          "step_5": "Verify error recovery and user guidance"
+        },
+        "assertions": [
+          "Network failures show appropriate user messaging",
+          "Failed operations can be retried successfully",
+          "Authentication issues redirect to login appropriately",
+          "Invalid inputs are rejected with clear explanations",
+          "System maintains functionality under stress"
+        ]
+      }
+    }
+  ],
+  "test_data_requirements": [
+    "Valid test user credentials for authentication",
+    "Sample documents (PDF, DOC) for upload testing",
+    "Invalid file types for negative testing",
+    "Test certificates/keys for digital signing",
+    "Network simulation tools for connectivity testing"
+  ],
+  "constraints": [
+    "Tests must work with WeSign demo environment",
+    "Preserve Hebrew/RTL language support in new tests",
+    "Maintain compatibility with existing framework components",
+    "Tests should be deterministic and repeatable"
+  ],
+  "rollback_plan": "New tests are additive - can be disabled without affecting existing suite",
+  "estimated_duration": "8-12 hours for complete implementation",
+  "success_criteria": [
+    "All new tests validate actual WeSign business functionality",
+    "Tests can demonstrate real bugs in business logic",
+    "Complete user journeys are validated end-to-end", 
+    "Error scenarios are properly tested and handled"
+  ],
+  "external_id": "WeSign-Demo-Suite:v1.4:plan:business-logic-tests"
+}

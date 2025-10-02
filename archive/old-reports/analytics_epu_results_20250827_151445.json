@@ -1,0 +1,59 @@
+{
+  "test_suite": "Analytics EPU Tests",
+  "timestamp": "2025-08-27 15:14:25",
+  "base_url": "http://localhost:5173/analytics",
+  "tests": [
+    {
+      "name": "Page Load & Overview Cards",
+      "status": "passed",
+      "details": "All core elements and coverage cards loaded successfully"
+    },
+    {
+      "name": "Charts Rendering & Interaction",
+      "status": "passed",
+      "details": "Charts section verified and interactivity tested"
+    },
+    {
+      "name": "Gaps List Verification",
+      "status": "passed",
+      "details": "Gaps panel verified with 2 gap items"
+    },
+    {
+      "name": "AI Insights Validation",
+      "status": "passed",
+      "details": "Insights panel verified with 2 insight items"
+    },
+    {
+      "name": "Filtering & Search Functionality",
+      "status": "passed",
+      "details": "Filter controls tested for both gaps and insights"
+    },
+    {
+      "name": "Data Accuracy Cross-Checks",
+      "status": "passed",
+      "details": "Data accuracy and UI consistency verified"
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0
+  },
+  "screenshots": [
+    "analytics_01_initial_load_20250827_151432.png",
+    "analytics_02_charts_20250827_151433.png",
+    "analytics_03_gaps_20250827_151435.png",
+    "analytics_04_insights_20250827_151436.png",
+    "analytics_05_filtering_20250827_151443.png",
+    "analytics_06_validation_20250827_151444.png",
+    "analytics_07_final_state_20250827_151445.png"
+  ],
+  "epu_compliance": {
+    "page_load": true,
+    "charts_rendering": true,
+    "gaps_functionality": true,
+    "insights_validation": true,
+    "filtering_search": true,
+    "data_accuracy": true
+  }
+}

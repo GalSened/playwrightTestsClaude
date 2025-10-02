@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "a2a_version": "1.0",
+    "message_id": "c3d4e5f678901234567890123456789a",
+    "trace_id": "trace-002",
+    "ts": "2025-01-15T10:40:00.000Z",
+    "from": {
+      "id": "memory-service-001",
+      "type": "system",
+      "version": "1.0.0"
+    },
+    "to": [
+      {
+        "type": "topic",
+        "name": "qa.wesign.qa-platform.memory.events.create"
+      }
+    ],
+    "tenant": "wesign",
+    "project": "qa-platform",
+    "type": "MemoryEvent"
+  },
+  "payload": {
+    "event_type": "created",
+    "memory_key": "user_preferences/ui/dark_mode",
+    "value": {
+      "content": "User preference: prefer dark mode in CI dashboard",
+      "tags": [
+        "user-preference",
+        "ui"
+      ],
+      "timestamp": "2025-01-15T10:40:00.000Z"
+    },
+    "tags": [
+      "user-preference",
+      "ui"
+    ]
+  }
+}

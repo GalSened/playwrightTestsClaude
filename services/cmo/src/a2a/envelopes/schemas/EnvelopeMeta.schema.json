@@ -1,0 +1,140 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://qa-intelligence.com/schemas/a2a/EnvelopeMeta.schema.json",
+  "title": "A2A Envelope Metadata",
+  "description": "Common metadata for all Agent-to-Agent (A2A) message envelopes",
+  "type": "object",
+  "required": ["a2a_version", "message_id", "trace_id", "ts", "from", "to", "tenant", "project", "type"],
+  "properties": {
+    "a2a_version": {
+      "type": "string",
+      "const": "1.0",
+      "description": "A2A protocol version"
+    },
+    "message_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9-]{16,}$",
+      "description": "Unique message identifier (hex string, min 16 chars)"
+    },
+    "trace_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Distributed trace ID for correlation across agents"
+    },
+    "ts": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when message was created"
+    },
+    "from": {
+      "$ref": "AgentId.schema.json",
+      "description": "Sender agent identifier"
+    },
+    "to": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "AgentId.schema.json",
+            "description": "Specific agent recipient"
+          },
+          {
+            "type": "object",
+            "required": ["type", "name"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "topic",
+                "description": "Topic-based routing"
+              },
+              "name": {
+                "type": "string",
+                "pattern": "^qa\\.[a-z0-9_-]+\\.[a-z0-9_-]+\\.[a-z0-9_.-]+$",
+                "description": "Topic name (format: qa.<tenant>.<project>.<domain>.<entity>.<verb>)"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "description": "Recipient(s): specific agent(s) or topic(s)"
+    },
+    "tenant": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Tenant identifier (lowercase alphanumeric, hyphens, underscores)"
+    },
+    "project": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Project identifier within tenant"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "TaskRequest",
+        "TaskResult",
+        "MemoryEvent",
+        "ContextRequest",
+        "ContextResult",
+        "SpecialistInvocationRequest",
+        "SpecialistResult",
+        "RetryDirective",
+        "DecisionNotice",
+        "HeartbeatEvent",
+        "RegistryUpdate",
+        "RegistryHeartbeat",
+        "RegistryDiscoveryRequest",
+        "RegistryDiscoveryResponse",
+        "SystemEvent",
+        "SpecialistEventNotification"
+      ],
+      "description": "Message type (determines payload schema)"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "normal", "high"],
+      "default": "normal",
+      "description": "Message priority for queue processing"
+    },
+    "deadline": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when message expires (optional)"
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "description": "Idempotency key for duplicate detection (optional but recommended)"
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Correlation ID for request/response pairing (optional)"
+    },
+    "reply_to": {
+      "type": "string",
+      "pattern": "^[a-f0-9-]{16,}$",
+      "description": "Message ID of original request for correlation (optional)"
+    },
+    "jwt_token": {
+      "type": "string",
+      "description": "JWT authentication token (optional, verified on receive)"
+    },
+    "capability_token": {
+      "type": "string",
+      "description": "Nested capability token for fine-grained authorization (optional)"
+    },
+    "signature": {
+      "type": "string",
+      "description": "Message signature for integrity verification (optional)"
+    }
+  },
+  "additionalProperties": false
+}

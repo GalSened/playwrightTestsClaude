@@ -1,0 +1,95 @@
+{
+  "type": "plan",
+  "project": "WeSign-Demo-Suite",
+  "version": "v1.1",
+  "timestamp": "2025-09-08T13:48:30Z",
+  "owner": "Claude",
+  "goal": "Fix the 3 critical tests that cannot fail",
+  "priority": "CRITICAL",
+  "steps": [
+    {
+      "id": "CRITICAL-01",
+      "desc": "Fix UI-05: Media and Assets Detection test",
+      "tools": ["edit"],
+      "success": "Test can actually fail when no meaningful media is present",
+      "details": {
+        "current_problem": "expect(mediaCount).toBeGreaterThanOrEqual(0) - ALWAYS PASSES",
+        "location": "Line 244 in tests/wesign-demo-suite.spec.ts", 
+        "fix_strategy": "Implement meaningful media validation",
+        "new_logic": {
+          "check_1": "Validate that essential images (logo, branding) are present",
+          "check_2": "Verify that media elements actually load successfully",
+          "check_3": "Ensure media has proper alt text for accessibility",
+          "assertion": "expect(criticalMediaCount).toBeGreaterThan(0) && expect(loadedMediaCount).toBe(criticalMediaCount)"
+        },
+        "implementation": {
+          "step_1": "Replace generic media counting with specific checks",
+          "step_2": "Add logic to verify media loading status",
+          "step_3": "Check for essential WeSign branding/logo images",
+          "step_4": "Validate accessibility attributes on media"
+        }
+      }
+    },
+    {
+      "id": "CRITICAL-02", 
+      "desc": "Fix I18N-03: Multilingual Capability Detection test",
+      "tools": ["edit"],
+      "success": "Test validates actual multilingual functionality",
+      "details": {
+        "current_problem": "expect(langCount + hasLangParam).toBeGreaterThanOrEqual(0) - ALWAYS PASSES",
+        "location": "Line 320 in tests/wesign-demo-suite.spec.ts",
+        "fix_strategy": "Test real multilingual functionality",
+        "new_logic": {
+          "check_1": "Verify at least 2 languages are supported",
+          "check_2": "Test language switching functionality if present", 
+          "check_3": "Validate content changes when language switches",
+          "assertion": "expect(supportedLanguages).toBeGreaterThan(1) || expect(hasWorkingLanguageSwitch).toBe(true)"
+        },
+        "implementation": {
+          "step_1": "Look for actual language switching mechanisms",
+          "step_2": "Test if language buttons/selectors work",
+          "step_3": "Verify content actually changes with language",
+          "step_4": "Check for proper i18n implementation (not just presence of lang attributes)"
+        }
+      }
+    },
+    {
+      "id": "CRITICAL-03",
+      "desc": "Fix BUSINESS-02: Document Processing Flow Check test", 
+      "tools": ["edit"],
+      "success": "Test validates actual document workflow functionality",
+      "details": {
+        "current_problem": "expect(workflowSteps).toBeGreaterThanOrEqual(0) - ALWAYS PASSES",
+        "location": "Line 471 in tests/wesign-demo-suite.spec.ts",
+        "fix_strategy": "Test real document processing workflow", 
+        "new_logic": {
+          "check_1": "Verify essential workflow pages are accessible and functional",
+          "check_2": "Test that workflow steps have proper forms/functionality",
+          "check_3": "Validate workflow progression logic",
+          "assertion": "expect(workingWorkflowSteps).toBeGreaterThan(1) && expect(hasDocumentUploadForm).toBe(true)"
+        },
+        "implementation": {
+          "step_1": "Check for actual document upload functionality",
+          "step_2": "Verify signing interface exists and is functional", 
+          "step_3": "Test document processing status/progress indicators",
+          "step_4": "Validate minimum viable document workflow (upload → process → sign)"
+        }
+      }
+    }
+  ],
+  "constraints": [
+    "Must maintain test reliability while adding meaningful validation",
+    "Tests should fail when actual functionality is broken",
+    "Preserve WeSign-specific business logic validation", 
+    "Maintain Hebrew/RTL language support requirements"
+  ],
+  "rollback_plan": "Keep original test logic commented out for comparison",
+  "estimated_duration": "2-3 hours",
+  "success_criteria": [
+    "All 3 tests can demonstrably fail when functionality is absent",
+    "Tests pass only when real WeSign functionality is present",
+    "Test names accurately reflect what is being validated",
+    "No false positives from basic HTML structure"
+  ],
+  "external_id": "WeSign-Demo-Suite:v1.1:plan:critical-test-fixes"
+}

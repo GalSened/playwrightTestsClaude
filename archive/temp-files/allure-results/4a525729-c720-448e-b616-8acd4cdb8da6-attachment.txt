@@ -1,0 +1,8 @@
+🧪 Starting Test: UI-01: Basic Form Element Presence Check
+👀 Setting up self-healing monitoring for: UI-01: Basic Form Element Presence Check
+📝 Testing basic form element presence across pages
+📝 Found 6 form elements on https://devtest.comda.co.il/login
+📝 Found 6 form elements on https://devtest.comda.co.il/register
+📝 Found 6 form elements on https://devtest.comda.co.il/
+✅ Basic form element presence verified on 3/3 pages
+📊 Test "UI-01: Basic Form Element Presence Check" completed

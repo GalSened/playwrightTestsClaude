@@ -20,7 +20,7 @@ import testBankRouter from '@/routes/testBank';
 import subAgentsRouter from '@/routes/subAgents';
 import { jiraRouter } from '@/routes/jira';
 import wesignRouter from '@/routes/wesign';
-// import { wesignRouter as unifiedWesignRouter } from '@/api/unified/WeSignRoutes';
+import { wesignRouter as unifiedWesignRouter } from '@/api/unified/WeSignRoutes';
 import { ciRouter } from '@/routes/ci-comprehensive';
 import { apiTestingRouter } from '@/routes/api-testing';
 import { loadTestingRouter } from '@/routes/load-testing';
@@ -175,7 +175,7 @@ app.use('/api/test-bank', testBankRouter);
 app.use('/api/sub-agents', subAgentsRouter);
 app.use('/api/wesign', wesignRouter);
 app.use('/api/wesign-tests', wesignTestsRouter); // WeSign Testing Hub routes
-// app.use('/api/wesign/unified', unifiedWesignRouter); // New unified WeSign API - Temporarily disabled
+app.use('/api/wesign/unified', unifiedWesignRouter); // New unified WeSign API - Re-enabled
 app.use('/api/jira', jiraRouter);
 app.use('/api/ci', ciRouter); // CI/CD API routes - Re-enabled
 app.use('/api/api-testing', apiTestingRouter); // Newman API testing routes
@@ -328,9 +328,12 @@ async function startServer(): Promise<void> {
       // Send initial connection message
       ws.send(JSON.stringify({
         type: 'connection',
-        status: 'connected',
+        executionId: 'system',
         timestamp: new Date().toISOString(),
-        message: 'Connected to WeSign real-time updates'
+        data: {
+          status: 'connected',
+          message: 'Connected to WeSign real-time updates'
+        }
       }));
 
       // Handle ping/pong for connection health
@@ -348,7 +351,9 @@ async function startServer(): Promise<void> {
             case 'ping':
               ws.send(JSON.stringify({
                 type: 'pong',
-                timestamp: new Date().toISOString()
+                executionId: 'system',
+                timestamp: new Date().toISOString(),
+                data: {}
               }));
               break;
             case 'subscribe':

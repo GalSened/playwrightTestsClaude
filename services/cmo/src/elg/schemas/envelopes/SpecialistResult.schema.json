@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://qa-intelligence.com/schemas/cmo/SpecialistResult.schema.json",
+  "title": "Specialist Result",
+  "description": "Result from specialist agent execution",
+  "type": "object",
+  "required": ["meta", "source", "destination", "result"],
+  "properties": {
+    "meta": {
+      "$ref": "../common/EnvelopeMeta.schema.json",
+      "description": "Envelope metadata"
+    },
+    "source": {
+      "$ref": "../common/AgentId.schema.json",
+      "description": "Source agent (specialist)"
+    },
+    "destination": {
+      "$ref": "../common/AgentId.schema.json",
+      "description": "Destination agent (orchestrator)"
+    },
+    "result": {
+      "type": "object",
+      "description": "Execution result",
+      "required": ["sliceId", "status"],
+      "properties": {
+        "sliceId": {
+          "type": "string",
+          "description": "Original slice ID",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": ["success", "failure", "partial", "timeout"],
+          "description": "Execution status"
+        },
+        "output": {
+          "type": "object",
+          "description": "Result output data",
+          "additionalProperties": true
+        },
+        "artifacts": {
+          "type": "array",
+          "description": "Generated artifacts (S3 refs)",
+          "items": {
+            "type": "object",
+            "required": ["ref", "type"],
+            "properties": {
+              "ref": {
+                "type": "string",
+                "description": "S3 object key"
+              },
+              "type": {
+                "type": "string",
+                "description": "Artifact type"
+              },
+              "size": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "hash": {
+                "type": "string",
+                "description": "Content hash (SHA-256)"
+              }
+            }
+          }
+        },
+        "error": {
+          "type": "object",
+          "description": "Error details (if failed)",
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "stack": {
+              "type": "string"
+            }
+          }
+        },
+        "metrics": {
+          "type": "object",
+          "description": "Execution metrics",
+          "properties": {
+            "durationMs": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "retries": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    }
+  }
+}

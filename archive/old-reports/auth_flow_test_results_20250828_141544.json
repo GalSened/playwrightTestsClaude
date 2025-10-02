@@ -1,0 +1,125 @@
+{
+  "test_run_id": "auth_flow_20250828_141544",
+  "start_time": "2025-08-28T14:15:44.802075",
+  "frontend_url": "http://localhost:5173",
+  "backend_url": "http://localhost:8080",
+  "demo_credentials": {
+    "email": "admin@demo.com",
+    "password": "***"
+  },
+  "tests": {
+    "frontend_accessibility": {
+      "status": "PASS",
+      "timestamp": "2025-08-28T14:15:46.533838",
+      "details": {
+        "message": "Frontend accessible at http://localhost:5173",
+        "title": "WeSign Enterprise - Playwright Smart",
+        "url": "http://localhost:5173/auth/login"
+      },
+      "screenshot": "artifacts/screenshots\\auth_flow_01_initial_load_20250828_141544.png"
+    },
+    "login_form_submission": {
+      "status": "PASS",
+      "timestamp": "2025-08-28T14:15:48.890996",
+      "details": {
+        "message": "Login form submitted successfully with demo credentials",
+        "current_url": "http://localhost:5173/",
+        "success_indicators": [
+          false,
+          false,
+          true,
+          false
+        ]
+      },
+      "screenshot": "artifacts/screenshots\\auth_flow_03_after_login_attempt_20250828_141544.png"
+    },
+    "dashboard_access": {
+      "status": "PASS",
+      "timestamp": "2025-08-28T14:15:49.016983",
+      "details": {
+        "message": "Dashboard accessible after login",
+        "current_url": "http://localhost:5173/"
+      },
+      "screenshot": "artifacts/screenshots\\auth_flow_04_dashboard_access_20250828_141544.png"
+    },
+    "protected_routes_navigation": {
+      "status": "PASS",
+      "timestamp": "2025-08-28T14:15:57.820829",
+      "details": {
+        "message": "Successfully navigated to 4/4 protected routes",
+        "route_results": {
+          "test-bank": {
+            "accessible": true,
+            "content_present": false,
+            "final_url": "http://localhost:5173/test-bank",
+            "screenshot": "artifacts/screenshots\\auth_flow_05_route_test-bank_20250828_141544.png"
+          },
+          "analytics": {
+            "accessible": true,
+            "content_present": true,
+            "final_url": "http://localhost:5173/analytics",
+            "screenshot": "artifacts/screenshots\\auth_flow_05_route_analytics_20250828_141544.png"
+          },
+          "reports": {
+            "accessible": true,
+            "content_present": true,
+            "final_url": "http://localhost:5173/reports",
+            "screenshot": "artifacts/screenshots\\auth_flow_05_route_reports_20250828_141544.png"
+          },
+          "schedules": {
+            "accessible": true,
+            "content_present": false,
+            "final_url": "http://localhost:5173/",
+            "screenshot": "artifacts/screenshots\\auth_flow_05_route_schedules_20250828_141544.png"
+          }
+        }
+      },
+      "screenshot": null
+    },
+    "authentication_persistence": {
+      "status": "PASS",
+      "timestamp": "2025-08-28T14:15:58.522392",
+      "details": {
+        "message": "Authentication state persisted after page refresh",
+        "url_before_refresh": "http://localhost:5173/",
+        "url_after_refresh": "http://localhost:5173/"
+      },
+      "screenshot": "artifacts/screenshots\\auth_flow_06_after_page_refresh_20250828_141544.png"
+    },
+    "logout_functionality": {
+      "status": "FAIL",
+      "timestamp": "2025-08-28T14:15:58.644945",
+      "details": {
+        "message": "Logout button/link not found",
+        "tried_selectors": [
+          "button:has-text(\"Logout\")",
+          "a:has-text(\"Logout\")",
+          "button:has-text(\"Sign Out\")",
+          "a:has-text(\"Sign Out\")",
+          "[data-testid=\"logout\"]",
+          ".logout-button"
+        ]
+      },
+      "screenshot": "artifacts/screenshots\\auth_flow_07_logout_button_not_found_20250828_141544.png"
+    }
+  },
+  "evidence": {
+    "screenshots": [
+      "artifacts/screenshots\\auth_flow_01_initial_load_20250828_141544.png",
+      "artifacts/screenshots\\auth_flow_03_after_login_attempt_20250828_141544.png",
+      "artifacts/screenshots\\auth_flow_04_dashboard_access_20250828_141544.png",
+      "artifacts/screenshots\\auth_flow_06_after_page_refresh_20250828_141544.png",
+      "artifacts/screenshots\\auth_flow_07_logout_button_not_found_20250828_141544.png"
+    ],
+    "videos": [],
+    "network_logs": []
+  },
+  "summary": {
+    "total_tests": 6,
+    "passed": 5,
+    "failed": 1,
+    "critical_failures": []
+  },
+  "end_time": "2025-08-28T14:15:58.876094",
+  "duration_seconds": 14.074019
+}

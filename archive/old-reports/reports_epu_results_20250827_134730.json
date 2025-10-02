@@ -1,0 +1,158 @@
+{
+  "test_execution_start": "2025-08-27T13:47:30.303600",
+  "test_results": {
+    "Page Load & Table Rendering": {
+      "status": "PASS",
+      "details": "Rows: 2, Headers: 7/7",
+      "duration": 3.0647590160369873,
+      "timestamp": "2025-08-27T13:47:34.077883"
+    },
+    "Run Details Drill-down": {
+      "status": "FAIL",
+      "details": "Exception: 'Locator' object is not callable",
+      "duration": 0.015124082565307617,
+      "timestamp": "2025-08-27T13:47:34.093007"
+    },
+    "Tab Navigation in Details Panel": {
+      "status": "FAIL",
+      "details": "Exception: 'Locator' object is not callable",
+      "duration": 0.0036611557006835938,
+      "timestamp": "2025-08-27T13:47:34.214780"
+    },
+    "Filtering & Search Functionality": {
+      "status": "PASS",
+      "details": "Status filter: True, Search: True, Clear: True",
+      "duration": 3.4715933799743652,
+      "timestamp": "2025-08-27T13:47:37.794387"
+    },
+    "Results Bar Verification": {
+      "status": "PASS",
+      "details": "Results bars: 2, Valid counts: 2, Visual bars: 2",
+      "duration": 0.16042852401733398,
+      "timestamp": "2025-08-27T13:47:37.954816"
+    },
+    "Action Buttons Functionality": {
+      "status": "FAIL",
+      "details": "Exception: 'Locator' object is not callable",
+      "duration": 0.003548145294189453,
+      "timestamp": "2025-08-27T13:47:37.958364"
+    },
+    "Comprehensive Data Validation": {
+      "status": "PASS",
+      "details": "Status: 2, Suite: 2, Environment: 2, Time: 2, Duration: 2, Steps: False",
+      "duration": 0.24755263328552246,
+      "timestamp": "2025-08-27T13:47:38.342128"
+    }
+  },
+  "screenshots": [
+    {
+      "name": "01_initial_load",
+      "filename": "reports_01_initial_load_20250827_134730.png",
+      "path": "artifacts/screenshots/reports_01_initial_load_20250827_134730.png",
+      "description": "Reports page initial load",
+      "timestamp": "2025-08-27T13:47:31.896528"
+    },
+    {
+      "name": "02_drill_down_failure",
+      "filename": "reports_02_drill_down_failure_20250827_134730.png",
+      "path": "artifacts/screenshots/reports_02_drill_down_failure_20250827_134730.png",
+      "description": "Failed during Run Details Drill-down",
+      "timestamp": "2025-08-27T13:47:34.211118"
+    },
+    {
+      "name": "03_tab_navigation_failure",
+      "filename": "reports_03_tab_navigation_failure_20250827_134730.png",
+      "path": "artifacts/screenshots/reports_03_tab_navigation_failure_20250827_134730.png",
+      "description": "Failed during Tab Navigation in Details Panel",
+      "timestamp": "2025-08-27T13:47:34.322794"
+    },
+    {
+      "name": "04_status_filtered",
+      "filename": "reports_04_status_filtered_20250827_134730.png",
+      "path": "artifacts/screenshots/reports_04_status_filtered_20250827_134730.png",
+      "description": "Status filtering applied",
+      "timestamp": "2025-08-27T13:47:35.474650"
+    },
+    {
+      "name": "04_search_applied",
+      "filename": "reports_04_search_applied_20250827_134730.png",
+      "path": "artifacts/screenshots/reports_04_search_applied_20250827_134730.png",
+      "description": "Search functionality tested",
+      "timestamp": "2025-08-27T13:47:36.622515"
+    },
+    {
+      "name": "04_filters_cleared",
+      "filename": "reports_04_filters_cleared_20250827_134730.png",
+      "path": "artifacts/screenshots/reports_04_filters_cleared_20250827_134730.png",
+      "description": "Filters cleared",
+      "timestamp": "2025-08-27T13:47:37.794387"
+    },
+    {
+      "name": "05_results_bars",
+      "filename": "reports_05_results_bars_20250827_134730.png",
+      "path": "artifacts/screenshots/reports_05_results_bars_20250827_134730.png",
+      "description": "Results bars verification",
+      "timestamp": "2025-08-27T13:47:37.954816"
+    },
+    {
+      "name": "06_actions_failure",
+      "filename": "reports_06_actions_failure_20250827_134730.png",
+      "path": "artifacts/screenshots/reports_06_actions_failure_20250827_134730.png",
+      "description": "Failed during Action Buttons Functionality",
+      "timestamp": "2025-08-27T13:47:38.094575"
+    },
+    {
+      "name": "07_data_validation",
+      "filename": "reports_07_data_validation_20250827_134730.png",
+      "path": "artifacts/screenshots/reports_07_data_validation_20250827_134730.png",
+      "description": "Table data validation",
+      "timestamp": "2025-08-27T13:47:38.226889"
+    },
+    {
+      "name": "07_step_details",
+      "filename": "reports_07_step_details_20250827_134730.png",
+      "path": "artifacts/screenshots/reports_07_step_details_20250827_134730.png",
+      "description": "Step details validation",
+      "timestamp": "2025-08-27T13:47:38.342128"
+    },
+    {
+      "name": "08_final_state",
+      "filename": "reports_08_final_state_20250827_134730.png",
+      "path": "artifacts/screenshots/reports_08_final_state_20250827_134730.png",
+      "description": "Final test state",
+      "timestamp": "2025-08-27T13:47:38.477167"
+    }
+  ],
+  "overall_status": "FAIL",
+  "epu_compliance": {
+    "page_load_and_table_rendering": true,
+    "run_details_drill_down": false,
+    "tab_navigation_in_details_panel": false,
+    "filtering_and_search_functionality": true,
+    "results_bar_verification": true,
+    "action_buttons_functionality": false,
+    "comprehensive_data_validation": true
+  },
+  "performance_metrics": {},
+  "detailed_findings": [],
+  "test_execution_end": "2025-08-27T13:47:38.696805",
+  "compliance_percentage": 57.14285714285714,
+  "passed_epu_tests": 4,
+  "total_epu_tests": 7,
+  "summary": {
+    "epu_compliance_status": "FAIL",
+    "key_findings": [
+      "[PASS] Page loads correctly with table rendering",
+      "[FAIL] Run details drill-down has issues",
+      "[PASS] Filtering and search functionality operational",
+      "[PASS] Results bars display correctly",
+      "[FAIL] Action buttons have functionality issues"
+    ],
+    "recommendations": [
+      "Fix run details drill-down functionality - ensure proper data-testid attributes",
+      "Implement proper tab navigation in details panel with correct ARIA labels",
+      "Improve action button functionality and accessibility"
+    ],
+    "user_experience_assessment": "NEEDS IMPROVEMENT - Several critical EPU features not working properly"
+  }
+}

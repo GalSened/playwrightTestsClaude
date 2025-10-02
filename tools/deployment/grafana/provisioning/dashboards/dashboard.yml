@@ -1,0 +1,13 @@
+# Grafana dashboard provisioning
+apiVersion: 1
+
+providers:
+  - name: 'Playwright Dashboards'
+    orgId: 1
+    folder: 'Playwright'
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /var/lib/grafana/dashboards

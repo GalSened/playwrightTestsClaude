@@ -1,0 +1,86 @@
+version: '3.8'
+
+services:
+  # PostgreSQL 16 - Checkpoint storage
+  postgres:
+    image: postgres:16-alpine
+    container_name: cmo-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-playwright_enterprise}
+      POSTGRES_USER: ${POSTGRES_USER:-admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secure123}
+      POSTGRES_HOST_AUTH_METHOD: ${POSTGRES_HOST_AUTH_METHOD:-md5}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./sql/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-admin} -d ${POSTGRES_DB:-playwright_enterprise}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Redis 7 - Transport layer
+  redis:
+    image: redis:7-alpine
+    container_name: cmo-redis
+    command: >
+      redis-server
+      --appendonly yes
+      --requirepass ${REDIS_PASSWORD:-}
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+  # MinIO - S3-compatible artifact storage
+  minio:
+    image: minio/minio:latest
+    container_name: cmo-minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${S3_ACCESS_KEY:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${S3_SECRET_KEY:-minioadmin123}
+    ports:
+      - "${S3_PORT:-9000}:9000"
+      - "${S3_CONSOLE_PORT:-9001}:9001"
+    volumes:
+      - minio-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # MinIO bucket initialization
+  minio-init:
+    image: minio/mc:latest
+    container_name: cmo-minio-init
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+      mc alias set myminio http://minio:9000 ${S3_ACCESS_KEY:-minioadmin} ${S3_SECRET_KEY:-minioadmin123};
+      mc mb myminio/${S3_BUCKET:-cmo-artifacts} --ignore-existing;
+      mc anonymous set download myminio/${S3_BUCKET:-cmo-artifacts};
+      echo 'Bucket ${S3_BUCKET:-cmo-artifacts} created and configured';
+      exit 0;
+      "
+
+volumes:
+  postgres-data:
+    name: cmo-postgres-data
+  redis-data:
+    name: cmo-redis-data
+  minio-data:
+    name: cmo-minio-data

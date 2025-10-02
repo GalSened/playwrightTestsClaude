@@ -1,0 +1,23 @@
+{
+  "total_tests": 634,
+  "test_suites": 25,
+  "success_rate": "82.07%",
+  "active_agents": 2,
+  "recent_executions": [
+    {
+      "name": "WeSign Login Tests",
+      "status": "passed",
+      "duration": "45s"
+    },
+    {
+      "name": "Document Signing Flow",
+      "status": "passed",
+      "duration": "1m 20s"
+    },
+    {
+      "name": "Contact Management",
+      "status": "passed",
+      "duration": "38s"
+    }
+  ]
+}

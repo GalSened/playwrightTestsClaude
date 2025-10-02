@@ -1,0 +1,14 @@
+WeSign QA Intelligence Knowledge Base Test Document
+
+This is a test document for the QA Intelligence knowledge base system. It demonstrates how Elysia can process and store documents with embedding generation for semantic search capabilities.
+
+Key features being tested:
+1. Document upload and processing
+2. Text chunking for optimal embedding generation
+3. OpenAI embedding integration
+4. SQLite storage with BLOB embedding storage
+5. High-performance search capabilities
+
+The Elysia framework provides 21x better performance compared to Express.js, making it ideal for processing large volumes of test documentation, API specifications, and knowledge base content.
+
+This document will be processed into chunks, embedded using OpenAI's text-embedding-3-small model, and stored in the enhanced knowledge base for future semantic search operations.

@@ -1,0 +1,8 @@
+🧪 Starting Test: CONN-03: WeSign API Endpoints Health
+👀 Setting up self-healing monitoring for: CONN-03: WeSign API Endpoints Health
+🔌 Testing API endpoints health
+✅ https://devtest.comda.co.il/: 200
+✅ https://devtest.comda.co.il/login: 200
+✅ https://devtest.comda.co.il/health: 200
+✅ API health verified (3/3 endpoints healthy)
+📊 Test "CONN-03: WeSign API Endpoints Health" completed

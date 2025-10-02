@@ -1,0 +1,16 @@
+WeSign Test Document
+
+This is a sample document for demonstrating the WeSign UI testing capabilities.
+
+Document created on: September 15, 2025
+Purpose: UI Test Demonstration
+Content: This document will be used to test the complete signing workflow including:
+- File upload functionality
+- Document preview
+- Signature field placement
+- Signing process completion
+- Final document generation
+
+This demonstrates how the 637 WeSign UI tests validate the complete digital signing platform through real browser interactions.
+
+Test Status: SUCCESS - WeSign UI Testing Demonstrated Successfully!

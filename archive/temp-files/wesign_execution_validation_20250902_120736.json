@@ -1,0 +1,95 @@
+{
+  "timestamp": "2025-09-02T12:07:34.313106",
+  "api_endpoints": [
+    {
+      "endpoint": "/api/tests/all",
+      "status": 200,
+      "data_type": "dict",
+      "data_sample": "{'success': True, 'tests': [{'id': '311388cb-3f7b-49e7-b079-6513d5d81199', 'filePath': 'admin/test_system_administration.py', 'testName': 'TestSystemAdministration::test_database_cleanup_jobs_validati"
+    },
+    {
+      "endpoint": "/api/schedules",
+      "status": 200,
+      "data_type": "dict",
+      "data_sample": "{'schedules': [{'id': 'schedule_1756704462898_pabo9ftes', 'suite_id': 'test-suite-1', 'suite_name': 'Manual Trigger Test Suite', 'timezone': 'Asia/Jerusalem', 'run_at_utc': '2025-09-01T09:27:42.878Z',"
+    }
+  ],
+  "direct_execution": [
+    {
+      "endpoint": "/api/execute/test",
+      "status_code": 404,
+      "response": "{\"error\":\"Not Found\",\"message\":\"Route POST /api/execute/test not found\"}",
+      "success": false
+    },
+    {
+      "endpoint": "/api/tests/run",
+      "status_code": 404,
+      "response": "{\"error\":\"Not Found\",\"message\":\"Route POST /api/tests/run not found\"}",
+      "success": false
+    },
+    {
+      "endpoint": "/api/playwright/execute",
+      "status_code": 404,
+      "response": "{\"error\":\"Not Found\",\"message\":\"Route POST /api/playwright/execute not found\"}",
+      "success": false
+    }
+  ],
+  "ui_execution": {
+    "navigation_successful": true,
+    "tests_found": true,
+    "execution_triggered": false,
+    "execution_count": 0,
+    "execution_requests": [
+      {
+        "url": "http://localhost:3000/test-bank",
+        "method": "GET",
+        "timestamp": "2025-09-02T12:07:35.577499"
+      },
+      {
+        "url": "http://localhost:3000/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=7badf178",
+        "method": "GET",
+        "timestamp": "2025-09-02T12:07:35.663247"
+      },
+      {
+        "url": "http://localhost:3000/src/pages/TestBank/TestBankPage.tsx",
+        "method": "GET",
+        "timestamp": "2025-09-02T12:07:35.687630"
+      },
+      {
+        "url": "http://localhost:3000/src/pages/AIAssistant/AITestPage.tsx",
+        "method": "GET",
+        "timestamp": "2025-09-02T12:07:35.690179"
+      },
+      {
+        "url": "http://localhost:3000/src/components/TestRunScheduler.tsx",
+        "method": "GET",
+        "timestamp": "2025-09-02T12:07:35.702441"
+      },
+      {
+        "url": "http://localhost:3000/src/components/TestPicker.tsx",
+        "method": "GET",
+        "timestamp": "2025-09-02T12:07:35.729079"
+      },
+      {
+        "url": "http://localhost:8081/api/tests/all",
+        "method": "GET",
+        "timestamp": "2025-09-02T12:07:35.913167"
+      },
+      {
+        "url": "http://localhost:8081/api/tests/all",
+        "method": "GET",
+        "timestamp": "2025-09-02T12:07:35.913167"
+      }
+    ],
+    "screenshots": [
+      "ui_execution_test_bank_120736.png"
+    ]
+  },
+  "summary": {
+    "api_endpoints_available": 2,
+    "direct_execution_working": false,
+    "ui_execution_working": false,
+    "wesign_tests_found": true,
+    "overall_status": "NEEDS_IMPLEMENTATION"
+  }
+}

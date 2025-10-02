@@ -1,0 +1,108 @@
+{
+  "test_start_time": "2025-08-27T15:19:38.948231",
+  "test_end_time": "2025-08-27T15:20:41.034946",
+  "total_duration_seconds": 62.08671450614929,
+  "epu_steps": {
+    "step_1_dashboard": {
+      "status": "PASSED",
+      "sub_tests": {
+        "dashboard_page_load": true,
+        "environment_status": true,
+        "statistics_display": true,
+        "quick_create_navigation": true,
+        "quick_reports_navigation": true
+      },
+      "errors": [],
+      "duration_seconds": 3.702962875366211,
+      "success_rate": 100.0
+    },
+    "step_2_suite_creation": {
+      "status": "FAILED",
+      "sub_tests": {
+        "testbank_page_load": true,
+        "test_search": true,
+        "tests_selected": false,
+        "selected_count_display": true,
+        "suite_name_filled": false,
+        "suite_description_filled": false,
+        "suite_created": false,
+        "suites_list_visible": true,
+        "automatic_reports_navigation": false
+      },
+      "errors": [],
+      "duration_seconds": 35.320098876953125,
+      "suite_name": "Cross-Page EPU Suite",
+      "success_rate": 44.44444444444444
+    },
+    "step_3_results_review": {
+      "status": "PASSED",
+      "sub_tests": {
+        "reports_page_load": true,
+        "runs_table_present": true,
+        "run_details_opened": true,
+        "details_panel_visible": true,
+        "overview_tab": true,
+        "steps_tab": true,
+        "artifacts_tab": true
+      },
+      "errors": [],
+      "duration_seconds": 7.110065460205078,
+      "success_rate": 100.0
+    },
+    "step_4_analytics": {
+      "status": "PASSED",
+      "sub_tests": {
+        "analytics_page_load": true,
+        "coverage_overview": true,
+        "coverage_percentage": true,
+        "charts_render": true,
+        "gaps_list_present": true,
+        "gap_details_expansion": true,
+        "insights_list_present": true,
+        "insight_expansion": true
+      },
+      "errors": [],
+      "duration_seconds": 8.19344425201416,
+      "success_rate": 100.0
+    }
+  },
+  "navigation_tests": {
+    "status": "PASSED",
+    "nav_tests": {
+      "dashboard_navigation": true,
+      "test-bank_navigation": true,
+      "reports_navigation": true,
+      "analytics_navigation": true
+    },
+    "errors": [],
+    "duration_seconds": 2.683431386947632,
+    "success_rate": 100.0
+  },
+  "data_flow_validation": {
+    "status": "PASSED",
+    "flow_tests": {
+      "suite_persistence": true,
+      "run_data_flow": true,
+      "analytics_data_sync": true,
+      "dashboard_stats_sync": true
+    },
+    "errors": [],
+    "duration_seconds": 4.191083192825317,
+    "success_rate": 100.0
+  },
+  "performance_metrics": {
+    "total_journey_time_seconds": 54.326571464538574,
+    "total_journey_time_minutes": 0.9054428577423096,
+    "under_2_minutes": true,
+    "step_timings": {
+      "dashboard": 3.702962875366211,
+      "suite_creation": 35.320098876953125,
+      "results_review": 7.110065460205078,
+      "analytics": 8.19344425201416
+    },
+    "average_step_time": 13.581642866134644
+  },
+  "errors": [],
+  "success_rate": 86.48648648648648,
+  "overall_status": "GOOD"
+}

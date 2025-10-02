@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://qa-intelligence.com/schemas/cmo/AgentId.schema.json",
+  "title": "Agent Identifier",
+  "description": "Unique identifier for agents in the CMO system",
+  "type": "object",
+  "required": ["type", "id"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "Agent type/role",
+      "enum": [
+        "specialist",
+        "orchestrator",
+        "coordinator",
+        "worker",
+        "monitor"
+      ]
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique agent instance ID",
+      "minLength": 1
+    },
+    "capabilities": {
+      "type": "array",
+      "description": "Agent capabilities",
+      "items": {
+        "type": "string"
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional agent metadata",
+      "additionalProperties": true
+    }
+  }
+}

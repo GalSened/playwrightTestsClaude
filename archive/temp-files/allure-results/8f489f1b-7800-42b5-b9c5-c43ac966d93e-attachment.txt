@@ -1,0 +1,6 @@
+🧪 Starting Test: CONN-01: WeSign Main Site HTTP Response
+👀 Setting up self-healing monitoring for: CONN-01: WeSign Main Site HTTP Response
+🌍 Testing WeSign main site HTTP response
+📄 Page title: WeSign
+✅ WeSign main site HTTP response verified
+📊 Test "CONN-01: WeSign Main Site HTTP Response" completed

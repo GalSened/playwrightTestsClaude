@@ -1,0 +1,64 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - generic:
+        - generic [ref=e2]: "Please note: This website includes an accessibility system. Press Control-F11 to adjust the website to people with visual disabilities who are using a screen reader; Press Control-F10 to open an accessibility menu."
+        - button "Accessibility" [ref=e3] [cursor=pointer]:
+          - img
+          - img [ref=e4] [cursor=pointer]
+          - generic [ref=e6] [cursor=pointer]: Accessibility
+        - generic:
+          - list:
+            - listitem:
+              - button "Press enter for Accessibility for blind people who use screen readers" [ref=e7] [cursor=pointer]:
+                - generic [ref=e8] [cursor=pointer]:
+                  - text: Press enter for Accessibility for blind people
+                  - generic [ref=e9] [cursor=pointer]: who use screen readers
+            - listitem:
+              - button "Press enter for Keyboard Navigation" [ref=e10] [cursor=pointer]
+            - listitem:
+              - button "Press enter for Accessibility menu" [ref=e11] [cursor=pointer]
+  - main [ref=e15]:
+    - generic [ref=e17]:
+      - generic [ref=e23]:
+        - generic [ref=e25]:
+          - img [ref=e26]
+          - paragraph [ref=e27]: English
+        - combobox [ref=e28]:
+          - textbox
+      - generic [ref=e30]:
+        - heading "Sign in" [level=2] [ref=e31]
+        - generic [ref=e32]:
+          - textbox "Username / Email" [ref=e34]
+          - generic [ref=e35]:
+            - textbox "Password" [ref=e36]
+            - button [ref=e38] [cursor=pointer]:
+              - img [ref=e40] [cursor=pointer]
+          - button "Sign in" [ref=e43] [cursor=pointer]
+          - generic [ref=e45]: Single Sign On
+          - generic [ref=e46] [cursor=pointer]:
+            - generic [ref=e47] [cursor=pointer]: Remember Me
+            - checkbox "Remember Me" [ref=e48]
+          - link "I forgot my password" [ref=e51] [cursor=pointer]:
+            - /url: /login/forget
+      - generic [ref=e52]:
+        - generic [ref=e53]: "Version: 3.2.0"
+        - link "Terms of use" [ref=e54] [cursor=pointer]:
+          - /url: /terms
+        - generic [ref=e55]: "|"
+        - link "Privacy policy" [ref=e56] [cursor=pointer]:
+          - /url: /privacy
+        - generic [ref=e57]: "|"
+        - link "ComsignTrust.com" [ref=e58] [cursor=pointer]:
+          - /url: //ComsignTrust.com
+        - generic [ref=e59]: "|"
+        - link "Contact us" [ref=e60] [cursor=pointer]:
+          - /url: //www.comsigntrust.com/about-us/contact-us/
+        - generic [ref=e61]: "|"
+        - link "User guides" [ref=e62] [cursor=pointer]:
+          - /url: https://www.comsign.co.il/wesign-support/
+        - generic [ref=e63]: Copyright Ⓒ 2025 ComsignTrust - Digital Signature and eSignature Software Solutions
+```

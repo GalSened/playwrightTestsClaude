@@ -1,0 +1,17 @@
+{
+  "test": "file upload functionality",
+  "timestamp": "2025-09-01T09:45:00.000Z",
+  "description": "This is a test file to verify that file upload is working properly",
+  "features": [
+    "File drag and drop",
+    "Multi-file selection", 
+    "Error handling",
+    "Progress feedback"
+  ],
+  "categories": [
+    "wesign-docs",
+    "wesign-config", 
+    "wesign-api",
+    "test-data"
+  ]
+}

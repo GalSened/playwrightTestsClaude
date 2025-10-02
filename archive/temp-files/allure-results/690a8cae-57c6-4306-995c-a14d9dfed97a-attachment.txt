@@ -1,0 +1,10 @@
+🧪 Starting Test: UI-03: Content Areas Detection
+👀 Setting up self-healing monitoring for: UI-03: Content Areas Detection
+📄 Testing content areas detection
+🎯 Found WeSign content: form (1 elements)
+🎯 Found WeSign content: input[type="password"] (2 elements)
+🎯 Found WeSign content: button (4 elements)
+🎯 Found WeSign content: a[href*="login"] (4 elements)
+🎯 Found WeSign content: .container (1 elements)
+✅ WeSign-specific content areas validated (5 types)
+📊 Test "UI-03: Content Areas Detection" completed

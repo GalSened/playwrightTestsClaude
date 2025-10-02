@@ -1,0 +1,6 @@
+🧪 Starting Test: I18N-01: Hebrew Content Detection
+👀 Setting up self-healing monitoring for: I18N-01: Hebrew Content Detection
+🇮🇱 Testing Hebrew content detection
+🔤 Found 0 Hebrew characters
+📐 Found 0 RTL elements
+📊 Test "I18N-01: Hebrew Content Detection" completed

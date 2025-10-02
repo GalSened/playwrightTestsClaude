@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://qa-intelligence.com/schemas/cmo/RetryDirective.schema.json",
+  "title": "Retry Directive",
+  "description": "Directive to retry a failed slice with modifications",
+  "type": "object",
+  "required": ["meta", "source", "destination", "directive"],
+  "properties": {
+    "meta": {
+      "$ref": "../common/EnvelopeMeta.schema.json",
+      "description": "Envelope metadata"
+    },
+    "source": {
+      "$ref": "../common/AgentId.schema.json",
+      "description": "Source agent (orchestrator)"
+    },
+    "destination": {
+      "$ref": "../common/AgentId.schema.json",
+      "description": "Destination agent (specialist)"
+    },
+    "directive": {
+      "type": "object",
+      "required": ["originalSliceId", "attemptNumber", "modifications"],
+      "properties": {
+        "originalSliceId": {
+          "type": "string",
+          "description": "Original failed slice ID",
+          "minLength": 1
+        },
+        "attemptNumber": {
+          "type": "integer",
+          "description": "Retry attempt number",
+          "minimum": 1
+        },
+        "modifications": {
+          "type": "object",
+          "description": "Modifications to apply",
+          "properties": {
+            "input": {
+              "type": "object",
+              "description": "Modified input data",
+              "additionalProperties": true
+            },
+            "context": {
+              "type": "object",
+              "description": "Modified context",
+              "additionalProperties": true
+            },
+            "timeout": {
+              "type": "integer",
+              "description": "New timeout in milliseconds",
+              "minimum": 0
+            }
+          }
+        },
+        "reason": {
+          "type": "string",
+          "description": "Reason for retry"
+        },
+        "maxAttempts": {
+          "type": "integer",
+          "description": "Maximum total attempts allowed",
+          "minimum": 1
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "timestamp": "2025-09-14T08:58:36.795Z",
+  "phase": "Phase 4 - Final Validation & Testing",
+  "status": "WARNING",
+  "overallHealthScore": 75,
+  "results": {
+    "testDiscovery": {
+      "success": true,
+      "testCount": 549,
+      "discoveryTime": 62
+    },
+    "sampleTests": {
+      "totalTested": 3,
+      "successful": 0,
+      "results": [
+        {
+          "category": "high-risk",
+          "status": "WARNING",
+          "test": "tests/auth/test_login.py::test_login_with_valid_credentials_success",
+          "error": "ERROR: not found: C:\\Users\\gals\\seleniumpythontests-1\\playwright_tests\\tests\\auth\\test_login.py::test_login_with_valid_credentials_success\r\n(no match in any of [<Module test_login.py>])"
+        },
+        {
+          "category": "medium-risk",
+          "status": "WARNING",
+          "test": "tests/documents/test_document_management.py::test_upload_pdf_document_success",
+          "error": "ERROR: not found: C:\\Users\\gals\\seleniumpythontests-1\\playwright_tests\\tests\\documents\\test_document_management.py::test_upload_pdf_document_success\r\n(no match in any of [<Module test_document_management.py>])"
+        },
+        {
+          "category": "low-risk",
+          "status": "WARNING",
+          "test": "tests/templates/test_template_management.py::test_create_template_success",
+          "error": "ERROR: not found: C:\\Users\\gals\\seleniumpythontests-1\\playwright_tests\\tests\\templates\\test_template_management.py::test_create_template_success\r\n(no match in any of [<Module test_template_management.py>])"
+        }
+      ]
+    },
+    "importVerification": {
+      "totalChecked": 3,
+      "successful": 3,
+      "results": [
+        {
+          "file": "tests/auth/test_login.py",
+          "status": "OK"
+        },
+        {
+          "file": "tests/documents/test_document_management.py",
+          "status": "OK"
+        },
+        {
+          "file": "tests/signing/test_comprehensive_self_signing.py",
+          "status": "OK"
+        }
+      ]
+    },
+    "performanceMetrics": {
+      "testDiscoveryTime": 62,
+      "testCountReduction": 227,
+      "testCountBefore": 776,
+      "testCountAfter": 549,
+      "deduplicationRatio": "29.3"
+    },
+    "healthMetrics": {
+      "testDiscoverySuccess": 1,
+      "sampleTestsRatio": 0,
+      "importChecksRatio": 1,
+      "noRemovalErrors": 1,
+      "performanceImprovement": 1
+    }
+  },
+  "finalSummary": {
+    "originalTestCount": 776,
+    "finalTestCount": 549,
+    "testsRemoved": 227,
+    "deduplicationSuccess": true,
+    "systemStability": false,
+    "backupLocation": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\backup_wesign_duplicates\\2025-09-14T08-55-31-368Z"
+  }
+}

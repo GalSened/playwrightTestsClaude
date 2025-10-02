@@ -1,0 +1,65 @@
+# Core testing framework
+pytest==8.3.2
+pytest-asyncio>=0.21.0
+
+# Playwright browser automation
+playwright==1.48.0
+pytest-playwright==0.5.2
+
+# Test reporting and documentation
+allure-pytest==2.13.5
+pytest-html==4.1.1
+pytest-json-report>=1.5.0
+pytest-xdist>=3.5.0
+
+# Performance and monitoring
+pytest-benchmark>=4.0.0
+pytest-timeout>=2.2.0
+pytest-rerunfailures>=12.0
+
+# Data handling and utilities
+requests>=2.31.0
+pillow>=10.0.0
+openpyxl>=3.1.0
+python-docx>=0.8.11
+
+# Development and debugging
+pytest-mock>=3.12.0
+pytest-cov>=4.1.0
+faker>=20.1.0
+
+# Configuration management
+python-dotenv==1.0.1
+pydantic==2.8.2
+pydantic-settings==2.4.0
+pyyaml>=6.0.1
+
+# Logging and monitoring
+structlog>=23.2.0
+colorlog>=6.8.0
+
+# File handling and validation
+python-magic>=0.4.27
+pathvalidate>=3.2.0
+
+# Network and API testing
+httpx>=0.25.2
+aiofiles>=23.2.1
+
+# Hebrew text processing (for bilingual testing)
+python-bidi>=0.4.2
+arabic-reshaper>=3.0.0
+
+# Image processing and comparison
+opencv-python>=4.8.1.78
+scikit-image>=0.22.0
+
+# Display support
+pytest-xvfb==3.0.0
+
+# Parallel execution utilities
+pytest-parallel>=0.1.1
+
+# Security testing utilities
+bandit>=1.7.5
+safety>=2.3.5

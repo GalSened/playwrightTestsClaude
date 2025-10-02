@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://qa-intelligence.com/schemas/cmo/SpecialistInvocationRequest.schema.json",
+  "title": "Specialist Invocation Request",
+  "description": "Request to invoke a specialist agent with a task slice",
+  "type": "object",
+  "required": ["meta", "source", "destination", "slice"],
+  "properties": {
+    "meta": {
+      "$ref": "../common/EnvelopeMeta.schema.json",
+      "description": "Envelope metadata"
+    },
+    "source": {
+      "$ref": "../common/AgentId.schema.json",
+      "description": "Source agent (orchestrator)"
+    },
+    "destination": {
+      "$ref": "../common/AgentId.schema.json",
+      "description": "Destination agent (specialist)"
+    },
+    "slice": {
+      "type": "object",
+      "description": "Task slice to execute",
+      "required": ["id", "type", "input"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique slice identifier",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "description": "Slice type (e.g., 'code-review', 'test-generation')",
+          "minLength": 1
+        },
+        "input": {
+          "type": "object",
+          "description": "Slice input data",
+          "additionalProperties": true
+        },
+        "context": {
+          "type": "object",
+          "description": "Additional context for execution",
+          "properties": {
+            "timeout": {
+              "type": "integer",
+              "description": "Execution timeout in milliseconds",
+              "minimum": 0
+            },
+            "priority": {
+              "type": "integer",
+              "description": "Execution priority (1-10)",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "retryPolicy": {
+              "type": "object",
+              "properties": {
+                "maxAttempts": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "backoffMs": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            }
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Optional slice metadata",
+          "additionalProperties": true
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "description": "OPA policy constraints",
+      "properties": {
+        "policyId": {
+          "type": "string",
+          "description": "Policy identifier to evaluate"
+        },
+        "constraints": {
+          "type": "object",
+          "description": "Policy constraints",
+          "additionalProperties": true
+        }
+      }
+    }
+  }
+}

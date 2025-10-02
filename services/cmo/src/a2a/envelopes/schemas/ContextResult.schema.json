@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://qa-intelligence.com/schemas/a2a/ContextResult.schema.json",
+  "title": "Context Result Envelope",
+  "description": "Context retrieval results with ranked documents/nodes",
+  "type": "object",
+  "required": ["meta", "payload"],
+  "properties": {
+    "meta": {
+      "$ref": "EnvelopeMeta.schema.json",
+      "description": "Envelope metadata with type=ContextResult"
+    },
+    "payload": {
+      "type": "object",
+      "required": ["results"],
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "content"],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Result identifier (vector store ID, graph node ID, etc.)"
+              },
+              "content": {
+                "type": "object",
+                "description": "Result content (structure varies by query type)"
+              },
+              "score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Relevance score (0.0 to 1.0, higher is more relevant)"
+              },
+              "metadata": {
+                "type": "object",
+                "description": "Result metadata (e.g., source, timestamp, tags)"
+              },
+              "embedding": {
+                "type": "array",
+                "items": {"type": "number"},
+                "description": "Embedding vector (only if include_embeddings=true)"
+              },
+              "relationships": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {"type": "string"},
+                    "target_id": {"type": "string"},
+                    "properties": {"type": "object"}
+                  }
+                },
+                "description": "Graph relationships (only for graph traversal results)"
+              }
+            }
+          },
+          "description": "Retrieved results (sorted by relevance)"
+        },
+        "total_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number of matching results (may be > results.length if limited)"
+        },
+        "query_duration_ms": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Query execution time in milliseconds"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["qdrant", "neo4j", "postgres", "redis", "memory"]
+          },
+          "uniqueItems": true,
+          "description": "Data sources used for retrieval"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

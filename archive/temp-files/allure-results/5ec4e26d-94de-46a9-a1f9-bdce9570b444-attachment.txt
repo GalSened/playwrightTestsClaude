@@ -1,0 +1,7 @@
+🧪 Starting Test: UI-03: Content Areas Detection
+👀 Setting up self-healing monitoring for: UI-03: Content Areas Detection
+📄 Testing content areas detection
+📄 Found 1 content elements: main...
+📄 Found 52 content elements: div...
+✅ Content areas detected (2 types)
+📊 Test "UI-03: Content Areas Detection" completed

@@ -1,0 +1,73 @@
+{
+  "summary": {
+    "total_tests": 6,
+    "passed_tests": 2,
+    "success_rate": 33.33333333333333,
+    "timestamp": "2025-08-28T15:30:46.902657"
+  },
+  "test_results": {
+    "homepage_load": {
+      "test": "homepage_load",
+      "success": false,
+      "error": "function takes exactly 5 arguments (1 given)",
+      "timestamp": "2025-08-28T15:30:41.305588"
+    },
+    "login_flow": {
+      "test": "login_flow",
+      "success": false,
+      "error": "function takes exactly 5 arguments (1 given)",
+      "timestamp": "2025-08-28T15:30:42.071221"
+    },
+    "dashboard_access": {
+      "test": "dashboard_access",
+      "success": false,
+      "error": "function takes exactly 5 arguments (1 given)",
+      "timestamp": "2025-08-28T15:30:42.793132"
+    },
+    "api_integration": {
+      "test": "api_integration",
+      "success": false,
+      "error": "function takes exactly 5 arguments (1 given)",
+      "timestamp": "2025-08-28T15:30:43.501138"
+    },
+    "navigation_menu": {
+      "test": "navigation_menu",
+      "success": true,
+      "total_links_found": 0,
+      "links_tested": 0,
+      "navigation_results": [],
+      "errors_found": 0,
+      "timestamp": "2025-08-28T15:30:43.525222"
+    },
+    "registration_form": {
+      "test": "registration_form",
+      "success": true,
+      "form_found": false,
+      "message": "No registration form found at common URLs",
+      "timestamp": "2025-08-28T15:30:46.501367"
+    }
+  },
+  "network_logs": [
+    "[15:30:45] RESPONSE: 304 http://localhost:5180/src/components/Card.tsx",
+    "[15:30:45] RESPONSE: 304 http://localhost:5180/src/components/Table.tsx",
+    "[15:30:45] RESPONSE: 304 http://localhost:5180/src/components/TestRunScheduler.tsx?t=1756383700587",
+    "[15:30:45] RESPONSE: 304 http://localhost:5180/src/app/utils.ts",
+    "[15:30:45] RESPONSE: 304 http://localhost:5180/src/components/Chart.tsx",
+    "[15:30:45] RESPONSE: 304 http://localhost:5180/src/components/DarkModeToggle.tsx",
+    "[15:30:45] REQUEST: GET http://localhost:5180/node_modules/.vite/deps/@tanstack_react-table.js?v=ff96b15a",
+    "[15:30:45] RESPONSE: 200 http://localhost:5180/node_modules/.vite/deps/@tanstack_react-table.js?v=ff96b15a",
+    "[15:30:45] REQUEST: GET http://localhost:5180/src/services/schedulerApi.ts?t=1756383700587",
+    "[15:30:45] REQUEST: GET http://localhost:5180/node_modules/.vite/deps/clsx.js?v=ff96b15a",
+    "[15:30:45] RESPONSE: 200 http://localhost:5180/node_modules/.vite/deps/clsx.js?v=ff96b15a",
+    "[15:30:45] REQUEST: GET http://localhost:5180/node_modules/.vite/deps/tailwind-merge.js?v=ff96b15a",
+    "[15:30:45] RESPONSE: 200 http://localhost:5180/node_modules/.vite/deps/tailwind-merge.js?v=ff96b15a",
+    "[15:30:45] REQUEST: GET http://localhost:5180/node_modules/.vite/deps/recharts.js?v=ff96b15a",
+    "[15:30:45] RESPONSE: 200 http://localhost:5180/node_modules/.vite/deps/recharts.js?v=ff96b15a",
+    "[15:30:45] REQUEST: GET http://localhost:5180/node_modules/.vite/deps/chunk-AJTCXCUR.js?v=ff96b15a",
+    "[15:30:45] RESPONSE: 200 http://localhost:5180/node_modules/.vite/deps/chunk-AJTCXCUR.js?v=ff96b15a",
+    "[15:30:45] RESPONSE: 304 http://localhost:5180/src/services/schedulerApi.ts?t=1756383700587",
+    "[15:30:45] REQUEST: GET http://localhost:5180/favicon.svg",
+    "[15:30:45] RESPONSE: 200 http://localhost:5180/favicon.svg"
+  ],
+  "console_errors": []
+}

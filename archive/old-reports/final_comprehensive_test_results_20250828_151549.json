@@ -1,0 +1,1008 @@
+{
+  "timestamp": "2025-08-28T15:15:22.430362",
+  "test_suite": "Final Comprehensive Frontend Test",
+  "base_url": "http://localhost:5180",
+  "tests": {
+    "navigation_testing": {
+      "name": "Navigation Menu and Routing Test",
+      "status": "PASSED",
+      "details": {
+        "navigation_links": {
+          "links": [
+            {
+              "text": "Sign up",
+              "href": "/auth/register",
+              "selector": "a[href^=\"/\"]"
+            },
+            {
+              "text": "Forgot your password?",
+              "href": "/auth/forgot-password",
+              "selector": "a[href^=\"/\"]"
+            }
+          ],
+          "result": "PASS"
+        },
+        "route_testing": {
+          "Login": {
+            "path": "/auth/login",
+            "status": 200,
+            "title": "Playwright Smart - Test Management Platform",
+            "final_url": "http://localhost:5180/auth/login",
+            "result": "PASS"
+          },
+          "Register": {
+            "path": "/auth/register",
+            "status": 200,
+            "title": "Playwright Smart - Test Management Platform",
+            "final_url": "http://localhost:5180/auth/register",
+            "result": "PASS"
+          },
+          "Dashboard": {
+            "path": "/dashboard",
+            "status": 200,
+            "title": "Playwright Smart - Test Management Platform",
+            "final_url": "http://localhost:5180/auth/login",
+            "result": "PASS"
+          },
+          "Test Bank": {
+            "path": "/test-bank",
+            "status": 200,
+            "title": "Playwright Smart - Test Management Platform",
+            "final_url": "http://localhost:5180/auth/login",
+            "result": "PASS"
+          },
+          "Reports": {
+            "path": "/reports",
+            "status": 200,
+            "title": "Playwright Smart - Test Management Platform",
+            "final_url": "http://localhost:5180/auth/login",
+            "result": "PASS"
+          },
+          "Analytics": {
+            "path": "/analytics",
+            "status": 200,
+            "title": "Playwright Smart - Test Management Platform",
+            "final_url": "http://localhost:5180/auth/login",
+            "result": "PASS"
+          },
+          "Schedules": {
+            "path": "/schedules",
+            "status": 200,
+            "title": "Playwright Smart - Test Management Platform",
+            "final_url": "http://localhost:5180/auth/login",
+            "result": "PASS"
+          }
+        }
+      },
+      "evidence": []
+    },
+    "api_integration": {
+      "name": "API Integration Test",
+      "status": "FAILED",
+      "details": {
+        "api_calls": {
+          "count": 0,
+          "calls": [],
+          "result": "WARN"
+        },
+        "api_responses": {
+          "successful": 0,
+          "failed": 0,
+          "failed_details": [],
+          "result": "PASS"
+        },
+        "data_rendering": {
+          "loading_indicators": [],
+          "data_containers": [],
+          "result": "WARN"
+        }
+      },
+      "evidence": []
+    }
+  },
+  "summary": {
+    "total": 2,
+    "passed": 1,
+    "failed": 1,
+    "warnings": 0
+  },
+  "evidence": {
+    "screenshots": [
+      "nav_test_01_home_20250828_151526",
+      "nav_test_login_20250828_151526",
+      "nav_test_register_20250828_151526",
+      "nav_test_dashboard_20250828_151526",
+      "nav_test_test bank_20250828_151526",
+      "nav_test_reports_20250828_151526",
+      "nav_test_analytics_20250828_151526",
+      "nav_test_schedules_20250828_151526",
+      "api_test_data_page_20250828_151526"
+    ],
+    "console_logs": [
+      {
+        "timestamp": "2025-08-28T15:15:23.798103",
+        "type": "debug",
+        "text": "[vite] connecting...",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 228,
+          "columnNumber": 8
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:23.812353",
+        "type": "debug",
+        "text": "[vite] connected.",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 324,
+          "columnNumber": 20
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:23.884853",
+        "type": "info",
+        "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/chunk-WALXKXZM.js?v=ff96b15a",
+          "lineNumber": 21579,
+          "columnNumber": 24
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:23.938762",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:24.057772",
+        "type": "verbose",
+        "text": "[DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "location": {
+          "url": "http://localhost:5180/auth/login",
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:26.699444",
+        "type": "debug",
+        "text": "[vite] connecting...",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 228,
+          "columnNumber": 8
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:26.701544",
+        "type": "debug",
+        "text": "[vite] connected.",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 324,
+          "columnNumber": 20
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:26.711317",
+        "type": "info",
+        "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/chunk-WALXKXZM.js?v=ff96b15a",
+          "lineNumber": 21579,
+          "columnNumber": 24
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:26.724711",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:26.840942",
+        "type": "verbose",
+        "text": "[DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "location": {
+          "url": "http://localhost:5180/auth/login",
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:29.408411",
+        "type": "debug",
+        "text": "[vite] connecting...",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 228,
+          "columnNumber": 8
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:29.415635",
+        "type": "debug",
+        "text": "[vite] connected.",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 324,
+          "columnNumber": 20
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:29.421037",
+        "type": "info",
+        "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/chunk-WALXKXZM.js?v=ff96b15a",
+          "lineNumber": 21579,
+          "columnNumber": 24
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:29.437022",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:32.095911",
+        "type": "debug",
+        "text": "[vite] connecting...",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 228,
+          "columnNumber": 8
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:32.099065",
+        "type": "debug",
+        "text": "[vite] connected.",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 324,
+          "columnNumber": 20
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:32.109233",
+        "type": "info",
+        "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/chunk-WALXKXZM.js?v=ff96b15a",
+          "lineNumber": 21579,
+          "columnNumber": 24
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:32.124782",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:32.240333",
+        "type": "verbose",
+        "text": "[DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "location": {
+          "url": "http://localhost:5180/auth/login",
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:34.794265",
+        "type": "debug",
+        "text": "[vite] connecting...",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 228,
+          "columnNumber": 8
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:34.797643",
+        "type": "debug",
+        "text": "[vite] connected.",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 324,
+          "columnNumber": 20
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:34.805167",
+        "type": "info",
+        "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/chunk-WALXKXZM.js?v=ff96b15a",
+          "lineNumber": 21579,
+          "columnNumber": 24
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:34.818334",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:34.939627",
+        "type": "verbose",
+        "text": "[DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "location": {
+          "url": "http://localhost:5180/auth/login",
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:37.531733",
+        "type": "debug",
+        "text": "[vite] connecting...",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 228,
+          "columnNumber": 8
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:37.537863",
+        "type": "debug",
+        "text": "[vite] connected.",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 324,
+          "columnNumber": 20
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:37.547531",
+        "type": "info",
+        "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/chunk-WALXKXZM.js?v=ff96b15a",
+          "lineNumber": 21579,
+          "columnNumber": 24
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:37.562017",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:37.676037",
+        "type": "verbose",
+        "text": "[DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "location": {
+          "url": "http://localhost:5180/auth/login",
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:40.239588",
+        "type": "debug",
+        "text": "[vite] connecting...",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 228,
+          "columnNumber": 8
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:40.247345",
+        "type": "debug",
+        "text": "[vite] connected.",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 324,
+          "columnNumber": 20
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:40.254603",
+        "type": "info",
+        "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/chunk-WALXKXZM.js?v=ff96b15a",
+          "lineNumber": 21579,
+          "columnNumber": 24
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:40.274291",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:40.389986",
+        "type": "verbose",
+        "text": "[DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "location": {
+          "url": "http://localhost:5180/auth/login",
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:42.962644",
+        "type": "debug",
+        "text": "[vite] connecting...",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 228,
+          "columnNumber": 8
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:42.963496",
+        "type": "debug",
+        "text": "[vite] connected.",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 324,
+          "columnNumber": 20
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:42.975626",
+        "type": "info",
+        "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/chunk-WALXKXZM.js?v=ff96b15a",
+          "lineNumber": 21579,
+          "columnNumber": 24
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:42.988502",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:43.104670",
+        "type": "verbose",
+        "text": "[DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "location": {
+          "url": "http://localhost:5180/auth/login",
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.658239",
+        "type": "debug",
+        "text": "[vite] connecting...",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 228,
+          "columnNumber": 8
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.662257",
+        "type": "debug",
+        "text": "[vite] connected.",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 324,
+          "columnNumber": 20
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.671895",
+        "type": "info",
+        "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/chunk-WALXKXZM.js?v=ff96b15a",
+          "lineNumber": 21579,
+          "columnNumber": 24
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.684436",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.790220",
+        "type": "verbose",
+        "text": "[DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "location": {
+          "url": "http://localhost:5180/auth/login",
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      }
+    ],
+    "network_logs": [
+      {
+        "timestamp": "2025-08-28T15:15:45.662536",
+        "method": "GET",
+        "url": "http://localhost:5180/src/components/Nav.tsx",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.662678",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/AuthGuard.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.662805",
+        "status": 304,
+        "url": "http://localhost:5180/src/pages/Dashboard/DashboardPage.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.662907",
+        "status": 304,
+        "url": "http://localhost:5180/src/pages/TestBank/TestBankPage.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.663049",
+        "method": "GET",
+        "url": "http://localhost:5180/src/components/Loading.tsx",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.663194",
+        "method": "GET",
+        "url": "http://localhost:5180/src/app/store.ts",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.663325",
+        "method": "GET",
+        "url": "http://localhost:5180/src/app/api.ts",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.663441",
+        "method": "GET",
+        "url": "http://localhost:5180/src/components/EmptyState.tsx",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.663552",
+        "method": "GET",
+        "url": "http://localhost:5180/src/components/Card.tsx",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.663690",
+        "method": "GET",
+        "url": "http://localhost:5180/src/components/Table.tsx",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.663802",
+        "method": "GET",
+        "url": "http://localhost:5180/src/components/TestRunScheduler.tsx",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.663946",
+        "method": "GET",
+        "url": "http://localhost:5180/src/app/utils.ts",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.664068",
+        "status": 304,
+        "url": "http://localhost:5180/src/pages/Analytics/AnalyticsPage.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.664521",
+        "method": "GET",
+        "url": "http://localhost:5180/src/components/Chart.tsx",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.665421",
+        "status": 304,
+        "url": "http://localhost:5180/src/pages/Reports/ReportsPage.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.665596",
+        "status": 304,
+        "url": "http://localhost:5180/src/pages/Auth/LoginPage.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.666662",
+        "status": 304,
+        "url": "http://localhost:5180/src/pages/Auth/RegisterPage.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.666855",
+        "status": 304,
+        "url": "http://localhost:5180/src/services/apiClient.ts",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.666999",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/Nav.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.667363",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/socket__io-client.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.667496",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/socket__io-client.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.667657",
+        "method": "GET",
+        "url": "http://localhost:5180/src/components/DarkModeToggle.tsx",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.667732",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/Loading.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.667975",
+        "status": 304,
+        "url": "http://localhost:5180/src/app/store.ts",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.668235",
+        "status": 304,
+        "url": "http://localhost:5180/src/app/api.ts",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.668433",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/EmptyState.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.668577",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/Card.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.668693",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/Table.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.668821",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/TestRunScheduler.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.668951",
+        "status": 304,
+        "url": "http://localhost:5180/src/app/utils.ts",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.669066",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/Chart.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.669195",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/zustand.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.669285",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/zustand.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.669414",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/zustand_middleware.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.669516",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/zustand_middleware.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.669647",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/DarkModeToggle.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.669767",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/@tanstack_react-table.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.669862",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/@tanstack_react-table.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.670001",
+        "method": "GET",
+        "url": "http://localhost:5180/src/services/schedulerApi.ts",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.670089",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/clsx.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.670188",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/clsx.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.670311",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/tailwind-merge.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.670408",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/tailwind-merge.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.670496",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/recharts.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.670573",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/recharts.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.670657",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/chunk-AJTCXCUR.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.670733",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/chunk-AJTCXCUR.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.670821",
+        "status": 304,
+        "url": "http://localhost:5180/src/services/schedulerApi.ts",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.692043",
+        "method": "GET",
+        "url": "http://localhost:5180/favicon.svg",
+        "resource_type": "other",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.696026",
+        "status": 200,
+        "url": "http://localhost:5180/favicon.svg",
+        "status_text": "OK",
+        "type": "response"
+      }
+    ],
+    "errors": [
+      {
+        "timestamp": "2025-08-28T15:15:23.938762",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:26.724711",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:29.437022",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:32.124782",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:34.818334",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:37.562017",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:40.274291",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:42.988502",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:15:45.684436",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      }
+    ]
+  }
+}

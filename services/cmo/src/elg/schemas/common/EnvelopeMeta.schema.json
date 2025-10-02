@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://qa-intelligence.com/schemas/cmo/EnvelopeMeta.schema.json",
+  "title": "Envelope Metadata",
+  "description": "Common metadata for all CMO/ELG message envelopes",
+  "type": "object",
+  "required": ["messageId", "timestamp", "version"],
+  "properties": {
+    "messageId": {
+      "type": "string",
+      "description": "Unique message identifier (UUID v4)",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when message was created"
+    },
+    "version": {
+      "type": "string",
+      "description": "Schema version (semver)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "traceId": {
+      "type": "string",
+      "description": "Distributed trace ID for correlation",
+      "minLength": 1
+    },
+    "spanId": {
+      "type": "string",
+      "description": "OpenTelemetry span ID",
+      "minLength": 1
+    },
+    "correlationId": {
+      "type": "string",
+      "description": "Correlation ID for request/response pairing",
+      "minLength": 1
+    },
+    "replyTo": {
+      "type": "string",
+      "description": "Topic/subject for replies",
+      "minLength": 1
+    },
+    "priority": {
+      "type": "integer",
+      "description": "Message priority (1-10, 10 is highest)",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "ttl": {
+      "type": "integer",
+      "description": "Time-to-live in milliseconds",
+      "minimum": 0
+    }
+  }
+}

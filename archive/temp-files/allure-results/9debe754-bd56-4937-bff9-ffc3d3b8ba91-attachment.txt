@@ -1,0 +1,3 @@
+⚠️  Healing service error: fetch failed
+⚠️  Healing service error: fetch failed
+⚠️  Failed to send failure to healing service: fetch failed

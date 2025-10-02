@@ -1,0 +1,417 @@
+{
+  "timestamp": "2025-08-28T15:10:38.069258",
+  "test_suite": "Login Page Validation",
+  "base_url": "http://localhost:5180",
+  "tests": {
+    "login_navigation": {
+      "name": "Login Page Navigation Test",
+      "status": "PASSED",
+      "details": {
+        "direct_navigation": {
+          "method": "Direct URL",
+          "url": "http://localhost:5180/auth/login",
+          "status": 200,
+          "result": "PASS"
+        }
+      },
+      "evidence": []
+    },
+    "login_form_validation": {
+      "name": "Login Form Fields Test",
+      "status": "PASSED",
+      "details": {
+        "email_field": {
+          "selector": "input[type=\"email\"]",
+          "placeholder": "you@company.com",
+          "name": "email",
+          "type": "email",
+          "visible": true,
+          "result": "PASS"
+        },
+        "password_field": {
+          "selector": "input[type=\"password\"]",
+          "placeholder": "Enter your password",
+          "name": "password",
+          "type": "password",
+          "visible": true,
+          "result": "PASS"
+        },
+        "submit_button": {
+          "selector": "button[type=\"submit\"]",
+          "text": "Sign In",
+          "type": "submit",
+          "visible": true,
+          "result": "PASS"
+        }
+      },
+      "evidence": []
+    },
+    "demo_login": {
+      "name": "Demo Credentials Login Test",
+      "status": "FAILED",
+      "details": {
+        "credentials_filled": {
+          "email": "admin@demo.com",
+          "password": "[HIDDEN]",
+          "result": "PASS"
+        },
+        "login_attempt": {
+          "final_url": "http://localhost:5180/auth/login",
+          "success": false,
+          "error_messages": [],
+          "result": "FAIL"
+        }
+      },
+      "evidence": []
+    }
+  },
+  "summary": {
+    "total": 3,
+    "passed": 2,
+    "failed": 1,
+    "warnings": 0
+  },
+  "evidence": {
+    "screenshots": [
+      "login_test_01_home_20250828_151041",
+      "login_test_02_after_nav_20250828_151041",
+      "login_test_03_form_fields_20250828_151041",
+      "login_test_04_credentials_filled_20250828_151041",
+      "login_test_05_after_login_20250828_151041"
+    ],
+    "console_logs": [
+      {
+        "timestamp": "2025-08-28T15:10:38.964400",
+        "type": "debug",
+        "text": "[vite] connecting...",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 228,
+          "columnNumber": 8
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:10:38.980596",
+        "type": "debug",
+        "text": "[vite] connected.",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 324,
+          "columnNumber": 20
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:10:39.041621",
+        "type": "info",
+        "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/chunk-WALXKXZM.js?v=ff96b15a",
+          "lineNumber": 21579,
+          "columnNumber": 24
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:10:39.095887",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:10:39.207604",
+        "type": "verbose",
+        "text": "[DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "location": {
+          "url": "http://localhost:5180/auth/login",
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.809407",
+        "type": "debug",
+        "text": "[vite] connecting...",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 228,
+          "columnNumber": 8
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.820982",
+        "type": "debug",
+        "text": "[vite] connected.",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 324,
+          "columnNumber": 20
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.824860",
+        "type": "info",
+        "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/chunk-WALXKXZM.js?v=ff96b15a",
+          "lineNumber": 21579,
+          "columnNumber": 24
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.836687",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.939745",
+        "type": "verbose",
+        "text": "[DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "location": {
+          "url": "http://localhost:5180/auth/login",
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:10:44.907424",
+        "type": "error",
+        "text": "Access to fetch at 'http://localhost:8080/api/auth/login' from origin 'http://localhost:5180' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value.",
+        "location": {
+          "url": "http://localhost:5180/auth/login",
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:10:44.907715",
+        "type": "error",
+        "text": "Failed to load resource: net::ERR_FAILED",
+        "location": {
+          "url": "http://localhost:8080/api/auth/login",
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      }
+    ],
+    "network_logs": [
+      {
+        "timestamp": "2025-08-28T15:10:41.821102",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/Loading.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.821213",
+        "status": 304,
+        "url": "http://localhost:5180/src/app/store.ts",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.821334",
+        "method": "GET",
+        "url": "http://localhost:5180/src/components/DarkModeToggle.tsx",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.821422",
+        "status": 304,
+        "url": "http://localhost:5180/src/app/api.ts",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.821541",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/EmptyState.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.821679",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/Card.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.822217",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/Table.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.822425",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/TestRunScheduler.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.822564",
+        "status": 304,
+        "url": "http://localhost:5180/src/app/utils.ts",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.822686",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/Chart.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.822824",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/zustand.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.822929",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/zustand.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.823052",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/zustand_middleware.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.823152",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/zustand_middleware.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.823280",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/@tanstack_react-table.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.823433",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/@tanstack_react-table.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.823557",
+        "method": "GET",
+        "url": "http://localhost:5180/src/services/schedulerApi.ts",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.823643",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/clsx.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.823744",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/clsx.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.824039",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/tailwind-merge.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.824171",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/tailwind-merge.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.824268",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/recharts.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.824363",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/recharts.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.824480",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/chunk-AJTCXCUR.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.824574",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/chunk-AJTCXCUR.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.824663",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/DarkModeToggle.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.824749",
+        "status": 304,
+        "url": "http://localhost:5180/src/services/schedulerApi.ts",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.862805",
+        "method": "GET",
+        "url": "http://localhost:5180/favicon.svg",
+        "resource_type": "other",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:41.865882",
+        "status": 200,
+        "url": "http://localhost:5180/favicon.svg",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:10:44.900583",
+        "method": "POST",
+        "url": "http://localhost:8080/api/auth/login",
+        "resource_type": "fetch",
+        "type": "request"
+      }
+    ]
+  }
+}

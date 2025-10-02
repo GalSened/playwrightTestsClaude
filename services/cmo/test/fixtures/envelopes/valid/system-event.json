@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "a2a_version": "1.0",
+    "message_id": "00112233445566778899aabbccddeeff",
+    "trace_id": "sys-0001",
+    "ts": "2025-10-02T04:15:21.391Z",
+    "from": {
+      "id": "cmo",
+      "type": "cmo",
+      "version": "1.0.0"
+    },
+    "to": [
+      {
+        "type": "topic",
+        "name": "qa.wesign.shared.system.events"
+      }
+    ],
+    "tenant": "wesign",
+    "project": "shared",
+    "type": "SystemEvent"
+  },
+  "payload": {
+    "event_type": "pipeline_started",
+    "severity": "info",
+    "details": {
+      "pipeline": "cmo.healing",
+      "graph_version": "v1.0.3",
+      "trigger": "test_failure"
+    },
+    "timestamp": "2025-10-02T04:15:21.391Z"
+  }
+}

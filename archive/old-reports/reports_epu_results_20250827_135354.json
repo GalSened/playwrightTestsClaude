@@ -1,0 +1,168 @@
+{
+  "test_execution_start": "2025-08-27T13:53:54.506057",
+  "test_results": {
+    "Page Load & Table Rendering": {
+      "status": "PASS",
+      "details": "Rows: 2, Headers: 7/7",
+      "duration": 3.329261541366577,
+      "timestamp": "2025-08-27T13:53:58.577788"
+    },
+    "Run Details Drill-down": {
+      "status": "PASS",
+      "details": "Panel: True, Container: True, Summary: True, Timeline: True",
+      "duration": 1.1838505268096924,
+      "timestamp": "2025-08-27T13:53:59.761639"
+    },
+    "Tab Navigation in Details Panel": {
+      "status": "PASS",
+      "details": "Overview: False, Steps tab: True, Artifacts tab: True",
+      "duration": 1.8681411743164062,
+      "timestamp": "2025-08-27T13:54:01.629780"
+    },
+    "Filtering & Search Functionality": {
+      "status": "PASS",
+      "details": "Status filter: True, Search: True, Clear: True",
+      "duration": 4.042869806289673,
+      "timestamp": "2025-08-27T13:54:05.672650"
+    },
+    "Results Bar Verification": {
+      "status": "PASS",
+      "details": "Results bars: 2, Valid counts: 2, Visual bars: 2",
+      "duration": 0.15689325332641602,
+      "timestamp": "2025-08-27T13:54:05.829543"
+    },
+    "Action Buttons Functionality": {
+      "status": "PASS",
+      "details": "Row click: True, Actions found: True, Table visible: True",
+      "duration": 1.8662512302398682,
+      "timestamp": "2025-08-27T13:54:07.695794"
+    },
+    "Comprehensive Data Validation": {
+      "status": "PASS",
+      "details": "Status: 2, Suite: 2, Environment: 2, Time: 2, Duration: 2, Steps: True",
+      "duration": 1.835899829864502,
+      "timestamp": "2025-08-27T13:54:09.531694"
+    }
+  },
+  "screenshots": [
+    {
+      "name": "01_initial_load",
+      "filename": "reports_01_initial_load_20250827_135354.png",
+      "path": "artifacts/screenshots/reports_01_initial_load_20250827_135354.png",
+      "description": "Reports page initial load",
+      "timestamp": "2025-08-27T13:53:56.374832"
+    },
+    {
+      "name": "02_details_opened",
+      "filename": "reports_02_details_opened_20250827_135354.png",
+      "path": "artifacts/screenshots/reports_02_details_opened_20250827_135354.png",
+      "description": "Details panel opened",
+      "timestamp": "2025-08-27T13:53:59.751633"
+    },
+    {
+      "name": "03_steps_tab",
+      "filename": "reports_03_steps_tab_20250827_135354.png",
+      "path": "artifacts/screenshots/reports_03_steps_tab_20250827_135354.png",
+      "description": "Test Steps tab opened",
+      "timestamp": "2025-08-27T13:54:00.427168"
+    },
+    {
+      "name": "03_artifacts_tab",
+      "filename": "reports_03_artifacts_tab_20250827_135354.png",
+      "path": "artifacts/screenshots/reports_03_artifacts_tab_20250827_135354.png",
+      "description": "Artifacts tab opened",
+      "timestamp": "2025-08-27T13:54:01.629780"
+    },
+    {
+      "name": "04_status_filtered",
+      "filename": "reports_04_status_filtered_20250827_135354.png",
+      "path": "artifacts/screenshots/reports_04_status_filtered_20250827_135354.png",
+      "description": "Status filtering applied",
+      "timestamp": "2025-08-27T13:54:03.317014"
+    },
+    {
+      "name": "04_search_applied",
+      "filename": "reports_04_search_applied_20250827_135354.png",
+      "path": "artifacts/screenshots/reports_04_search_applied_20250827_135354.png",
+      "description": "Search functionality tested",
+      "timestamp": "2025-08-27T13:54:04.486516"
+    },
+    {
+      "name": "04_filters_cleared",
+      "filename": "reports_04_filters_cleared_20250827_135354.png",
+      "path": "artifacts/screenshots/reports_04_filters_cleared_20250827_135354.png",
+      "description": "Filters cleared",
+      "timestamp": "2025-08-27T13:54:05.672650"
+    },
+    {
+      "name": "05_results_bars",
+      "filename": "reports_05_results_bars_20250827_135354.png",
+      "path": "artifacts/screenshots/reports_05_results_bars_20250827_135354.png",
+      "description": "Results bars verification",
+      "timestamp": "2025-08-27T13:54:05.829543"
+    },
+    {
+      "name": "06_action_buttons",
+      "filename": "reports_06_action_buttons_20250827_135354.png",
+      "path": "artifacts/screenshots/reports_06_action_buttons_20250827_135354.png",
+      "description": "Action buttons tested",
+      "timestamp": "2025-08-27T13:54:07.018043"
+    },
+    {
+      "name": "06_panel_closed",
+      "filename": "reports_06_panel_closed_20250827_135354.png",
+      "path": "artifacts/screenshots/reports_06_panel_closed_20250827_135354.png",
+      "description": "Details panel closed",
+      "timestamp": "2025-08-27T13:54:07.695794"
+    },
+    {
+      "name": "07_data_validation",
+      "filename": "reports_07_data_validation_20250827_135354.png",
+      "path": "artifacts/screenshots/reports_07_data_validation_20250827_135354.png",
+      "description": "Table data validation",
+      "timestamp": "2025-08-27T13:54:07.831579"
+    },
+    {
+      "name": "07_step_details",
+      "filename": "reports_07_step_details_20250827_135354.png",
+      "path": "artifacts/screenshots/reports_07_step_details_20250827_135354.png",
+      "description": "Step details validation",
+      "timestamp": "2025-08-27T13:54:09.531694"
+    },
+    {
+      "name": "08_final_state",
+      "filename": "reports_08_final_state_20250827_135354.png",
+      "path": "artifacts/screenshots/reports_08_final_state_20250827_135354.png",
+      "description": "Final test state",
+      "timestamp": "2025-08-27T13:54:09.664116"
+    }
+  ],
+  "overall_status": "PASS",
+  "epu_compliance": {
+    "page_load_and_table_rendering": true,
+    "run_details_drill_down": true,
+    "tab_navigation_in_details_panel": true,
+    "filtering_and_search_functionality": true,
+    "results_bar_verification": true,
+    "action_buttons_functionality": true,
+    "comprehensive_data_validation": true
+  },
+  "performance_metrics": {},
+  "detailed_findings": [],
+  "test_execution_end": "2025-08-27T13:54:09.869632",
+  "compliance_percentage": 100.0,
+  "passed_epu_tests": 7,
+  "total_epu_tests": 7,
+  "summary": {
+    "epu_compliance_status": "PASS",
+    "key_findings": [
+      "[PASS] Page loads correctly with table rendering",
+      "[PASS] Run details drill-down functionality works",
+      "[PASS] Filtering and search functionality operational",
+      "[PASS] Results bars display correctly",
+      "[PASS] Action buttons and interactions work"
+    ],
+    "recommendations": [],
+    "user_experience_assessment": "EXCELLENT - Reports page provides comprehensive functionality for viewing and analyzing test runs"
+  }
+}

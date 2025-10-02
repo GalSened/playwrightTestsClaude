@@ -1,0 +1,41 @@
+{
+  "timestamp": "2025-09-14T08:55:31.436Z",
+  "phase": "Phase 2 - Safe Backup",
+  "status": "SUCCESS",
+  "backupLocation": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\backup_wesign_duplicates\\2025-09-14T08-55-31-368Z",
+  "sourceLocation": "C:/Users/gals/seleniumpythontests-1/playwright_tests",
+  "stats": {
+    "totalFilesCopied": 7,
+    "totalFilesSkipped": 0,
+    "backupIntegrityChecks": {
+      "totalFilesInBackup": 7,
+      "totalSizeInBackup": 176810,
+      "filesWithSizeCheck": 7,
+      "integrityPassed": true
+    }
+  },
+  "restorationScripts": [
+    "restoration_scripts/restore_duplicates.bat",
+    "restoration_scripts/restore_duplicates.ps1"
+  ],
+  "filesToRemove": [
+    "tests/auth/test_login_working.py",
+    "tests/auth/test_login_converted.py",
+    "tests/documents/test_document_editing_converted.py",
+    "tests/documents/test_document_management_converted.py",
+    "tests/signing/test_advanced_others_signing_converted.py",
+    "tests/signing/test_comprehensive_others_signing_converted.py",
+    "tests/signing/test_comprehensive_self_signing_converted.py"
+  ],
+  "originalPlan": {
+    "filestoRemove": 227,
+    "estimatedTestsToRemove": 148,
+    "finalTestCount": 628,
+    "expectedHealthImprovement": "15-20%"
+  },
+  "instructions": {
+    "toRestore": "Run either restore_duplicates.bat or restore_duplicates.ps1 from restoration_scripts/",
+    "toVerify": "Check that all duplicate files are restored to original locations",
+    "toContinue": "If backup is successful, proceed to Phase 3"
+  }
+}

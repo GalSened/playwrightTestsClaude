@@ -39,3 +39,6 @@ reports/
 artifacts/
 .serena/
 nul
+
+# Tech stack inventory (generated files)
+.inventory/report.json

@@ -1,0 +1,17 @@
+{
+  "timestamp": "2025-09-03T09:25:55.696925",
+  "source_directory": "C:\\Users\\gals\\seleniumpythontests-1\\playwright_tests\\tests",
+  "tests_imported": 634,
+  "tags_created": 1976,
+  "categories": [
+    "reports",
+    "templates",
+    "integration",
+    "wesign",
+    "contacts",
+    "auth",
+    "documents",
+    "user_management"
+  ],
+  "test_files": 24
+}

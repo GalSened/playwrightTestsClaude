@@ -1,0 +1,7 @@
+🧪 Starting Test: UI-02: Navigation Elements Detection
+👀 Setting up self-healing monitoring for: UI-02: Navigation Elements Detection
+🧭 Testing navigation elements
+🧭 Found 1 navigation elements: nav...
+🧭 Found 10 navigation elements: a[href]...
+✅ Navigation elements detected (11 total)
+📊 Test "UI-02: Navigation Elements Detection" completed

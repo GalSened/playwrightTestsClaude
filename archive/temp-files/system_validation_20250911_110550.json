@@ -1,0 +1,34 @@
+{
+  "timestamp": "2025-09-11T11:05:50.690299",
+  "components": {
+    "wesign": {
+      "status": "integrated",
+      "total_files": 31,
+      "original_files": 25,
+      "converted_files": 6
+    },
+    "allure": {
+      "status": "available",
+      "report_exists": true,
+      "results_exists": true
+    },
+    "backend": {
+      "status": "healthy",
+      "agents": 0,
+      "tests": 0
+    },
+    "frontend": {
+      "status": "accessible"
+    },
+    "tests": {
+      "status": "failed",
+      "code": 404
+    }
+  },
+  "validation_summary": {
+    "working_components": 4,
+    "total_components": 5,
+    "success_rate": "80.0%",
+    "overall_status": "healthy"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "a2a_version": "1.0",
+    "message_id": "8899aabbccddeeff0011223344556677",
+    "trace_id": "disc-0001",
+    "ts": "2025-10-02T04:15:22.001Z",
+    "from": {
+      "id": "registry-cmo",
+      "type": "system",
+      "version": "1.0.0"
+    },
+    "to": [
+      {
+        "id": "cmo",
+        "type": "cmo",
+        "version": "1.0.0"
+      }
+    ],
+    "tenant": "wesign",
+    "project": "shared",
+    "type": "RegistryDiscoveryResponse",
+    "reply_to": "bb11cc22dd33ee44ff55aa66bb77cc88"
+  },
+  "payload": {
+    "agents": [
+      {
+        "agent_id": "specialist.playwright_healer",
+        "capabilities": [
+          "healing",
+          "selector-repair"
+        ],
+        "status": "HEALTHY",
+        "last_heartbeat": "2025-10-02T04:15:21.391Z",
+        "version": "1.4.2"
+      }
+    ],
+    "total_count": 1,
+    "query_duration_ms": 600
+  }
+}

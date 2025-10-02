@@ -1,0 +1,1 @@
+{"total":2,"items":[{"uid":"84301901dc082ffa4b7587d150b58b6c","name":"wesign-hebrew","statistic":{"failed":12,"broken":0,"skipped":24,"passed":45,"unknown":0,"total":81}},{"uid":"1b59a31692ae5386c49dd3da74ab91c4","name":"wesign-english","statistic":{"failed":7,"broken":0,"skipped":0,"passed":42,"unknown":0,"total":49}}]}

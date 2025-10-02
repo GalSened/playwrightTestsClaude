@@ -1,0 +1,257 @@
+{
+  "timestamp": "2025-08-28T15:07:48.093588",
+  "test_suite": "Comprehensive Frontend Validation",
+  "base_url": "http://localhost:5180",
+  "tests": {
+    "home_page_load": {
+      "name": "Home/Landing Page Load Test",
+      "status": "PASSED",
+      "details": {
+        "navigation": {
+          "status": 200,
+          "url": "http://localhost:5180/",
+          "result": "PASS"
+        },
+        "title": {
+          "value": "Playwright Smart - Test Management Platform",
+          "result": "PASS"
+        },
+        "main_content": {
+          "selector": "body > div",
+          "visible": true,
+          "result": "PASS"
+        },
+        "react_app": {
+          "selector": "#root",
+          "result": "PASS"
+        },
+        "navigation_menu": {
+          "elements": [
+            {
+              "selector": "a[href*=\"register\"]",
+              "text": "Sign up",
+              "visible": true
+            }
+          ],
+          "result": "PASS"
+        },
+        "login_access": {
+          "links": [
+            {
+              "selector": "button:has-text(\"Sign In\")",
+              "text": "Sign In",
+              "href": "button"
+            }
+          ],
+          "result": "PASS"
+        }
+      },
+      "evidence": []
+    }
+  },
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "warnings": 0
+  },
+  "evidence": {
+    "screenshots": [
+      "home_01_initial_load_20250828_150752"
+    ],
+    "console_logs": [
+      {
+        "timestamp": "2025-08-28T15:07:49.117409",
+        "type": "debug",
+        "text": "[vite] connecting...",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 228,
+          "columnNumber": 8
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.132469",
+        "type": "debug",
+        "text": "[vite] connected.",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 324,
+          "columnNumber": 20
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.251977",
+        "type": "info",
+        "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/chunk-WALXKXZM.js?v=ff96b15a",
+          "lineNumber": 21579,
+          "columnNumber": 24
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.334383",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.452482",
+        "type": "verbose",
+        "text": "[DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "location": {
+          "url": "http://localhost:5180/auth/login",
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      }
+    ],
+    "network_logs": [
+      {
+        "timestamp": "2025-08-28T15:07:49.185300",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/zustand.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.185401",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/zustand_middleware.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.185548",
+        "status": 200,
+        "url": "http://localhost:5180/src/components/TestRunScheduler.tsx",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.185754",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/@tanstack_react-table.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.185881",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/recharts.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.185995",
+        "status": 200,
+        "url": "http://localhost:5180/src/components/DarkModeToggle.tsx",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.186130",
+        "method": "GET",
+        "url": "http://localhost:5180/src/services/schedulerApi.ts",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.186271",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/socket__io-client.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.188647",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/clsx.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.189416",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/zustand.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.189744",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/chunk-AJTCXCUR.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.189989",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/zustand_middleware.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.190246",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/tailwind-merge.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.194047",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/@tanstack_react-table.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.198821",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/lucide-react.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.203977",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/chunk-AJTCXCUR.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.204331",
+        "status": 200,
+        "url": "http://localhost:5180/src/services/schedulerApi.ts",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.226425",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/recharts.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.370358",
+        "method": "GET",
+        "url": "http://localhost:5180/favicon.svg",
+        "resource_type": "other",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:07:49.378601",
+        "status": 200,
+        "url": "http://localhost:5180/favicon.svg",
+        "status_text": "OK",
+        "type": "response"
+      }
+    ]
+  }
+}

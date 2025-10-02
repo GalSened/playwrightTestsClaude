@@ -1,0 +1,57 @@
+{
+  "timestamp": "2025-09-03T08:33:17.513496",
+  "source_folder": "playwright-smart/tests",
+  "total_files_processed": 6,
+  "successful_conversions": 6,
+  "failed_conversions": 0,
+  "converted_tests": [
+    {
+      "ts_file": "playwright-smart/tests\\comprehensive-validation.spec.ts",
+      "python_file": "tests/validation/test_comprehensive_validation_spec.py",
+      "category": "validation",
+      "test_count": 4,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-smart/tests\\dark-mode.spec.ts",
+      "python_file": "tests/ui_testing/test_dark_mode_spec.py",
+      "category": "ui_testing",
+      "test_count": 2,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-smart/tests\\debug-test-discovery.spec.ts",
+      "python_file": "tests/debugging/test_debug_test_discovery_spec.py",
+      "category": "debugging",
+      "test_count": 1,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-smart/tests\\real-test-validation.spec.ts",
+      "python_file": "tests/validation/test_real_test_validation_spec.py",
+      "category": "validation",
+      "test_count": 2,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-smart/tests\\suite-builder-validation.spec.ts",
+      "python_file": "tests/validation/test_suite_builder_validation_spec.py",
+      "category": "validation",
+      "test_count": 2,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-smart/tests\\test-bank-validation.spec.ts",
+      "python_file": "tests/validation/test_test_bank_validation_spec.py",
+      "category": "validation",
+      "test_count": 3,
+      "status": "success"
+    }
+  ],
+  "failed_files": [],
+  "categories_created": [
+    "debugging",
+    "ui_testing",
+    "validation"
+  ]
+}

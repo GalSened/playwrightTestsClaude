@@ -37,7 +37,10 @@
     "clean:backend": "cd backend && rm -rf node_modules dist",
     "install:all": "npm install && npm run install:frontend && npm run install:backend",
     "install:frontend": "cd apps/frontend/dashboard && npm install",
-    "install:backend": "cd backend && npm install"
+    "install:backend": "cd backend && npm install",
+    "scan": "node .inventory/scripts/scan.js",
+    "validate": "node .inventory/scripts/validate.js",
+    "scan:validate": "npm run scan && npm run validate"
   },
   "keywords": [
     "qa",
@@ -54,6 +57,8 @@
   "devDependencies": {
     "@playwright/test": "^1.55.0",
     "@types/node": "^24.3.1",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^2.1.1",
     "allure-playwright": "^3.3.3",
     "concurrently": "^8.2.2",
     "typescript": "^5.9.2"

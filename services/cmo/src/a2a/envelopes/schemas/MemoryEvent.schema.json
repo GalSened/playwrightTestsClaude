@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://qa-intelligence.com/schemas/a2a/MemoryEvent.schema.json",
+  "title": "Memory Event Envelope",
+  "description": "Memory update event for shared state propagation",
+  "type": "object",
+  "required": ["meta", "payload"],
+  "properties": {
+    "meta": {
+      "$ref": "EnvelopeMeta.schema.json",
+      "description": "Envelope metadata with type=MemoryEvent"
+    },
+    "payload": {
+      "type": "object",
+      "required": ["event_type", "memory_key"],
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": ["created", "updated", "deleted", "snapshot"],
+          "description": "Type of memory event"
+        },
+        "memory_key": {
+          "type": "string",
+          "pattern": "^[a-z0-9_/.-]+$",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Memory key (path-like, e.g., 'test_results/2025-10-02/run-123')"
+        },
+        "value": {
+          "type": "object",
+          "description": "Memory value (present on created/updated/snapshot, null on deleted)"
+        },
+        "previous_value": {
+          "type": "object",
+          "description": "Previous value (optional, useful for updated events)"
+        },
+        "ttl_seconds": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 31536000,
+          "description": "Time-to-live in seconds (0 = no expiry, max 1 year)"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9_-]+$"
+          },
+          "uniqueItems": true,
+          "description": "Tags for memory categorization and filtering"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Memory version number for conflict resolution (optional)"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

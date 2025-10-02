@@ -1,0 +1,210 @@
+{
+  "type": "plan",
+  "project": "WeSign-Demo-Suite", 
+  "version": "v1.3",
+  "timestamp": "2025-09-08T13:49:30Z",
+  "owner": "Claude",
+  "goal": "Rename 8 misleading tests to match actual functionality",
+  "priority": "MEDIUM",
+  "steps": [
+    {
+      "id": "RENAME-01",
+      "desc": "Rename CONN-01: WeSign Main Site Accessibility",
+      "tools": ["edit"],
+      "success": "Test name accurately reflects HTTP status and title checking",
+      "details": {
+        "current_name": "CONN-01: WeSign Main Site Accessibility",
+        "current_function": "Only checks HTTP status <400 and non-empty title",
+        "misleading_aspect": "Claims 'accessibility' but does no WCAG testing",
+        "recommended_name": "CONN-01: WeSign Main Site HTTP Response",
+        "alternative_names": [
+          "CONN-01: WeSign Main Site Basic Connectivity", 
+          "CONN-01: WeSign Main Site Status Check",
+          "CONN-01: WeSign Main Site Availability"
+        ],
+        "implementation": {
+          "step_1": "Change test title and description",
+          "step_2": "Update console logs to reflect actual functionality",
+          "step_3": "Add comment explaining what real accessibility testing would involve",
+          "step_4": "Consider adding optional real accessibility testing"
+        }
+      }
+    },
+    {
+      "id": "RENAME-02", 
+      "desc": "Rename CONN-02: WeSign Login Page Response",
+      "tools": ["edit"],
+      "success": "Test name reflects input field detection, not login functionality",
+      "details": {
+        "current_name": "CONN-02: WeSign Login Page Response",
+        "current_function": "Counts any input fields on page, no login testing",
+        "misleading_aspect": "Implies login functionality testing",
+        "recommended_name": "CONN-02: WeSign Login Page Input Field Detection",
+        "alternative_names": [
+          "CONN-02: WeSign Login Page Form Elements",
+          "CONN-02: WeSign Login Page Structure Check", 
+          "CONN-02: WeSign Login Page Element Presence"
+        ],
+        "implementation": {
+          "step_1": "Update test name to reflect input field counting",
+          "step_2": "Clarify in comments that this doesn't test login functionality",
+          "step_3": "Update success message to be accurate",
+          "step_4": "Consider renaming to focus on page structure validation"
+        }
+      }
+    },
+    {
+      "id": "RENAME-03",
+      "desc": "Rename UI-01: Form Elements Detection", 
+      "tools": ["edit"],
+      "success": "Test name reflects basic presence check, not comprehensive detection",
+      "details": {
+        "current_name": "UI-01: Form Elements Detection",
+        "current_function": "Counts forms across multiple pages, ignores page load failures",
+        "misleading_aspect": "Implies comprehensive form validation",
+        "recommended_name": "UI-01: Basic Form Element Presence Check",
+        "alternative_names": [
+          "UI-01: Multi-Page Form Element Counting",
+          "UI-01: Form Element Availability Survey",
+          "UI-01: Basic Form Structure Detection"
+        ],
+        "implementation": {
+          "step_1": "Rename to emphasize 'basic' and 'presence' rather than 'detection'",
+          "step_2": "Update comments to clarify limitations",
+          "step_3": "Note that this doesn't test form functionality",
+          "step_4": "Consider adding form validation testing separately"
+        }
+      }
+    },
+    {
+      "id": "RENAME-04",
+      "desc": "Rename UI-04: Interactive Elements Detection",
+      "tools": ["edit"], 
+      "success": "Test name reflects element counting, not interaction testing",
+      "details": {
+        "current_name": "UI-04: Interactive Elements Detection",
+        "current_function": "Only counts elements, doesn't test interaction",
+        "misleading_aspect": "Implies interaction functionality testing",
+        "recommended_name": "UI-04: Interactive Element Counting",
+        "alternative_names": [
+          "UI-04: Interactive Element Inventory",
+          "UI-04: Clickable Element Presence Check",
+          "UI-04: Interactive Element Structure Survey"
+        ],
+        "implementation": {
+          "step_1": "Change name to emphasize counting vs testing interaction",
+          "step_2": "Add comment noting that interaction functionality is not tested",
+          "step_3": "Update log messages for accuracy",
+          "step_4": "Consider adding actual interaction testing as separate test"
+        }
+      }
+    },
+    {
+      "id": "RENAME-05",
+      "desc": "Rename FRAMEWORK-01: Self-Healing System Status",
+      "tools": ["edit"],
+      "success": "Test name reflects framework API check, not healing validation",
+      "details": {
+        "current_name": "FRAMEWORK-01: Self-Healing System Status", 
+        "current_function": "Tests framework API enabled status and finds body element",
+        "misleading_aspect": "Implies comprehensive self-healing testing",
+        "recommended_name": "FRAMEWORK-01: Self-Healing Framework API Check",
+        "alternative_names": [
+          "FRAMEWORK-01: Self-Healing System Integration",
+          "FRAMEWORK-01: Self-Healing Service Status",
+          "FRAMEWORK-01: Healing Framework Connectivity"
+        ],
+        "implementation": {
+          "step_1": "Rename to reflect API/integration testing focus",
+          "step_2": "Clarify that this tests framework status, not healing scenarios",
+          "step_3": "Update comments to explain what comprehensive healing tests would include",
+          "step_4": "Consider adding real healing scenario tests"
+        }
+      }
+    },
+    {
+      "id": "RENAME-06",
+      "desc": "Rename FRAMEWORK-04: Enhanced Reporter Integration",
+      "tools": ["edit"],
+      "success": "Test name reflects standard TestInfo validation, not enhanced features",
+      "details": {
+        "current_name": "FRAMEWORK-04: Enhanced Reporter Integration",
+        "current_function": "Tests standard Playwright TestInfo object",
+        "misleading_aspect": "Claims 'enhanced' functionality but tests standard features",
+        "recommended_name": "FRAMEWORK-04: Standard Test Info Validation",
+        "alternative_names": [
+          "FRAMEWORK-04: Basic Test Reporting Integration",
+          "FRAMEWORK-04: Test Metadata Validation",
+          "FRAMEWORK-04: Default Reporter Status Check"
+        ],
+        "implementation": {
+          "step_1": "Remove 'Enhanced' from name and replace with 'Standard'",
+          "step_2": "Update comments to clarify standard vs enhanced features",
+          "step_3": "Note what enhanced reporting would actually include",
+          "step_4": "Consider implementing actual enhanced reporting features"
+        }
+      }
+    },
+    {
+      "id": "RENAME-07", 
+      "desc": "Rename BUSINESS-02: Document Processing Flow Check",
+      "tools": ["edit"],
+      "success": "Test name reflects page availability, not workflow validation",
+      "details": {
+        "current_name": "BUSINESS-02: Document Processing Flow Check",
+        "current_function": "Only checks if document-related pages exist, no workflow testing",
+        "misleading_aspect": "Implies business workflow validation",
+        "recommended_name": "BUSINESS-02: Document Page Availability Check", 
+        "alternative_names": [
+          "BUSINESS-02: Document-Related Page Status",
+          "BUSINESS-02: Document Workflow Page Presence",
+          "BUSINESS-02: Basic Document Page Connectivity"
+        ],
+        "implementation": {
+          "step_1": "Rename to emphasize page availability vs workflow testing",
+          "step_2": "Update description to clarify this is connectivity, not business logic",
+          "step_3": "Add comment about what real workflow testing would involve",
+          "step_4": "Consider implementing actual document workflow tests"
+        }
+      }
+    },
+    {
+      "id": "RENAME-08",
+      "desc": "Rename BUSINESS-03: User Experience Validation",
+      "tools": ["edit"],
+      "success": "Test name reflects basic element counting, not UX validation", 
+      "details": {
+        "current_name": "BUSINESS-03: User Experience Validation",
+        "current_function": "Counts page elements and checks for title/description",
+        "misleading_aspect": "Claims UX validation but doesn't test user experience",
+        "recommended_name": "BUSINESS-03: Basic Page Element Counting",
+        "alternative_names": [
+          "BUSINESS-03: Page Content Structure Check",
+          "BUSINESS-03: Basic Page Metadata Validation",
+          "BUSINESS-03: HTML Element Inventory"
+        ],
+        "implementation": {
+          "step_1": "Replace 'User Experience Validation' with accurate element counting description",
+          "step_2": "Update comments to clarify this doesn't test actual UX",
+          "step_3": "Note what real UX validation would include (usability, interaction flows)",
+          "step_4": "Consider adding real UX testing (task completion, user journeys)"
+        }
+      }
+    }
+  ],
+  "constraints": [
+    "Maintain test IDs and structure to preserve test suite organization",
+    "Update all related console logs and comments for consistency", 
+    "Preserve existing test functionality while clarifying purpose",
+    "Ensure new names are descriptive but concise"
+  ],
+  "rollback_plan": "Keep original test names in comments for reference",
+  "estimated_duration": "1-2 hours",
+  "success_criteria": [
+    "All test names accurately describe their actual functionality",
+    "No misleading claims about comprehensive testing features",
+    "Clear distinction between basic checks and comprehensive validation",
+    "Comments explain what comprehensive testing would actually involve"
+  ],
+  "external_id": "WeSign-Demo-Suite:v1.3:plan:misleading-name-fixes"
+}

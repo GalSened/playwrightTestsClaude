@@ -1,0 +1,35 @@
+{
+  "name": "QA Intelligence Platform",
+  "version": "1.0.0",
+  "description": "Multi-Agent Collaboration Protocol configuration for QA Intelligence",
+  "servers": {
+    "wesign": {
+      "endpoint": "ws://localhost:8082/ws/wesign",
+      "type": "websocket",
+      "capabilities": ["real-time-updates", "test-execution", "result-streaming"]
+    },
+    "ci": {
+      "endpoint": "ws://localhost:8082/ws/ci",
+      "type": "websocket",
+      "capabilities": ["pipeline-updates", "build-status", "deployment-tracking"]
+    }
+  },
+  "protocols": {
+    "wesign-integration": {
+      "version": "2.0",
+      "features": ["auth", "signing", "document-processing"]
+    },
+    "test-execution": {
+      "version": "1.0",
+      "features": ["newman", "k6", "playwright", "parallel-execution"]
+    }
+  },
+  "environment": {
+    "mode": "development",
+    "debug": true,
+    "logging": {
+      "level": "info",
+      "targets": ["console", "file"]
+    }
+  }
+}

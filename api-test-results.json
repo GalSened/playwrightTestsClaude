@@ -1,0 +1,13 @@
+{
+  "testSession": {
+    "id": "wesign-api-test-session",
+    "timestamp": "",
+    "baseUrl": "http://localhost:8082",
+    "endpoints": []
+  },
+  "results": {
+    "priority1": [],
+    "priority2": [],
+    "summary": {}
+  }
+}

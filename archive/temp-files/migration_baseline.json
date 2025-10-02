@@ -1,0 +1,158 @@
+{
+  "timestamp": "2025-09-03T07:44:22.283408",
+  "current_python_tests": [
+    {
+      "file": "tests\\admin\\test_system_administration.py",
+      "category": "admin"
+    },
+    {
+      "file": "tests\\admin\\test_user_administration.py",
+      "category": "admin"
+    },
+    {
+      "file": "tests\\auth\\test_login_negative.py",
+      "category": "auth"
+    },
+    {
+      "file": "tests\\auth\\test_login_positive.py",
+      "category": "auth"
+    },
+    {
+      "file": "tests\\auth\\test_login_ui.py",
+      "category": "auth"
+    },
+    {
+      "file": "tests\\contacts\\test_contacts_accessibility.py",
+      "category": "contacts"
+    },
+    {
+      "file": "tests\\contacts\\test_contacts_advanced.py",
+      "category": "contacts"
+    },
+    {
+      "file": "tests\\contacts\\test_contacts_cross_browser.py",
+      "category": "contacts"
+    },
+    {
+      "file": "tests\\contacts\\test_contacts_edge_cases.py",
+      "category": "contacts"
+    },
+    {
+      "file": "tests\\contacts\\test_contacts_english.py",
+      "category": "contacts"
+    },
+    {
+      "file": "tests\\contacts\\test_contacts_hebrew.py",
+      "category": "contacts"
+    },
+    {
+      "file": "tests\\contacts\\test_contacts_performance.py",
+      "category": "contacts"
+    },
+    {
+      "file": "tests\\dashboard\\test_dashboard_accessibility.py",
+      "category": "dashboard"
+    },
+    {
+      "file": "tests\\dashboard\\test_dashboard_cross_browser.py",
+      "category": "dashboard"
+    },
+    {
+      "file": "tests\\dashboard\\test_dashboard_edge_cases.py",
+      "category": "dashboard"
+    },
+    {
+      "file": "tests\\dashboard\\test_dashboard_english.py",
+      "category": "dashboard"
+    },
+    {
+      "file": "tests\\dashboard\\test_dashboard_hebrew.py",
+      "category": "dashboard"
+    },
+    {
+      "file": "tests\\dashboard\\test_dashboard_performance.py",
+      "category": "dashboard"
+    },
+    {
+      "file": "tests\\document_workflows\\test_document_workflows.py",
+      "category": "document_workflows"
+    },
+    {
+      "file": "tests\\document_workflows\\test_wesign_assign_send_functionality.py",
+      "category": "document_workflows"
+    },
+    {
+      "file": "tests\\document_workflows\\test_wesign_merge_functionality.py",
+      "category": "document_workflows"
+    },
+    {
+      "file": "tests\\document_workflows\\test_wesign_upload_functionality.py",
+      "category": "document_workflows"
+    },
+    {
+      "file": "tests\\integrations\\test_payments.py",
+      "category": "integrations"
+    },
+    {
+      "file": "tests\\integrations\\test_smart_card_integration.py",
+      "category": "integrations"
+    },
+    {
+      "file": "tests\\templates\\test_templates_cross_browser.py",
+      "category": "templates"
+    },
+    {
+      "file": "tests\\templates\\test_templates_edge_cases.py",
+      "category": "templates"
+    },
+    {
+      "file": "tests\\templates\\test_templates_english.py",
+      "category": "templates"
+    },
+    {
+      "file": "tests\\templates\\test_templates_hebrew.py",
+      "category": "templates"
+    }
+  ],
+  "api_accessible": false,
+  "test_count": 0,
+  "categories": [
+    "auth",
+    "document_workflows",
+    "admin",
+    "dashboard",
+    "templates",
+    "contacts",
+    "integrations"
+  ],
+  "errors": [
+    "API returned status 404"
+  ],
+  "current_files_count": 28,
+  "typescript_files": [
+    "playwright-system-tests\\tests\\complete-login-demo.spec.ts",
+    "playwright-system-tests\\tests\\debug-login-flow.spec.ts",
+    "playwright-system-tests\\tests\\diagnostic-test.spec.ts",
+    "playwright-system-tests\\tests\\final-working-login.spec.ts",
+    "playwright-system-tests\\tests\\final-working-system.spec.ts",
+    "playwright-system-tests\\tests\\live-debug.spec.ts",
+    "playwright-system-tests\\tests\\manual-verification.spec.ts",
+    "playwright-system-tests\\tests\\navigate-demo.spec.ts",
+    "playwright-system-tests\\tests\\smoke-test.spec.ts",
+    "playwright-system-tests\\tests\\step-by-step-verification.spec.ts",
+    "playwright-system-tests\\tests\\test-bank-debug.spec.ts",
+    "playwright-system-tests\\tests\\test-bank-navigation.spec.ts",
+    "playwright-system-tests\\tests\\trace-run-button.spec.ts",
+    "playwright-system-tests\\tests\\working-test.spec.ts",
+    "playwright-system-tests\\tests\\core\\test-management.spec.ts",
+    "playwright-system-tests\\tests\\e2e\\enterprise-workflow.spec.ts",
+    "playwright-system-tests\\tests\\enterprise\\multi-tenant.spec.ts",
+    "playwright-system-tests\\tests\\enterprise\\rbac.spec.ts",
+    "playwright-system-tests\\tests\\execution\\execution-modes.spec.ts",
+    "playwright-system-tests\\tests\\monitoring\\real-time.spec.ts",
+    "playwright-system-tests\\tests\\performance\\load.spec.ts",
+    "playwright-system-tests\\tests\\scheduler\\scheduler.spec.ts",
+    "playwright-system-tests\\tests\\security\\security.spec.ts"
+  ],
+  "typescript_count": 23
+}

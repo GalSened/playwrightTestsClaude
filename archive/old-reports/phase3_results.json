@@ -1,0 +1,22 @@
+{
+  "timestamp": "2025-09-14T08:57:04.381Z",
+  "phase": "Phase 3 - Deduplication",
+  "status": "WARNING",
+  "results": {
+    "filesRemoved": 7,
+    "filesNotFound": 0,
+    "removalErrors": 0,
+    "configReferencesFound": 0,
+    "testCountBefore": 776,
+    "testCountAfter": 549,
+    "actualReduction": 227,
+    "expectedReduction": 148,
+    "validationPassed": false
+  },
+  "details": {
+    "removalErrors": [],
+    "configReferencesFound": []
+  },
+  "backupLocation": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\backup_wesign_duplicates\\2025-09-14T08-55-31-368Z",
+  "readyForPhase4": false
+}

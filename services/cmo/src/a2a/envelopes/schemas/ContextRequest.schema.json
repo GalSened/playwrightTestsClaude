@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://qa-intelligence.com/schemas/a2a/ContextRequest.schema.json",
+  "title": "Context Request Envelope",
+  "description": "Request for context retrieval from vector stores, knowledge graphs, or H4R systems",
+  "type": "object",
+  "required": ["meta", "payload"],
+  "properties": {
+    "meta": {
+      "$ref": "EnvelopeMeta.schema.json",
+      "description": "Envelope metadata with type=ContextRequest"
+    },
+    "payload": {
+      "type": "object",
+      "required": ["query"],
+      "properties": {
+        "query": {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["semantic", "keyword", "hybrid", "graph_traversal"],
+              "description": "Query type (determines retrieval strategy)"
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096,
+              "description": "Query text (for semantic/keyword/hybrid queries)"
+            },
+            "filters": {
+              "type": "object",
+              "description": "Metadata filters (e.g., {test_type: 'e2e', date: '2025-10-02'})"
+            },
+            "graph_params": {
+              "type": "object",
+              "properties": {
+                "start_node": {
+                  "type": "string",
+                  "description": "Starting node ID for graph traversal"
+                },
+                "relationship_types": {
+                  "type": "array",
+                  "items": {"type": "string"},
+                  "description": "Relationship types to follow"
+                },
+                "max_depth": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10,
+                  "description": "Maximum traversal depth"
+                }
+              },
+              "description": "Graph traversal parameters (for graph_traversal queries)"
+            }
+          },
+          "description": "Query specification"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 10,
+          "description": "Maximum number of results to return"
+        },
+        "include_embeddings": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include embedding vectors in results (usually false to save bandwidth)"
+        },
+        "include_scores": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include relevance scores in results"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

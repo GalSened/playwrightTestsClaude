@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "a2a_version": "1.0",
+    "message_id": "0123456789abcdef0123456789abcdef",
+    "trace_id": "trace-004",
+    "ts": "2025-01-15T11:00:15.000Z",
+    "from": {
+      "id": "specialist-healing-001",
+      "type": "specialist",
+      "version": "1.0.0"
+    },
+    "to": [
+      {
+        "id": "cmo-001",
+        "type": "cmo",
+        "version": "1.0.0"
+      }
+    ],
+    "tenant": "wesign",
+    "project": "qa-platform",
+    "type": "SpecialistResult",
+    "reply_to": "f6789012345678901234567890abcdef"
+  },
+  "payload": {
+    "task": "self-healing",
+    "status": "success",
+    "confidence": 0.95,
+    "proposal": {
+      "fix_type": "selector-update",
+      "original_selector": "#login-button",
+      "suggested_selector": "#loginBtn",
+      "explanation": "Button ID changed from 'login-button' to 'loginBtn'"
+    },
+    "rationale": "The page HTML shows the button has ID 'loginBtn', but the test is looking for '#login-button'. High confidence based on exact match in DOM.",
+    "metrics": {
+      "duration_ms": 12453,
+      "cost_usd": 0.45,
+      "tokens_used": 2500
+    }
+  }
+}

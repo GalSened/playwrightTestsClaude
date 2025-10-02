@@ -1,0 +1,6 @@
+🧪 Starting Test: CONN-01: WeSign Main Site Accessibility
+👀 Setting up self-healing monitoring for: CONN-01: WeSign Main Site Accessibility
+🌍 Testing WeSign main site accessibility
+📄 Page title: WeSign
+✅ WeSign main site accessible
+📊 Test "CONN-01: WeSign Main Site Accessibility" completed

@@ -1,0 +1,104 @@
+{
+  "traceId": "sample-fixture-trace-001",
+  "graphId": "demo-workflow",
+  "graphVersion": "1.0.0",
+  "status": "completed",
+  "startedAt": "2025-01-02T00:00:00.000Z",
+  "completedAt": "2025-01-02T00:00:02.150Z",
+  "durationMs": 2150,
+  "steps": [
+    {
+      "stepIndex": 0,
+      "nodeId": "init",
+      "stateHash": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6",
+      "inputHash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "outputHash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "nextEdge": "process",
+      "startedAt": "2025-01-02T00:00:00.000Z",
+      "completedAt": "2025-01-02T00:00:00.250Z",
+      "durationMs": 250
+    },
+    {
+      "stepIndex": 1,
+      "nodeId": "process",
+      "stateHash": "b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a1",
+      "inputHash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "outputHash": "2222222222222222222222222222222222222222222222222222222222222222",
+      "nextEdge": "validate",
+      "startedAt": "2025-01-02T00:00:00.250Z",
+      "completedAt": "2025-01-02T00:00:01.100Z",
+      "durationMs": 850
+    },
+    {
+      "stepIndex": 2,
+      "nodeId": "validate",
+      "stateHash": "c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a1b2",
+      "inputHash": "2222222222222222222222222222222222222222222222222222222222222222",
+      "outputHash": "3333333333333333333333333333333333333333333333333333333333333333",
+      "nextEdge": "finalize",
+      "startedAt": "2025-01-02T00:00:01.100Z",
+      "completedAt": "2025-01-02T00:00:01.500Z",
+      "durationMs": 400
+    },
+    {
+      "stepIndex": 3,
+      "nodeId": "finalize",
+      "stateHash": "d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a1b2c3",
+      "inputHash": "3333333333333333333333333333333333333333333333333333333333333333",
+      "outputHash": "4444444444444444444444444444444444444444444444444444444444444444",
+      "nextEdge": null,
+      "startedAt": "2025-01-02T00:00:01.500Z",
+      "completedAt": "2025-01-02T00:00:02.150Z",
+      "durationMs": 650
+    }
+  ],
+  "activities": [
+    {
+      "stepIndex": 0,
+      "activityType": "time",
+      "requestHash": "abc123",
+      "requestData": {},
+      "responseData": "2025-01-02T00:00:00.000Z"
+    },
+    {
+      "stepIndex": 0,
+      "activityType": "random",
+      "requestHash": "def456",
+      "requestData": { "max": 100 },
+      "responseData": 42
+    },
+    {
+      "stepIndex": 1,
+      "activityType": "http",
+      "requestHash": "ghi789",
+      "requestData": {
+        "url": "https://api.example.com/data",
+        "options": { "method": "GET" }
+      },
+      "responseData": {
+        "status": 200,
+        "body": "{\"result\":\"success\"}"
+      }
+    },
+    {
+      "stepIndex": 1,
+      "activityType": "time",
+      "requestHash": "jkl012",
+      "requestData": {},
+      "responseData": "2025-01-02T00:00:00.500Z"
+    },
+    {
+      "stepIndex": 2,
+      "activityType": "time",
+      "requestHash": "mno345",
+      "requestData": {},
+      "responseData": "2025-01-02T00:00:01.200Z"
+    }
+  ],
+  "finalState": {
+    "counter": 1,
+    "messages": ["initialized", "processed", "validated", "finalized"],
+    "total": 42,
+    "complete": true
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://qa-intelligence.com/schemas/a2a/DecisionNotice.schema.json",
+  "title": "Decision Notice Envelope",
+  "description": "Final decision notice after CMO scoring and selection",
+  "type": "object",
+  "required": ["meta", "payload"],
+  "properties": {
+    "meta": {
+      "$ref": "EnvelopeMeta.schema.json",
+      "description": "Envelope metadata with type=DecisionNotice"
+    },
+    "payload": {
+      "type": "object",
+      "required": ["decision", "selected_proposal"],
+      "properties": {
+        "decision": {
+          "type": "string",
+          "enum": ["approve", "reject", "defer", "escalate"],
+          "description": "Final decision outcome"
+        },
+        "selected_proposal": {
+          "type": "object",
+          "required": ["specialist_id", "message_id"],
+          "properties": {
+            "specialist_id": {
+              "$ref": "AgentId.schema.json",
+              "description": "Specialist that provided the selected proposal"
+            },
+            "message_id": {
+              "type": "string",
+              "pattern": "^[a-f0-9-]{16,}$",
+              "description": "Message ID of the SpecialistResult that was selected"
+            },
+            "proposal": {
+              "type": "object",
+              "description": "The selected proposal content"
+            },
+            "confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Specialist's original confidence score"
+            }
+          },
+          "description": "The proposal that was selected (or null if all rejected)"
+        },
+        "scoring_summary": {
+          "type": "object",
+          "properties": {
+            "total_proposals": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Total number of proposals evaluated"
+            },
+            "scoring_dimensions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {"type": "string"},
+                  "weight": {"type": "number", "minimum": 0, "maximum": 1}
+                }
+              },
+              "description": "Dimensions used for scoring (e.g., confidence, evidence_quality, cost)"
+            },
+            "proposal_scores": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "specialist_id": {"type": "string"},
+                  "message_id": {"type": "string"},
+                  "score": {"type": "number", "minimum": 0, "maximum": 1},
+                  "breakdown": {"type": "object"}
+                }
+              },
+              "description": "Score breakdown for each proposal"
+            }
+          },
+          "description": "Summary of the scoring process"
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096,
+          "description": "Human-readable explanation of the decision"
+        },
+        "next_actions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "action": {"type": "string"},
+              "agent": {"$ref": "AgentId.schema.json"},
+              "deadline": {"type": "string", "format": "date-time"}
+            }
+          },
+          "description": "Recommended follow-up actions (e.g., 'apply_fix', 'run_tests', 'deploy')"
+        },
+        "rejection_reasons": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "specialist_id": {"type": "string"},
+              "message_id": {"type": "string"},
+              "reason": {"type": "string"}
+            }
+          },
+          "description": "Reasons for rejecting proposals (present if decision=reject)"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

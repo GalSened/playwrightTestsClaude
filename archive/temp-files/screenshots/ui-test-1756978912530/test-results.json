@@ -1,0 +1,313 @@
+[
+  {
+    "page": "Main Dashboard",
+    "url": "http://localhost:3002/",
+    "title": "QA Intelligence",
+    "screenshot": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\screenshots\\ui-test-1756978912530\\main-dashboard.png",
+    "errorMessages": 0,
+    "loadingSpinners": 0,
+    "specificChecks": {
+      "dashboardElements": 2
+    },
+    "networkRequests": [
+      {
+        "url": "http://localhost:8083/api/analytics/smart",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:52.742Z"
+      },
+      {
+        "url": "http://localhost:8083/api/analytics/smart",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:52.744Z"
+      },
+      {
+        "url": "http://localhost:8083/api/tests/all",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:52.752Z"
+      },
+      {
+        "url": "http://localhost:8083/api/tests/all",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:52.757Z"
+      },
+      {
+        "url": "http://localhost:8083/api/execute/history",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:52.773Z"
+      },
+      {
+        "url": "http://localhost:8083/api/execute/history",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:52.789Z"
+      },
+      {
+        "url": "http://localhost:8083/api/sub-agents/status",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:56.475Z"
+      },
+      {
+        "url": "http://localhost:8083/api/sub-agents/workflow-templates",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:56.475Z"
+      },
+      {
+        "url": "http://localhost:8083/api/sub-agents/status",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:56.475Z"
+      },
+      {
+        "url": "http://localhost:8083/api/sub-agents/workflow-templates",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:56.475Z"
+      },
+      {
+        "url": "http://localhost:8083/api/jira/config",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:56.487Z"
+      },
+      {
+        "url": "http://localhost:8083/api/jira/health",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:56.487Z"
+      },
+      {
+        "url": "http://localhost:8083/api/jira/mappings?limit=10",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:56.487Z"
+      },
+      {
+        "url": "http://localhost:8083/api/jira/config",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:56.488Z"
+      },
+      {
+        "url": "http://localhost:8083/api/jira/health",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:56.488Z"
+      },
+      {
+        "url": "http://localhost:8083/api/jira/mappings?limit=10",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:56.488Z"
+      }
+    ],
+    "timestamp": "2025-09-04T09:41:57.490Z",
+    "success": true
+  },
+  {
+    "page": "Sub-Agents",
+    "url": "http://localhost:3002/sub-agents",
+    "title": "QA Intelligence",
+    "screenshot": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\screenshots\\ui-test-1756978912530\\sub-agents.png",
+    "errorMessages": 0,
+    "loadingSpinners": 0,
+    "specificChecks": {
+      "agentElements": 0,
+      "agentStatus": 1
+    },
+    "networkRequests": [
+      {
+        "url": "http://localhost:8083/api/sub-agents/status",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:57.575Z"
+      },
+      {
+        "url": "http://localhost:8083/api/sub-agents/workflow-templates",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:57.575Z"
+      },
+      {
+        "url": "http://localhost:8083/api/sub-agents/status",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:57.575Z"
+      },
+      {
+        "url": "http://localhost:8083/api/sub-agents/workflow-templates",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:57.575Z"
+      },
+      {
+        "url": "http://localhost:8083/api/jira/config",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:57.584Z"
+      },
+      {
+        "url": "http://localhost:8083/api/jira/health",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:57.584Z"
+      },
+      {
+        "url": "http://localhost:8083/api/jira/mappings?limit=10",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:57.584Z"
+      },
+      {
+        "url": "http://localhost:8083/api/jira/config",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:57.584Z"
+      },
+      {
+        "url": "http://localhost:8083/api/jira/health",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:57.584Z"
+      },
+      {
+        "url": "http://localhost:8083/api/jira/mappings?limit=10",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:41:57.584Z"
+      }
+    ],
+    "timestamp": "2025-09-04T09:42:02.286Z",
+    "success": true
+  },
+  {
+    "page": "Schedules",
+    "url": "http://localhost:3002/schedules",
+    "title": "QA Intelligence",
+    "screenshot": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\screenshots\\ui-test-1756978912530\\schedules.png",
+    "errorMessages": 0,
+    "loadingSpinners": 0,
+    "specificChecks": {
+      "scheduleElements": 0
+    },
+    "networkRequests": [
+      {
+        "url": "http://localhost:8083/api/analytics/smart",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:02.348Z"
+      },
+      {
+        "url": "http://localhost:8083/api/analytics/smart",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:02.349Z"
+      },
+      {
+        "url": "http://localhost:8083/api/tests/all",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:02.352Z"
+      },
+      {
+        "url": "http://localhost:8083/api/tests/all",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:02.355Z"
+      },
+      {
+        "url": "http://localhost:8083/api/execute/history",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:02.376Z"
+      },
+      {
+        "url": "http://localhost:8083/api/execute/history",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:02.396Z"
+      }
+    ],
+    "timestamp": "2025-09-04T09:42:07.086Z",
+    "success": true
+  },
+  {
+    "page": "Test Runs",
+    "url": "http://localhost:3002/test-runs",
+    "title": "QA Intelligence",
+    "screenshot": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\screenshots\\ui-test-1756978912530\\test-runs.png",
+    "errorMessages": 0,
+    "loadingSpinners": 0,
+    "specificChecks": {
+      "testRunElements": 0
+    },
+    "networkRequests": [
+      {
+        "url": "http://localhost:8083/api/analytics/smart",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:07.148Z"
+      },
+      {
+        "url": "http://localhost:8083/api/analytics/smart",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:07.149Z"
+      },
+      {
+        "url": "http://localhost:8083/api/tests/all",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:07.153Z"
+      },
+      {
+        "url": "http://localhost:8083/api/tests/all",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:07.160Z"
+      },
+      {
+        "url": "http://localhost:8083/api/execute/history",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:07.173Z"
+      },
+      {
+        "url": "http://localhost:8083/api/execute/history",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:07.192Z"
+      }
+    ],
+    "timestamp": "2025-09-04T09:42:11.882Z",
+    "success": true
+  },
+  {
+    "page": "Reports",
+    "url": "http://localhost:3002/reports",
+    "title": "QA Intelligence",
+    "screenshot": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\screenshots\\ui-test-1756978912530\\reports.png",
+    "errorMessages": 0,
+    "loadingSpinners": 0,
+    "specificChecks": {
+      "reportElements": 0
+    },
+    "networkRequests": [
+      {
+        "url": "http://localhost:8083/api/execute/history",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:11.948Z"
+      },
+      {
+        "url": "http://localhost:8083/api/execute/history",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:11.948Z"
+      },
+      {
+        "url": "http://localhost:8083/api/analytics/smart",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:11.955Z"
+      },
+      {
+        "url": "http://localhost:8083/api/analytics/smart",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:11.961Z"
+      }
+    ],
+    "timestamp": "2025-09-04T09:42:16.608Z",
+    "success": true
+  },
+  {
+    "page": "Analytics",
+    "url": "http://localhost:3002/analytics",
+    "title": "QA Intelligence",
+    "screenshot": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\screenshots\\ui-test-1756978912530\\analytics.png",
+    "errorMessages": 0,
+    "loadingSpinners": 0,
+    "specificChecks": {
+      "chartElements": 67
+    },
+    "networkRequests": [
+      {
+        "url": "http://localhost:8083/api/analytics/smart",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:16.683Z"
+      },
+      {
+        "url": "http://localhost:8083/api/analytics/smart",
+        "method": "GET",
+        "timestamp": "2025-09-04T09:42:16.685Z"
+      }
+    ],
+    "timestamp": "2025-09-04T09:42:21.443Z",
+    "success": true
+  }
+]

@@ -1,0 +1,116 @@
+{
+  "test_timestamp": "2025-08-27T10:56:14.023481",
+  "base_url": "http://localhost:5173",
+  "test_results": [
+    {
+      "test_name": "1. Page Load & Initial State",
+      "status": "PASSED",
+      "details": "Page loaded successfully. Sections: Tests section: OK; Suite builder section: OK; Tests table: OK",
+      "error": "",
+      "timestamp": "2025-08-27T10:56:15.854531"
+    },
+    {
+      "test_name": "2. Search and Filter Functionality",
+      "status": "PASSED",
+      "details": "Search found 0 total tests, 4 high-risk tests after filtering",
+      "error": "",
+      "timestamp": "2025-08-27T10:56:25.291419"
+    },
+    {
+      "test_name": "3. Test Selection & Suite Creation",
+      "status": "PASSED",
+      "details": "Selected 2 tests, created suite. Selection verification: PASS, Clear verification: PASS",
+      "error": "",
+      "timestamp": "2025-08-27T10:56:37.436901"
+    },
+    {
+      "test_name": "4. Suite Execution Flow",
+      "status": "PASSED",
+      "details": "Suite execution initiated. Navigation: http://localhost:5173/test-bank -> http://localhost:5173/reports. Reports page: YES",
+      "error": "",
+      "timestamp": "2025-08-27T10:56:44.558617"
+    },
+    {
+      "test_name": "5. Table Functionality Testing",
+      "status": "PASSED",
+      "details": "Table rows: 0; Sorting: NOT TESTED; Risk filter: 4 high-risk items; Select all: PARTIAL",
+      "error": "",
+      "timestamp": "2025-08-27T10:56:51.618929"
+    },
+    {
+      "test_name": "6. Comprehensive UI Validation",
+      "status": "PASSED",
+      "details": "Test names: ERROR - 'Locator' object is not callable; Module badges: ERROR - 'Locator' object is not callable; Risk badges: ERROR - 'Locator' object is not callable; Tag lists: ERROR - 'Locator' object is not callable; Duration displays: ERROR - 'Locator' object is not callable; Run buttons: ERROR - 'Locator' object is not callable; Suite builder: ERROR - 'Locator' object is not callable; Suites section: ERROR - 'Locator' object is not callable; Estimated duration test: ERROR - 'Locator' object is not callable",
+      "error": "",
+      "timestamp": "2025-08-27T10:56:51.745849"
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "01_initial_load",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_01_initial_load_20250827_105615.png",
+      "description": "Test Bank page initial load",
+      "timestamp": "20250827_105615"
+    },
+    {
+      "name": "02_search_results",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_02_search_results_20250827_105618.png",
+      "description": "Search results for 'login' - found 0 tests",
+      "timestamp": "20250827_105618"
+    },
+    {
+      "name": "02_risk_filtered",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_02_risk_filtered_20250827_105622.png",
+      "description": "Risk filter applied - 4 high risk tests",
+      "timestamp": "20250827_105622"
+    },
+    {
+      "name": "03_tests_selected",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_03_tests_selected_20250827_105628.png",
+      "description": "2 tests selected",
+      "timestamp": "20250827_105628"
+    },
+    {
+      "name": "03_suite_created",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_03_suite_created_20250827_105635.png",
+      "description": "Suite created",
+      "timestamp": "20250827_105635"
+    },
+    {
+      "name": "04_before_suite_run",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_04_before_suite_run_20250827_105638.png",
+      "description": "Before running suite - 4 suites available",
+      "timestamp": "20250827_105638"
+    },
+    {
+      "name": "04_after_suite_run",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_04_after_suite_run_20250827_105644.png",
+      "description": "After running suite - URL changed: True",
+      "timestamp": "20250827_105644"
+    },
+    {
+      "name": "05_table_functionality",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_05_table_functionality_20250827_105651.png",
+      "description": "Table functionality testing complete",
+      "timestamp": "20250827_105651"
+    },
+    {
+      "name": "06_comprehensive_validation",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_06_comprehensive_validation_20250827_105651.png",
+      "description": "Comprehensive validation complete",
+      "timestamp": "20250827_105651"
+    },
+    {
+      "name": "07_final_state",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_07_final_state_20250827_105651.png",
+      "description": "Final state after all EPU tests completed",
+      "timestamp": "20250827_105651"
+    }
+  ],
+  "summary": {
+    "total_tests": 6,
+    "passed": 6,
+    "failed": 0,
+    "errors": []
+  }
+}

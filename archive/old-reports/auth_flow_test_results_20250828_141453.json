@@ -1,0 +1,49 @@
+{
+  "test_run_id": "auth_flow_20250828_141453",
+  "start_time": "2025-08-28T14:14:53.733253",
+  "frontend_url": "http://localhost:5173",
+  "backend_url": "http://localhost:8080",
+  "demo_credentials": {
+    "email": "admin@demo.com",
+    "password": "***"
+  },
+  "tests": {
+    "frontend_accessibility": {
+      "status": "PASS",
+      "timestamp": "2025-08-28T14:14:56.311518",
+      "details": {
+        "message": "Frontend accessible at http://localhost:5173",
+        "title": "WeSign Enterprise - Playwright Smart",
+        "url": "http://localhost:5173/auth/login"
+      },
+      "screenshot": "artifacts/screenshots\\auth_flow_01_initial_load_20250828_141453.png"
+    },
+    "login_form_submission": {
+      "status": "FAIL",
+      "timestamp": "2025-08-28T14:14:58.806155",
+      "details": {
+        "message": "Login form test failed: Locator.is_visible: Error: strict mode violation: locator(\"text=\\\"Dashboard\\\"\") resolved to 2 elements:\n    1) <a href=\"/\" aria-current=\"page\" data-testid=\"nav-dashboard\" class=\"nav-link flex items-center gap-2 active\">\u2026</a> aka get_by_test_id(\"nav-dashboard\")\n    2) <h1 data-testid=\"page-title\" class=\"text-3xl font-bold mb-8\">Dashboard</h1> aka get_by_test_id(\"page-title\")\n\nCall log:\n    - checking visibility of locator(\"text=\\\"Dashboard\\\"\")\n",
+        "critical": true
+      },
+      "screenshot": "artifacts/screenshots\\auth_flow_03_login_form_error_20250828_141453.png"
+    }
+  },
+  "evidence": {
+    "screenshots": [
+      "artifacts/screenshots\\auth_flow_01_initial_load_20250828_141453.png",
+      "artifacts/screenshots\\auth_flow_03_login_form_error_20250828_141453.png"
+    ],
+    "videos": [],
+    "network_logs": []
+  },
+  "summary": {
+    "total_tests": 2,
+    "passed": 1,
+    "failed": 1,
+    "critical_failures": [
+      "login_form_submission"
+    ]
+  },
+  "end_time": "2025-08-28T14:14:58.806702",
+  "duration_seconds": 5.073449
+}

@@ -1,0 +1,134 @@
+{
+  "timestamp": "2025-09-25T13:45:11.055Z",
+  "summary": {
+    "total": 11,
+    "passed": 6,
+    "failed": 5
+  },
+  "performance": {
+    "averageResponseTime": 560.3636363636364,
+    "fastestEndpoint": {
+      "endpoint": "GET /queue/status",
+      "status": "PASS",
+      "duration": 2,
+      "responseSize": 319,
+      "timestamp": "2025-09-25T13:45:04.957Z",
+      "error": null
+    },
+    "slowestEndpoint": {
+      "endpoint": "GET /health",
+      "status": "FAIL",
+      "duration": 6073,
+      "responseSize": 651,
+      "timestamp": "2025-09-25T13:45:11.050Z",
+      "error": "Request failed with status code 503"
+    },
+    "under200ms": 10,
+    "under500ms": 10,
+    "over1000ms": 1,
+    "totalDataTransfer": 2401
+  },
+  "tests": {
+    "priority1": [
+      {
+        "endpoint": "POST /execute",
+        "status": "PASS",
+        "duration": 58,
+        "responseSize": 152,
+        "timestamp": "2025-09-25T13:45:02.937Z",
+        "error": null
+      },
+      {
+        "endpoint": "GET /execute/:id/status",
+        "status": "PASS",
+        "duration": 6,
+        "responseSize": 214,
+        "timestamp": "2025-09-25T13:45:04.952Z",
+        "error": null
+      },
+      {
+        "endpoint": "POST /execute/:id/cancel",
+        "status": "PASS",
+        "duration": 3,
+        "responseSize": 61,
+        "timestamp": "2025-09-25T13:45:04.955Z",
+        "error": null
+      },
+      {
+        "endpoint": "GET /queue/status",
+        "status": "PASS",
+        "duration": 2,
+        "responseSize": 319,
+        "timestamp": "2025-09-25T13:45:04.957Z",
+        "error": null
+      },
+      {
+        "endpoint": "GET /execute/:id/artifacts",
+        "status": "FAIL",
+        "duration": 2,
+        "responseSize": 60,
+        "timestamp": "2025-09-25T13:45:04.959Z",
+        "error": "Request failed with status code 404"
+      }
+    ],
+    "priority2": [
+      {
+        "endpoint": "POST /schedule",
+        "status": "FAIL",
+        "duration": 11,
+        "responseSize": 75,
+        "timestamp": "2025-09-25T13:45:04.970Z",
+        "error": "Request failed with status code 500"
+      },
+      {
+        "endpoint": "GET /schedules",
+        "status": "PASS",
+        "duration": 2,
+        "responseSize": 31,
+        "timestamp": "2025-09-25T13:45:04.972Z",
+        "error": null
+      },
+      {
+        "endpoint": "PUT /schedule/:id",
+        "status": "FAIL",
+        "duration": 2,
+        "responseSize": 46,
+        "timestamp": "2025-09-25T13:45:04.974Z",
+        "error": "Request failed with status code 404"
+      },
+      {
+        "endpoint": "DELETE /schedule/:id",
+        "status": "FAIL",
+        "duration": 3,
+        "responseSize": 46,
+        "timestamp": "2025-09-25T13:45:04.977Z",
+        "error": "Request failed with status code 404"
+      }
+    ],
+    "priority3": [
+      {
+        "endpoint": "GET /health",
+        "status": "FAIL",
+        "duration": 6073,
+        "responseSize": 651,
+        "timestamp": "2025-09-25T13:45:11.050Z",
+        "error": "Request failed with status code 503"
+      },
+      {
+        "endpoint": "GET /stats",
+        "status": "PASS",
+        "duration": 2,
+        "responseSize": 746,
+        "timestamp": "2025-09-25T13:45:11.053Z",
+        "error": null
+      }
+    ]
+  },
+  "assessment": {
+    "coreHealthy": true,
+    "schedulingHealthy": false,
+    "healthEndpointWorking": true,
+    "overallHealth": false,
+    "successRate": 54.55
+  }
+}

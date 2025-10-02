@@ -1,0 +1,375 @@
+name: CMO/ELG CI
+
+on:
+  push:
+    branches: [ main, 'feat/cmo-elg-*' ]
+    paths:
+      - 'services/cmo/**'
+      - 'tools/local-stack/**'
+      - '.github/workflows/cmo.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'services/cmo/**'
+      - 'tools/local-stack/**'
+
+jobs:
+  cmo-test:
+    name: CMO/ELG Tests & Validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: playwright_enterprise
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: ci_test_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      minio:
+        image: minio/minio:latest
+        env:
+          MINIO_ROOT_USER: minioadmin
+          MINIO_ROOT_PASSWORD: minioadmin123
+        ports:
+          - 9000:9000
+          - 9001:9001
+        options: >-
+          --health-cmd "curl -f http://localhost:9000/minio/health/live"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        # Note: Command must be set via container start, not options
+        # We'll handle bucket creation in the setup step
+
+    env:
+      # Database
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: playwright_enterprise
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: ci_test_password
+      POSTGRES_SSL: false
+      POSTGRES_MAX_CONNECTIONS: 10
+
+      # Redis
+      REDIS_HOST: localhost
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ''
+      REDIS_STREAM_NAME: cmo-events
+      REDIS_CONSUMER_GROUP: cmo-workers
+      REDIS_MAX_PENDING: 100
+
+      # S3/MinIO
+      S3_ENDPOINT: http://localhost:9000
+      S3_REGION: us-east-1
+      S3_ACCESS_KEY: minioadmin
+      S3_SECRET_KEY: minioadmin123
+      S3_BUCKET: cmo-artifacts
+      S3_FORCE_PATH_STYLE: true
+
+      # OTEL (disabled in CI for speed)
+      OTEL_ENABLED: false
+      OTEL_SERVICE_NAME: cmo-elg-ci
+      OTEL_EXPORTER_OTLP_ENDPOINT: ''
+
+      # OPA (mock mode in tests)
+      OPA_ENABLED: false
+      OPA_POLICY_PATH: ./policies/slices.rego
+
+      # Runtime
+      ELG_MAX_STEP_DURATION_MS: 30000
+      ELG_CHECKPOINT_INTERVAL: 1
+      ELG_MAX_RETRIES: 3
+
+      # Logging
+      LOG_LEVEL: info
+      LOG_PRETTY: false
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: services/cmo/package-lock.json
+
+      - name: Install dependencies
+        working-directory: services/cmo
+        run: npm ci
+
+      - name: Initialize MinIO bucket
+        run: |
+          # Wait for MinIO to be fully ready
+          timeout 60 bash -c 'until curl -f http://localhost:9000/minio/health/live; do sleep 2; done'
+
+          # Install MinIO client
+          wget -q https://dl.min.io/client/mc/release/linux-amd64/mc
+          chmod +x mc
+
+          # Configure and create bucket
+          ./mc alias set myminio http://localhost:9000 minioadmin minioadmin123
+          ./mc mb myminio/cmo-artifacts --ignore-existing || true
+
+          echo "✅ MinIO bucket 'cmo-artifacts' created"
+
+      - name: Initialize database schema
+        run: |
+          # Wait for Postgres to be ready
+          timeout 30 bash -c 'until pg_isready -h localhost -U admin; do sleep 1; done'
+
+          # Apply schema
+          PGPASSWORD=ci_test_password psql -h localhost -U admin -d playwright_enterprise -f tools/local-stack/sql/schema.sql
+
+          echo "✅ Database schema initialized"
+
+      - name: Build TypeScript
+        working-directory: services/cmo
+        run: npm run build
+
+      - name: Run unit tests
+        working-directory: services/cmo
+        run: npm run test:unit
+
+      - name: Run contract tests (schemas)
+        working-directory: services/cmo
+        run: npm run schema:check
+
+      - name: Run contract tests (policies)
+        working-directory: services/cmo
+        run: npm run policy:test
+
+      - name: Run integration tests
+        working-directory: services/cmo
+        run: npm run test:integration
+
+      # A2A (Agent-to-Agent) Test Suite
+      - name: Run A2A Envelope & Schema Tests
+        working-directory: services/cmo
+        run: npm run test:a2a:envelopes
+
+      - name: Run A2A Security Tests (JWT, signing, replay protection)
+        working-directory: services/cmo
+        run: npm run test:a2a:security
+
+      - name: Run A2A Registry Tests (Postgres-backed, lease management)
+        working-directory: services/cmo
+        run: npm run test:a2a:registry
+
+      - name: Run A2A Transport Tests (Redis Streams, DLQ, backpressure)
+        working-directory: services/cmo
+        run: npm run test:a2a:transport
+
+      - name: Run A2A E2E Integration Tests (CMO↔specialist flow)
+        working-directory: services/cmo
+        run: npm run test:a2a:e2e
+
+      - name: Run A2A Chaos & Failure Drills (outage scenarios)
+        working-directory: services/cmo
+        run: npm run test:a2a:chaos
+        continue-on-error: true
+
+      - name: Run A2A Performance Benchmarks (P95/P99 SLOs)
+        working-directory: services/cmo
+        run: npm run bench
+        continue-on-error: true
+
+      - name: Type check
+        working-directory: services/cmo
+        run: npm run typecheck
+
+      - name: Lint code
+        working-directory: services/cmo
+        run: npm run lint
+
+      - name: Boot smoke test
+        working-directory: services/cmo
+        timeout-minutes: 2
+        run: |
+          echo "🚀 Starting CMO service for smoke test..."
+
+          # Start CMO in background
+          timeout 60 npm run dev > cmo-boot.log 2>&1 &
+          CMO_PID=$!
+
+          echo "Waiting for CMO to boot (PID: $CMO_PID)..."
+          sleep 10
+
+          # Check if process is still running
+          if ps -p $CMO_PID > /dev/null; then
+            echo "✅ CMO service started successfully"
+
+            # Check logs for health check confirmations
+            if grep -q "Postgres health check passed" cmo-boot.log && \
+               grep -q "Redis health check passed" cmo-boot.log && \
+               grep -q "S3 health check passed" cmo-boot.log; then
+              echo "✅ All dependency health checks passed"
+            else
+              echo "❌ Health checks failed. Logs:"
+              cat cmo-boot.log
+              exit 1
+            fi
+
+            # Clean shutdown
+            kill $CMO_PID
+            wait $CMO_PID 2>/dev/null || true
+          else
+            echo "❌ CMO service failed to start. Logs:"
+            cat cmo-boot.log
+            exit 1
+          fi
+
+      - name: Load replay fixture
+        run: |
+          echo "📦 Loading sample replay fixture into database..."
+
+          # Insert sample run
+          PGPASSWORD=ci_test_password psql -h localhost -U admin -d playwright_enterprise <<EOF
+          -- Insert run
+          INSERT INTO cmo_runs (trace_id, graph_id, graph_version, status, started_at, completed_at)
+          VALUES ('sample-fixture-trace-001', 'demo-workflow', '1.0.0', 'completed',
+                  '2025-01-02T00:00:00.000Z', '2025-01-02T00:00:02.150Z')
+          ON CONFLICT (trace_id) DO NOTHING;
+
+          -- Insert steps
+          INSERT INTO cmo_steps (trace_id, step_index, node_id, state_hash, input_hash, output_hash,
+                                 next_edge, started_at, completed_at, duration_ms)
+          VALUES
+            ('sample-fixture-trace-001', 0, 'init',
+             'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6',
+             '0000000000000000000000000000000000000000000000000000000000000000',
+             '1111111111111111111111111111111111111111111111111111111111111111',
+             'process', '2025-01-02T00:00:00.000Z', '2025-01-02T00:00:00.250Z', 250),
+            ('sample-fixture-trace-001', 1, 'process',
+             'b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a1',
+             '1111111111111111111111111111111111111111111111111111111111111111',
+             '2222222222222222222222222222222222222222222222222222222222222222',
+             'validate', '2025-01-02T00:00:00.250Z', '2025-01-02T00:00:01.100Z', 850),
+            ('sample-fixture-trace-001', 2, 'validate',
+             'c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a1b2',
+             '2222222222222222222222222222222222222222222222222222222222222222',
+             '3333333333333333333333333333333333333333333333333333333333333333',
+             'finalize', '2025-01-02T00:00:01.100Z', '2025-01-02T00:00:01.500Z', 400),
+            ('sample-fixture-trace-001', 3, 'finalize',
+             'd4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a1b2c3',
+             '3333333333333333333333333333333333333333333333333333333333333333',
+             '4444444444444444444444444444444444444444444444444444444444444444',
+             NULL, '2025-01-02T00:00:01.500Z', '2025-01-02T00:00:02.150Z', 650)
+          ON CONFLICT (trace_id, step_index) DO NOTHING;
+
+          -- Insert activities
+          INSERT INTO cmo_activities (trace_id, step_index, activity_type, request_hash,
+                                       request_data, response_data, timestamp)
+          VALUES
+            ('sample-fixture-trace-001', 0, 'time', 'abc123', '{}', '"2025-01-02T00:00:00.000Z"', NOW()),
+            ('sample-fixture-trace-001', 0, 'random', 'def456', '{"max":100}', '42', NOW()),
+            ('sample-fixture-trace-001', 1, 'http', 'ghi789',
+             '{"url":"https://api.example.com/data","options":{"method":"GET"}}',
+             '{"status":200,"body":"{\"result\":\"success\"}"}', NOW()),
+            ('sample-fixture-trace-001', 1, 'time', 'jkl012', '{}', '"2025-01-02T00:00:00.500Z"', NOW()),
+            ('sample-fixture-trace-001', 2, 'time', 'mno345', '{}', '"2025-01-02T00:00:01.200Z"', NOW())
+          ON CONFLICT (trace_id, step_index, activity_type, request_hash) DO NOTHING;
+          EOF
+
+          echo "✅ Replay fixture loaded"
+
+      - name: Run replay CLI test
+        working-directory: services/cmo
+        run: |
+          echo "🔄 Testing replay CLI..."
+
+          # Test basic replay
+          npm run replay -- --trace sample-fixture-trace-001 > replay-output.txt 2>&1
+
+          # Verify output
+          if grep -q "Trace ID: sample-fixture-trace-001" replay-output.txt && \
+             grep -q "Total Steps: 4" replay-output.txt && \
+             grep -q "Step 0: init" replay-output.txt; then
+            echo "✅ Replay CLI test passed"
+            cat replay-output.txt
+          else
+            echo "❌ Replay CLI test failed. Output:"
+            cat replay-output.txt
+            exit 1
+          fi
+
+      - name: Run test coverage
+        working-directory: services/cmo
+        run: npm run test:coverage
+        continue-on-error: true
+
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cmo-test-artifacts
+          path: |
+            services/cmo/coverage/
+            services/cmo/cmo-boot.log
+            services/cmo/replay-output.txt
+            services/cmo/reports/
+          retention-days: 7
+
+      - name: Upload logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cmo-failure-logs
+          path: |
+            services/cmo/**/*.log
+          retention-days: 14
+
+  # Optional: Build Docker image for CMO service
+  cmo-docker:
+    name: Build CMO Docker Image
+    runs-on: ubuntu-latest
+    needs: cmo-test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: services/cmo
+          push: false
+          tags: cmo-elg:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Save Docker image
+        run: |
+          docker save cmo-elg:${{ github.sha }} | gzip > cmo-elg-image.tar.gz
+
+      - name: Upload Docker image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cmo-docker-image
+          path: cmo-elg-image.tar.gz
+          retention-days: 7

@@ -183,100 +183,114 @@ export class WeSignTestOrchestrator extends EventEmitter {
 
   /**
    * Discover UI test suites (pytest-based)
+   * UPDATED: Now loads ALL tests from database dynamically instead of hardcoded file list
    */
   private async discoverUITestSuites(): Promise<void> {
-    const uiTestCategories = [
-      {
-        id: 'auth-comprehensive',
-        name: 'Authentication Comprehensive Tests',
-        description: 'Complete authentication flow testing including Hebrew UI',
-        category: 'auth' as const,
-        files: ['test_auth_comprehensive_flows.py', 'test_auth_simplified.py', 'test_comprehensive_auth.py'],
-        priority: 'critical' as const,
-        estimatedDuration: 900 // 15 minutes
-      },
-      {
-        id: 'documents-advanced',
-        name: 'Document Management Advanced Tests',
-        description: 'Advanced document management, validation, and workflows',
-        category: 'documents' as const,
-        files: ['test_document_advanced_management.py', 'test_data_validation_comprehensive.py'],
-        priority: 'high' as const,
-        estimatedDuration: 1200 // 20 minutes
-      },
-      {
-        id: 'signing-comprehensive',
-        name: 'Digital Signing Comprehensive Tests',
-        description: 'Complete digital signing workflows and scenarios',
-        category: 'signing' as const,
-        files: ['test_signing_flows_comprehensive.py', 'test_signing_advanced_scenarios.py', 'test_group_signing_comprehensive.py'],
-        priority: 'critical' as const,
-        estimatedDuration: 1800 // 30 minutes
-      },
-      {
-        id: 'templates-advanced',
-        name: 'Template Management Advanced Tests',
-        description: 'Template creation, editing, and management workflows',
-        category: 'templates' as const,
-        files: ['test_templates_advanced_comprehensive.py'],
-        priority: 'medium' as const,
-        estimatedDuration: 600 // 10 minutes
-      },
-      {
-        id: 'contacts-management',
-        name: 'Contact Management Tests',
-        description: 'Contact creation, management, and integration workflows',
-        category: 'contacts' as const,
-        files: ['test_profile_settings_comprehensive.py'],
-        priority: 'high' as const,
-        estimatedDuration: 600 // 10 minutes
-      },
-      {
-        id: 'integration-cross-module',
-        name: 'Cross-Module Integration Tests',
-        description: 'End-to-end workflows across multiple WeSign modules',
-        category: 'integration' as const,
-        files: ['test_cross_module_integration_comprehensive.py', 'test_integration_cross_module.py'],
-        priority: 'high' as const,
-        estimatedDuration: 1500 // 25 minutes
-      },
-      {
-        id: 'performance-stress',
-        name: 'Performance and Stress Tests',
-        description: 'Bulk operations, stress testing, and performance validation',
-        category: 'performance' as const,
-        files: ['test_bulk_operations_stress_comprehensive.py'],
-        priority: 'medium' as const,
-        estimatedDuration: 1200 // 20 minutes
-      },
-      {
-        id: 'negative-scenarios',
-        name: 'Negative Scenarios and Edge Cases',
-        description: 'Error handling, edge cases, and negative scenario testing',
-        category: 'integration' as const,
-        files: ['test_negative_scenarios_systematic.py'],
-        priority: 'high' as const,
-        estimatedDuration: 900 // 15 minutes
+    try {
+      logger.info('🔍 Loading ALL WeSign UI tests from database...');
+
+      // Get ALL WeSign tests from TestDiscoveryService (no category filter)
+      const allTestsResult = await this.testDiscoveryService.getTests({});
+      const allTests = allTestsResult.tests || [];
+
+      // Filter only WeSign tests (tests from new_tests_for_wesign folder)
+      const wesignTests = allTests.filter((test: any) =>
+        test.file_path && test.file_path.includes('new_tests_for_wesign')
+      );
+
+      logger.info(`📊 Found ${wesignTests.length} total WeSign tests in database`);
+
+      // Group tests by category dynamically
+      const testsByCategory = new Map<string, any[]>();
+
+      for (const test of wesignTests) {
+        // Extract category from the test's category field
+        const category = test.category || 'general';
+        const cleanCategory = category.replace('wesign-', '');
+
+        if (!testsByCategory.has(cleanCategory)) {
+          testsByCategory.set(cleanCategory, []);
+        }
+        testsByCategory.get(cleanCategory)!.push(test);
       }
-    ];
 
-    for (const category of uiTestCategories) {
-      // Use TestDiscoveryService instead of manual file parsing
-      const tests = await this.getTestsFromDiscoveryService(category.category);
+      logger.info(`📂 Organized into ${testsByCategory.size} categories:`,
+        Array.from(testsByCategory.entries()).map(([cat, tests]) => `${cat} (${tests.length} tests)`).join(', ')
+      );
 
-      const suite: WeSignTestSuite = {
-        id: category.id,
-        name: category.name,
-        description: category.description,
-        category: category.category,
-        type: 'ui',
-        priority: category.priority,
-        tests,
-        estimatedDuration: category.estimatedDuration,
-        parallel: category.category !== 'performance' // Performance tests run sequentially
+      // Category metadata for suite creation
+      const categoryMetadata: Record<string, { name: string; description: string; priority: 'critical' | 'high' | 'medium' | 'low' }> = {
+        'auth': { name: 'Authentication Tests', description: 'Complete authentication flow testing', priority: 'critical' },
+        'documents': { name: 'Document Management Tests', description: 'Document management and workflows', priority: 'high' },
+        'signing': { name: 'Digital Signing Tests', description: 'Digital signing workflows and scenarios', priority: 'critical' },
+        'templates': { name: 'Template Management Tests', description: 'Template creation and management', priority: 'high' },
+        'contacts': { name: 'Contact Management Tests', description: 'Contact creation and management', priority: 'high' },
+        'integration': { name: 'Integration Tests', description: 'Cross-module integration testing', priority: 'high' },
+        'performance': { name: 'Performance Tests', description: 'Performance and stress testing', priority: 'medium' },
+        'core': { name: 'Core Functionality Tests', description: 'Core WeSign functionality', priority: 'high' },
+        'bulk-operations': { name: 'Bulk Operations Tests', description: 'Bulk operations and batch processing', priority: 'medium' },
+        'smart-card': { name: 'Smart Card Tests', description: 'Smart card signing functionality', priority: 'high' },
+        'live-signing': { name: 'Live Signing Tests', description: 'Live signing workflows', priority: 'high' },
+        'workflows': { name: 'Workflow Tests', description: 'Advanced workflow scenarios', priority: 'medium' },
+        'distribution': { name: 'Distribution Tests', description: 'Document distribution workflows', priority: 'medium' },
+        'reports': { name: 'Reports Tests', description: 'Reporting and analytics', priority: 'low' },
+        'profile': { name: 'Profile Tests', description: 'User profile management', priority: 'low' },
+        'system': { name: 'System Tests', description: 'System-level testing', priority: 'medium' },
+        'user-management': { name: 'User Management Tests', description: 'User administration', priority: 'high' },
+        'files': { name: 'File Operations Tests', description: 'File handling and operations', priority: 'medium' }
       };
 
-      this.testSuites.set(category.id, suite);
+      // Create a suite for each category
+      for (const [category, categoryTests] of testsByCategory.entries()) {
+        const metadata = categoryMetadata[category] || {
+          name: `${category.charAt(0).toUpperCase()}${category.slice(1)} Tests`,
+          description: `${category} testing`,
+          priority: 'medium' as const
+        };
+
+        // Convert database tests to WeSign test format
+        const tests: WeSignTest[] = categoryTests.map((dbTest: any) => ({
+          id: dbTest.id,
+          name: dbTest.test_name || dbTest.function_name || 'Unknown Test',
+          description: dbTest.description || `Test from ${dbTest.file_path}`,
+          category: category,
+          type: 'ui' as const,
+          filePath: dbTest.file_path,
+          suiteId: `${category}-suite`,
+          status: 'pending' as const,
+          priority: metadata.priority,
+          estimatedDuration: 30000, // 30 seconds default
+          tags: dbTest.tags ? JSON.parse(dbTest.tags) : [],
+          selfHealingEnabled: true,
+          retryAttempts: 3,
+          metadata: {
+            className: dbTest.class_name,
+            functionName: dbTest.function_name,
+            lineNumber: dbTest.line_number
+          }
+        }));
+
+        const suite: WeSignTestSuite = {
+          id: `${category}-suite`,
+          name: metadata.name,
+          description: metadata.description,
+          category: category as any,
+          type: 'ui',
+          priority: metadata.priority,
+          tests,
+          estimatedDuration: tests.length * 30, // 30 seconds per test estimate
+          parallel: category !== 'performance' // Performance tests run sequentially
+        };
+
+        this.testSuites.set(suite.id, suite);
+        logger.info(`✅ Created suite: ${suite.name} with ${tests.length} tests`);
+      }
+
+      logger.info(`🎉 Successfully loaded ${wesignTests.length} tests across ${testsByCategory.size} suites`);
+
+    } catch (error) {
+      logger.error('Failed to discover UI test suites:', error);
+      throw error;
     }
   }
 

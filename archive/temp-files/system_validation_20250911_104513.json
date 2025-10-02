@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-09-11T10:45:08.748328",
+  "components": {
+    "wesign": {
+      "status": "integrated",
+      "total_files": 31,
+      "original_files": 25,
+      "converted_files": 6
+    },
+    "allure": {
+      "status": "available",
+      "report_exists": true,
+      "results_exists": true
+    },
+    "backend": {
+      "status": "error",
+      "error": "Cannot connect to host localhost:8081 ssl:default [The remote computer refused the network connection]"
+    },
+    "frontend": {
+      "status": "accessible"
+    },
+    "tests": {
+      "status": "error",
+      "error": "Cannot connect to host localhost:8081 ssl:default [The remote computer refused the network connection]"
+    }
+  },
+  "validation_summary": {
+    "working_components": 3,
+    "total_components": 5,
+    "success_rate": "60.0%",
+    "overall_status": "partial"
+  }
+}

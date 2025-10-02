@@ -1,6 +1,6 @@
 /**
  * Reports API Routes
- * Handles test reports and analytics data
+ * Comprehensive test reports and analytics data with enhanced capabilities
  */
 
 import { Router } from 'express';
@@ -9,6 +9,7 @@ import { existsSync, readFileSync, statSync } from 'fs';
 import { asyncHandler } from '../middleware/error-handler';
 import { logger } from '../utils/logger';
 import { getReportsService } from '../services/reportsService';
+import { getDatabase } from '../database/database';
 
 const router = Router();
 
@@ -290,6 +291,404 @@ router.get('/execution/:executionId', asyncHandler(async (req, res) => {
   }
   
   res.json(report);
+}));
+
+/**
+ * GET /reports/dashboard
+ * Get comprehensive dashboard statistics for reports
+ */
+router.get('/dashboard', asyncHandler(async (req, res) => {
+  try {
+    const db = getDatabase();
+    const dbInstance = (db as any).db;
+
+    // Get execution statistics (using schedule_runs table since test_runs doesn't exist)
+    const execStats = await dbInstance.prepare(`
+      SELECT
+        COUNT(*) as totalExecutions,
+        COUNT(CASE WHEN status = 'completed' THEN 1 END) as passedExecutions,
+        COUNT(CASE WHEN status = 'failed' THEN 1 END) as failedExecutions,
+        COUNT(CASE WHEN status = 'pending' THEN 1 END) as skippedExecutions,
+        AVG(CASE WHEN duration_ms IS NOT NULL THEN duration_ms END) as avgDuration
+      FROM schedule_runs
+      WHERE started_at >= datetime('now', '-7 days')
+    `).get() as any;
+
+    // Get test statistics
+    const testStats = await dbInstance.prepare(`
+      SELECT
+        COUNT(*) as totalTests,
+        COUNT(CASE WHEN module = 'auth' THEN 1 END) as authTests,
+        COUNT(CASE WHEN module = 'documents' THEN 1 END) as documentTests,
+        COUNT(CASE WHEN module = 'templates' THEN 1 END) as templateTests,
+        COUNT(CASE WHEN module = 'contacts' THEN 1 END) as contactTests
+      FROM tests
+    `).get() as any;
+
+    // Calculate success rate
+    const successRate = execStats.totalExecutions > 0
+      ? Math.round((execStats.passedExecutions / execStats.totalExecutions) * 100)
+      : 0;
+
+    // Get recent execution trends (last 7 days) using schedule_runs
+    const trendData = await dbInstance.prepare(`
+      SELECT
+        DATE(started_at) as date,
+        COUNT(*) as executions,
+        COUNT(CASE WHEN status = 'completed' THEN 1 END) as passed,
+        COUNT(CASE WHEN status = 'failed' THEN 1 END) as failed
+      FROM schedule_runs
+      WHERE started_at >= datetime('now', '-7 days')
+      GROUP BY DATE(started_at)
+      ORDER BY date DESC
+    `).all() as any[];
+
+    const response = {
+      summary: {
+        totalExecutions: execStats.totalExecutions || 0,
+        successRate,
+        averageDuration: Math.round(execStats.avgDuration || 0),
+        totalTests: testStats.totalTests || 0
+      },
+      status: {
+        passed: execStats.passedExecutions || 0,
+        failed: execStats.failedExecutions || 0,
+        skipped: execStats.skippedExecutions || 0
+      },
+      testCategories: {
+        auth: testStats.authTests || 0,
+        documents: testStats.documentTests || 0,
+        templates: testStats.templateTests || 0,
+        contacts: testStats.contactTests || 0,
+        other: (testStats.totalTests || 0) - (testStats.authTests + testStats.documentTests + testStats.templateTests + testStats.contactTests)
+      },
+      trends: trendData.map(day => ({
+        date: day.date,
+        executions: day.executions,
+        successRate: day.executions > 0 ? Math.round((day.passed / day.executions) * 100) : 0,
+        passed: day.passed,
+        failed: day.failed
+      })),
+      timestamp: new Date().toISOString()
+    };
+
+    res.json(response);
+  } catch (error) {
+    logger.error('Failed to get reports dashboard', { error });
+    res.status(500).json({
+      error: 'Failed to get reports dashboard',
+      message: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+}));
+
+/**
+ * GET /reports/test-execution
+ * Get detailed test execution analytics
+ */
+router.get('/test-execution', asyncHandler(async (req, res) => {
+  const { period = '7d', category, status } = req.query;
+
+  try {
+    const db = getDatabase();
+    let periodCondition = '';
+
+    // Set period condition
+    switch (period) {
+      case '24h':
+        periodCondition = "AND tr.created_at >= datetime('now', '-1 day')";
+        break;
+      case '7d':
+        periodCondition = "AND tr.created_at >= datetime('now', '-7 days')";
+        break;
+      case '30d':
+        periodCondition = "AND tr.created_at >= datetime('now', '-30 days')";
+        break;
+      case '90d':
+        periodCondition = "AND tr.created_at >= datetime('now', '-90 days')";
+        break;
+    }
+
+    // Build query with filters
+    let query = `
+      SELECT
+        tr.id,
+        tr.status,
+        tr.duration,
+        tr.created_at,
+        t.title,
+        t.category,
+        t.file_path,
+        COUNT(CASE WHEN tr.status = 'passed' THEN 1 END) as passCount,
+        COUNT(CASE WHEN tr.status = 'failed' THEN 1 END) as failCount
+      FROM test_runs tr
+      LEFT JOIN tests t ON tr.test_id = t.id
+      WHERE 1=1 ${periodCondition}
+    `;
+
+    if (category) {
+      query += ` AND t.category = ?`;
+    }
+    if (status) {
+      query += ` AND tr.status = ?`;
+    }
+
+    query += ` GROUP BY tr.id ORDER BY tr.created_at DESC LIMIT 100`;
+
+    const params = [];
+    if (category) params.push(category);
+    if (status) params.push(status);
+
+    const executions = await dbInstance.prepare(query).all(...params) as any[];
+
+    // Get summary statistics
+    const summaryQuery = `
+      SELECT
+        COUNT(*) as totalExecutions,
+        COUNT(CASE WHEN tr.status = 'passed' THEN 1 END) as passed,
+        COUNT(CASE WHEN tr.status = 'failed' THEN 1 END) as failed,
+        COUNT(CASE WHEN tr.status = 'skipped' THEN 1 END) as skipped,
+        AVG(CASE WHEN tr.duration IS NOT NULL THEN tr.duration END) as avgDuration,
+        MAX(tr.duration) as maxDuration,
+        MIN(tr.duration) as minDuration
+      FROM test_runs tr
+      LEFT JOIN tests t ON tr.test_id = t.id
+      WHERE 1=1 ${periodCondition}
+      ${category ? 'AND t.category = ?' : ''}
+      ${status ? 'AND tr.status = ?' : ''}
+    `;
+
+    const summary = await dbInstance.prepare(summaryQuery).get(...params) as any;
+
+    const response = {
+      period,
+      filters: { category, status },
+      summary: {
+        totalExecutions: summary.totalExecutions || 0,
+        passed: summary.passed || 0,
+        failed: summary.failed || 0,
+        skipped: summary.skipped || 0,
+        successRate: summary.totalExecutions > 0
+          ? Math.round((summary.passed / summary.totalExecutions) * 100)
+          : 0,
+        averageDuration: Math.round(summary.avgDuration || 0),
+        maxDuration: summary.maxDuration || 0,
+        minDuration: summary.minDuration || 0
+      },
+      executions: executions.map(exec => ({
+        id: exec.id,
+        status: exec.status,
+        duration: exec.duration,
+        createdAt: exec.created_at,
+        test: {
+          title: exec.title,
+          category: exec.category,
+          filePath: exec.file_path
+        }
+      })),
+      timestamp: new Date().toISOString()
+    };
+
+    res.json(response);
+  } catch (error) {
+    logger.error('Failed to get test execution report', { error });
+    res.status(500).json({
+      error: 'Failed to get test execution report',
+      message: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+}));
+
+/**
+ * GET /reports/performance
+ * Get performance analytics and metrics
+ */
+router.get('/performance', asyncHandler(async (req, res) => {
+  const { period = '7d' } = req.query;
+
+  try {
+    const db = getDatabase();
+    let periodCondition = '';
+
+    switch (period) {
+      case '24h':
+        periodCondition = "WHERE created_at >= datetime('now', '-1 day')";
+        break;
+      case '7d':
+        periodCondition = "WHERE created_at >= datetime('now', '-7 days')";
+        break;
+      case '30d':
+        periodCondition = "WHERE created_at >= datetime('now', '-30 days')";
+        break;
+    }
+
+    // Get performance metrics
+    const perfMetrics = await dbInstance.prepare(`
+      SELECT
+        AVG(duration) as avgDuration,
+        MIN(duration) as fastestTest,
+        MAX(duration) as slowestTest,
+        COUNT(*) as totalTests,
+        COUNT(CASE WHEN duration > 30000 THEN 1 END) as slowTests,
+        COUNT(CASE WHEN duration <= 5000 THEN 1 END) as fastTests
+      FROM test_runs
+      ${periodCondition}
+      AND duration IS NOT NULL
+    `).get() as any;
+
+    // Get performance trends by day
+    const trendData = await dbInstance.prepare(`
+      SELECT
+        DATE(created_at) as date,
+        AVG(duration) as avgDuration,
+        MIN(duration) as minDuration,
+        MAX(duration) as maxDuration,
+        COUNT(*) as testCount
+      FROM test_runs
+      ${periodCondition}
+      AND duration IS NOT NULL
+      GROUP BY DATE(created_at)
+      ORDER BY date DESC
+    `).all() as any[];
+
+    // Get slowest tests
+    const slowestTests = await dbInstance.prepare(`
+      SELECT
+        tr.duration,
+        t.title,
+        t.category,
+        t.file_path,
+        tr.created_at
+      FROM test_runs tr
+      LEFT JOIN tests t ON tr.test_id = t.id
+      ${periodCondition}
+      AND tr.duration IS NOT NULL
+      ORDER BY tr.duration DESC
+      LIMIT 10
+    `).all() as any[];
+
+    const response = {
+      period,
+      summary: {
+        averageDuration: Math.round(perfMetrics.avgDuration || 0),
+        fastestTest: perfMetrics.fastestTest || 0,
+        slowestTest: perfMetrics.slowestTest || 0,
+        totalTests: perfMetrics.totalTests || 0,
+        slowTests: perfMetrics.slowTests || 0,
+        fastTests: perfMetrics.fastTests || 0,
+        performanceScore: perfMetrics.totalTests > 0
+          ? Math.round((perfMetrics.fastTests / perfMetrics.totalTests) * 100)
+          : 0
+      },
+      trends: trendData.map(day => ({
+        date: day.date,
+        avgDuration: Math.round(day.avgDuration || 0),
+        minDuration: day.minDuration || 0,
+        maxDuration: day.maxDuration || 0,
+        testCount: day.testCount || 0
+      })),
+      slowestTests: slowestTests.map(test => ({
+        duration: test.duration,
+        title: test.title,
+        category: test.category,
+        filePath: test.file_path,
+        createdAt: test.created_at
+      })),
+      timestamp: new Date().toISOString()
+    };
+
+    res.json(response);
+  } catch (error) {
+    logger.error('Failed to get performance report', { error });
+    res.status(500).json({
+      error: 'Failed to get performance report',
+      message: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+}));
+
+/**
+ * GET /reports/export
+ * Export reports in various formats (CSV, JSON, PDF)
+ */
+router.get('/export', asyncHandler(async (req, res) => {
+  const { format = 'json', type = 'summary', period = '7d' } = req.query;
+
+  try {
+    const db = getDatabase();
+    let data: any = {};
+
+    // Generate data based on type
+    switch (type) {
+      case 'summary':
+        data = await dbInstance.prepare(`
+          SELECT
+            tr.id,
+            tr.status,
+            tr.duration,
+            tr.created_at,
+            t.title,
+            t.category
+          FROM test_runs tr
+          LEFT JOIN tests t ON tr.test_id = t.id
+          WHERE tr.created_at >= datetime('now', '-${period === '24h' ? '1 day' : period === '7d' ? '7 days' : '30 days'}')
+          ORDER BY tr.created_at DESC
+        `).all();
+        break;
+
+      case 'performance':
+        data = await dbInstance.prepare(`
+          SELECT
+            t.category,
+            AVG(tr.duration) as avgDuration,
+            MIN(tr.duration) as minDuration,
+            MAX(tr.duration) as maxDuration,
+            COUNT(*) as testCount
+          FROM test_runs tr
+          LEFT JOIN tests t ON tr.test_id = t.id
+          WHERE tr.created_at >= datetime('now', '-${period === '24h' ? '1 day' : period === '7d' ? '7 days' : '30 days'}')
+          AND tr.duration IS NOT NULL
+          GROUP BY t.category
+        `).all();
+        break;
+    }
+
+    // Format output based on requested format
+    switch (format) {
+      case 'csv':
+        // Convert to CSV
+        if (Array.isArray(data) && data.length > 0) {
+          const headers = Object.keys(data[0]).join(',');
+          const rows = data.map(row => Object.values(row).join(',')).join('\n');
+          const csv = `${headers}\n${rows}`;
+
+          res.setHeader('Content-Type', 'text/csv');
+          res.setHeader('Content-Disposition', `attachment; filename="report-${type}-${period}-${Date.now()}.csv"`);
+          res.send(csv);
+        } else {
+          res.status(400).json({ error: 'No data available for CSV export' });
+        }
+        break;
+
+      case 'json':
+      default:
+        res.setHeader('Content-Type', 'application/json');
+        res.setHeader('Content-Disposition', `attachment; filename="report-${type}-${period}-${Date.now()}.json"`);
+        res.json({
+          type,
+          period,
+          exportedAt: new Date().toISOString(),
+          data
+        });
+        break;
+    }
+  } catch (error) {
+    logger.error('Failed to export report', { error });
+    res.status(500).json({
+      error: 'Failed to export report',
+      message: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
 }));
 
 export { router as reportsRouter };

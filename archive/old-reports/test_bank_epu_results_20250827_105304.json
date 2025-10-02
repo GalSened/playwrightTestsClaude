@@ -1,0 +1,119 @@
+{
+  "test_timestamp": "2025-08-27T10:52:46.695992",
+  "base_url": "http://localhost:5173",
+  "test_results": [
+    {
+      "test_name": "Page Load & Initial State",
+      "status": "PASSED",
+      "details": "All page elements loaded successfully",
+      "error": "",
+      "timestamp": "2025-08-27T10:52:48.286028"
+    },
+    {
+      "test_name": "Search and Filter Functionality",
+      "status": "PASSED",
+      "details": "Search and filter functionality working. Found 0 tests initially, 4 high-risk tests",
+      "error": "",
+      "timestamp": "2025-08-27T10:52:53.726266"
+    },
+    {
+      "test_name": "Test Selection & Suite Creation",
+      "status": "PASSED",
+      "details": "Successfully selected 1 tests and created suite",
+      "error": "",
+      "timestamp": "2025-08-27T10:52:59.859824"
+    },
+    {
+      "test_name": "Suite Execution Flow",
+      "status": "PASSED",
+      "details": "Suite execution initiated. Navigation: http://localhost:5173/test-bank -> http://localhost:5173/reports",
+      "error": "",
+      "timestamp": "2025-08-27T10:53:03.690099"
+    },
+    {
+      "test_name": "Table Functionality Testing",
+      "status": "FAILED",
+      "details": "",
+      "error": "'Locator' object is not callable",
+      "timestamp": "2025-08-27T10:53:04.417118"
+    },
+    {
+      "test_name": "Additional UI Validations",
+      "status": "FAILED",
+      "details": "",
+      "error": "'Locator' object is not callable",
+      "timestamp": "2025-08-27T10:53:04.558337"
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "initial_load",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_initial_load_20250827_105248.png",
+      "description": "Test Bank page initial load",
+      "timestamp": "20250827_105248"
+    },
+    {
+      "name": "search_results",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_search_results_20250827_105249.png",
+      "description": "Search results for 'login' tests",
+      "timestamp": "20250827_105249"
+    },
+    {
+      "name": "risk_filtered",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_risk_filtered_20250827_105252.png",
+      "description": "Risk filter applied - high risk tests",
+      "timestamp": "20250827_105252"
+    },
+    {
+      "name": "tests_selected",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_tests_selected_20250827_105256.png",
+      "description": "1 tests selected",
+      "timestamp": "20250827_105256"
+    },
+    {
+      "name": "suite_created",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_suite_created_20250827_105259.png",
+      "description": "Suite created and selection cleared",
+      "timestamp": "20250827_105259"
+    },
+    {
+      "name": "before_suite_run",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_before_suite_run_20250827_105259.png",
+      "description": "Before running existing suite",
+      "timestamp": "20250827_105259"
+    },
+    {
+      "name": "after_suite_run",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_after_suite_run_20250827_105303.png",
+      "description": "After running suite - should be on reports page",
+      "timestamp": "20250827_105303"
+    },
+    {
+      "name": "table_functionality_failure",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_table_functionality_failure_20250827_105304.png",
+      "description": "Table functionality test failure",
+      "timestamp": "20250827_105304"
+    },
+    {
+      "name": "validations_failure",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_validations_failure_20250827_105304.png",
+      "description": "Additional validations test failure",
+      "timestamp": "20250827_105304"
+    },
+    {
+      "name": "final_state",
+      "path": "C:\\Users\\gals\\Desktop\\playwrightTestsClaude\\artifacts\\screenshots\\testbank_final_state_20250827_105304.png",
+      "description": "Final state after all tests",
+      "timestamp": "20250827_105304"
+    }
+  ],
+  "summary": {
+    "total_tests": 6,
+    "passed": 4,
+    "failed": 2,
+    "errors": [
+      "Table Functionality Testing: 'Locator' object is not callable",
+      "Additional UI Validations: 'Locator' object is not callable"
+    ]
+  }
+}

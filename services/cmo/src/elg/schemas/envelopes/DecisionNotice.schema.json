@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://qa-intelligence.com/schemas/cmo/DecisionNotice.schema.json",
+  "title": "Decision Notice",
+  "description": "Notice of orchestrator decision (continue, stop, branch, etc.)",
+  "type": "object",
+  "required": ["meta", "source", "decision"],
+  "properties": {
+    "meta": {
+      "$ref": "../common/EnvelopeMeta.schema.json",
+      "description": "Envelope metadata"
+    },
+    "source": {
+      "$ref": "../common/AgentId.schema.json",
+      "description": "Source agent (orchestrator)"
+    },
+    "decision": {
+      "type": "object",
+      "required": ["type", "executionId"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "continue",
+            "stop",
+            "branch",
+            "merge",
+            "pause",
+            "resume",
+            "abort"
+          ],
+          "description": "Decision type"
+        },
+        "executionId": {
+          "type": "string",
+          "description": "Execution/trace ID affected",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "description": "Human-readable reason for decision"
+        },
+        "nextNode": {
+          "type": "string",
+          "description": "Next node ID (for continue/branch)"
+        },
+        "branchConditions": {
+          "type": "object",
+          "description": "Conditions for branching",
+          "additionalProperties": true
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Additional decision metadata",
+          "additionalProperties": true
+        }
+      }
+    }
+  }
+}

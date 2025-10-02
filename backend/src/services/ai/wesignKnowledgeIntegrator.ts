@@ -1300,13 +1300,141 @@ This knowledge base provides comprehensive understanding of the WeSign platform 
   }
 
   // Enhanced implementations for both clients
-  private scanActualServices(servicesDir: string): Promise<any[]> {
-    return Promise.resolve([]);
+  /**
+   * Extract service exports from TypeScript service file
+   */
+  private extractServiceExports(content: string): string[] {
+    const exports = [];
+    
+    // Extract method names from service class
+    const methodMatches = content.match(/^\s+(?:public\s+)?([a-zA-Z_$][a-zA-Z0-9_$]*)\s*\([^)]*\)(?:\s*:\s*[^{]+)?\s*{/gm);
+    if (methodMatches) {
+      for (const match of methodMatches) {
+        const methodName = match.match(/([a-zA-Z_$][a-zA-Z0-9_$]*)\s*\(/)?.[1];
+        if (methodName && !['constructor', 'ngOnInit', 'ngOnDestroy'].includes(methodName)) {
+          exports.push(methodName);
+        }
+      }
+    }
+
+    return exports;
   }
 
-  private scanActualRoutes(routingFile: string): Promise<any[]> {
-    return Promise.resolve([]);
+  /**
+   * Extract service dependencies from constructor injection
+   */
+  private extractServiceDependencies(content: string): string[] {
+    const dependencies = [];
+    
+    // Extract constructor parameters
+    const constructorMatch = content.match(/constructor\s*\(\s*([\s\S]*?)\s*\)/);
+    if (constructorMatch) {
+      const params = constructorMatch[1];
+      const paramMatches = params.match(/(?:private|public|protected)?\s*([a-zA-Z_$][a-zA-Z0-9_$]*)\s*:\s*([a-zA-Z_$][a-zA-Z0-9_$.<>]+)/g);
+      
+      if (paramMatches) {
+        for (const param of paramMatches) {
+          const typeMatch = param.match(/:\s*([a-zA-Z_$][a-zA-Z0-9_$.<>]+)/);
+          if (typeMatch) {
+            dependencies.push(typeMatch[1]);
+          }
+        }
+      }
+    }
+
+    return dependencies;
   }
+
+  private async scanActualServices(servicesDir: string): Promise<any[]> {
+  const services: any[] = [];
+
+  if (!fs.existsSync(servicesDir)) {
+    return services;
+  }
+
+  try {
+    const files = fs.readdirSync(servicesDir);
+
+    for (const file of files) {
+      if (file.endsWith('.service.ts')) {
+        const servicePath = path.join(servicesDir, file);
+        const content = fs.readFileSync(servicePath, 'utf-8');
+        
+        const serviceName = file.replace('.service.ts', '');
+        services.push({
+          name: serviceName,
+          path: servicePath,
+          exports: this.extractServiceExports(content),
+          dependencies: this.extractServiceDependencies(content)
+        });
+      }
+    }
+
+    // Also scan subdirectories
+    const subdirs = files.filter(file => {
+      const fullPath = path.join(servicesDir, file);
+      return fs.statSync(fullPath).isDirectory();
+    });
+
+    for (const subdir of subdirs) {
+      const subdirPath = path.join(servicesDir, subdir);
+      const subdirServices = await this.scanActualServices(subdirPath);
+      services.push(...subdirServices);
+    }
+
+  } catch (error) {
+    logger.warn(`Failed to scan services directory ${servicesDir}:`, error);
+  }
+
+  return services;
+}
+
+  private async scanActualRoutes(routingFile: string): Promise<any[]> {
+  const routes: any[] = [];
+
+  if (!fs.existsSync(routingFile)) {
+    return routes;
+  }
+
+  try {
+    const content = fs.readFileSync(routingFile, 'utf-8');
+    
+    // Extract routes from Angular routing module
+    const routesMatch = content.match(/const\s+routes:\s*Routes\s*=\s*\[([\s\S]*?)\];/);
+    if (routesMatch) {
+      const routesContent = routesMatch[1];
+      
+      // Parse individual route objects
+      const routeMatches = routesContent.match(/\{[^}]*\}/g);
+      if (routeMatches) {
+        for (const routeMatch of routeMatches) {
+          try {
+            // Extract path and component
+            const pathMatch = routeMatch.match(/path:\s*['\"]([^'\"]*)['\"]/)?.at(1);
+            const componentMatch = routeMatch.match(/component:\s*([a-zA-Z_$][a-zA-Z0-9_$]*)/)?.at(1);
+            
+            if (pathMatch) {
+              routes.push({
+                path: pathMatch,
+                component: componentMatch,
+                fullRoute: routeMatch.replace(/\s+/g, ' ').trim()
+              });
+            }
+          } catch (error) {
+            logger.warn(`Failed to parse route: ${routeMatch}`, error);
+          }
+        }
+      }
+    }
+
+    logger.info(`Extracted ${routes.length} routes from ${routingFile}`);
+    
+  } catch (error) {
+    logger.warn(`Failed to scan routes file ${routingFile}:`, error);
+  }
+
+  return routes;
+}
 
   private defineEnhancedWorkflows(components: WeSignComponent[], clientType: 'dashboard' | 'signer'): WeSignWorkflow[] {
     const workflows = [];
@@ -1539,24 +1667,588 @@ This knowledge base provides comprehensive understanding of the WeSign platform 
   }
 
   // More placeholder implementations
-  private getTestableElementsForComponent(component: WeSignComponent): Promise<TestableElement[]> {
-    return Promise.resolve([]);
+  /**
+   * Infer testable elements from component name and features when template is not available
+   */
+  private inferTestableElementsFromComponent(component: WeSignComponent): TestableElement[] {
+    const elements: TestableElement[] = [];
+    const componentName = component.name.toLowerCase();
+
+    // Infer common elements based on component name patterns
+    if (componentName.includes('button') || componentName.includes('btn')) {
+      elements.push({
+        type: 'button',
+        selector: `[data-testid="${component.name}-button"]`,
+        dataTestId: `${component.name}-button`,
+        stableSelector: `button[data-component="${component.name}"]`,
+        description: `Primary action button for ${component.name}`,
+        stability: 'medium',
+        commonIssues: ['Button may be conditionally rendered', 'Text content may be dynamic']
+      });
+    }
+
+    if (componentName.includes('form') || componentName.includes('input') || componentName.includes('field')) {
+      elements.push(
+        {
+          type: 'input',
+          selector: `[data-testid="${component.name}-input"]`,
+          dataTestId: `${component.name}-input`,
+          stableSelector: `input[data-component="${component.name}"]`,
+          description: `Input field for ${component.name}`,
+          stability: 'high',
+          commonIssues: ['May have validation requirements', 'Could be required field']
+        },
+        {
+          type: 'button',
+          selector: `[data-testid="${component.name}-submit"]`,
+          dataTestId: `${component.name}-submit`,
+          stableSelector: `button[type="submit"][data-component="${component.name}"]`,
+          description: `Submit button for ${component.name}`,
+          stability: 'high',
+          commonIssues: ['Disabled until form is valid', 'May trigger validation']
+        }
+      );
+    }
+
+    if (componentName.includes('select') || componentName.includes('dropdown')) {
+      elements.push({
+        type: 'select',
+        selector: `[data-testid="${component.name}-select"]`,
+        dataTestId: `${component.name}-select`,
+        stableSelector: `select[data-component="${component.name}"]`,
+        description: `Dropdown selector for ${component.name}`,
+        stability: 'medium',
+        commonIssues: ['Options may be loaded dynamically', 'Default selection behavior']
+      });
+    }
+
+    if (componentName.includes('sign') || componentName.includes('pad')) {
+      elements.push({
+        type: 'canvas',
+        selector: `[data-testid="${component.name}-canvas"]`,
+        dataTestId: `${component.name}-canvas`,
+        stableSelector: `canvas[data-component="${component.name}"]`,
+        description: `Signature canvas for ${component.name}`,
+        stability: 'low',
+        commonIssues: ['Canvas interaction requires special handling', 'Touch/mouse event simulation needed']
+      });
+    }
+
+    if (componentName.includes('document') || componentName.includes('viewer')) {
+      elements.push({
+        type: 'div',
+        selector: `[data-testid="${component.name}-viewer"]`,
+        dataTestId: `${component.name}-viewer`,
+        stableSelector: `div[data-component="${component.name}"]`,
+        description: `Document viewer container for ${component.name}`,
+        stability: 'medium',
+        commonIssues: ['Document loading state', 'Scroll position handling']
+      });
+    }
+
+    if (componentName.includes('auth') || componentName.includes('login')) {
+      elements.push(
+        {
+          type: 'input',
+          selector: `[data-testid="${component.name}-email"]`,
+          dataTestId: `${component.name}-email`,
+          stableSelector: `input[type="email"][data-component="${component.name}"]`,
+          description: `Email input for ${component.name}`,
+          stability: 'high',
+          commonIssues: ['Email validation required', 'May be pre-filled']
+        },
+        {
+          type: 'input',
+          selector: `[data-testid="${component.name}-password"]`,
+          dataTestId: `${component.name}-password`,
+          stableSelector: `input[type="password"][data-component="${component.name}"]`,
+          description: `Password input for ${component.name}`,
+          stability: 'high',
+          commonIssues: ['Password visibility toggle', 'Strength validation']
+        }
+      );
+    }
+
+    // Add generic container element if no specific elements were inferred
+    if (elements.length === 0) {
+      elements.push({
+        type: 'div',
+        selector: `[data-testid="${component.name}"]`,
+        dataTestId: component.name,
+        stableSelector: `[data-component="${component.name}"]`,
+        description: `Main container for ${component.name} component`,
+        stability: 'medium',
+        commonIssues: ['Component may be conditionally rendered']
+      });
+    }
+
+    return elements;
   }
+
+  private async getTestableElementsForComponent(component: WeSignComponent): Promise<TestableElement[]> {
+  const elements: TestableElement[] = [];
+  
+  try {
+    const templatePath = this.getTemplatePath(component.path);
+    if (templatePath && fs.existsSync(templatePath)) {
+      return await this.extractTestableElements(templatePath);
+    }
+
+    // If no template, infer testable elements from component name and features
+    const inferredElements = this.inferTestableElementsFromComponent(component);
+    elements.push(...inferredElements);
+
+  } catch (error) {
+    logger.warn(`Failed to get testable elements for ${component.name}:`, error);
+  }
+
+  return elements;
+}
 
   private identifyCommonFailures(componentName: string): FailurePattern[] {
-    return [];
+  const failures: FailurePattern[] = [];
+  const name = componentName.toLowerCase();
+
+  // Signature pad related failures
+  if (name.includes('sign') || name.includes('pad')) {
+    failures.push({
+      type: 'interaction_failure',
+      description: 'Signature pad not responsive to touch/mouse events',
+      commonSelectors: ['canvas.signature-pad', '[data-testid="signature-pad"]'],
+      rootCauses: ['Canvas not fully loaded', 'Event listeners not attached', 'Touch events not properly handled'],
+      healingStrategies: ['Wait for canvas element to be interactive', 'Retry with different event types', 'Check canvas dimensions']
+    });
   }
+
+  // Authentication related failures  
+  if (name.includes('auth') || name.includes('login') || name.includes('oauth')) {
+    failures.push({
+      type: 'authentication_failure',
+      description: 'Authentication flow interruption',
+      commonSelectors: ['[data-testid="login-form"]', '.auth-container', 'input[type="password"]'],
+      rootCauses: ['Network timeout', 'Invalid credentials', 'Session expired', 'OAuth redirect issues'],
+      healingStrategies: ['Retry authentication', 'Clear session and restart', 'Verify credentials', 'Handle OAuth popups']
+    });
+  }
+
+  // Document viewer failures
+  if (name.includes('document') || name.includes('viewer') || name.includes('main-signer')) {
+    failures.push({
+      type: 'loading_failure',
+      description: 'Document fails to load or display',
+      commonSelectors: ['.document-viewer', '[data-testid="document-container"]', '.pdf-container'],
+      rootCauses: ['Document not found', 'Network issues', 'Large file size', 'Browser compatibility'],
+      healingStrategies: ['Wait for document load event', 'Check network connectivity', 'Retry with timeout', 'Verify file format support']
+    });
+  }
+
+  // Form related failures
+  if (name.includes('form') || name.includes('field') || name.includes('input')) {
+    failures.push({
+      type: 'validation_failure',
+      description: 'Form validation errors or field interaction issues',
+      commonSelectors: ['input.error', '.form-field.invalid', '[data-testid*="error"]'],
+      rootCauses: ['Required field empty', 'Invalid format', 'Field disabled', 'Validation rules changed'],
+      healingStrategies: ['Clear field and retry input', 'Wait for validation completion', 'Check field enabled state', 'Verify input format']
+    });
+  }
+
+  // Smart card related failures
+  if (name.includes('smart') && name.includes('card')) {
+    failures.push({
+      type: 'hardware_failure',
+      description: 'Smart card reader not detected or card not readable',
+      commonSelectors: ['[data-testid="smart-card-reader"]', '.card-reader-status'],
+      rootCauses: ['Card reader not connected', 'Card not inserted', 'Driver issues', 'Card expired/invalid'],
+      healingStrategies: ['Check card reader connection', 'Prompt user to insert card', 'Retry card reading', 'Fallback to alternative auth']
+    });
+  }
+
+  // Contact/selection related failures
+  if (name.includes('contact') || name.includes('select')) {
+    failures.push({
+      type: 'selection_failure',
+      description: 'Contact selection or list loading issues',
+      commonSelectors: ['.contact-list', '[data-testid*="contact"]', 'select[multiple]'],
+      rootCauses: ['Contacts not loaded', 'Search filter too restrictive', 'Permissions issue', 'Large dataset timeout'],
+      healingStrategies: ['Wait for contacts to load', 'Clear search filters', 'Verify permissions', 'Use pagination if available']
+    });
+  }
+
+  // Upload related failures
+  if (name.includes('upload') || name.includes('file')) {
+    failures.push({
+      type: 'upload_failure',
+      description: 'File upload or processing failures',
+      commonSelectors: ['input[type="file"]', '.upload-area', '[data-testid*="upload"]'],
+      rootCauses: ['File too large', 'Invalid file type', 'Network interruption', 'Server processing error'],
+      healingStrategies: ['Check file size limits', 'Verify file type', 'Retry upload', 'Wait for server processing']
+    });
+  }
+
+  // Navigation/routing failures
+  if (name.includes('page') || name.includes('header') || name.includes('menu')) {
+    failures.push({
+      type: 'navigation_failure',
+      description: 'Page navigation or routing issues',
+      commonSelectors: ['[routerLink]', '.nav-item', '[data-testid*="nav"]'],
+      rootCauses: ['Route not found', 'Permission denied', 'State not preserved', 'Lazy loading delay'],
+      healingStrategies: ['Verify route exists', 'Check user permissions', 'Wait for lazy loading', 'Retry navigation']
+    });
+  }
+
+  // Hebrew/RTL related failures
+  if (name.includes('lang') || name.includes('i18n')) {
+    failures.push({
+      type: 'localization_failure',
+      description: 'Hebrew/RTL layout or text rendering issues',
+      commonSelectors: ['[dir="rtl"]', '.hebrew-text', '[lang="he"]'],
+      rootCauses: ['Font not loaded', 'RTL CSS conflicts', 'Text direction incorrect', 'Translation missing'],
+      healingStrategies: ['Wait for fonts to load', 'Check text direction', 'Verify translation files', 'Test with fallback language']
+    });
+  }
+
+  // Default generic failures if none specific identified
+  if (failures.length === 0) {
+    failures.push({
+      type: 'generic_failure',
+      description: 'Component not found or not interactive',
+      commonSelectors: [`[data-testid="${componentName}"]`, `[data-component="${componentName}"]`],
+      rootCauses: ['Element not rendered', 'CSS loading incomplete', 'JavaScript not executed', 'Timing issues'],
+      healingStrategies: ['Wait for element to be visible', 'Check element enabled state', 'Retry with longer timeout', 'Verify page fully loaded']
+    });
+  }
+
+  return failures;
+}
 
   private generateSelectorRecommendations(componentName: string): SelectorRecommendation[] {
-    return [];
+  const recommendations: SelectorRecommendation[] = [];
+  const name = componentName.toLowerCase();
+
+  // Primary data-testid based selectors (highest stability)
+  recommendations.push({
+    element: `${componentName} container`,
+    primary: `[data-testid="${componentName}"]`,
+    alternatives: [`[data-component="${componentName}"]`, `.${componentName}-container`],
+    stability: 0.95,
+    reasoning: 'Data-testid attributes are specifically for testing and most stable'
+  });
+
+  // Component-specific selector recommendations
+  if (name.includes('sign') || name.includes('pad')) {
+    recommendations.push({
+      element: 'signature canvas',
+      primary: `[data-testid="signature-pad"]`,
+      alternatives: [`canvas.signature-pad`, `#${componentName}-canvas`],
+      stability: 0.85,
+      reasoning: 'Canvas elements for signature should have data-testid for touch interaction testing'
+    });
   }
 
+  if (name.includes('button') || name.includes('btn')) {
+    recommendations.push({
+      element: 'primary action button',
+      primary: `[data-testid="${componentName}-submit"]`,
+      alternatives: [`button[data-component="${componentName}"]`, `button.${componentName}-btn`],
+      stability: 0.90,
+      reasoning: 'Action buttons should have data-testid for click event testing'
+    });
+  }
+
+  if (name.includes('form') || name.includes('input') || name.includes('field')) {
+    recommendations.push(
+      {
+        element: 'form input field',
+        primary: `[data-testid="${componentName}-input"]`,
+        alternatives: [`input[name="${componentName}"]`, `input[data-component="${componentName}"]`],
+        stability: 0.88,
+        reasoning: 'Form inputs should have data-testid and name attributes for reliable form testing'
+      },
+      {
+        element: 'form validation message',
+        primary: `[data-testid="${componentName}-error"]`,
+        alternatives: [`.${componentName}-error`, `[data-component="${componentName}"] .error-message`],
+        stability: 0.75,
+        reasoning: 'Error messages should be identifiable for validation testing'
+      }
+    );
+  }
+
+  if (name.includes('select') || name.includes('dropdown')) {
+    recommendations.push({
+      element: 'dropdown selector',
+      primary: `[data-testid="${componentName}-select"]`,
+      alternatives: [`select[data-component="${componentName}"]`, `.${componentName}-dropdown`],
+      stability: 0.87,
+      reasoning: 'Dropdown selectors need stable identifiers for option selection testing'
+    });
+  }
+
+  if (name.includes('document') || name.includes('viewer')) {
+    recommendations.push({
+      element: 'document viewer container',
+      primary: `[data-testid="document-viewer"]`,
+      alternatives: [`.document-container`, `#${componentName}-viewer`],
+      stability: 0.82,
+      reasoning: 'Document viewers need stable selectors for content verification'
+    });
+  }
+
+  if (name.includes('auth') || name.includes('login')) {
+    recommendations.push(
+      {
+        element: 'login email input',
+        primary: `[data-testid="auth-email"]`,
+        alternatives: [`input[type="email"]`, `input[name="email"]`],
+        stability: 0.92,
+        reasoning: 'Authentication fields require highest stability for login testing'
+      },
+      {
+        element: 'login password input',
+        primary: `[data-testid="auth-password"]`,
+        alternatives: [`input[type="password"]`, `input[name="password"]`],
+        stability: 0.92,
+        reasoning: 'Password fields need stable selectors for secure authentication testing'
+      }
+    );
+  }
+
+  if (name.includes('contact')) {
+    recommendations.push({
+      element: 'contact list item',
+      primary: `[data-testid="contact-item"]`,
+      alternatives: [`.contact-list-item`, `[data-contact-id]`],
+      stability: 0.80,
+      reasoning: 'Contact items should be identifiable for selection and management testing'
+    });
+  }
+
+  if (name.includes('template')) {
+    recommendations.push({
+      element: 'template selector',
+      primary: `[data-testid="template-item"]`,
+      alternatives: [`.template-card`, `[data-template-id]`],
+      stability: 0.83,
+      reasoning: 'Template items need stable selectors for template management testing'
+    });
+  }
+
+  // Hebrew/RTL specific recommendations
+  if (name.includes('hebrew') || name.includes('rtl')) {
+    recommendations.push({
+      element: 'RTL text container',
+      primary: `[dir="rtl"][data-testid="${componentName}"]`,
+      alternatives: [`.hebrew-text`, `[lang="he"]`],
+      stability: 0.70,
+      reasoning: 'Hebrew/RTL elements need direction-specific selectors for layout testing'
+    });
+  }
+
+  // Generic fallback recommendations
+  if (recommendations.length === 1) {
+    recommendations.push({
+      element: 'interactive element',
+      primary: `[data-testid="${componentName}-action"]`,
+      alternatives: [`[data-component="${componentName}"] button`, `.${componentName}-action`],
+      stability: 0.75,
+      reasoning: 'Interactive elements should have action-specific identifiers'
+    });
+  }
+
+  return recommendations;
+}
+
   private extractI18nKeys(component: WeSignComponent): string[] {
-    return [];
+    const i18nKeys: string[] = [];
+
+    try {
+      const templatePath = this.getTemplatePath(component.path);
+      if (templatePath && fs.existsSync(templatePath)) {
+        const templateContent = fs.readFileSync(templatePath, 'utf-8');
+
+        // Extract translate pipe usage: {{ 'KEY' | translate }}
+        const translatePipeMatches = templateContent.match(/['"`]([A-Z_][A-Z0-9_]*(?:\.[A-Z0-9_]*)*)['"]\s*\|\s*translate/g);
+        if (translatePipeMatches) {
+          for (const match of translatePipeMatches) {
+            const keyMatch = match.match(/['"`]([A-Z_][A-Z0-9_]*(?:\.[A-Z0-9_]*)*)['"]/);
+            if (keyMatch) {
+              i18nKeys.push(keyMatch[1]);
+            }
+          }
+        }
+
+        // Extract Angular i18n directive: i18n="@@key"
+        const i18nDirectiveMatches = templateContent.match(/i18n="@@([^"]+)"/g);
+        if (i18nDirectiveMatches) {
+          for (const match of i18nDirectiveMatches) {
+            const keyMatch = match.match(/i18n="@@([^"]+)"/);
+            if (keyMatch) {
+              i18nKeys.push(keyMatch[1]);
+            }
+          }
+        }
+      }
+
+      // Check component TypeScript file for translate service usage
+      if (fs.existsSync(component.path)) {
+        const componentContent = fs.readFileSync(component.path, 'utf-8');
+
+        // Extract translate.get() calls: this.translate.get('KEY')
+        const translateGetMatches = componentContent.match(/translate\.get\(['"`]([A-Z_][A-Z0-9_]*(?:\.[A-Z0-9_]*)*)['"]\)/g);
+        if (translateGetMatches) {
+          for (const match of translateGetMatches) {
+            const keyMatch = match.match(/translate\.get\(['"`]([A-Z_][A-Z0-9_]*(?:\.[A-Z0-9_]*)*)['"]\)/);
+            if (keyMatch) {
+              i18nKeys.push(keyMatch[1]);
+            }
+          }
+        }
+
+        // Extract translate.instant() calls: this.translate.instant('KEY')
+        const translateInstantMatches = componentContent.match(/translate\.instant\(['"`]([A-Z_][A-Z0-9_]*(?:\.[A-Z0-9_]*)*)['"]\)/g);
+        if (translateInstantMatches) {
+          for (const match of translateInstantMatches) {
+            const keyMatch = match.match(/translate\.instant\(['"`]([A-Z_][A-Z0-9_]*(?:\.[A-Z0-9_]*)*)['"]\)/);
+            if (keyMatch) {
+              i18nKeys.push(keyMatch[1]);
+            }
+          }
+        }
+      }
+
+      // Add common WeSign i18n keys based on component name
+      const componentName = component.name.toLowerCase();
+      if (componentName.includes('sign')) {
+        i18nKeys.push('COMMON.SIGN', 'COMMON.SIGNATURE', 'SIGN.TITLE', 'SIGN.SUBMIT');
+      }
+      if (componentName.includes('auth') || componentName.includes('login')) {
+        i18nKeys.push('AUTH.LOGIN', 'AUTH.EMAIL', 'AUTH.PASSWORD', 'COMMON.SUBMIT');
+      }
+      if (componentName.includes('document')) {
+        i18nKeys.push('DOCUMENTS.TITLE', 'DOCUMENTS.UPLOAD', 'COMMON.DOWNLOAD', 'COMMON.VIEW');
+      }
+      if (componentName.includes('contact')) {
+        i18nKeys.push('CONTACTS.TITLE', 'CONTACTS.ADD', 'CONTACTS.EDIT', 'COMMON.DELETE');
+      }
+      if (componentName.includes('form') || componentName.includes('field')) {
+        i18nKeys.push('FORM.REQUIRED', 'FORM.INVALID', 'COMMON.SAVE', 'COMMON.CANCEL');
+      }
+
+    } catch (error) {
+      logger.warn(`Failed to extract i18n keys for ${component.name}:`, error);
+    }
+
+    // Remove duplicates and return
+    return [...new Set(i18nKeys)];
   }
 
   private getComponentRoutes(componentName: string, routes: any[]): string[] {
-    return [];
+    const componentRoutes: string[] = [];
+
+    try {
+      // Direct component name matches
+      for (const route of routes) {
+        if (route.component && route.component.toLowerCase().includes(componentName.toLowerCase())) {
+          componentRoutes.push(route.path);
+        }
+      }
+
+      // Infer routes based on component name patterns
+      const componentLower = componentName.toLowerCase();
+
+      // Authentication routes
+      if (componentLower.includes('auth') || componentLower.includes('login')) {
+        const authRoutes = routes.filter(r => r.path.includes('auth') || r.path.includes('login'));
+        componentRoutes.push(...authRoutes.map(r => r.path));
+      }
+
+      // Document routes
+      if (componentLower.includes('document')) {
+        const docRoutes = routes.filter(r =>
+          r.path.includes('document') || r.path.includes('upload') || r.path.includes('viewer')
+        );
+        componentRoutes.push(...docRoutes.map(r => r.path));
+      }
+
+      // Contact routes
+      if (componentLower.includes('contact')) {
+        const contactRoutes = routes.filter(r => r.path.includes('contact'));
+        componentRoutes.push(...contactRoutes.map(r => r.path));
+      }
+
+      // Signing routes
+      if (componentLower.includes('sign')) {
+        const signRoutes = routes.filter(r =>
+          r.path.includes('sign') || r.path.includes('signature')
+        );
+        componentRoutes.push(...signRoutes.map(r => r.path));
+      }
+
+      // Template routes
+      if (componentLower.includes('template')) {
+        const templateRoutes = routes.filter(r => r.path.includes('template'));
+        componentRoutes.push(...templateRoutes.map(r => r.path));
+      }
+
+      // Report routes
+      if (componentLower.includes('report')) {
+        const reportRoutes = routes.filter(r => r.path.includes('report'));
+        componentRoutes.push(...reportRoutes.map(r => r.path));
+      }
+
+      // Main pages
+      if (componentLower.includes('main') || componentLower.includes('dashboard')) {
+        componentRoutes.push('/', '/dashboard', '/home');
+      }
+
+      // Signer specific routes
+      if (componentLower.includes('signer')) {
+        const signerRoutes = routes.filter(r =>
+          r.path.includes('signer') || r.path.includes('signing')
+        );
+        componentRoutes.push(...signerRoutes.map(r => r.path));
+      }
+
+      // Admin routes
+      if (componentLower.includes('admin')) {
+        const adminRoutes = routes.filter(r => r.path.includes('admin'));
+        componentRoutes.push(...adminRoutes.map(r => r.path));
+      }
+
+      // Settings routes
+      if (componentLower.includes('setting')) {
+        const settingsRoutes = routes.filter(r => r.path.includes('setting'));
+        componentRoutes.push(...settingsRoutes.map(r => r.path));
+      }
+
+      // Profile routes
+      if (componentLower.includes('profile')) {
+        const profileRoutes = routes.filter(r => r.path.includes('profile'));
+        componentRoutes.push(...profileRoutes.map(r => r.path));
+      }
+
+      // If still no routes found, try to infer from component name
+      if (componentRoutes.length === 0) {
+        // Try to match route path that contains part of component name
+        const nameWords = componentName.toLowerCase().split(/[_-]/);
+        for (const word of nameWords) {
+          if (word.length > 3) { // Only meaningful words
+            const matchingRoutes = routes.filter(r =>
+              r.path.toLowerCase().includes(word) ||
+              (r.component && r.component.toLowerCase().includes(word))
+            );
+            componentRoutes.push(...matchingRoutes.map(r => r.path));
+          }
+        }
+      }
+
+    } catch (error) {
+      logger.warn(`Failed to get routes for component ${componentName}:`, error);
+    }
+
+    // Remove duplicates and return
+    return [...new Set(componentRoutes)];
   }
 
   private determineBusinessFunction(componentName: string): string {
@@ -1567,8 +2259,324 @@ This knowledge base provides comprehensive understanding of the WeSign platform 
     return 'General UI';
   }
 
-  private mapApiEndpoints(structure: WeSignCodeStructure): Promise<void> {
-    return Promise.resolve();
+  private async mapApiEndpoints(structure: WeSignCodeStructure): Promise<void> {
+    logger.info('Mapping API endpoints to components and workflows');
+
+    try {
+      // Analyze Angular services for HTTP client usage
+      for (const service of structure.frontend.services) {
+        await this.analyzeServiceForApiEndpoints(service);
+      }
+
+      // Define common WeSign API endpoints based on components
+      const commonEndpoints = this.defineCommonWeSignEndpoints(structure);
+      for (const endpoint of commonEndpoints) {
+        this.knowledgeBase.apiEndpointMap.set(endpoint.endpoint, endpoint);
+      }
+
+      // Map component-specific endpoints
+      for (const component of structure.frontend.components) {
+        const componentEndpoints = this.inferApiEndpointsForComponent(component);
+        for (const endpoint of componentEndpoints) {
+          this.knowledgeBase.apiEndpointMap.set(endpoint.endpoint, endpoint);
+        }
+      }
+
+      logger.info(`Mapped ${this.knowledgeBase.apiEndpointMap.size} API endpoints`);
+
+    } catch (error) {
+      logger.error('Failed to map API endpoints:', error);
+    }
+  }
+
+  /**
+   * Analyze a service file for HTTP client usage and API endpoints
+   */
+  private async analyzeServiceForApiEndpoints(service: any): Promise<void> {
+    try {
+      if (!fs.existsSync(service.path)) {
+        return;
+      }
+
+      const content = fs.readFileSync(service.path, 'utf-8');
+
+      // Extract HTTP method calls with fixed regex patterns
+      const httpMethods = ['get', 'post', 'put', 'delete', 'patch'];
+      for (const method of httpMethods) {
+        // Fixed regex pattern - properly escaped and grouped
+        const methodPattern = new RegExp(`this\\.http\\.${method}\\s*\\(['"]([^'"]+)['"]`, 'g');
+        let match;
+        while ((match = methodPattern.exec(content)) !== null) {
+          const endpoint = match[1];
+          if (endpoint && endpoint.startsWith('/api')) {
+            const apiEndpoint: ApiKnowledge = {
+              endpoint: endpoint,
+              method: method.toUpperCase(),
+              description: `${method.toUpperCase()} endpoint from ${service.name} service`,
+              parameters: this.extractEndpointParameters(endpoint, content),
+              responses: this.inferResponseTypes(endpoint, method),
+              dependencies: service.dependencies || [],
+              testData: this.generateTestDataForEndpoint(endpoint, method)
+            };
+            this.knowledgeBase.apiEndpointMap.set(endpoint, apiEndpoint);
+          }
+        }
+      }
+    } catch (error) {
+      logger.warn(`Failed to analyze service ${service.name} for API endpoints:`, error);
+    }
+  }
+
+  /**
+   * Define common WeSign API endpoints based on application structure
+   */
+  private defineCommonWeSignEndpoints(structure: WeSignCodeStructure): ApiKnowledge[] {
+    const endpoints: ApiKnowledge[] = [];
+
+    // Authentication endpoints
+    endpoints.push(
+      {
+        endpoint: '/api/auth/login',
+        method: 'POST',
+        description: 'User authentication with credentials',
+        parameters: [{ name: 'email', type: 'string', required: true }, { name: 'password', type: 'string', required: true }],
+        responses: [{ status: 200, description: 'Login successful', schema: { token: 'string', user: 'object' } }],
+        dependencies: ['AuthService'],
+        testData: { email: 'test@wesign.com', password: 'testpass123' }
+      },
+      {
+        endpoint: '/api/auth/logout',
+        method: 'POST',
+        description: 'User logout and token invalidation',
+        parameters: [],
+        responses: [{ status: 200, description: 'Logout successful' }],
+        dependencies: ['AuthService'],
+        testData: {}
+      }
+    );
+
+    // Document endpoints
+    endpoints.push(
+      {
+        endpoint: '/api/documents',
+        method: 'GET',
+        description: 'Retrieve user documents',
+        parameters: [{ name: 'page', type: 'number', required: false }, { name: 'limit', type: 'number', required: false }],
+        responses: [{ status: 200, description: 'Documents retrieved', schema: { documents: 'array', total: 'number' } }],
+        dependencies: ['DocumentService'],
+        testData: { page: 1, limit: 10 }
+      },
+      {
+        endpoint: '/api/documents/upload',
+        method: 'POST',
+        description: 'Upload a new document',
+        parameters: [{ name: 'file', type: 'file', required: true }, { name: 'title', type: 'string', required: false }],
+        responses: [{ status: 201, description: 'Document uploaded', schema: { documentId: 'string', url: 'string' } }],
+        dependencies: ['DocumentService'],
+        testData: { title: 'Test Document' }
+      }
+    );
+
+    // Signing endpoints
+    endpoints.push(
+      {
+        endpoint: '/api/signing/create',
+        method: 'POST',
+        description: 'Create a new signing request',
+        parameters: [{ name: 'documentId', type: 'string', required: true }, { name: 'signers', type: 'array', required: true }],
+        responses: [{ status: 201, description: 'Signing request created', schema: { requestId: 'string' } }],
+        dependencies: ['SigningService'],
+        testData: { documentId: 'doc123', signers: [{ email: 'signer@test.com', name: 'Test Signer' }] }
+      },
+      {
+        endpoint: '/api/signing/submit',
+        method: 'POST',
+        description: 'Submit a completed signature',
+        parameters: [{ name: 'requestId', type: 'string', required: true }, { name: 'signature', type: 'string', required: true }],
+        responses: [{ status: 200, description: 'Signature submitted successfully' }],
+        dependencies: ['SigningService'],
+        testData: { requestId: 'req123', signature: 'base64_signature_data' }
+      }
+    );
+
+    // Contact endpoints
+    endpoints.push(
+      {
+        endpoint: '/api/contacts',
+        method: 'GET',
+        description: 'Retrieve user contacts',
+        parameters: [{ name: 'search', type: 'string', required: false }],
+        responses: [{ status: 200, description: 'Contacts retrieved', schema: { contacts: 'array' } }],
+        dependencies: ['ContactService'],
+        testData: { search: 'test' }
+      },
+      {
+        endpoint: '/api/contacts',
+        method: 'POST',
+        description: 'Create a new contact',
+        parameters: [{ name: 'name', type: 'string', required: true }, { name: 'email', type: 'string', required: true }],
+        responses: [{ status: 201, description: 'Contact created', schema: { contactId: 'string' } }],
+        dependencies: ['ContactService'],
+        testData: { name: 'Test Contact', email: 'contact@test.com' }
+      }
+    );
+
+    // Template endpoints
+    endpoints.push(
+      {
+        endpoint: '/api/templates',
+        method: 'GET',
+        description: 'Retrieve document templates',
+        parameters: [],
+        responses: [{ status: 200, description: 'Templates retrieved', schema: { templates: 'array' } }],
+        dependencies: ['TemplateService'],
+        testData: {}
+      }
+    );
+
+    return endpoints;
+  }
+
+  /**
+   * Infer API endpoints for a specific component
+   */
+  private inferApiEndpointsForComponent(component: WeSignComponent): ApiKnowledge[] {
+    const endpoints: ApiKnowledge[] = [];
+    const componentName = component.name.toLowerCase();
+
+    // Component-specific endpoint inference
+    if (componentName.includes('document')) {
+      endpoints.push({
+        endpoint: `/api/documents/${componentName}`,
+        method: 'GET',
+        description: `Endpoint for ${component.name} component`,
+        parameters: [{ name: 'id', type: 'string', required: true }],
+        responses: [{ status: 200, description: 'Success' }],
+        dependencies: [component.name],
+        testData: { id: 'test-id' }
+      });
+    }
+
+    if (componentName.includes('sign')) {
+      endpoints.push({
+        endpoint: `/api/signing/${componentName}`,
+        method: 'POST',
+        description: `Signing endpoint for ${component.name} component`,
+        parameters: [{ name: 'data', type: 'object', required: true }],
+        responses: [{ status: 200, description: 'Signing successful' }],
+        dependencies: [component.name],
+        testData: { data: { signature: 'test-signature' } }
+      });
+    }
+
+    if (componentName.includes('auth')) {
+      endpoints.push({
+        endpoint: `/api/auth/${componentName}`,
+        method: 'POST',
+        description: `Authentication endpoint for ${component.name} component`,
+        parameters: [{ name: 'credentials', type: 'object', required: true }],
+        responses: [{ status: 200, description: 'Authentication successful' }],
+        dependencies: [component.name],
+        testData: { credentials: { token: 'test-token' } }
+      });
+    }
+
+    return endpoints;
+  }
+
+  /**
+   * Extract parameters from endpoint URL and service content
+   */
+  private extractEndpointParameters(endpoint: string, serviceContent: string): any[] {
+    const parameters: any[] = [];
+
+    // Extract path parameters from URL
+    const pathParams = endpoint.match(/:([a-zA-Z_$][a-zA-Z0-9_$]*)/g);
+    if (pathParams) {
+      for (const param of pathParams) {
+        parameters.push({
+          name: param.substring(1), // Remove the ':'
+          type: 'string',
+          required: true,
+          location: 'path'
+        });
+      }
+    }
+
+    // Try to extract query parameters from service method calls
+    const queryParamMatches = serviceContent.match(/params:\s*{([^}]+)}/g);
+    if (queryParamMatches) {
+      for (const match of queryParamMatches) {
+        const paramContent = match.match(/params:\s*{([^}]+)}/)?.[1];
+        if (paramContent) {
+          const paramNames = paramContent.match(/([a-zA-Z_$][a-zA-Z0-9_$]*)/g);
+          if (paramNames) {
+            for (const paramName of paramNames) {
+              parameters.push({
+                name: paramName,
+                type: 'unknown',
+                required: false,
+                location: 'query'
+              });
+            }
+          }
+        }
+      }
+    }
+
+    return parameters;
+  }
+
+  /**
+   * Infer response types based on endpoint pattern
+   */
+  private inferResponseTypes(endpoint: string, method: string): any[] {
+    const responses = [];
+
+    // Success responses
+    if (method.toLowerCase() === 'post' && endpoint.includes('create')) {
+      responses.push({ status: 201, description: 'Created successfully' });
+    } else if (method.toLowerCase() === 'delete') {
+      responses.push({ status: 204, description: 'Deleted successfully' });
+    } else {
+      responses.push({ status: 200, description: 'Success' });
+    }
+
+    // Common error responses
+    responses.push({ status: 400, description: 'Bad Request' });
+    responses.push({ status: 401, description: 'Unauthorized' });
+    responses.push({ status: 500, description: 'Internal Server Error' });
+
+    return responses;
+  }
+
+  /**
+   * Generate test data for endpoint based on its pattern
+   */
+  private generateTestDataForEndpoint(endpoint: string, method: string): any {
+    const testData: any = {};
+
+    if (endpoint.includes('auth')) {
+      testData.email = 'test@wesign.com';
+      testData.password = 'testpass123';
+    }
+
+    if (endpoint.includes('document')) {
+      testData.documentId = 'test-doc-123';
+      testData.title = 'Test Document';
+    }
+
+    if (endpoint.includes('sign')) {
+      testData.signature = 'base64_test_signature';
+      testData.requestId = 'test-request-123';
+    }
+
+    if (endpoint.includes('contact')) {
+      testData.name = 'Test Contact';
+      testData.email = 'contact@test.com';
+    }
+
+    return testData;
   }
 
   /**

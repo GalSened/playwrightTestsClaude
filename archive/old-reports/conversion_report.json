@@ -1,0 +1,178 @@
+{
+  "timestamp": "2025-09-03T07:45:21.266542",
+  "total_files_processed": 23,
+  "successful_conversions": 23,
+  "failed_conversions": 0,
+  "converted_tests": [
+    {
+      "ts_file": "playwright-system-tests/tests/complete-login-demo.spec.ts",
+      "python_file": "tests/auth/test_complete_login_demo_spec.py",
+      "category": "auth",
+      "test_count": 1,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/debug-login-flow.spec.ts",
+      "python_file": "tests/auth/test_debug_login_flow_spec.py",
+      "category": "auth",
+      "test_count": 1,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/diagnostic-test.spec.ts",
+      "python_file": "tests/document_workflows/test_diagnostic_test_spec.py",
+      "category": "document_workflows",
+      "test_count": 1,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/final-working-login.spec.ts",
+      "python_file": "tests/auth/test_final_working_login_spec.py",
+      "category": "auth",
+      "test_count": 1,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/final-working-system.spec.ts",
+      "python_file": "tests/document_workflows/test_final_working_system_spec.py",
+      "category": "document_workflows",
+      "test_count": 1,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/live-debug.spec.ts",
+      "python_file": "tests/document_workflows/test_live_debug_spec.py",
+      "category": "document_workflows",
+      "test_count": 1,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/manual-verification.spec.ts",
+      "python_file": "tests/document_workflows/test_manual_verification_spec.py",
+      "category": "document_workflows",
+      "test_count": 1,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/navigate-demo.spec.ts",
+      "python_file": "tests/document_workflows/test_navigate_demo_spec.py",
+      "category": "document_workflows",
+      "test_count": 1,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/smoke-test.spec.ts",
+      "python_file": "tests/document_workflows/test_smoke_test_spec.py",
+      "category": "document_workflows",
+      "test_count": 1,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/step-by-step-verification.spec.ts",
+      "python_file": "tests/document_workflows/test_step_by_step_verification_spec.py",
+      "category": "document_workflows",
+      "test_count": 1,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/test-bank-debug.spec.ts",
+      "python_file": "tests/document_workflows/test_test_bank_debug_spec.py",
+      "category": "document_workflows",
+      "test_count": 1,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/test-bank-navigation.spec.ts",
+      "python_file": "tests/document_workflows/test_test_bank_navigation_spec.py",
+      "category": "document_workflows",
+      "test_count": 1,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/trace-run-button.spec.ts",
+      "python_file": "tests/document_workflows/test_trace_run_button_spec.py",
+      "category": "document_workflows",
+      "test_count": 1,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/working-test.spec.ts",
+      "python_file": "tests/document_workflows/test_working_test_spec.py",
+      "category": "document_workflows",
+      "test_count": 3,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/core\\test-management.spec.ts",
+      "python_file": "tests/document_workflows/test_test_management_spec.py",
+      "category": "document_workflows",
+      "test_count": 10,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/e2e\\enterprise-workflow.spec.ts",
+      "python_file": "tests/integrations/test_enterprise_workflow_spec.py",
+      "category": "integrations",
+      "test_count": 2,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/enterprise\\multi-tenant.spec.ts",
+      "python_file": "tests/integrations/test_multi_tenant_spec.py",
+      "category": "integrations",
+      "test_count": 7,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/enterprise\\rbac.spec.ts",
+      "python_file": "tests/integrations/test_rbac_spec.py",
+      "category": "integrations",
+      "test_count": 6,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/execution\\execution-modes.spec.ts",
+      "python_file": "tests/document_workflows/test_execution_modes_spec.py",
+      "category": "document_workflows",
+      "test_count": 7,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/monitoring\\real-time.spec.ts",
+      "python_file": "tests/document_workflows/test_real_time_spec.py",
+      "category": "document_workflows",
+      "test_count": 9,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/performance\\load.spec.ts",
+      "python_file": "tests/performance/test_load_spec.py",
+      "category": "performance",
+      "test_count": 7,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/scheduler\\scheduler.spec.ts",
+      "python_file": "tests/scheduler/test_scheduler_spec.py",
+      "category": "scheduler",
+      "test_count": 10,
+      "status": "success"
+    },
+    {
+      "ts_file": "playwright-system-tests/tests/security\\security.spec.ts",
+      "python_file": "tests/security/test_security_spec.py",
+      "category": "security",
+      "test_count": 8,
+      "status": "success"
+    }
+  ],
+  "failed_files": [],
+  "categories_created": [
+    "scheduler",
+    "performance",
+    "document_workflows",
+    "auth",
+    "security",
+    "integrations"
+  ]
+}

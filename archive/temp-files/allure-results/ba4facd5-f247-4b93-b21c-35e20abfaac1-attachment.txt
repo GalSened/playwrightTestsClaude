@@ -1,0 +1,12 @@
+👀 Setting up self-healing monitoring for: Complex workflow with comprehensive healing
+🚀 Executing test attempt 1/2: Complex workflow with comprehensive healing
+🔐 Step 1: Login
+🔄 Original selector failed, attempting healing: button[type="submit"]
+❌ Healed selector also failed: button:text("שלח")
+🔄 Test failed, analyzing for healing opportunities...
+🔧 Applying healing strategy: Operation timed out waiting for element or condition
+🚀 Executing test attempt 2/2: Complex workflow with comprehensive healing
+🔐 Step 1: Login
+🔄 Original selector failed, attempting healing: button[type="submit"]
+❌ Healed selector also failed: button:text("שלח")
+📸 Capturing failure context for: Complex workflow with comprehensive healing

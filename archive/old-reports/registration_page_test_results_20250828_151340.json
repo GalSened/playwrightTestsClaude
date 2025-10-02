@@ -1,0 +1,314 @@
+{
+  "timestamp": "2025-08-28T15:13:32.854538",
+  "test_suite": "Registration Page Validation",
+  "base_url": "http://localhost:5180",
+  "tests": {
+    "registration_navigation": {
+      "name": "Registration Page Navigation Test",
+      "status": "PASSED",
+      "details": {
+        "direct_navigation": {
+          "method": "Direct URL",
+          "url": "http://localhost:5180/auth/register",
+          "status": 200,
+          "result": "PASS"
+        }
+      },
+      "evidence": []
+    },
+    "registration_form_validation": {
+      "name": "Registration Form Fields Test",
+      "status": "FAILED",
+      "details": {
+        "name_field": {
+          "result": "FAIL",
+          "message": "No name_field found"
+        },
+        "email_field": {
+          "result": "FAIL",
+          "message": "No email_field found"
+        },
+        "password_field": {
+          "result": "FAIL",
+          "message": "No password_field found"
+        },
+        "confirm_password_field": {
+          "result": "FAIL",
+          "message": "No confirm_password_field found"
+        },
+        "company_field": {
+          "result": "FAIL",
+          "message": "No company_field found"
+        },
+        "submit_button": {
+          "result": "FAIL",
+          "message": "No submit button found"
+        },
+        "plan_selection": {
+          "result": "WARN",
+          "message": "No plan selection found"
+        }
+      },
+      "evidence": []
+    },
+    "registration_workflow": {
+      "name": "Registration Workflow Test",
+      "status": "PASSED",
+      "details": {
+        "workflow_indicators": {
+          "result": "WARN",
+          "message": "No workflow indicators found - likely single-step registration"
+        }
+      },
+      "evidence": []
+    }
+  },
+  "summary": {
+    "total": 3,
+    "passed": 2,
+    "failed": 1,
+    "warnings": 0
+  },
+  "evidence": {
+    "screenshots": [
+      "reg_test_01_home_20250828_151336",
+      "reg_test_02_after_nav_20250828_151336",
+      "reg_test_03_form_fields_20250828_151336",
+      "reg_test_04_workflow_20250828_151336"
+    ],
+    "console_logs": [
+      {
+        "timestamp": "2025-08-28T15:13:33.727741",
+        "type": "debug",
+        "text": "[vite] connecting...",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 228,
+          "columnNumber": 8
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:13:33.740976",
+        "type": "debug",
+        "text": "[vite] connected.",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 324,
+          "columnNumber": 20
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:13:33.829955",
+        "type": "info",
+        "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/chunk-WALXKXZM.js?v=ff96b15a",
+          "lineNumber": 21579,
+          "columnNumber": 24
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:13:33.886333",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:13:34.009046",
+        "type": "verbose",
+        "text": "[DOM] Input elements should have autocomplete attributes (suggested: \"current-password\"): (More info: https://goo.gl/9p2vKq) %o",
+        "location": {
+          "url": "http://localhost:5180/auth/login",
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.594741",
+        "type": "debug",
+        "text": "[vite] connecting...",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 228,
+          "columnNumber": 8
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.601517",
+        "type": "debug",
+        "text": "[vite] connected.",
+        "location": {
+          "url": "http://localhost:5180/@vite/client",
+          "lineNumber": 324,
+          "columnNumber": 20
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.611732",
+        "type": "info",
+        "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/chunk-WALXKXZM.js?v=ff96b15a",
+          "lineNumber": 21579,
+          "columnNumber": 24
+        }
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.629681",
+        "type": "warning",
+        "text": "⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "location": {
+          "url": "http://localhost:5180/node_modules/.vite/deps/react-router-dom.js?v=ff96b15a",
+          "lineNumber": 4408,
+          "columnNumber": 12
+        }
+      }
+    ],
+    "network_logs": [
+      {
+        "timestamp": "2025-08-28T15:13:36.606855",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/Card.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.606998",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/Table.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.607135",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/TestRunScheduler.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.607314",
+        "status": 304,
+        "url": "http://localhost:5180/src/app/utils.ts",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.607467",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/Chart.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.607635",
+        "status": 304,
+        "url": "http://localhost:5180/src/components/DarkModeToggle.tsx",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.607945",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/@tanstack_react-table.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.608101",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/@tanstack_react-table.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.608557",
+        "method": "GET",
+        "url": "http://localhost:5180/src/services/schedulerApi.ts",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.608719",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/clsx.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.608854",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/clsx.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.609012",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/tailwind-merge.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.609117",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/tailwind-merge.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.609257",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/recharts.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.609357",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/recharts.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.609481",
+        "method": "GET",
+        "url": "http://localhost:5180/node_modules/.vite/deps/chunk-AJTCXCUR.js?v=ff96b15a",
+        "resource_type": "script",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.609564",
+        "status": 200,
+        "url": "http://localhost:5180/node_modules/.vite/deps/chunk-AJTCXCUR.js?v=ff96b15a",
+        "status_text": "OK",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.609749",
+        "status": 304,
+        "url": "http://localhost:5180/src/services/schedulerApi.ts",
+        "status_text": "Not Modified",
+        "type": "response"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.665189",
+        "method": "GET",
+        "url": "http://localhost:5180/favicon.svg",
+        "resource_type": "other",
+        "type": "request"
+      },
+      {
+        "timestamp": "2025-08-28T15:13:36.668469",
+        "status": 200,
+        "url": "http://localhost:5180/favicon.svg",
+        "status_text": "OK",
+        "type": "response"
+      }
+    ]
+  }
+}

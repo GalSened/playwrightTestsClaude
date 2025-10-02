@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://qa-intelligence.com/schemas/a2a/AgentId.schema.json",
+  "title": "Agent Identifier",
+  "description": "Unique identifier for an agent in the A2A system",
+  "type": "object",
+  "required": ["type", "id", "version"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "cmo",
+        "specialist",
+        "mcp-server",
+        "ci-gate",
+        "dashboard",
+        "api-client",
+        "system"
+      ],
+      "description": "Agent type category"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$",
+      "minLength": 1,
+      "maxLength": 128,
+      "description": "Unique agent identifier within type (e.g., 'playwright_healer', 'cmo-main', 'ci-pipeline-1')"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Agent version (semver format)"
+    },
+    "instance_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Instance identifier for horizontal scaling (optional, e.g., 'worker-01', 'pod-xyz')"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "context.read",
+          "context.write",
+          "healing.selector",
+          "healing.assertion",
+          "analysis.test_results",
+          "analysis.coverage",
+          "memory.read",
+          "memory.write",
+          "artifact.read",
+          "artifact.write",
+          "decision.approve",
+          "decision.reject"
+        ]
+      },
+      "uniqueItems": true,
+      "description": "Agent capabilities for registry filtering (optional)"
+    }
+  },
+  "additionalProperties": false
+}

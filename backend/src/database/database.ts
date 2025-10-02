@@ -346,6 +346,80 @@ export class SchedulerDatabase {
             throw error;
           }
         }
+      },
+      {
+        version: 101,
+        name: 'add_file_tracking',
+        execute: () => {
+          try {
+            logger.info('Adding file system tracking support to tests table');
+
+            const migrationPath = join(__dirname, 'migrations', 'add_file_tracking.sql');
+            if (existsSync(migrationPath)) {
+              const migration = readFileSync(migrationPath, 'utf8');
+
+              // Remove comments and split into statements
+              const cleanedMigration = migration
+                .split('\n')
+                .filter(line => !line.trim().startsWith('--'))
+                .join('\n');
+
+              // Execute the entire migration (SQLite can handle multiple statements)
+              try {
+                this.db.exec(cleanedMigration);
+                logger.info('File tracking tables created successfully');
+              } catch (execError: any) {
+                // Log but don't fail if tables already exist
+                if (execError.message?.includes('already exists') || execError.message?.includes('duplicate')) {
+                  logger.info('File tracking tables already exist, skipping');
+                } else {
+                  logger.warn('File tracking table creation warning', { error: execError.message });
+                }
+              }
+
+              // Add columns to tests table (handle errors for each column individually)
+              const columnsToAdd = [
+                { name: 'file_hash', type: 'TEXT' },
+                { name: 'last_file_check', type: 'DATETIME' },
+                { name: 'file_exists', type: 'BOOLEAN DEFAULT 1' },
+                { name: 'source_directory', type: 'TEXT' },
+                { name: 'file_size', type: 'INTEGER' },
+                { name: 'file_last_modified', type: 'DATETIME' }
+              ];
+
+              for (const col of columnsToAdd) {
+                try {
+                  this.db.exec(`ALTER TABLE tests ADD COLUMN ${col.name} ${col.type}`);
+                  logger.info(`Added column ${col.name} to tests table`);
+                } catch (colError: any) {
+                  if (colError.message?.includes('duplicate column name')) {
+                    logger.debug(`Column ${col.name} already exists, skipping`);
+                  } else {
+                    logger.warn(`Failed to add column ${col.name}`, { error: colError.message });
+                  }
+                }
+              }
+
+              // Create indexes for file tracking columns
+              try {
+                this.db.exec(`CREATE INDEX IF NOT EXISTS idx_tests_file_hash ON tests(file_hash)`);
+                this.db.exec(`CREATE INDEX IF NOT EXISTS idx_tests_file_exists ON tests(file_exists)`);
+                this.db.exec(`CREATE INDEX IF NOT EXISTS idx_tests_source_directory ON tests(source_directory)`);
+                this.db.exec(`CREATE INDEX IF NOT EXISTS idx_tests_last_file_check ON tests(last_file_check)`);
+                logger.info('Created file tracking indexes');
+              } catch (idxError: any) {
+                logger.debug('Index creation warning', { error: idxError.message });
+              }
+            } else {
+              logger.warn('File tracking migration file not found, skipping', { migrationPath });
+            }
+
+            this.markMigrationApplied(101, 'add_file_tracking');
+          } catch (error) {
+            logger.error('File tracking migration failed', { error });
+            // Don't throw - allow system to continue
+          }
+        }
       }
     ];
 

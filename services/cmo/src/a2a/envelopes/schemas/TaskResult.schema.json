@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://qa-intelligence.com/schemas/a2a/TaskResult.schema.json",
+  "title": "Task Result Envelope",
+  "description": "Task completion result (success or failure)",
+  "type": "object",
+  "required": ["meta", "payload"],
+  "properties": {
+    "meta": {
+      "$ref": "EnvelopeMeta.schema.json",
+      "description": "Envelope metadata with type=TaskResult"
+    },
+    "payload": {
+      "type": "object",
+      "required": ["task", "status"],
+      "properties": {
+        "task": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Task identifier (must match TaskRequest.task)"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["success", "failure", "timeout", "cancelled"],
+          "description": "Task execution status"
+        },
+        "result": {
+          "type": "object",
+          "description": "Task-specific result data (present on success)"
+        },
+        "error": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Error code (e.g., 'E_VALIDATION_FAILED', 'E_TIMEOUT')"
+            },
+            "message": {
+              "type": "string",
+              "description": "Human-readable error message"
+            },
+            "details": {
+              "type": "object",
+              "description": "Additional error details"
+            }
+          },
+          "required": ["code", "message"],
+          "description": "Error information (present on failure)"
+        },
+        "duration_ms": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Task execution duration in milliseconds"
+        },
+        "metrics": {
+          "type": "object",
+          "description": "Task-specific metrics (optional, e.g., tokens_used, api_calls)"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

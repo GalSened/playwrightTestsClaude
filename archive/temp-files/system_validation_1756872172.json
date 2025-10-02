@@ -1,0 +1,182 @@
+{
+  "timestamp": "2025-09-03T07:02:19.302047",
+  "pages": {
+    "dashboard": {
+      "accessible": true,
+      "title": "QA Intelligence",
+      "url": "http://localhost:3000/",
+      "screenshot": "dashboard_validation_1756872146.png",
+      "elements_found": 9,
+      "navigation_elements": 8,
+      "load_time": "< 3s",
+      "status": "success",
+      "navigation_links": [
+        {
+          "text": "DashboardTest BankSchedulerReportsSelf-HealingAI AssistantKnowledge Base",
+          "href": null
+        },
+        {
+          "text": "Dashboard",
+          "href": "/"
+        },
+        {
+          "text": "Test Bank",
+          "href": "/test-bank"
+        },
+        {
+          "text": "Scheduler",
+          "href": "/scheduler"
+        },
+        {
+          "text": "Reports",
+          "href": "/reports"
+        },
+        {
+          "text": "Self-Healing",
+          "href": "/self-healing"
+        },
+        {
+          "text": "AI Assistant",
+          "href": "/ai-assistant"
+        },
+        {
+          "text": "Knowledge Base",
+          "href": "/knowledge-upload"
+        }
+      ]
+    },
+    "test_bank": {
+      "accessible": true,
+      "title": "QA Intelligence",
+      "url": "http://localhost:3000/test-bank",
+      "route": "/test-bank",
+      "screenshot": "test_bank_validation_1756872149.png",
+      "interactive_elements": 49,
+      "loading_elements": 0,
+      "is_error_page": false,
+      "status": "success",
+      "page_content_length": 3471
+    },
+    "analytics": {
+      "accessible": false,
+      "title": "QA Intelligence",
+      "url": "http://localhost:3000/",
+      "route": "/analytics",
+      "screenshot": "analytics_validation_1756872153.png",
+      "interactive_elements": 11,
+      "loading_elements": 0,
+      "is_error_page": true,
+      "status": "error",
+      "page_content_length": 877
+    },
+    "scheduler": {
+      "accessible": true,
+      "title": "QA Intelligence",
+      "url": "http://localhost:3000/scheduler",
+      "route": "/scheduler",
+      "screenshot": "scheduler_validation_1756872156.png",
+      "interactive_elements": 12,
+      "loading_elements": 0,
+      "is_error_page": false,
+      "status": "success",
+      "page_content_length": 501
+    },
+    "reports": {
+      "accessible": true,
+      "title": "QA Intelligence",
+      "url": "http://localhost:3000/reports",
+      "route": "/reports",
+      "screenshot": "reports_validation_1756872160.png",
+      "interactive_elements": 11,
+      "loading_elements": 0,
+      "is_error_page": false,
+      "status": "success",
+      "page_content_length": 280
+    },
+    "ai_assistant": {
+      "accessible": true,
+      "title": "QA Intelligence",
+      "url": "http://localhost:3000/ai-assistant",
+      "route": "/ai-assistant",
+      "screenshot": "ai_assistant_validation_1756872164.png",
+      "interactive_elements": 19,
+      "loading_elements": 0,
+      "is_error_page": false,
+      "status": "success",
+      "page_content_length": 894
+    },
+    "self_healing": {
+      "accessible": false,
+      "title": "QA Intelligence",
+      "url": "http://localhost:3000/self-healing",
+      "route": "/self-healing",
+      "screenshot": "self_healing_validation_1756872168.png",
+      "interactive_elements": 17,
+      "loading_elements": 0,
+      "is_error_page": true,
+      "status": "error",
+      "page_content_length": 1105
+    }
+  },
+  "api_health": {
+    "main": {
+      "status": 200,
+      "accessible": true
+    },
+    "analytics": {
+      "status": 200,
+      "accessible": true
+    }
+  },
+  "navigation_flow": [
+    {
+      "page": "Test Bank",
+      "route": "/test-bank",
+      "success": true,
+      "timestamp": "2025-09-03T07:02:29.425798"
+    },
+    {
+      "page": "Analytics",
+      "route": "/analytics",
+      "success": false,
+      "timestamp": "2025-09-03T07:02:33.342249"
+    },
+    {
+      "page": "Scheduler",
+      "route": "/scheduler",
+      "success": true,
+      "timestamp": "2025-09-03T07:02:37.154148"
+    },
+    {
+      "page": "Reports",
+      "route": "/reports",
+      "success": true,
+      "timestamp": "2025-09-03T07:02:40.987714"
+    },
+    {
+      "page": "AI Assistant",
+      "route": "/ai-assistant",
+      "success": true,
+      "timestamp": "2025-09-03T07:02:44.808195"
+    },
+    {
+      "page": "Self Healing",
+      "route": "/self-healing",
+      "success": false,
+      "timestamp": "2025-09-03T07:02:48.625716"
+    }
+  ],
+  "errors": [
+    "Analytics appears to be an error page",
+    "Self Healing appears to be an error page"
+  ],
+  "summary": {
+    "total_pages_tested": 7,
+    "successful_pages": 5,
+    "failed_pages": 0,
+    "error_pages": 2,
+    "api_health_status": "healthy",
+    "total_errors": 2,
+    "overall_status": "issues_detected"
+  }
+}

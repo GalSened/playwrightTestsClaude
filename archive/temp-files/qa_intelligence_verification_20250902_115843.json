@@ -1,0 +1,392 @@
+{
+  "timestamp": "2025-09-02T11:58:36.745056",
+  "base_url": "http://localhost:3000",
+  "pages_tested": [
+    {
+      "page": "Dashboard",
+      "timestamp": "2025-09-02T11:58:38.401744",
+      "url": "http://localhost:3000/",
+      "title": "QA Intelligence",
+      "issues": [
+        {
+          "type": "missing_element",
+          "element": "Dashboard statistics",
+          "selector": "[data-testid=\"dashboard-stats\"]"
+        },
+        {
+          "type": "missing_element",
+          "element": "Recent tests section",
+          "selector": "[data-testid=\"recent-tests\"]"
+        },
+        {
+          "type": "missing_element",
+          "element": "Test overview",
+          "selector": "[data-testid=\"test-overview\"]"
+        },
+        {
+          "type": "missing_element",
+          "element": "Statistics cards",
+          "selector": ".stats-card"
+        }
+      ],
+      "elements_verified": [
+        "Navigation: nav",
+        "Found: Navigation menu"
+      ]
+    },
+    {
+      "page": "Test Bank",
+      "timestamp": "2025-09-02T11:58:39.257695",
+      "url": "http://localhost:3000/test-bank",
+      "title": "QA Intelligence",
+      "issues": [
+        {
+          "type": "title_mismatch",
+          "expected": "Test Bank",
+          "actual": "QA Intelligence"
+        },
+        {
+          "type": "missing_critical_element",
+          "element": "Test suite list",
+          "selector": "[data-testid=\"test-suite-list\"]",
+          "severity": "high"
+        },
+        {
+          "type": "missing_critical_element",
+          "element": "Test filtering options",
+          "selector": "[data-testid=\"test-filter\"]",
+          "severity": "high"
+        },
+        {
+          "type": "missing_critical_element",
+          "element": "Create test button",
+          "selector": "[data-testid=\"create-test\"]",
+          "severity": "high"
+        },
+        {
+          "type": "missing_critical_element",
+          "element": "Test suite cards",
+          "selector": ".test-suite-card",
+          "severity": "high"
+        },
+        {
+          "type": "missing_critical_element",
+          "element": "Test count display",
+          "selector": ".test-count",
+          "severity": "high"
+        },
+        {
+          "type": "no_test_suites",
+          "message": "No test suites found to interact with",
+          "severity": "high"
+        },
+        {
+          "type": "missing_search",
+          "message": "Search functionality not found"
+        }
+      ],
+      "elements_verified": [
+        "Navigation: nav",
+        "Found 1: Test search functionality"
+      ]
+    },
+    {
+      "page": "Scheduler",
+      "timestamp": "2025-09-02T11:58:39.951195",
+      "url": "http://localhost:3000/scheduler",
+      "title": "QA Intelligence",
+      "issues": [
+        {
+          "type": "title_mismatch",
+          "expected": "Scheduler",
+          "actual": "QA Intelligence"
+        },
+        {
+          "type": "missing_scheduler_element",
+          "element": "Create schedule button",
+          "selector": "[data-testid=\"create-schedule\"]",
+          "severity": "high"
+        },
+        {
+          "type": "missing_scheduler_element",
+          "element": "Schedule list",
+          "selector": "[data-testid=\"schedule-list\"]",
+          "severity": "high"
+        },
+        {
+          "type": "missing_scheduler_element",
+          "element": "Schedule form",
+          "selector": "[data-testid=\"schedule-form\"]",
+          "severity": "high"
+        },
+        {
+          "type": "missing_scheduler_element",
+          "element": "Schedule cards",
+          "selector": ".schedule-card",
+          "severity": "high"
+        },
+        {
+          "type": "missing_scheduler_element",
+          "element": "Schedule status indicators",
+          "selector": ".schedule-status",
+          "severity": "high"
+        },
+        {
+          "type": "missing_scheduler_element",
+          "element": "Test suite selector",
+          "selector": "select[name=\"testSuite\"], [data-testid=\"test-suite-selector\"]",
+          "severity": "high"
+        },
+        {
+          "type": "scheduler_form_not_opening",
+          "message": "Schedule creation form did not open",
+          "severity": "high"
+        }
+      ],
+      "elements_verified": [
+        "Navigation: nav"
+      ]
+    },
+    {
+      "page": "Reports",
+      "timestamp": "2025-09-02T11:58:40.890460",
+      "url": "http://localhost:3000/reports",
+      "title": "QA Intelligence",
+      "issues": [
+        {
+          "type": "title_mismatch",
+          "expected": "Reports",
+          "actual": "QA Intelligence"
+        },
+        {
+          "type": "missing_report_element",
+          "element": "Report list",
+          "selector": "[data-testid=\"report-list\"]"
+        },
+        {
+          "type": "missing_report_element",
+          "element": "Report filters",
+          "selector": "[data-testid=\"report-filters\"]"
+        },
+        {
+          "type": "missing_report_element",
+          "element": "Report cards",
+          "selector": ".report-card"
+        },
+        {
+          "type": "missing_report_element",
+          "element": "Report summaries",
+          "selector": ".report-summary"
+        }
+      ],
+      "elements_verified": [
+        "Navigation: nav",
+        "Found 13: Charts/visualizations"
+      ]
+    },
+    {
+      "page": "Analytics",
+      "timestamp": "2025-09-02T11:58:41.803224",
+      "url": "http://localhost:3000/analytics",
+      "title": "QA Intelligence",
+      "issues": [
+        {
+          "type": "title_mismatch",
+          "expected": "Analytics",
+          "actual": "QA Intelligence"
+        },
+        {
+          "type": "missing_analytics_element",
+          "element": "Analytics dashboard",
+          "selector": "[data-testid=\"analytics-dashboard\"]"
+        },
+        {
+          "type": "missing_analytics_element",
+          "element": "Metric cards",
+          "selector": ".metric-card"
+        },
+        {
+          "type": "missing_analytics_element",
+          "element": "Chart containers",
+          "selector": ".chart-container"
+        },
+        {
+          "type": "missing_analytics_element",
+          "element": "Date filters",
+          "selector": "[data-testid=\"date-filter\"]"
+        }
+      ],
+      "elements_verified": [
+        "Navigation: nav",
+        "Found 35: Charts/visualizations"
+      ]
+    },
+    {
+      "page": "AI Assistant",
+      "timestamp": "2025-09-02T11:58:42.604903",
+      "url": "http://localhost:3000/ai-assistant",
+      "title": "QA Intelligence",
+      "issues": [
+        {
+          "type": "title_mismatch",
+          "expected": "AI Assistant",
+          "actual": "QA Intelligence"
+        },
+        {
+          "type": "missing_ai_element",
+          "element": "Chat interface",
+          "selector": "[data-testid=\"chat-interface\"]"
+        },
+        {
+          "type": "missing_ai_element",
+          "element": "Message input",
+          "selector": "[data-testid=\"message-input\"]"
+        },
+        {
+          "type": "missing_ai_element",
+          "element": "Chat messages",
+          "selector": ".chat-message"
+        },
+        {
+          "type": "missing_ai_element",
+          "element": "AI suggestions",
+          "selector": ".ai-suggestions"
+        },
+        {
+          "type": "missing_ai_element",
+          "element": "Send button",
+          "selector": "button[type=\"submit\"], .send-button"
+        }
+      ],
+      "elements_verified": [
+        "Navigation: nav"
+      ]
+    }
+  ],
+  "issues_found": [],
+  "scheduler_tests": [
+    {
+      "page": "Scheduler",
+      "timestamp": "2025-09-02T11:58:39.951195",
+      "url": "http://localhost:3000/scheduler",
+      "title": "QA Intelligence",
+      "issues": [
+        {
+          "type": "title_mismatch",
+          "expected": "Scheduler",
+          "actual": "QA Intelligence"
+        },
+        {
+          "type": "missing_scheduler_element",
+          "element": "Create schedule button",
+          "selector": "[data-testid=\"create-schedule\"]",
+          "severity": "high"
+        },
+        {
+          "type": "missing_scheduler_element",
+          "element": "Schedule list",
+          "selector": "[data-testid=\"schedule-list\"]",
+          "severity": "high"
+        },
+        {
+          "type": "missing_scheduler_element",
+          "element": "Schedule form",
+          "selector": "[data-testid=\"schedule-form\"]",
+          "severity": "high"
+        },
+        {
+          "type": "missing_scheduler_element",
+          "element": "Schedule cards",
+          "selector": ".schedule-card",
+          "severity": "high"
+        },
+        {
+          "type": "missing_scheduler_element",
+          "element": "Schedule status indicators",
+          "selector": ".schedule-status",
+          "severity": "high"
+        },
+        {
+          "type": "missing_scheduler_element",
+          "element": "Test suite selector",
+          "selector": "select[name=\"testSuite\"], [data-testid=\"test-suite-selector\"]",
+          "severity": "high"
+        },
+        {
+          "type": "scheduler_form_not_opening",
+          "message": "Schedule creation form did not open",
+          "severity": "high"
+        }
+      ],
+      "elements_verified": [
+        "Navigation: nav"
+      ]
+    }
+  ],
+  "test_bank_tests": [
+    {
+      "page": "Test Bank",
+      "timestamp": "2025-09-02T11:58:39.257695",
+      "url": "http://localhost:3000/test-bank",
+      "title": "QA Intelligence",
+      "issues": [
+        {
+          "type": "title_mismatch",
+          "expected": "Test Bank",
+          "actual": "QA Intelligence"
+        },
+        {
+          "type": "missing_critical_element",
+          "element": "Test suite list",
+          "selector": "[data-testid=\"test-suite-list\"]",
+          "severity": "high"
+        },
+        {
+          "type": "missing_critical_element",
+          "element": "Test filtering options",
+          "selector": "[data-testid=\"test-filter\"]",
+          "severity": "high"
+        },
+        {
+          "type": "missing_critical_element",
+          "element": "Create test button",
+          "selector": "[data-testid=\"create-test\"]",
+          "severity": "high"
+        },
+        {
+          "type": "missing_critical_element",
+          "element": "Test suite cards",
+          "selector": ".test-suite-card",
+          "severity": "high"
+        },
+        {
+          "type": "missing_critical_element",
+          "element": "Test count display",
+          "selector": ".test-count",
+          "severity": "high"
+        },
+        {
+          "type": "no_test_suites",
+          "message": "No test suites found to interact with",
+          "severity": "high"
+        },
+        {
+          "type": "missing_search",
+          "message": "Search functionality not found"
+        }
+      ],
+      "elements_verified": [
+        "Navigation: nav",
+        "Found 1: Test search functionality"
+      ]
+    }
+  ],
+  "summary": {
+    "total_pages_tested": 6,
+    "total_issues_found": 36,
+    "critical_issues": 13,
+    "scheduler_issues": 8,
+    "test_bank_issues": 8,
+    "status": "FAIL_CRITICAL"
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "type": "plan",
+  "project": "WeSign-Demo-Suite",
+  "version": "v1.2", 
+  "timestamp": "2025-09-08T13:49:00Z",
+  "owner": "Claude",
+  "goal": "Fix the 5 extremely weak tests with proper thresholds",
+  "priority": "HIGH",
+  "steps": [
+    {
+      "id": "WEAK-01",
+      "desc": "Fix CONN-04: Page Load Performance - Tighten performance thresholds",
+      "tools": ["edit"],
+      "success": "Test fails for genuinely slow-loading pages",
+      "details": {
+        "current_problem": "15-second load time tolerance is unacceptably slow",
+        "location": "Line 87 in tests/wesign-demo-suite.spec.ts",
+        "current_threshold": "15000ms (15 seconds)",
+        "recommended_threshold": "3000ms (3 seconds)",
+        "fix_strategy": "Implement tiered performance validation",
+        "new_logic": {
+          "excellent": "< 1000ms - Log as excellent performance",
+          "good": "1000ms - 3000ms - Pass with warning",
+          "poor": "3000ms - 5000ms - Fail with performance warning",
+          "unacceptable": "> 5000ms - Hard fail",
+          "assertion": "expect(loadTime).toBeLessThan(3000) // 3 seconds max for good UX"
+        },
+        "implementation": {
+          "step_1": "Change threshold from 15000ms to 3000ms",
+          "step_2": "Add performance tier logging (excellent/good/poor)",
+          "step_3": "Include Core Web Vitals measurement if possible",
+          "step_4": "Add soft warning for 1000-3000ms range"
+        }
+      }
+    },
+    {
+      "id": "WEAK-02",
+      "desc": "Fix CONN-05: Network Resources Loading - Require high success rate", 
+      "tools": ["edit"],
+      "success": "Test requires 90%+ resource loading success",
+      "details": {
+        "current_problem": ">50% failure rate acceptable (too permissive)",
+        "location": "Line 112 in tests/wesign-demo-suite.spec.ts",
+        "current_logic": "resourcesLoaded > resourcesFailed (51% pass rate)",
+        "recommended_logic": "resourcesLoaded >= (totalResources * 0.9) (90% pass rate)",
+        "fix_strategy": "Implement strict resource loading validation",
+        "new_logic": {
+          "total_resources": "resourcesLoaded + resourcesFailed",
+          "success_rate": "resourcesLoaded / totalResources", 
+          "minimum_success": "90% (0.9)",
+          "assertion": "expect(successRate).toBeGreaterThanOrEqual(0.9)"
+        },
+        "implementation": {
+          "step_1": "Calculate total resources and success rate",
+          "step_2": "Set minimum 90% success rate requirement",
+          "step_3": "Log critical vs non-critical resource failures",
+          "step_4": "Fail test if critical resources fail regardless of percentage"
+        }
+      }
+    },
+    {
+      "id": "WEAK-03",
+      "desc": "Fix UI-03: Content Areas Detection - Validate meaningful content",
+      "tools": ["edit"],
+      "success": "Test validates content quality, not just HTML structure",
+      "details": {
+        "current_problem": "Every HTML page passes (counts basic HTML elements)",
+        "location": "Line 196 in tests/wesign-demo-suite.spec.ts",
+        "current_logic": "Counts divs, paragraphs, headers (always present)",
+        "recommended_logic": "Validate meaningful WeSign content areas",
+        "fix_strategy": "Check for specific WeSign content structures",
+        "new_logic": {
+          "main_content": "Verify main content area exists and has substance", 
+          "navigation": "Check for proper site navigation structure",
+          "branding": "Validate WeSign branding/logo presence",
+          "functional_content": "Ensure content supports WeSign workflows",
+          "assertion": "expect(meaningfulContentAreas).toBeGreaterThan(2)"
+        },
+        "implementation": {
+          "step_1": "Look for WeSign-specific content areas (e.g., '.document-area', '.signature-panel')",
+          "step_2": "Validate content has minimum word count/substance",
+          "step_3": "Check for proper semantic HTML structure",
+          "step_4": "Verify content supports user workflows, not just placeholder text"
+        }
+      }
+    },
+    {
+      "id": "WEAK-04",
+      "desc": "Fix CONN-03: WeSign API Endpoints Health - Require 80%+ endpoint success",
+      "tools": ["edit"],
+      "success": "Test requires majority of endpoints healthy with 2xx responses",
+      "details": {
+        "current_problem": "Only 33% endpoint success needed, 400 errors count as healthy",
+        "location": "Line 72 in tests/wesign-demo-suite.spec.ts",
+        "current_logic": "healthyEndpoints > 0 (any 1 endpoint with <500 status)",
+        "recommended_logic": "80%+ endpoints with 2xx status codes",
+        "fix_strategy": "Implement strict API health validation",
+        "new_logic": {
+          "healthy_threshold": "status >= 200 && status < 300 (2xx only)",
+          "minimum_success": "80% of endpoints must be healthy",
+          "critical_endpoints": "Mark essential endpoints that must always work",
+          "assertion": "expect(healthyEndpoints / totalEndpoints).toBeGreaterThanOrEqual(0.8)"
+        },
+        "implementation": {
+          "step_1": "Only count 2xx responses as healthy (not 400s)",
+          "step_2": "Require 80% endpoint success rate", 
+          "step_3": "Add critical endpoint designation (login, main must always work)",
+          "step_4": "Log specific endpoint failures for debugging"
+        }
+      }
+    },
+    {
+      "id": "WEAK-05",
+      "desc": "Fix BUSINESS-01: WeSign Service Availability - Require 80%+ service availability",
+      "tools": ["edit"], 
+      "success": "Test requires majority of critical services available",
+      "details": {
+        "current_problem": "Only 33% service availability needed",
+        "location": "Line 444 in tests/wesign-demo-suite.spec.ts",
+        "current_logic": "availableServices > 0 (any 1 of 3 services)",
+        "recommended_logic": "80%+ of critical services must be available",
+        "fix_strategy": "Implement business-critical service validation",
+        "new_logic": {
+          "critical_services": "Main, Login, Dashboard must all be available",
+          "optional_services": "Secondary features can have some tolerance",
+          "minimum_availability": "80% overall, 100% for critical services",
+          "assertion": "expect(criticalServicesAvailable).toBe(criticalServices.length) && expect(totalAvailability).toBeGreaterThanOrEqual(0.8)"
+        },
+        "implementation": {
+          "step_1": "Classify services as critical vs optional",
+          "step_2": "Require 100% availability for critical services (Main, Login)",
+          "step_3": "Allow 80% availability for overall service health",
+          "step_4": "Only count 2xx responses as available services"
+        }
+      }
+    }
+  ],
+  "constraints": [
+    "Maintain realistic expectations for production environments",
+    "Provide clear failure messages indicating which thresholds were not met",
+    "Allow for network variability while maintaining quality standards", 
+    "Preserve WeSign-specific business requirements"
+  ],
+  "rollback_plan": "Keep original thresholds commented out for A/B comparison",
+  "estimated_duration": "3-4 hours",
+  "success_criteria": [
+    "Tests fail when performance/availability genuinely degrades",
+    "Thresholds align with modern web performance standards",
+    "Business-critical services are properly prioritized",
+    "Clear failure messages help identify specific issues"
+  ],
+  "external_id": "WeSign-Demo-Suite:v1.2:plan:weak-test-fixes"
+}

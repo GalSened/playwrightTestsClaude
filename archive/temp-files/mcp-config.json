@@ -1,0 +1,52 @@
+{
+  "servers": {
+    "serena": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server",
+        "--context",
+        "ide-assistant",
+        "--project",
+        "C:/Users/gals/Desktop/playwrightTestsClaude"
+      ],
+      "env": {
+        "SERENA_DISABLE_SHELL": "1"
+      }
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ],
+      "env": {
+        "PWDEBUG": "0"
+      }
+    },
+    "browser-tools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@agentdeskai/browser-tools-mcp@latest"
+      ]
+    },
+    "openmemory": {
+      "serverUrl": "http://localhost:8765/mcp/claude/sse/qa-intelligence",
+      "capabilities": {
+        "stream": true
+      }
+    }
+  },
+  "environment": {
+    "NODE_ENV": "development",
+    "QA_INTELLIGENCE_PORT": "8081",
+    "FRONTEND_PORT": "3000"
+  },
+  "logging": {
+    "level": "info",
+    "format": "json"
+  }
+}

@@ -1,0 +1,3638 @@
+{
+  "timestamp": "2025-09-14T08:51:30.328Z",
+  "strategy": {
+    "strategy": "keep_primary_version",
+    "reasoning": "Keep the main version, remove converted/working variants",
+    "rules": [
+      {
+        "priority": 1,
+        "keep": "base filename without suffix",
+        "remove": [
+          "_converted.py",
+          "_working.py",
+          "_backup.py"
+        ],
+        "reason": "Base files are typically the most stable"
+      },
+      {
+        "priority": 2,
+        "keep": "_working.py versions if no base exists",
+        "remove": [
+          "_converted.py",
+          "_backup.py"
+        ],
+        "reason": "Working versions are functional"
+      },
+      {
+        "priority": 3,
+        "keep": "_converted.py versions only if others missing",
+        "remove": [
+          "_backup.py"
+        ],
+        "reason": "Converted versions as last resort"
+      }
+    ]
+  },
+  "duplicatePatterns": {
+    "tests/auth/test_login.py": {
+      "baseName": "tests/auth/test_login.py",
+      "variants": [
+        {
+          "filePath": "tests/auth/test_login.py",
+          "id": "auth_test_login.py_test_login_with_valid_credentials_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_with_valid_credentials_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_with_valid_credentials_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login.py",
+          "id": "auth_test_login.py_test_login_with_basic_user_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_with_basic_user_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_with_basic_user_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login.py",
+          "id": "auth_test_login.py_test_login_with_invalid_credentials_failure",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_with_invalid_credentials_failure",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_with_invalid_credentials_failure",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login.py",
+          "id": "auth_test_login.py_test_login_with_empty_credentials_validation",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_with_empty_credentials_validation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_with_empty_credentials_validation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login.py",
+          "id": "auth_test_login.py_test_login_with_empty_email_validation",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_with_empty_email_validation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_with_empty_email_validation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login.py",
+          "id": "auth_test_login.py_test_login_with_empty_password_validation",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_with_empty_password_validation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_with_empty_password_validation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login.py",
+          "id": "auth_test_login.py_test_login_english_interface",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_english_interface",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_english_interface",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login.py",
+          "id": "auth_test_login.py_test_login_hebrew_interface",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_hebrew_interface",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_hebrew_interface",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login.py",
+          "id": "auth_test_login.py_test_logout_functionality",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_logout_functionality",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_logout_functionality",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login.py",
+          "id": "auth_test_login.py_test_login_different_user_types",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_different_user_types",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_different_user_types",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login.py",
+          "id": "auth_test_login.py_test_forgot_password_functionality",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_forgot_password_functionality",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_forgot_password_functionality",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login.py",
+          "id": "auth_test_login.py_test_login_with_sql_injection_attempt",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_with_sql_injection_attempt",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_with_sql_injection_attempt",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login.py",
+          "id": "auth_test_login.py_test_login_performance",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_performance",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_performance",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login.py",
+          "id": "auth_test_login.py_test_session_persistence_after_page_refresh",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_session_persistence_after_page_refresh",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_session_persistence_after_page_refresh",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login.py",
+          "id": "auth_test_login.py_test_concurrent_sessions_handling",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_concurrent_sessions_handling",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_concurrent_sessions_handling",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login.py",
+          "id": "auth_test_login.py_test_authentication_state_persistence",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_authentication_state_persistence",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_authentication_state_persistence",
+          "isBase": false
+        }
+      ],
+      "recommendedKeep": {
+        "filePath": "tests/auth/test_login.py",
+        "id": "auth_test_login.py_test_login_with_valid_credentials_success",
+        "isBase": true
+      },
+      "recommendedRemove": [
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_with_valid_credentials_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_with_basic_user_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_with_invalid_credentials_failure",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_with_empty_credentials_validation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_with_empty_email_validation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_with_empty_password_validation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_english_interface",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_hebrew_interface",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_logout_functionality",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_different_user_types",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_forgot_password_functionality",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_with_sql_injection_attempt",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_login_performance",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_session_persistence_after_page_refresh",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_concurrent_sessions_handling",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_working.py",
+          "id": "auth_test_login_working.py_test_authentication_state_persistence",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_with_valid_credentials_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_with_basic_user_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_with_invalid_credentials_failure",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_with_empty_credentials_validation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_with_empty_email_validation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_with_empty_password_validation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_english_interface",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_hebrew_interface",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_logout_functionality",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_different_user_types",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_forgot_password_functionality",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_with_sql_injection_attempt",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_login_performance",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_session_persistence_after_page_refresh",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_concurrent_sessions_handling",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/auth/test_login_converted.py",
+          "id": "auth_test_login_converted.py_test_authentication_state_persistence",
+          "isBase": false
+        }
+      ]
+    },
+    "tests/documents/test_document_editing.py": {
+      "baseName": "tests/documents/test_document_editing.py",
+      "variants": [
+        {
+          "filePath": "tests/documents/test_document_editing.py",
+          "id": "documents_test_document_editing.py_test_add_signature_field_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_add_signature_field_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_editing.py",
+          "id": "documents_test_document_editing.py_test_add_multiple_field_types",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_add_multiple_field_types",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_editing.py",
+          "id": "documents_test_document_editing.py_test_add_all_field_types_bulk",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_add_all_field_types_bulk",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_editing.py",
+          "id": "documents_test_document_editing.py_test_add_fields_multiple_pages",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_add_fields_multiple_pages",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_editing.py",
+          "id": "documents_test_document_editing.py_test_change_document_name_during_editing",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_change_document_name_during_editing",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_editing.py",
+          "id": "documents_test_document_editing.py_test_configure_field_properties",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_configure_field_properties",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_editing.py",
+          "id": "documents_test_document_editing.py_test_delete_field_from_document",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_delete_field_from_document",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_editing.py",
+          "id": "documents_test_document_editing.py_test_complete_document_editing_workflow",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_complete_document_editing_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_editing.py",
+          "id": "documents_test_document_editing.py_test_cancel_document_editing_workflow",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_cancel_document_editing_workflow",
+          "isBase": false
+        }
+      ],
+      "recommendedKeep": {
+        "filePath": "tests/documents/test_document_editing.py",
+        "id": "documents_test_document_editing.py_test_add_signature_field_success",
+        "isBase": true
+      },
+      "recommendedRemove": [
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_add_signature_field_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_add_multiple_field_types",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_add_all_field_types_bulk",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_add_fields_multiple_pages",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_change_document_name_during_editing",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_configure_field_properties",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_delete_field_from_document",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_complete_document_editing_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_editing_converted.py",
+          "id": "documents_test_document_editing_converted.py_test_cancel_document_editing_workflow",
+          "isBase": false
+        }
+      ]
+    },
+    "tests/documents/test_document_management.py": {
+      "baseName": "tests/documents/test_document_management.py",
+      "variants": [
+        {
+          "filePath": "tests/documents/test_document_management.py",
+          "id": "documents_test_document_management.py_test_upload_pdf_document_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_upload_pdf_document_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management.py",
+          "id": "documents_test_document_management.py_test_upload_multiple_file_types_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_upload_multiple_file_types_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management.py",
+          "id": "documents_test_document_management.py_test_upload_document_with_unique_name",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_upload_document_with_unique_name",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management.py",
+          "id": "documents_test_document_management.py_test_view_document_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_view_document_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management.py",
+          "id": "documents_test_document_management.py_test_download_document_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_download_document_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management.py",
+          "id": "documents_test_document_management.py_test_delete_document_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_delete_document_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management.py",
+          "id": "documents_test_document_management.py_test_document_status_validation",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_document_status_validation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management.py",
+          "id": "documents_test_document_management.py_test_bulk_document_upload",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_bulk_document_upload",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management.py",
+          "id": "documents_test_document_management.py_test_select_all_documents",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_select_all_documents",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management.py",
+          "id": "documents_test_document_management.py_test_bulk_delete_documents",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_bulk_delete_documents",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management.py",
+          "id": "documents_test_document_management.py_test_search_documents_by_name",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_search_documents_by_name",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management.py",
+          "id": "documents_test_document_management.py_test_filter_documents_by_status",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_filter_documents_by_status",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management.py",
+          "id": "documents_test_document_management.py_test_replace_recipient_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_replace_recipient_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management.py",
+          "id": "documents_test_document_management.py_test_invalid_file_upload_handling",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_invalid_file_upload_handling",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management.py",
+          "id": "documents_test_document_management.py_test_large_file_upload_handling",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_large_file_upload_handling",
+          "isBase": false
+        }
+      ],
+      "recommendedKeep": {
+        "filePath": "tests/documents/test_document_management.py",
+        "id": "documents_test_document_management.py_test_upload_pdf_document_success",
+        "isBase": true
+      },
+      "recommendedRemove": [
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_upload_pdf_document_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_upload_multiple_file_types_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_upload_document_with_unique_name",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_view_document_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_download_document_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_delete_document_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_document_status_validation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_bulk_document_upload",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_select_all_documents",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_bulk_delete_documents",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_search_documents_by_name",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_filter_documents_by_status",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_replace_recipient_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_invalid_file_upload_handling",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/documents/test_document_management_converted.py",
+          "id": "documents_test_document_management_converted.py_test_large_file_upload_handling",
+          "isBase": false
+        }
+      ]
+    },
+    "tests/bulk_operations/test_bulk_operations.py": {
+      "baseName": "tests/bulk_operations/test_bulk_operations.py",
+      "variants": [
+        {
+          "filePath": "tests/bulk_operations/test_bulk_operations.py",
+          "id": "bulk_operations_test_bulk_operations.py_test_bulk_document_upload",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/bulk_operations/test_bulk_operations.py",
+          "id": "bulk_operations_test_bulk_operations.py_test_bulk_document_signing",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/bulk_operations/test_bulk_operations.py",
+          "id": "bulk_operations_test_bulk_operations.py_test_bulk_contact_creation",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/bulk_operations/test_bulk_operations.py",
+          "id": "bulk_operations_test_bulk_operations.py_test_bulk_report_generation",
+          "isBase": true
+        }
+      ],
+      "recommendedKeep": {
+        "filePath": "tests/bulk_operations/test_bulk_operations.py",
+        "id": "bulk_operations_test_bulk_operations.py_test_bulk_document_upload",
+        "isBase": true
+      },
+      "recommendedRemove": []
+    },
+    "tests/signing/test_advanced_self_signing.py": {
+      "baseName": "tests/signing/test_advanced_self_signing.py",
+      "variants": [
+        {
+          "filePath": "tests/signing/test_advanced_self_signing.py",
+          "id": "signing_test_advanced_self_signing.py_test_invalid_file_upload_handling",
+          "isBase": true
+        }
+      ],
+      "recommendedKeep": {
+        "filePath": "tests/signing/test_advanced_self_signing.py",
+        "id": "signing_test_advanced_self_signing.py_test_invalid_file_upload_handling",
+        "isBase": true
+      },
+      "recommendedRemove": []
+    },
+    "tests/signing/test_advanced_others_signing.py": {
+      "baseName": "tests/signing/test_advanced_others_signing.py",
+      "variants": [
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_upload_document_for_others_signing_basic",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_upload_document_for_others_signing_basic",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_document_replacement_during_workflow",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_document_replacement_during_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_upload_multiple_document_formats",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_upload_multiple_document_formats",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_add_single_recipient_email",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_add_single_recipient_email",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_add_single_recipient_sms",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_add_single_recipient_sms",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_add_recipient_with_authentication_otp",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_add_recipient_with_authentication_otp",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_add_multiple_recipients_bulk",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_add_multiple_recipients_bulk",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_mixed_delivery_methods_multiple_recipients",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_mixed_delivery_methods_multiple_recipients",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_configure_sequential_signing_workflow",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_configure_sequential_signing_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_configure_parallel_signing_workflow",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_configure_parallel_signing_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_configure_conditional_signing_workflow",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_configure_conditional_signing_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_send_document_for_signing_immediate",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_send_document_for_signing_immediate",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_send_document_with_scheduling",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_send_document_with_scheduling",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_track_signing_status",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_track_signing_status",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_replace_recipient_during_active_workflow",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_replace_recipient_during_active_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_send_reminder_to_specific_recipient",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_send_reminder_to_specific_recipient",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_complete_others_sign_workflow_single_recipient",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_complete_others_sign_workflow_single_recipient",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_complete_others_sign_workflow_multiple_recipients",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_complete_others_sign_workflow_multiple_recipients",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_complete_workflow_with_document_replacement",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_complete_workflow_with_document_replacement",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_recipients_validation_no_recipients",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_recipients_validation_no_recipients",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_recipients_validation_invalid_email",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_recipients_validation_invalid_email",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_recipients_validation_sms_without_phone",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_recipients_validation_sms_without_phone",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_send_document_without_recipients",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_send_document_without_recipients",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_recipient_count_tracking",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_recipient_count_tracking",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_clear_all_recipients",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_clear_all_recipients",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_many_recipients_performance",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_many_recipients_performance",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing.py",
+          "id": "signing_test_advanced_others_signing.py_test_others_sign_accessibility_features",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_others_sign_accessibility_features",
+          "isBase": false
+        }
+      ],
+      "recommendedKeep": {
+        "filePath": "tests/signing/test_advanced_others_signing.py",
+        "id": "signing_test_advanced_others_signing.py_test_upload_document_for_others_signing_basic",
+        "isBase": true
+      },
+      "recommendedRemove": [
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_upload_document_for_others_signing_basic",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_document_replacement_during_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_upload_multiple_document_formats",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_add_single_recipient_email",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_add_single_recipient_sms",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_add_recipient_with_authentication_otp",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_add_multiple_recipients_bulk",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_mixed_delivery_methods_multiple_recipients",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_configure_sequential_signing_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_configure_parallel_signing_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_configure_conditional_signing_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_send_document_for_signing_immediate",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_send_document_with_scheduling",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_track_signing_status",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_replace_recipient_during_active_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_send_reminder_to_specific_recipient",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_complete_others_sign_workflow_single_recipient",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_complete_others_sign_workflow_multiple_recipients",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_complete_workflow_with_document_replacement",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_recipients_validation_no_recipients",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_recipients_validation_invalid_email",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_recipients_validation_sms_without_phone",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_send_document_without_recipients",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_recipient_count_tracking",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_clear_all_recipients",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_many_recipients_performance",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_advanced_others_signing_converted.py",
+          "id": "signing_test_advanced_others_signing_converted.py_test_others_sign_accessibility_features",
+          "isBase": false
+        }
+      ]
+    },
+    "tests/signing/test_comprehensive_others_signing.py": {
+      "baseName": "tests/signing/test_comprehensive_others_signing.py",
+      "variants": [
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_pdf_single_recipient_draw_signature",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_single_recipient_draw_signature",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_pdf_single_recipient_graphic_signature",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_single_recipient_graphic_signature",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_pdf_single_recipient_initials",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_single_recipient_initials",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_pdf_multiple_recipients_sequential",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_multiple_recipients_sequential",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_pdf_multiple_recipients_parallel",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_multiple_recipients_parallel",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_pdf_bulk_recipients_email",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_bulk_recipients_email",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_pdf_bulk_recipients_sms",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_bulk_recipients_sms",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_pdf_mixed_delivery_methods",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_mixed_delivery_methods",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_word_single_recipient_draw",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_word_single_recipient_draw",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_word_multiple_recipients_sequential",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_word_multiple_recipients_sequential",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_word_bulk_recipients",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_word_bulk_recipients",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_word_complex_fields_placement",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_word_complex_fields_placement",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_excel_single_recipient",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_excel_single_recipient",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_excel_multiple_worksheets",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_excel_multiple_worksheets",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_excel_bulk_recipients",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_excel_bulk_recipients",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_png_single_recipient",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_png_single_recipient",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_jpg_multiple_recipients",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_jpg_multiple_recipients",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_image_high_resolution",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_image_high_resolution",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_pdf_hebrew_interface",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_hebrew_interface",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_hebrew_recipient_names",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_hebrew_recipient_names",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_rtl_text_support",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_rtl_text_support",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_conditional_workflow",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_conditional_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_approval_workflow",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_approval_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_escalation_workflow",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_escalation_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_deadline_management",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_deadline_management",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_document_replacement",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_document_replacement",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_version_control",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_version_control",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_large_document_performance",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_large_document_performance",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_recipient_replacement",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_recipient_replacement",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_recipient_delegation",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_recipient_delegation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_recipient_groups",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_recipient_groups",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_dynamic_recipient_addition",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_dynamic_recipient_addition",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_email_customization",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_email_customization",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_sms_customization",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_sms_customization",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_reminder_scheduling",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_reminder_scheduling",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_notification_preferences",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_notification_preferences",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_otp_verification",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_otp_verification",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_identity_verification",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_identity_verification",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_access_code_protection",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_access_code_protection",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_ip_restriction",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_ip_restriction",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_webhook_integration",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_webhook_integration",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_api_workflow",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_api_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_third_party_integration",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_third_party_integration",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_invalid_email_handling",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_invalid_email_handling",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_invalid_phone_handling",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_invalid_phone_handling",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_network_interruption_recovery",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_network_interruption_recovery",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_browser_compatibility",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_browser_compatibility",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_mobile_device_support",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_mobile_device_support",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_concurrent_sessions",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_concurrent_sessions",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_high_volume_processing",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_high_volume_processing",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_memory_optimization",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_memory_optimization",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_audit_trail_generation",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_audit_trail_generation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_compliance_validation",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_compliance_validation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_legal_validity_verification",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_legal_validity_verification",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_timestamp_accuracy",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_timestamp_accuracy",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_field_validation_rules",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_field_validation_rules",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_calculated_fields",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_calculated_fields",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_conditional_fields",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_conditional_fields",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_field_dependencies",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_field_dependencies",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_multi_language_support",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_multi_language_support",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_currency_localization",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_currency_localization",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_date_format_localization",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_date_format_localization",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_timezone_handling",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_timezone_handling",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_template_based_workflow",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_template_based_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_template_customization",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_template_customization",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_template_sharing",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_template_sharing",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_analytics_tracking",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_analytics_tracking",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_completion_reporting",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_completion_reporting",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing.py",
+          "id": "signing_test_comprehensive_others_signing.py_test_others_sign_performance_metrics",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_performance_metrics",
+          "isBase": false
+        }
+      ],
+      "recommendedKeep": {
+        "filePath": "tests/signing/test_comprehensive_others_signing.py",
+        "id": "signing_test_comprehensive_others_signing.py_test_others_sign_pdf_single_recipient_draw_signature",
+        "isBase": true
+      },
+      "recommendedRemove": [
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_single_recipient_draw_signature",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_single_recipient_graphic_signature",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_single_recipient_initials",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_multiple_recipients_sequential",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_multiple_recipients_parallel",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_bulk_recipients_email",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_bulk_recipients_sms",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_mixed_delivery_methods",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_word_single_recipient_draw",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_word_multiple_recipients_sequential",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_word_bulk_recipients",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_word_complex_fields_placement",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_excel_single_recipient",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_excel_multiple_worksheets",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_excel_bulk_recipients",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_png_single_recipient",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_jpg_multiple_recipients",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_image_high_resolution",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_pdf_hebrew_interface",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_hebrew_recipient_names",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_rtl_text_support",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_conditional_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_approval_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_escalation_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_deadline_management",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_document_replacement",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_version_control",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_large_document_performance",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_recipient_replacement",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_recipient_delegation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_recipient_groups",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_dynamic_recipient_addition",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_email_customization",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_sms_customization",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_reminder_scheduling",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_notification_preferences",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_otp_verification",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_identity_verification",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_access_code_protection",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_ip_restriction",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_webhook_integration",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_api_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_third_party_integration",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_invalid_email_handling",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_invalid_phone_handling",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_network_interruption_recovery",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_browser_compatibility",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_mobile_device_support",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_concurrent_sessions",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_high_volume_processing",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_memory_optimization",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_audit_trail_generation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_compliance_validation",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_legal_validity_verification",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_timestamp_accuracy",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_field_validation_rules",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_calculated_fields",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_conditional_fields",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_field_dependencies",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_multi_language_support",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_currency_localization",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_date_format_localization",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_timezone_handling",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_template_based_workflow",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_template_customization",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_template_sharing",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_analytics_tracking",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_completion_reporting",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_others_signing_converted.py",
+          "id": "signing_test_comprehensive_others_signing_converted.py_test_others_sign_performance_metrics",
+          "isBase": false
+        }
+      ]
+    },
+    "tests/signing/test_comprehensive_self_signing.py": {
+      "baseName": "tests/signing/test_comprehensive_self_signing.py",
+      "variants": [
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_pdf_draw_signature_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pdf_draw_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_pdf_graphic_signature_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pdf_graphic_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_pdf_initials_signature_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pdf_initials_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_pdf_type_signature_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pdf_type_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_pdf_multiple_signature_fields_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pdf_multiple_signature_fields_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_pdf_large_document_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pdf_large_document_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_pdf_password_protected_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pdf_password_protected_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_word_draw_signature_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_word_draw_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_word_graphic_signature_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_word_graphic_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_word_initials_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_word_initials_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_word_multiple_pages_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_word_multiple_pages_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_word_complex_formatting_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_word_complex_formatting_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_word_embedded_objects_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_word_embedded_objects_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_excel_draw_signature_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_excel_draw_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_excel_graphic_signature_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_excel_graphic_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_excel_initials_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_excel_initials_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_excel_multiple_worksheets_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_excel_multiple_worksheets_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_excel_protected_worksheets_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_excel_protected_worksheets_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_excel_macros_enabled_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_excel_macros_enabled_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_png_image_draw_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_png_image_draw_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_jpg_image_graphic_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_jpg_image_graphic_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_gif_image_initials_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_gif_image_initials_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_high_resolution_image_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_high_resolution_image_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_multiple_image_formats_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_multiple_image_formats_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_pdf_hebrew_interface_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pdf_hebrew_interface_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_word_hebrew_interface_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_word_hebrew_interface_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_excel_hebrew_interface_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_excel_hebrew_interface_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_hebrew_text_content_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_hebrew_text_content_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_rtl_text_support_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_rtl_text_support_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_biometric_signature_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_biometric_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_voice_signature_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_voice_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_handwritten_recognition_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_handwritten_recognition_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_pressure_sensitive_signature_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pressure_sensitive_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_field_boundary_validation_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_field_boundary_validation_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_field_overlap_detection_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_field_overlap_detection_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_precise_field_positioning_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_precise_field_positioning_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_auto_field_placement_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_auto_field_placement_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_field_resize_functionality_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_field_resize_functionality_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_two_factor_authentication_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_two_factor_authentication_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_otp_verification_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_otp_verification_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_digital_certificate_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_digital_certificate_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_biometric_authentication_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_biometric_authentication_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_ip_whitelist_validation_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_ip_whitelist_validation_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_concurrent_sessions_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_concurrent_sessions_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_memory_optimization_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_memory_optimization_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_processing_speed_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_processing_speed_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_batch_processing_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_batch_processing_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_network_interruption_recovery_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_network_interruption_recovery_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_browser_crash_recovery_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_browser_crash_recovery_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_corrupted_file_handling_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_corrupted_file_handling_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_unsupported_format_error_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_unsupported_format_error_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_file_size_limit_validation_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_file_size_limit_validation_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_api_integration_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_api_integration_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_webhook_notifications_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_webhook_notifications_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_third_party_storage_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_third_party_storage_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_crm_integration_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_crm_integration_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_audit_trail_generation_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_audit_trail_generation_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_legal_validity_verification_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_legal_validity_verification_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_compliance_standards_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_compliance_standards_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_timestamp_accuracy_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_timestamp_accuracy_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_non_repudiation_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_non_repudiation_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_mobile_responsive_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_mobile_responsive_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_tablet_support_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_tablet_support_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_cross_browser_compatibility_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_cross_browser_compatibility_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_touch_screen_support_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_touch_screen_support_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_form_fields_integration_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_form_fields_integration_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_calculated_fields_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_calculated_fields_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_conditional_logic_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_conditional_logic_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_data_validation_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_data_validation_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_custom_branding_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_custom_branding_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_white_label_support_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_white_label_support_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_custom_styling_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_custom_styling_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_usage_analytics_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_usage_analytics_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_completion_tracking_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_completion_tracking_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing.py",
+          "id": "signing_test_comprehensive_self_signing.py_test_self_sign_performance_metrics_success",
+          "isBase": true
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_performance_metrics_success",
+          "isBase": false
+        }
+      ],
+      "recommendedKeep": {
+        "filePath": "tests/signing/test_comprehensive_self_signing.py",
+        "id": "signing_test_comprehensive_self_signing.py_test_self_sign_pdf_draw_signature_success",
+        "isBase": true
+      },
+      "recommendedRemove": [
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pdf_draw_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pdf_graphic_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pdf_initials_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pdf_type_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pdf_multiple_signature_fields_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pdf_large_document_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pdf_password_protected_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_word_draw_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_word_graphic_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_word_initials_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_word_multiple_pages_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_word_complex_formatting_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_word_embedded_objects_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_excel_draw_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_excel_graphic_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_excel_initials_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_excel_multiple_worksheets_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_excel_protected_worksheets_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_excel_macros_enabled_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_png_image_draw_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_jpg_image_graphic_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_gif_image_initials_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_high_resolution_image_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_multiple_image_formats_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pdf_hebrew_interface_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_word_hebrew_interface_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_excel_hebrew_interface_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_hebrew_text_content_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_rtl_text_support_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_biometric_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_voice_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_handwritten_recognition_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_pressure_sensitive_signature_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_field_boundary_validation_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_field_overlap_detection_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_precise_field_positioning_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_auto_field_placement_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_field_resize_functionality_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_two_factor_authentication_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_otp_verification_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_digital_certificate_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_biometric_authentication_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_ip_whitelist_validation_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_concurrent_sessions_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_memory_optimization_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_processing_speed_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_batch_processing_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_network_interruption_recovery_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_browser_crash_recovery_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_corrupted_file_handling_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_unsupported_format_error_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_file_size_limit_validation_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_api_integration_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_webhook_notifications_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_third_party_storage_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_crm_integration_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_audit_trail_generation_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_legal_validity_verification_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_compliance_standards_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_timestamp_accuracy_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_non_repudiation_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_mobile_responsive_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_tablet_support_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_cross_browser_compatibility_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_touch_screen_support_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_form_fields_integration_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_calculated_fields_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_conditional_logic_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_data_validation_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_custom_branding_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_white_label_support_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_custom_styling_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_usage_analytics_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_completion_tracking_success",
+          "isBase": false
+        },
+        {
+          "filePath": "tests/signing/test_comprehensive_self_signing_converted.py",
+          "id": "signing_test_comprehensive_self_signing_converted.py_test_self_sign_performance_metrics_success",
+          "isBase": false
+        }
+      ]
+    },
+    "tests/templates/test_advanced_template_features.py": {
+      "baseName": "tests/templates/test_advanced_template_features.py",
+      "variants": [
+        {
+          "filePath": "tests/templates/test_advanced_template_features.py",
+          "id": "templates_test_advanced_template_features.py_test_template_search_functionality",
+          "isBase": true
+        }
+      ],
+      "recommendedKeep": {
+        "filePath": "tests/templates/test_advanced_template_features.py",
+        "id": "templates_test_advanced_template_features.py_test_template_search_functionality",
+        "isBase": true
+      },
+      "recommendedRemove": []
+    },
+    "tests/templates/test_template_management.py": {
+      "baseName": "tests/templates/test_template_management.py",
+      "variants": [
+        {
+          "filePath": "tests/templates/test_template_management.py",
+          "id": "templates_test_template_management.py_test_template_search_functionality",
+          "isBase": true
+        }
+      ],
+      "recommendedKeep": {
+        "filePath": "tests/templates/test_template_management.py",
+        "id": "templates_test_template_management.py_test_template_search_functionality",
+        "isBase": true
+      },
+      "recommendedRemove": []
+    },
+    "tests/signing/test_advanced_signing_scenarios.py": {
+      "baseName": "tests/signing/test_advanced_signing_scenarios.py",
+      "variants": [
+        {
+          "filePath": "tests/signing/test_advanced_signing_scenarios.py",
+          "id": "signing_test_advanced_signing_scenarios.py_test_bulk_document_signing",
+          "isBase": true
+        }
+      ],
+      "recommendedKeep": {
+        "filePath": "tests/signing/test_advanced_signing_scenarios.py",
+        "id": "signing_test_advanced_signing_scenarios.py_test_bulk_document_signing",
+        "isBase": true
+      },
+      "recommendedRemove": []
+    },
+    "tests/contacts/test_contacts_management.py": {
+      "baseName": "tests/contacts/test_contacts_management.py",
+      "variants": [
+        {
+          "filePath": "tests/contacts/test_contacts_management.py",
+          "id": "contacts_test_contacts_management.py_test_bulk_contact_creation",
+          "isBase": true
+        }
+      ],
+      "recommendedKeep": {
+        "filePath": "tests/contacts/test_contacts_management.py",
+        "id": "contacts_test_contacts_management.py_test_bulk_contact_creation",
+        "isBase": true
+      },
+      "recommendedRemove": []
+    },
+    "tests/reports/test_reports_management.py": {
+      "baseName": "tests/reports/test_reports_management.py",
+      "variants": [
+        {
+          "filePath": "tests/reports/test_reports_management.py",
+          "id": "reports_test_reports_management.py_test_bulk_report_generation",
+          "isBase": true
+        }
+      ],
+      "recommendedKeep": {
+        "filePath": "tests/reports/test_reports_management.py",
+        "id": "reports_test_reports_management.py_test_bulk_report_generation",
+        "isBase": true
+      },
+      "recommendedRemove": []
+    }
+  },
+  "executionPlan": {
+    "phase1": {
+      "name": "Validation Phase",
+      "description": "Validate file existence and syntax",
+      "steps": [
+        "Check all recommended KEEP files exist",
+        "Run syntax validation on KEEP files",
+        "Verify import dependencies",
+        "Test sample execution of key tests"
+      ],
+      "safetyChecks": [
+        "No critical tests in REMOVE list",
+        "All modules still represented",
+        "Risk distribution maintained"
+      ]
+    },
+    "phase2": {
+      "name": "Safe Backup Phase",
+      "description": "Create backups before removal",
+      "steps": [
+        "Create backup directory structure",
+        "Copy all REMOVE files to backup location",
+        "Generate restoration script",
+        "Verify backup integrity"
+      ]
+    },
+    "phase3": {
+      "name": "Deduplication Phase",
+      "description": "Remove duplicate files safely",
+      "steps": [
+        "Remove duplicate files in order of safety",
+        "Update any configuration references",
+        "Refresh test discovery",
+        "Validate final test count"
+      ]
+    },
+    "phase4": {
+      "name": "Validation & Testing Phase",
+      "description": "Ensure system still works",
+      "steps": [
+        "Run full test discovery",
+        "Execute sample from each risk category",
+        "Verify no broken imports",
+        "Performance comparison"
+      ]
+    }
+  },
+  "riskAssessment": {
+    "low": [
+      "Duplicate removal is reversible with backups",
+      "Test IDs are unique (no ID conflicts)",
+      "File patterns are predictable and systematic"
+    ],
+    "medium": [
+      "Some tests might have subtle differences",
+      "Configuration files might reference removed tests",
+      "CI/CD pipelines might need updates"
+    ],
+    "high": [
+      "Manual review needed for critical tests",
+      "Full regression testing recommended after cleanup"
+    ]
+  },
+  "impact": {
+    "filestoRemove": 227,
+    "estimatedTestsToRemove": 148,
+    "finalTestCount": 628,
+    "expectedHealthImprovement": "15-20%"
+  },
+  "recommendations": [
+    "Start with Phase 1 validation to ensure safety",
+    "Create comprehensive backups before any removal",
+    "Remove files gradually, testing after each batch",
+    "Keep monitoring logs during execution",
+    "Have rollback plan ready in case of issues"
+  ]
+}

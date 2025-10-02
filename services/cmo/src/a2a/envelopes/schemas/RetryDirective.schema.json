@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://qa-intelligence.com/schemas/a2a/RetryDirective.schema.json",
+  "title": "Retry Directive Envelope",
+  "description": "Directive to retry a failed task with adjusted parameters",
+  "type": "object",
+  "required": ["meta", "payload"],
+  "properties": {
+    "meta": {
+      "$ref": "EnvelopeMeta.schema.json",
+      "description": "Envelope metadata with type=RetryDirective"
+    },
+    "payload": {
+      "type": "object",
+      "required": ["original_message_id", "retry_strategy"],
+      "properties": {
+        "original_message_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9-]{16,}$",
+          "description": "Message ID of the original failed request"
+        },
+        "retry_strategy": {
+          "type": "string",
+          "enum": [
+            "immediate",
+            "backoff_exponential",
+            "backoff_linear",
+            "adjusted_params",
+            "different_specialist"
+          ],
+          "description": "Retry strategy to apply"
+        },
+        "adjustments": {
+          "type": "object",
+          "properties": {
+            "budget": {
+              "type": "object",
+              "description": "Adjusted budget constraints (e.g., increase max_minutes)"
+            },
+            "inputs": {
+              "type": "object",
+              "description": "Adjusted input parameters"
+            },
+            "preferences": {
+              "type": "object",
+              "description": "Adjusted preferences (e.g., different model, different strategy)"
+            },
+            "target_agent": {
+              "$ref": "AgentId.schema.json",
+              "description": "Different specialist to try (for 'different_specialist' strategy)"
+            }
+          },
+          "description": "Adjustments to apply on retry"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024,
+          "description": "Human-readable reason for retry"
+        },
+        "max_attempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "default": 3,
+          "description": "Maximum total retry attempts"
+        },
+        "delay_ms": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 300000,
+          "description": "Delay before retry in milliseconds (for backoff strategies)"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

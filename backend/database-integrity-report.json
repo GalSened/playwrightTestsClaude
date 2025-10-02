@@ -1,0 +1,227 @@
+{
+  "timestamp": "2025-10-02T03:38:09.218Z",
+  "totalChecks": 15,
+  "passed": 11,
+  "failed": 2,
+  "warnings": 2,
+  "results": [
+    {
+      "check": "Required Tables",
+      "status": "pass",
+      "message": "All 5 required tables exist"
+    },
+    {
+      "check": "Required Columns",
+      "status": "pass",
+      "message": "All 13 required columns exist in tests table"
+    },
+    {
+      "check": "Database Indexes",
+      "status": "pass",
+      "message": "Found 18 indexes on tests table",
+      "details": {
+        "indexes": [
+          "sqlite_autoindex_tests_1",
+          "sqlite_autoindex_tests_2",
+          "idx_tests_category",
+          "idx_tests_file_path",
+          "idx_tests_last_status",
+          "idx_tests_active",
+          "idx_tests_updated_at",
+          "idx_tests_source_type",
+          "idx_tests_module",
+          "idx_tests_status",
+          "idx_tests_priority",
+          "idx_tests_framework",
+          "idx_tests_parent_request",
+          "idx_tests_file_test",
+          "idx_tests_file_exists",
+          "idx_tests_source_directory",
+          "idx_tests_last_file_check",
+          "idx_tests_file_hash"
+        ]
+      }
+    },
+    {
+      "check": "File Path Validity",
+      "status": "pass",
+      "message": "All 3474 test file paths are valid and correctly marked"
+    },
+    {
+      "check": "Orphaned Records",
+      "status": "warning",
+      "message": "Found 1274 tests without matching source directory",
+      "details": {
+        "orphanedCount": 1274
+      }
+    },
+    {
+      "check": "Missing Records",
+      "status": "fail",
+      "message": "Significant discrepancy: 1835 extra files",
+      "details": {
+        "totalFilesScanned": 365,
+        "totalDbRecords": 2200,
+        "difference": -1835
+      }
+    },
+    {
+      "check": "Duplicate Tests",
+      "status": "pass",
+      "message": "No duplicate test records found"
+    },
+    {
+      "check": "File Hash Consistency",
+      "status": "warning",
+      "message": "1274 tests missing file hashes (63.3% have hashes)",
+      "details": {
+        "withHash": 2200,
+        "withoutHash": 1274
+      }
+    },
+    {
+      "check": "Foreign Keys",
+      "status": "pass",
+      "message": "Foreign key constraints are enabled"
+    },
+    {
+      "check": "Category Consistency",
+      "status": "pass",
+      "message": "All tests have categories (21 unique categories)",
+      "details": {
+        "categories": [
+          {
+            "category": "signing",
+            "count": 1184
+          },
+          {
+            "category": "e2e",
+            "count": 636
+          },
+          {
+            "category": "general",
+            "count": 320
+          },
+          {
+            "category": "contacts",
+            "count": 189
+          },
+          {
+            "category": "wesign-signing",
+            "count": 184
+          },
+          {
+            "category": "auth",
+            "count": 129
+          },
+          {
+            "category": "templates",
+            "count": 118
+          },
+          {
+            "category": "wesign-templates",
+            "count": 109
+          },
+          {
+            "category": "documents",
+            "count": 108
+          },
+          {
+            "category": "admin",
+            "count": 104
+          },
+          {
+            "category": "wesign-contacts",
+            "count": 94
+          },
+          {
+            "category": "wesign-auth",
+            "count": 79
+          },
+          {
+            "category": "wesign-documents",
+            "count": 70
+          },
+          {
+            "category": "reports",
+            "count": 48
+          },
+          {
+            "category": "wesign-core",
+            "count": 37
+          },
+          {
+            "category": "wesign-integration",
+            "count": 23
+          },
+          {
+            "category": "wesign-system",
+            "count": 10
+          },
+          {
+            "category": "wesign-reports",
+            "count": 10
+          },
+          {
+            "category": "wesign-profile",
+            "count": 10
+          },
+          {
+            "category": "wesign-bulk-operations",
+            "count": 10
+          },
+          {
+            "category": "api",
+            "count": 2
+          }
+        ]
+      }
+    },
+    {
+      "check": "Nullable Fields",
+      "status": "pass",
+      "message": "All required fields have values"
+    },
+    {
+      "check": "Timestamp Consistency",
+      "status": "pass",
+      "message": "All timestamps are valid and consistent"
+    },
+    {
+      "check": "Status Values",
+      "status": "fail",
+      "message": "Found 638 tests with invalid status values",
+      "details": {
+        "invalidCount": 638
+      }
+    },
+    {
+      "check": "Coverage Calculations",
+      "status": "pass",
+      "message": "Coverage: 18.36%, Pass Rate: 0.00%",
+      "details": {
+        "totalTests": 3474,
+        "executedTests": 638,
+        "passedTests": 0,
+        "failedTests": 0,
+        "notExecuted": 2836,
+        "coverage": "18.36%",
+        "passRate": "0.00%"
+      }
+    },
+    {
+      "check": "Sync Log",
+      "status": "pass",
+      "message": "Database synchronized today (6 total sync operations)",
+      "details": {
+        "totalSyncs": 6,
+        "lastSync": "2025-10-01 23:26:37"
+      }
+    }
+  ],
+  "summary": {
+    "critical": 2,
+    "major": 2,
+    "minor": 0
+  }
+}

@@ -1,0 +1,5 @@
+👀 Setting up self-healing monitoring for: Performance monitoring demo
+⚡ Demonstrating performance monitoring...
+📊 Page load time: 1163ms
+🎯 Page load threshold: 15000ms
+✅ Performance monitoring working correctly

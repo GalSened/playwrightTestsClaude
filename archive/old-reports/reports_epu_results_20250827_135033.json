@@ -1,0 +1,171 @@
+{
+  "test_execution_start": "2025-08-27T13:50:33.128637",
+  "test_results": {
+    "Page Load & Table Rendering": {
+      "status": "PASS",
+      "details": "Rows: 2, Headers: 7/7",
+      "duration": 3.041503667831421,
+      "timestamp": "2025-08-27T13:50:36.888905"
+    },
+    "Run Details Drill-down": {
+      "status": "FAIL",
+      "details": "Failed - Panel: False, Container: False, Summary: False, Timeline: False",
+      "duration": 6.193413019180298,
+      "timestamp": "2025-08-27T13:50:43.082318"
+    },
+    "Tab Navigation in Details Panel": {
+      "status": "FAIL",
+      "details": "Failed - Overview: False, Steps tab: False, Artifacts tab: False",
+      "duration": 1.3018317222595215,
+      "timestamp": "2025-08-27T13:50:44.384149"
+    },
+    "Filtering & Search Functionality": {
+      "status": "PASS",
+      "details": "Status filter: True, Search: True, Clear: True",
+      "duration": 3.4762697219848633,
+      "timestamp": "2025-08-27T13:50:47.860419"
+    },
+    "Results Bar Verification": {
+      "status": "PASS",
+      "details": "Results bars: 2, Valid counts: 2, Visual bars: 2",
+      "duration": 0.16781091690063477,
+      "timestamp": "2025-08-27T13:50:48.028230"
+    },
+    "Action Buttons Functionality": {
+      "status": "PASS",
+      "details": "Row click: False, Actions found: True, Table visible: True",
+      "duration": 1.334528923034668,
+      "timestamp": "2025-08-27T13:50:49.362759"
+    },
+    "Comprehensive Data Validation": {
+      "status": "PASS",
+      "details": "Status: 2, Suite: 2, Environment: 2, Time: 2, Duration: 2, Steps: False",
+      "duration": 1.2847328186035156,
+      "timestamp": "2025-08-27T13:50:50.647492"
+    }
+  },
+  "screenshots": [
+    {
+      "name": "01_initial_load",
+      "filename": "reports_01_initial_load_20250827_135033.png",
+      "path": "artifacts/screenshots/reports_01_initial_load_20250827_135033.png",
+      "description": "Reports page initial load",
+      "timestamp": "2025-08-27T13:50:34.683395"
+    },
+    {
+      "name": "02_details_opened",
+      "filename": "reports_02_details_opened_20250827_135033.png",
+      "path": "artifacts/screenshots/reports_02_details_opened_20250827_135033.png",
+      "description": "Details panel opened",
+      "timestamp": "2025-08-27T13:50:43.082318"
+    },
+    {
+      "name": "03_steps_tab",
+      "filename": "reports_03_steps_tab_20250827_135033.png",
+      "path": "artifacts/screenshots/reports_03_steps_tab_20250827_135033.png",
+      "description": "Test Steps tab opened",
+      "timestamp": "2025-08-27T13:50:44.261466"
+    },
+    {
+      "name": "03_artifacts_tab",
+      "filename": "reports_03_artifacts_tab_20250827_135033.png",
+      "path": "artifacts/screenshots/reports_03_artifacts_tab_20250827_135033.png",
+      "description": "Artifacts tab opened",
+      "timestamp": "2025-08-27T13:50:44.383635"
+    },
+    {
+      "name": "04_status_filtered",
+      "filename": "reports_04_status_filtered_20250827_135033.png",
+      "path": "artifacts/screenshots/reports_04_status_filtered_20250827_135033.png",
+      "description": "Status filtering applied",
+      "timestamp": "2025-08-27T13:50:45.542441"
+    },
+    {
+      "name": "04_search_applied",
+      "filename": "reports_04_search_applied_20250827_135033.png",
+      "path": "artifacts/screenshots/reports_04_search_applied_20250827_135033.png",
+      "description": "Search functionality tested",
+      "timestamp": "2025-08-27T13:50:46.692192"
+    },
+    {
+      "name": "04_filters_cleared",
+      "filename": "reports_04_filters_cleared_20250827_135033.png",
+      "path": "artifacts/screenshots/reports_04_filters_cleared_20250827_135033.png",
+      "description": "Filters cleared",
+      "timestamp": "2025-08-27T13:50:47.860419"
+    },
+    {
+      "name": "05_results_bars",
+      "filename": "reports_05_results_bars_20250827_135033.png",
+      "path": "artifacts/screenshots/reports_05_results_bars_20250827_135033.png",
+      "description": "Results bars verification",
+      "timestamp": "2025-08-27T13:50:48.028230"
+    },
+    {
+      "name": "06_action_buttons",
+      "filename": "reports_06_action_buttons_20250827_135033.png",
+      "path": "artifacts/screenshots/reports_06_action_buttons_20250827_135033.png",
+      "description": "Action buttons tested",
+      "timestamp": "2025-08-27T13:50:49.233902"
+    },
+    {
+      "name": "06_panel_closed",
+      "filename": "reports_06_panel_closed_20250827_135033.png",
+      "path": "artifacts/screenshots/reports_06_panel_closed_20250827_135033.png",
+      "description": "Details panel closed",
+      "timestamp": "2025-08-27T13:50:49.362759"
+    },
+    {
+      "name": "07_data_validation",
+      "filename": "reports_07_data_validation_20250827_135033.png",
+      "path": "artifacts/screenshots/reports_07_data_validation_20250827_135033.png",
+      "description": "Table data validation",
+      "timestamp": "2025-08-27T13:50:49.492168"
+    },
+    {
+      "name": "07_step_details",
+      "filename": "reports_07_step_details_20250827_135033.png",
+      "path": "artifacts/screenshots/reports_07_step_details_20250827_135033.png",
+      "description": "Step details validation",
+      "timestamp": "2025-08-27T13:50:50.647492"
+    },
+    {
+      "name": "08_final_state",
+      "filename": "reports_08_final_state_20250827_135033.png",
+      "path": "artifacts/screenshots/reports_08_final_state_20250827_135033.png",
+      "description": "Final test state",
+      "timestamp": "2025-08-27T13:50:50.762724"
+    }
+  ],
+  "overall_status": "PARTIAL",
+  "epu_compliance": {
+    "page_load_and_table_rendering": true,
+    "run_details_drill_down": false,
+    "tab_navigation_in_details_panel": false,
+    "filtering_and_search_functionality": true,
+    "results_bar_verification": true,
+    "action_buttons_functionality": true,
+    "comprehensive_data_validation": true
+  },
+  "performance_metrics": {},
+  "detailed_findings": [],
+  "test_execution_end": "2025-08-27T13:50:51.000622",
+  "compliance_percentage": 71.42857142857143,
+  "passed_epu_tests": 5,
+  "total_epu_tests": 7,
+  "summary": {
+    "epu_compliance_status": "PARTIAL",
+    "key_findings": [
+      "[PASS] Page loads correctly with table rendering",
+      "[FAIL] Run details drill-down has issues",
+      "[PASS] Filtering and search functionality operational",
+      "[PASS] Results bars display correctly",
+      "[PASS] Action buttons and interactions work"
+    ],
+    "recommendations": [
+      "Fix run details drill-down functionality - ensure proper data-testid attributes",
+      "Implement proper tab navigation in details panel with correct ARIA labels"
+    ],
+    "user_experience_assessment": "GOOD - Most core functionality works, some enhancements needed"
+  }
+}

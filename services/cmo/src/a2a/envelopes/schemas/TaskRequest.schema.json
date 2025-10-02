@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://qa-intelligence.com/schemas/a2a/TaskRequest.schema.json",
+  "title": "Task Request Envelope",
+  "description": "General-purpose task invocation request for any agent",
+  "type": "object",
+  "required": ["meta", "payload"],
+  "properties": {
+    "meta": {
+      "$ref": "EnvelopeMeta.schema.json",
+      "description": "Envelope metadata with type=TaskRequest"
+    },
+    "payload": {
+      "type": "object",
+      "required": ["task", "inputs"],
+      "properties": {
+        "task": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Task identifier (e.g., 'analyze_test_results', 'generate_report', 'run_pipeline')"
+        },
+        "inputs": {
+          "type": "object",
+          "description": "Task-specific input parameters (schema varies by task)"
+        },
+        "context": {
+          "type": "object",
+          "description": "Optional context data for task execution"
+        },
+        "timeout_ms": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 3600000,
+          "description": "Task timeout in milliseconds (1s to 1h)"
+        },
+        "retry_policy": {
+          "type": "object",
+          "properties": {
+            "max_attempts": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "backoff_ms": {
+              "type": "integer",
+              "minimum": 100,
+              "maximum": 60000
+            }
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

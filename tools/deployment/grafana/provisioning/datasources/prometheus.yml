@@ -1,0 +1,23 @@
+# Grafana datasource configuration
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    orgId: 1
+    url: http://prometheus:9090
+    isDefault: true
+    version: 1
+    editable: true
+    jsonData:
+      graphiteVersion: "1.1"
+      tlsAuth: false
+      tlsAuthWithCACert: false
+      tlsSkipVerify: true
+      httpMethod: POST
+      queryTimeout: 60s
+      timeInterval: 5s
+      exemplarTraceIdDestinations:
+        - name: traceID
+          datasourceUid: 'tempo'

@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://qa-intelligence.com/schemas/a2a/SpecialistInvocationRequest.schema.json",
+  "title": "Specialist Invocation Request Envelope",
+  "description": "Request to invoke a specialist agent (e.g., healer, analyzer, reporter)",
+  "type": "object",
+  "required": ["meta", "payload"],
+  "properties": {
+    "meta": {
+      "$ref": "EnvelopeMeta.schema.json",
+      "description": "Envelope metadata with type=SpecialistInvocationRequest"
+    },
+    "payload": {
+      "type": "object",
+      "required": ["task", "inputs", "context_slice", "budget"],
+      "properties": {
+        "task": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Specialist task identifier (e.g., 'heal_selector', 'analyze_coverage', 'generate_report')"
+        },
+        "inputs": {
+          "type": "object",
+          "description": "Task-specific inputs (e.g., {selector: '#submit-btn', error: 'Element not found'})"
+        },
+        "context_slice": {
+          "type": "object",
+          "properties": {
+            "test_results": {
+              "type": "array",
+              "items": {"type": "object"},
+              "description": "Relevant test results for context"
+            },
+            "coverage_data": {
+              "type": "object",
+              "description": "Code coverage information"
+            },
+            "prior_fixes": {
+              "type": "array",
+              "items": {"type": "object"},
+              "description": "Previous healing attempts (healer-only, OPA-gated)"
+            },
+            "repository_context": {
+              "type": "object",
+              "description": "Repository metadata and structure"
+            },
+            "custom": {
+              "type": "object",
+              "description": "Custom context data"
+            }
+          },
+          "description": "Sliced context for specialist (scoped by OPA policies)"
+        },
+        "budget": {
+          "type": "object",
+          "required": ["max_minutes"],
+          "properties": {
+            "max_minutes": {
+              "type": "number",
+              "minimum": 0.1,
+              "maximum": 60,
+              "description": "Maximum execution time in minutes"
+            },
+            "max_tool_calls": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "description": "Maximum number of tool calls (for LLM-based specialists)"
+            },
+            "max_tokens": {
+              "type": "integer",
+              "minimum": 100,
+              "maximum": 1000000,
+              "description": "Maximum tokens for LLM (input + output)"
+            },
+            "max_cost_usd": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 10,
+              "description": "Maximum cost in USD (for LLM API calls)"
+            }
+          },
+          "description": "Execution budget constraints"
+        },
+        "preferences": {
+          "type": "object",
+          "properties": {
+            "model": {
+              "type": "string",
+              "description": "Preferred LLM model (e.g., 'claude-3-5-sonnet-20241022')"
+            },
+            "temperature": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 2,
+              "description": "LLM temperature (creativity vs. determinism)"
+            },
+            "strategy": {
+              "type": "string",
+              "description": "Strategy hint (e.g., 'conservative', 'aggressive', 'experimental')"
+            }
+          },
+          "description": "Optional execution preferences"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

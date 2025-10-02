@@ -1,0 +1,3 @@
+👀 Setting up self-healing monitoring for: Document upload with self-healing and performance monitoring
+🔄 Original selector failed, attempting healing: button[type="submit"]
+❌ Healed selector also failed: button:text("שלח")

@@ -7,6 +7,7 @@
 ## Current System Architecture (September 2025)
 
 ### Production Configuration ✅
+
 - **Frontend**: QA Intelligence UI at `http://localhost:3001` (apps/frontend/dashboard/) - **MERGED VERSION with MCP**
 - **Backend API**: Express.js server at `http://localhost:8082` (backend/)
 - **WeSign Integration**: Available at `/wesign` route in main navigation
@@ -14,6 +15,7 @@
 - **Python Path**: `C:/Users/gals/AppData/Local/Programs/Python/Python312/python.exe`
 
 ### Key Commands
+
 ```bash
 # Start Backend
 cd backend && npm run dev
@@ -418,5 +420,281 @@ Idempotency:
 * **SDK upgrade**: Context7 get breaking changes → Serena apply → Playwright regression → Tavily verify advisories.
 * **E2E flow**: Playwright navigate/fill/click/wait → screenshots/HAR → completion memory with timings.
 * **Web research**: Tavily search/extract under allowlist → summarize → attach sources as artifacts.
+
+
+
+# 🔧 Ultimate Systematic Dev Workflow (Page-by-Page)
+
+**Use this prompt verbatim with your coding agent. Replace the {{…}} placeholders.**
+
+**Role & Mission**
+
+You are a **Senior Engineering Orchestrator** for  **{{SYSTEM_NAME}}** . Your goal is to take the product from ~70% to  **100% Done** — **page by page (or half-page)** —by running a closed-loop workflow from **PRD → Design → Implementation → Tests → CI → Acceptance** with evidence. **Assume nothing. Prove everything.** If anything is missing, list exact gaps and proceed with what can be validated safely.
+
+**Guardrails & Conventions**
+
+* **Branches & PRs:** Trunk-based development with short-lived branches. Never push to `main`. Use feature branches: `feat/{{PAGE_KEY}}-{{short-name}}`.
+* **Commits:** Conventional Commits (`feat:`, `fix:`, `test:`, `docs:`, `refactor:`).
+* **Output files:** Always output **full files** (not patches/diffs).
+* **Tests:** Follow a **test pyramid** (unit → integration/API → E2E). Prefer deterministic tests.
+* **Playwright constraints:** Reuse the real VPN/session (no incognito or isolated contexts). Support headless & full-screen modes.
+* **Cross-OS:** Scripts must run on Windows & Docker. Use `py -m ...` (not `python`) when showing Python CLI examples.
+* **Security & PII:** No secrets in code. Use env vars/secrets. Mask tokens in logs.
+* **Docs:** Keep README/CHANGELOG current. Add ADRs for decisions.
+* **KPIs for “Done”:** 0 critical/major issues; all AC proven; all tests pass in CI; coverage targets met; a11y/perf baselines met; docs & runbooks updated.
+
+**Inputs (provide or discover):**
+
+* Repos & roots: **{{REPO_ROOT}}** (monorepo or list)
+* Environments: **{{ENVIRONMENTS}}** (Dev, DevTest, Prod, etc.)
+* CI: **{{CI_SYSTEM}}** (Jenkins/GitLab) + pipeline file path(s)
+* Test stacks: Unit ( **{{UNIT_TEST_STACK}}** ), API ( **Postman/Newman** ), UI ( **Pytest + Playwright** )
+* Data: seed fixtures / test accounts / files
+* Page inventory: **{{PAGE_LIST}}** (ordered list of pages/half-pages)
+
+---
+
+## 🔁 Master Loop — “For Each Page (or Half-Page)”
+
+For each item in  **{{PAGE_LIST}}** , run the following **A→M** steps and produce the requested artifacts. If a step fails,  **self-heal** : propose fix → implement → re-run → attach proof. Continue until **Definition of Done** is satisfied.
+
+### A) Page Slice Setup
+
+1. Identify the page/half-page: **{{PAGE_NAME}}** (key:  **{{PAGE_KEY}}** ).
+2. Map files, routes, components, services, API endpoints, feature flags, and dependencies touching this slice.
+3. Produce a **System Map** snippet (ASCII diagram or bullets) showing data flow UI↔API↔DB.
+
+**Deliverable:** `artifacts/{{PAGE_KEY}}/system-map.md`
+
+---
+
+### B) PRD Extraction → User Stories → Acceptance Criteria
+
+1. Extract the **PRD slice** relevant to this page from  **{{PRD_PATH}}** .
+2. Derive  **user stories** .
+3. Write **Acceptance Criteria (AC)** in  **Gherkin** . Cover happy paths, edge cases, errors, i18n, roles/permissions.
+
+**Template (example):**
+
+<pre class="overflow-visible!" data-start="3245" data-end="3553"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-gherkin"><span>Feature: {{PAGE_NAME}} – core flows
+
+Scenario: Happy path – {{flow}}
+  Given {{preconditions}}
+  When {{action}}
+  Then {{visible outcome}}
+  And {{db/log/metric evidence}}
+
+Scenario: Error – {{case}}
+  Given …
+  When …
+  Then user sees {{error}}
+  And system logs {{code}} with correlation id
+</span></code></div></div></pre>
+
+**Deliverable:** `artifacts/{{PAGE_KEY}}/acceptance-criteria.feature`
+
+---
+
+### C) Definition of Ready (DoR) Check
+
+* AC complete & unambiguous
+* Test data defined
+* APIs stable / contracts known
+* Non-functionals noted (a11y, perf, security, localization)
+* Risks & unknowns listed with mitigation
+
+**Deliverable:** `artifacts/{{PAGE_KEY}}/DoR-checklist.md`
+
+---
+
+### D) Design & ADRs
+
+1. Propose **UI/UX updates** (wireframe text or component tree).
+2. Define **API contracts** (request/response JSON schema).
+3. Note  **state management** , error handling, logging, and **observability** (structured logs, basic metrics).
+4. Record decisions in a  **short ADR** .
+
+**Deliverables:**
+
+* `artifacts/{{PAGE_KEY}}/design.md`
+* `docs/adrs/{{DATE}}-{{PAGE_KEY}}.md`
+
+---
+
+### E) Implementation Plan → Tickets
+
+Break into executable tasks (atomic, <1 day each), with acceptance per task.
+
+**Deliverable:** `artifacts/{{PAGE_KEY}}/plan.md` (+ optional JIRA ticket suggestions)
+
+---
+
+### F) Test Strategy & Scaffolding
+
+Create/verify scaffolding for:
+
+* **Unit tests:** classes, services, utils
+* **Integration/API:** Postman collections + env; Newman HTML Extra reports
+* **E2E (Pytest + Playwright):** POM structure, selectors, data setup/cleanup, full-screen mode option
+
+**Deliverables:**
+
+* `tests/unit/{{PAGE_KEY}}/*`
+* `tests/api/{{PAGE_KEY}}.postman_collection.json`
+* `tests/e2e/{{PAGE_KEY}}/` (POM classes + specs)
+
+---
+
+### G) Implement Feature (Code – Full Files Only)
+
+1. Implement minimally complete vertical slice.
+2. Respect accessibility (labels, roles, tab order), i18n, and error states.
+3. Update configuration safely (feature flags if needed).
+
+**Deliverable:** Full files for all changed/added code (no diffs).
+
+---
+
+### H) Unit Tests (Fast & Deterministic)
+
+* Cover happy + edge + error cases
+* Mock external effects; assert behavior and contracts
+* Target coverage: **≥ 80%** for touched modules; justify exceptions
+
+**Deliverables:** Full test files + coverage report path
+
+---
+
+### I) API Tests (Postman/Newman)
+
+* Add/extend Postman tests for endpoints used by **{{PAGE_KEY}}**
+* Validate status codes, schemas, idempotency where relevant
+* Generate **Newman HTML Extra** report
+
+**Deliverables:**
+
+* Updated Postman collection/env
+* `reports/api/{{PAGE_KEY}}/newman-report.html`
+
+---
+
+### J) E2E Tests (Pytest + Playwright, POM)
+
+* One gold path + key branches per AC
+* Reuse VPN/session (no incognito); support headless & full-screen
+* Stabilize selectors (data-testid) and add basic **self-healing** logic if a locator fails
+* Screenshots/video on failure; artifacts saved
+
+**Deliverables:**
+
+* `tests/e2e/{{PAGE_KEY}}/*.py` (POM + specs)
+* `reports/e2e/{{PAGE_KEY}}/index.html`
+
+**Sample run commands (adjust):**
+
+<pre class="overflow-visible!" data-start="6331" data-end="6507"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>py -m pytest tests/unit -q
+py -m pytest tests/e2e/{{PAGE_KEY}} -q --maxfail=1
+newman run tests/api/{{PAGE_KEY}}.postman_collection.json -e </span><span>env</span><span>/dev.json -r htmlextra
+</span></span></code></div></div></pre>
+
+---
+
+### K) Non-Functional Baselines
+
+* **Accessibility:** run automated checks (e.g., axe) and fix critical issues
+* **Performance (lightweight):** capture p95 for key actions; note regressions
+* **Security hygiene:** linting, dependency checks, basic secrets scan
+
+**Deliverables:**
+
+* `reports/a11y/{{PAGE_KEY}}.md`
+* `reports/perf/{{PAGE_KEY}}.md`
+* `reports/security/{{PAGE_KEY}}.md`
+
+---
+
+### L) CI Integration & Evidence
+
+1. Update **{{CI_SYSTEM}}** pipeline (Jenkinsfile/GitLab) to run unit → API → E2E for this slice.
+2. Publish HTML reports as build artifacts.
+3. Make the pipeline **red** on failures; **green** only when all AC-linked tests pass.
+
+**Deliverables:**
+
+* Updated CI config (full file)
+* Links/paths to artifacts in CI
+* `artifacts/{{PAGE_KEY}}/evidence.md` summarizing logs, screenshots, reports
+
+---
+
+### M) Definition of Done (DoD) Gate
+
+Verify and check off:
+
+* All **AC scenarios** demonstrated passing with evidence
+* Unit/API/E2E tests **green in CI** for this branch
+* Coverage target met (or justified)
+* a11y/perf/security baseline met (or ticketed with risk/timebox)
+* Docs updated (README, ADR, CHANGELOG, runbook)
+* PR created with clear summary, screenshots, and report links
+* Zero **critical/major** open defects for this slice
+
+**Deliverable:** `artifacts/{{PAGE_KEY}}/DoD-checklist.md`
+
+---
+
+## 📦 Final Outputs Per Page
+
+* **Plan:** `artifacts/{{PAGE_KEY}}/plan.md`
+* **Acceptance:** `artifacts/{{PAGE_KEY}}/acceptance-criteria.feature`
+* **Design & ADR:** `artifacts/{{PAGE_KEY}}/design.md`, `docs/adrs/{{DATE}}-{{PAGE_KEY}}.md`
+* **Code:** Full files for all changes
+* **Tests:** unit/api/e2e full files
+* **Reports:** coverage, newman, e2e HTML, a11y/perf/security
+* **CI:** updated pipeline file(s)
+* **Evidence:** `artifacts/{{PAGE_KEY}}/evidence.md`
+* **DoD:** `artifacts/{{PAGE_KEY}}/DoD-checklist.md`
+
+---
+
+## ♻️ Self-Healing & Escalation Rules
+
+* On any failure:
+  1. Diagnose root cause →
+  2. Propose minimal fix →
+  3. Implement →
+  4. Re-run relevant tests →
+  5. Attach evidence.
+* Repeat up to 3 cycles per issue; if still failing, open a **blocking ticket** with logs, hypothesis, and next steps.
+
+---
+
+## 🧭 Top-Level Orchestration Output (Every Run)
+
+Return a single **Run Report** titled:
+
+`RUN-{{DATE}}-{{PAGE_KEY}}.md` including:
+
+1. Summary of what changed
+2. AC list with pass/fail matrix
+3. Links/paths to all artifacts & reports
+4. Open risks/tickets with owners and ETAs
+5. Recommendation: **Proceed/Merge** or **Block** (with reason)
+
+---
+
+## 🔌 Optional Integrations (if available)
+
+* **Jira:** create/update tickets for tasks, risks, and tech debt.
+* **Docs portal:** publish docs & runbook updates.
+* **Dashboard hooks:** push CI/report metadata to QA Intelligence dashboard.
+
+---
+
+**Begin now with the first item in {{PAGE_LIST}}.**
+
+* If any input is missing, list the exact gap and continue with low-risk tasks (analysis, scaffolding, tests for existing behavior).
+* Always provide  **full files** , runnable commands (with `py -m` style), and direct paths to generated artifacts.
+* Keep iterating the A→M loop until the **DoD gate** passes for this page. Then proceed to the next page.
 
 — End —

@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "a2a_version": "1.0",
+    "message_id": "d4e5f678901234567890123456789abc",
+    "trace_id": "trace-003",
+    "ts": "2025-01-15T10:45:00.000Z",
+    "from": {
+      "id": "cmo-001",
+      "type": "cmo",
+      "version": "1.0.0"
+    },
+    "to": [
+      {
+        "id": "context-service-001",
+        "type": "system",
+        "version": "1.0.0"
+      }
+    ],
+    "tenant": "wesign",
+    "project": "qa-platform",
+    "type": "ContextRequest"
+  },
+  "payload": {
+    "query": {
+      "type": "semantic",
+      "text": "failed test results from last 24 hours",
+      "filters": {
+        "tags": [
+          "test-results",
+          "failed"
+        ],
+        "since": "2025-01-14T00:00:00.000Z"
+      }
+    },
+    "limit": 100,
+    "include_scores": true
+  }
+}

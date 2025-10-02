@@ -15,6 +15,7 @@ import { executionManager } from '../../core/wesign/ExecutionManager';
 import { testScheduler } from '../../core/wesign/TestScheduler';
 import { UnifiedTestConfig, EventType } from '../../core/wesign/types';
 import { logger } from '../../utils/logger';
+import { wesignAnalyticsService } from '../../services/wesignAnalyticsService';
 
 const router = Router();
 
@@ -572,6 +573,102 @@ router.get('/stats', async (req: Request, res: Response) => {
     res.status(500).json({
       success: false,
       error: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
+/**
+ * Analytics Endpoints - Phase 2.4
+ * Provides execution metrics and test insights
+ */
+
+/**
+ * POST /analytics/metrics
+ * Get execution metrics with optional filters
+ * Body: { timeRange?: { start, end }, module?: string, limit?: number }
+ */
+router.post('/analytics/metrics', async (req: Request, res: Response) => {
+  try {
+    logger.info('Analytics metrics requested', { body: req.body });
+
+    const options = {
+      timeRange: req.body.timeRange,
+      module: req.body.module,
+      limit: req.body.limit || 10
+    };
+
+    const metrics = await wesignAnalyticsService.getMetrics(options);
+
+    res.json({
+      success: true,
+      metrics
+    });
+
+  } catch (error) {
+    logger.error('Failed to get analytics metrics', {
+      error: error instanceof Error ? error.message : error
+    });
+
+    res.status(500).json({
+      success: false,
+      error: error instanceof Error ? error.message : 'Failed to generate metrics'
+    });
+  }
+});
+
+/**
+ * POST /analytics/insights
+ * Get test insights including flakiness, coverage, and performance trends
+ * Body: { limit?: number }
+ */
+router.post('/analytics/insights', async (req: Request, res: Response) => {
+  try {
+    logger.info('Analytics insights requested', { body: req.body });
+
+    const options = {
+      limit: req.body.limit || 10
+    };
+
+    const insights = await wesignAnalyticsService.getInsights(options);
+
+    res.json({
+      success: true,
+      insights
+    });
+
+  } catch (error) {
+    logger.error('Failed to get analytics insights', {
+      error: error instanceof Error ? error.message : error
+    });
+
+    res.status(500).json({
+      success: false,
+      error: error instanceof Error ? error.message : 'Failed to generate insights'
+    });
+  }
+});
+
+/**
+ * GET /analytics/quick-stats
+ * Get quick statistics for dashboard display
+ */
+router.get('/analytics/quick-stats', async (req: Request, res: Response) => {
+  try {
+    const stats = await wesignAnalyticsService.getQuickStats();
+
+    res.json({
+      success: true,
+      stats
+    });
+
+  } catch (error) {
+    logger.error('Failed to get quick stats', {
+      error: error instanceof Error ? error.message : error
+    });
+
+    res.status(500).json({
+      success: false,
+      error: error instanceof Error ? error.message : 'Failed to get quick stats'
     });
   }
 });

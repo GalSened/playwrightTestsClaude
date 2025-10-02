@@ -1,0 +1,6 @@
+🧪 Starting Test: CONN-02: WeSign Login Page Input Field Detection
+👀 Setting up self-healing monitoring for: CONN-02: WeSign Login Page Input Field Detection
+🔐 Testing login page input field detection
+📝 Found 5 input fields on login page
+✅ Login page input fields detected
+📊 Test "CONN-02: WeSign Login Page Input Field Detection" completed

@@ -1,0 +1,35 @@
+{
+  "timestamp": "2025-09-03T07:07:55.566752",
+  "fixes": {
+    "analytics": {
+      "success": false,
+      "url": "http://localhost:3000/analytics",
+      "title": "QA Intelligence",
+      "screenshot": "analytics_fixed_1756872481.png",
+      "redirected": false,
+      "analytics_elements_found": 172,
+      "has_error_content": true,
+      "status": "STILL_BROKEN"
+    },
+    "self_healing": {
+      "success": false,
+      "url": "http://localhost:3000/self-healing",
+      "title": "QA Intelligence",
+      "screenshot": "self_healing_fixed_1756872486.png",
+      "redirected": false,
+      "healing_elements_found": 0,
+      "queue_items_found": 6,
+      "has_error_content": true,
+      "still_loading": false,
+      "status": "STILL_BROKEN"
+    }
+  },
+  "success": false,
+  "summary": {
+    "total_fixes_tested": 2,
+    "successful_fixes": 0,
+    "analytics_fixed": false,
+    "self_healing_fixed": false,
+    "all_issues_resolved": false
+  }
+}

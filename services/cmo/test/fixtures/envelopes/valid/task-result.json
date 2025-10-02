@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "a2a_version": "1.0",
+    "message_id": "b2c3d4e5f67890123456789012345678",
+    "trace_id": "trace-001",
+    "ts": "2025-01-15T10:35:00.000Z",
+    "from": {
+      "id": "specialist-code-review-001",
+      "type": "specialist",
+      "version": "1.0.0"
+    },
+    "to": [
+      {
+        "id": "cmo-001",
+        "type": "cmo",
+        "version": "1.0.0"
+      }
+    ],
+    "tenant": "wesign",
+    "project": "qa-platform",
+    "type": "TaskResult",
+    "reply_to": "a1b2c3d4e5f678901234567890123456"
+  },
+  "payload": {
+    "task": "code-review",
+    "status": "success",
+    "result": {
+      "findings": [
+        {
+          "type": "suggestion",
+          "file": "src/test.ts",
+          "line": 42,
+          "message": "Consider extracting this logic into a helper function"
+        }
+      ],
+      "summary": "Code review completed successfully"
+    },
+    "duration_ms": 5234,
+    "metrics": {
+      "reviewer": "ai-code-reviewer-v1"
+    }
+  }
+}

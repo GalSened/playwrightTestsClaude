@@ -1,0 +1,112 @@
+{
+  "pages": {
+    "login": {
+      "status": "loaded",
+      "url": "http://localhost:5177/auth/login"
+    },
+    "register": {
+      "status": "loaded",
+      "url": "http://localhost:5177/auth/register"
+    },
+    "dashboard": {
+      "status": "auth_protected",
+      "redirected": true,
+      "authGuard": true
+    },
+    "test-bank": {
+      "status": "auth_protected",
+      "redirected": true,
+      "authGuard": true
+    },
+    "analytics": {
+      "status": "auth_protected",
+      "redirected": true,
+      "authGuard": true
+    },
+    "reports": {
+      "status": "auth_protected",
+      "redirected": true,
+      "authGuard": true
+    },
+    "settings": {
+      "status": "auth_protected",
+      "redirected": true,
+      "authGuard": true
+    },
+    "schedules": {
+      "status": "auth_protected",
+      "redirected": true,
+      "authGuard": true
+    }
+  },
+  "forms": {
+    "login": {
+      "email": true,
+      "password": true,
+      "tenant": true,
+      "submitButton": true
+    },
+    "register": {
+      "email": false,
+      "password": false,
+      "name": false,
+      "company": false,
+      "subdomain": false
+    },
+    "form_1": {
+      "totalInputs": 3,
+      "requiredFields": 2,
+      "accessible": true
+    }
+  },
+  "buttons": {
+    "button_1": {
+      "text": "No text",
+      "visible": true,
+      "enabled": true,
+      "clickable": true
+    },
+    "button_2": {
+      "text": "Sign In",
+      "visible": true,
+      "enabled": true,
+      "clickable": true
+    }
+  },
+  "navigation": {},
+  "apis": {
+    "/api/health": {
+      "status": 404,
+      "accessible": true,
+      "authenticated": true
+    },
+    "/api/auth/me": {
+      "status": 401,
+      "accessible": true,
+      "authenticated": false
+    },
+    "/api/test-runs": {
+      "status": "error",
+      "error": "apiRequestContext.get: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - → GET http://localhost:3003/api/test-runs\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n"
+    },
+    "/api/analytics/overview": {
+      "status": 404,
+      "accessible": true,
+      "authenticated": true
+    },
+    "/api/reports/summary": {
+      "status": 404,
+      "accessible": true,
+      "authenticated": true
+    }
+  },
+  "workflows": {},
+  "metrics": {
+    "chartsFound": 5,
+    "metricsFound": 0,
+    "chartsAccessible": true,
+    "metricsAccessible": false
+  },
+  "reports": {},
+  "errors": []
+}

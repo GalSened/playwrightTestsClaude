@@ -1,0 +1,5438 @@
+[
+  {
+    "id": "admin-test_administration_performance-9345",
+    "name": "Administration Performance",
+    "module": "admin",
+    "tags": [
+      "critical",
+      "wesign",
+      "admin",
+      "regression",
+      "performance",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test administration interface performance",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_user_administration.py",
+    "testFunction": "test_administration_performance"
+  },
+  {
+    "id": "admin-test_audit_trail_functionality-7961",
+    "name": "Audit Trail Functionality",
+    "module": "admin",
+    "tags": [
+      "admin",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test audit trail generation and verification",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_system_administration.py",
+    "testFunction": "test_audit_trail_functionality"
+  },
+  {
+    "id": "admin-test_change_user_password_success-3538",
+    "name": "Change User Password Success",
+    "module": "admin",
+    "tags": [
+      "admin",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test changing user password through profile management",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_user_administration.py",
+    "testFunction": "test_change_user_password_success"
+  },
+  {
+    "id": "admin-test_database_cleanup_jobs_validation-1317",
+    "name": "Database Cleanup Jobs Validation",
+    "module": "admin",
+    "tags": [
+      "admin",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test database cleanup job validation and execution",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_system_administration.py",
+    "testFunction": "test_database_cleanup_jobs_validation"
+  },
+  {
+    "id": "admin-test_document_retention_policies-4147",
+    "name": "Document Retention Policies",
+    "module": "admin",
+    "tags": [
+      "admin",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test document retention and deletion policies",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_system_administration.py",
+    "testFunction": "test_document_retention_policies"
+  },
+  {
+    "id": "admin-test_legal_compliance_validation-6124",
+    "name": "Legal Compliance Validation",
+    "module": "admin",
+    "tags": [
+      "admin",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test legal compliance validation workflows",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_system_administration.py",
+    "testFunction": "test_legal_compliance_validation"
+  },
+  {
+    "id": "admin-test_password_reset_functionality-0822",
+    "name": "Password Reset Functionality",
+    "module": "admin",
+    "tags": [
+      "admin",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test password reset functionality from login page",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_user_administration.py",
+    "testFunction": "test_password_reset_functionality"
+  },
+  {
+    "id": "admin-test_switch_user_groups_success-6800",
+    "name": "Switch User Groups Success",
+    "module": "admin",
+    "tags": [
+      "admin",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test switching between user groups",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_user_administration.py",
+    "testFunction": "test_switch_user_groups_success"
+  },
+  {
+    "id": "admin-test_system_administration_performance-6456",
+    "name": "System Administration Performance",
+    "module": "admin",
+    "tags": [
+      "critical",
+      "wesign",
+      "admin",
+      "regression",
+      "performance",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test system administration interface performance",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_system_administration.py",
+    "testFunction": "test_system_administration_performance"
+  },
+  {
+    "id": "admin-test_system_maintenance_cleanup-7102",
+    "name": "System Maintenance Cleanup",
+    "module": "admin",
+    "tags": [
+      "admin",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test system maintenance and cleanup tasks",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_user_administration.py",
+    "testFunction": "test_system_maintenance_cleanup"
+  },
+  {
+    "id": "admin-test_system_monitoring_health-6232",
+    "name": "System Monitoring Health",
+    "module": "admin",
+    "tags": [
+      "admin",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test system monitoring and health checks",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_system_administration.py",
+    "testFunction": "test_system_monitoring_health"
+  },
+  {
+    "id": "admin-test_template_lifecycle_management-1815",
+    "name": "Template Lifecycle Management",
+    "module": "admin",
+    "tags": [
+      "admin",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test template lifecycle management and automatic deletion policies",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_system_administration.py",
+    "testFunction": "test_template_lifecycle_management"
+  },
+  {
+    "id": "admin-test_terms_conditions_acceptance-5370",
+    "name": "Terms Conditions Acceptance",
+    "module": "admin",
+    "tags": [
+      "admin",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test terms and conditions acceptance workflow",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_system_administration.py",
+    "testFunction": "test_terms_conditions_acceptance"
+  },
+  {
+    "id": "admin-test_update_user_profile_info_success-3816",
+    "name": "Update User Profile Info Success",
+    "module": "admin",
+    "tags": [
+      "admin",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test updating user profile information",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_user_administration.py",
+    "testFunction": "test_update_user_profile_info_success"
+  },
+  {
+    "id": "admin-test_user_activity_reports-9529",
+    "name": "User Activity Reports",
+    "module": "admin",
+    "tags": [
+      "admin",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test generating and viewing user activity reports",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_user_administration.py",
+    "testFunction": "test_user_activity_reports"
+  },
+  {
+    "id": "admin-test_user_capacity_management-7049",
+    "name": "User Capacity Management",
+    "module": "admin",
+    "tags": [
+      "admin",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test managing user capacity and usage limits",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_user_administration.py",
+    "testFunction": "test_user_capacity_management"
+  },
+  {
+    "id": "admin-test_user_data_retention_policies-8524",
+    "name": "User Data Retention Policies",
+    "module": "admin",
+    "tags": [
+      "admin",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test user data retention policies and cleanup after document completion",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_system_administration.py",
+    "testFunction": "test_user_data_retention_policies"
+  },
+  {
+    "id": "admin-test_user_permission_levels-2121",
+    "name": "User Permission Levels",
+    "module": "admin",
+    "tags": [
+      "admin",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test user permission levels and access control",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_user_administration.py",
+    "testFunction": "test_user_permission_levels"
+  },
+  {
+    "id": "admin-test_users_and_groups_administration-5807",
+    "name": "Users And Groups Administration",
+    "module": "admin",
+    "tags": [
+      "admin",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test administering users and groups",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/admin/test_user_administration.py",
+    "testFunction": "test_users_and_groups_administration"
+  },
+  {
+    "id": "auth-test_login_basic_user_success-9264",
+    "name": "Login Basic User Success",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "wesign",
+      "critical",
+      "authentication",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test successful login with basic user",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_positive.py",
+    "testFunction": "test_login_basic_user_success"
+  },
+  {
+    "id": "auth-test_login_configured_invalid_password-6980",
+    "name": "Login Configured Invalid Password",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test login with invalid password from configuration",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_negative.py",
+    "testFunction": "test_login_configured_invalid_password"
+  },
+  {
+    "id": "auth-test_login_cross_environment_failures-1945",
+    "name": "Login Cross Environment Failures",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test login failures across different environments",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_negative.py",
+    "testFunction": "test_login_cross_environment_failures"
+  },
+  {
+    "id": "auth-test_login_editor_user_success-2694",
+    "name": "Login Editor User Success",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "wesign",
+      "critical",
+      "authentication",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test successful login with editor user",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_positive.py",
+    "testFunction": "test_login_editor_user_success"
+  },
+  {
+    "id": "auth-test_login_empty_credentials-9443",
+    "name": "Login Empty Credentials",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test login with empty credentials",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_negative.py",
+    "testFunction": "test_login_empty_credentials"
+  },
+  {
+    "id": "auth-test_login_empty_email-9974",
+    "name": "Login Empty Email",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test login with empty email",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_negative.py",
+    "testFunction": "test_login_empty_email"
+  },
+  {
+    "id": "auth-test_login_empty_password-4287",
+    "name": "Login Empty Password",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test login with empty password",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_negative.py",
+    "testFunction": "test_login_empty_password"
+  },
+  {
+    "id": "auth-test_login_error_message_display-0074",
+    "name": "Login Error Message Display",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test error message display and formatting",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_ui.py",
+    "testFunction": "test_login_error_message_display"
+  },
+  {
+    "id": "auth-test_login_expired_account-4527",
+    "name": "Login Expired Account",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test login with expired account",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_negative.py",
+    "testFunction": "test_login_expired_account"
+  },
+  {
+    "id": "auth-test_login_extremely_long_input-4904",
+    "name": "Login Extremely Long Input",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test login with extremely long input",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_negative.py",
+    "testFunction": "test_login_extremely_long_input"
+  },
+  {
+    "id": "auth-test_login_form_elements_present-7821",
+    "name": "Login Form Elements Present",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "wesign",
+      "critical",
+      "authentication",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test that all login form elements are present",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_positive.py",
+    "testFunction": "test_login_form_elements_present"
+  },
+  {
+    "id": "auth-test_login_form_field_properties-0021",
+    "name": "Login Form Field Properties",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test login form field properties",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_ui.py",
+    "testFunction": "test_login_form_field_properties"
+  },
+  {
+    "id": "auth-test_login_form_focus_states-9734",
+    "name": "Login Form Focus States",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test form field focus states and visual indicators",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_ui.py",
+    "testFunction": "test_login_form_focus_states"
+  },
+  {
+    "id": "auth-test_login_form_language_support-3805",
+    "name": "Login Form Language Support",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test login form with different language inputs",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_ui.py",
+    "testFunction": "test_login_form_language_support"
+  },
+  {
+    "id": "auth-test_login_form_responsiveness-8235",
+    "name": "Login Form Responsiveness",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test login form responsiveness",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_ui.py",
+    "testFunction": "test_login_form_responsiveness"
+  },
+  {
+    "id": "auth-test_login_hebrew_error_messages-0396",
+    "name": "Login Hebrew Error Messages",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "hebrew",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test error messages in Hebrew interface",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_negative.py",
+    "testFunction": "test_login_hebrew_error_messages"
+  },
+  {
+    "id": "auth-test_login_hebrew_interface_success-9067",
+    "name": "Login Hebrew Interface Success",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "hebrew",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test login with Hebrew interface",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_positive.py",
+    "testFunction": "test_login_hebrew_interface_success"
+  },
+  {
+    "id": "auth-test_login_invalid_email-7888",
+    "name": "Login Invalid Email",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test login with invalid email",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_negative.py",
+    "testFunction": "test_login_invalid_email"
+  },
+  {
+    "id": "auth-test_login_invalid_password-5866",
+    "name": "Login Invalid Password",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test login with wrong password",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_negative.py",
+    "testFunction": "test_login_invalid_password"
+  },
+  {
+    "id": "auth-test_login_invalid_server_cert-0571",
+    "name": "Login Invalid Server Cert",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test login with invalid server certificate",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_negative.py",
+    "testFunction": "test_login_invalid_server_cert"
+  },
+  {
+    "id": "auth-test_login_keyboard_navigation-3824",
+    "name": "Login Keyboard Navigation",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test keyboard navigation through login form",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_ui.py",
+    "testFunction": "test_login_keyboard_navigation"
+  },
+  {
+    "id": "auth-test_login_loading_state-1132",
+    "name": "Login Loading State",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test login loading state and indicators",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_ui.py",
+    "testFunction": "test_login_loading_state"
+  },
+  {
+    "id": "auth-test_login_logout_success-8025",
+    "name": "Login Logout Success",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "wesign",
+      "critical",
+      "authentication",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test complete login-logout flow",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_positive.py",
+    "testFunction": "test_login_logout_success"
+  },
+  {
+    "id": "auth-test_login_management_interface_success-1851",
+    "name": "Login Management Interface Success",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "wesign",
+      "critical",
+      "authentication",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test successful login on management interface",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_positive.py",
+    "testFunction": "test_login_management_interface_success"
+  },
+  {
+    "id": "auth-test_login_management_user_success-1144",
+    "name": "Login Management User Success",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "wesign",
+      "critical",
+      "authentication",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test successful login with management user",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_positive.py",
+    "testFunction": "test_login_management_user_success"
+  },
+  {
+    "id": "auth-test_login_nonexistent_user-1624",
+    "name": "Login Nonexistent User",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test login with non-existent user",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_negative.py",
+    "testFunction": "test_login_nonexistent_user"
+  },
+  {
+    "id": "auth-test_login_page_accessibility-3617",
+    "name": "Login Page Accessibility",
+    "module": "auth",
+    "tags": [
+      "accessibility",
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test basic accessibility features of login page",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_positive.py",
+    "testFunction": "test_login_page_accessibility"
+  },
+  {
+    "id": "auth-test_login_page_layout-2661",
+    "name": "Login Page Layout",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test login page layout and UI elements",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_ui.py",
+    "testFunction": "test_login_page_layout"
+  },
+  {
+    "id": "auth-test_login_page_performance-3131",
+    "name": "Login Page Performance",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "performance",
+      "ui",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test login page load and response performance",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_ui.py",
+    "testFunction": "test_login_page_performance"
+  },
+  {
+    "id": "auth-test_login_sql_injection_attempt-5732",
+    "name": "Login Sql Injection Attempt",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test login with SQL injection attempt",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_negative.py",
+    "testFunction": "test_login_sql_injection_attempt"
+  },
+  {
+    "id": "auth-test_login_wesign_dev_success-8258",
+    "name": "Login Wesign Dev Success",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "wesign",
+      "critical",
+      "authentication",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test successful login on WeSign Dev environment",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_positive.py",
+    "testFunction": "test_login_wesign_dev_success"
+  },
+  {
+    "id": "auth-test_login_with_configured_timeouts-5153",
+    "name": "Login With Configured Timeouts",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "wesign",
+      "critical",
+      "authentication",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test login using configured timeout values",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_positive.py",
+    "testFunction": "test_login_with_configured_timeouts"
+  },
+  {
+    "id": "auth-test_login_with_email_success-9797",
+    "name": "Login With Email Success",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "wesign",
+      "critical",
+      "authentication",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test successful login using email and centralized locators",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_positive.py",
+    "testFunction": "test_login_with_email_success"
+  },
+  {
+    "id": "auth-test_login_with_username_success-4813",
+    "name": "Login With Username Success",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "wesign",
+      "critical",
+      "authentication",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test successful login using username",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_positive.py",
+    "testFunction": "test_login_with_username_success"
+  },
+  {
+    "id": "auth-test_login_xss_attempt-2507",
+    "name": "Login Xss Attempt",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test login with XSS attempt",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_negative.py",
+    "testFunction": "test_login_xss_attempt"
+  },
+  {
+    "id": "auth-test_multiple_failed_login_attempts-5424",
+    "name": "Multiple Failed Login Attempts",
+    "module": "auth",
+    "tags": [
+      "sanity",
+      "critical",
+      "wesign",
+      "authentication",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test multiple failed login attempts",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_negative.py",
+    "testFunction": "test_multiple_failed_login_attempts"
+  },
+  {
+    "id": "auth-test_remember_me_functionality-2535",
+    "name": "Remember Me Functionality",
+    "module": "auth",
+    "tags": [
+      "authentication",
+      "wesign",
+      "regression",
+      "critical"
+    ],
+    "risk": "HIGH",
+    "description": "Test remember me checkbox",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/auth/test_login_positive.py",
+    "testFunction": "test_remember_me_functionality"
+  },
+  {
+    "id": "contacts-test_add_contact_hebrew_data-7749",
+    "name": "Add Contact Hebrew Data",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding contact with Hebrew name data",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_hebrew.py",
+    "testFunction": "test_add_contact_hebrew_data"
+  },
+  {
+    "id": "contacts-test_add_contact_with_invalid_email-0110",
+    "name": "Add Contact With Invalid Email",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "negative",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding contact with invalid email format",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_add_contact_with_invalid_email"
+  },
+  {
+    "id": "contacts-test_add_contact_with_invalid_phone-2824",
+    "name": "Add Contact With Invalid Phone",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "negative",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding contact with invalid phone number",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_add_contact_with_invalid_phone"
+  },
+  {
+    "id": "contacts-test_add_contact_with_valid_data-7994",
+    "name": "Add Contact With Valid Data",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding a new contact with valid data",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_add_contact_with_valid_data"
+  },
+  {
+    "id": "contacts-test_add_new_contact_button_click-1384",
+    "name": "Add New Contact Button Click",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test add new contact button opens form",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_add_new_contact_button_click"
+  },
+  {
+    "id": "contacts-test_aria_labels_present-9047",
+    "name": "Aria Labels Present",
+    "module": "contacts",
+    "tags": [
+      "accessibility",
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test that ARIA labels are present for accessibility",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_accessibility.py",
+    "testFunction": "test_aria_labels_present"
+  },
+  {
+    "id": "contacts-test_basic_functionality_all_browsers-5228",
+    "name": "Basic Functionality All Browsers",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "cross-browser",
+      "regression",
+      "compatibility"
+    ],
+    "risk": "HIGH",
+    "description": "Test basic contacts functionality across different browsers",
+    "estimatedDuration": 60000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_cross_browser.py",
+    "testFunction": "test_basic_functionality_all_browsers"
+  },
+  {
+    "id": "contacts-test_boundary_phone_number_validation-9068",
+    "name": "Boundary Phone Number Validation",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "edge-cases",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test boundary conditions for phone number validation",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_edge_cases.py",
+    "testFunction": "test_boundary_phone_number_validation"
+  },
+  {
+    "id": "contacts-test_bulk_select_functionality-1806",
+    "name": "Bulk Select Functionality",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test bulk selection of contacts",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_bulk_select_functionality"
+  },
+  {
+    "id": "contacts-test_button_accessibility_labels-7559",
+    "name": "Button Accessibility Labels",
+    "module": "contacts",
+    "tags": [
+      "accessibility",
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test buttons have accessible labels or text",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_accessibility.py",
+    "testFunction": "test_button_accessibility_labels"
+  },
+  {
+    "id": "contacts-test_cancel_add_contact_form-1559",
+    "name": "Cancel Add Contact Form",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test canceling add contact form",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_cancel_add_contact_form"
+  },
+  {
+    "id": "contacts-test_cancel_delete_contact-1663",
+    "name": "Cancel Delete Contact",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test canceling contact deletion",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_cancel_delete_contact"
+  },
+  {
+    "id": "contacts-test_clear_search_functionality-2113",
+    "name": "Clear Search Functionality",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test clear search button functionality",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_clear_search_functionality"
+  },
+  {
+    "id": "contacts-test_color_contrast_compliance-4579",
+    "name": "Color Contrast Compliance",
+    "module": "contacts",
+    "tags": [
+      "accessibility",
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test color contrast meets WCAG guidelines",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_accessibility.py",
+    "testFunction": "test_color_contrast_compliance"
+  },
+  {
+    "id": "contacts-test_concurrent_user_operations-8943",
+    "name": "Concurrent User Operations",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "edge-cases",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test handling of concurrent operations",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_edge_cases.py",
+    "testFunction": "test_concurrent_user_operations"
+  },
+  {
+    "id": "contacts-test_contacts_add_contact_global_phone_validation-8076",
+    "name": "Contacts Add Contact Global Phone Validation",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "advanced",
+      "wesign",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test validation of international phone numbers",
+    "estimatedDuration": 50000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_advanced.py",
+    "testFunction": "test_contacts_add_contact_global_phone_validation"
+  },
+  {
+    "id": "contacts-test_contacts_add_seal_to_contact_success_english-9008",
+    "name": "Contacts Add Seal To Contact Success English",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "advanced",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding custom seal to contact",
+    "estimatedDuration": 50000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_advanced.py",
+    "testFunction": "test_contacts_add_seal_to_contact_success_english"
+  },
+  {
+    "id": "contacts-test_contacts_add_tags_success_english-2812",
+    "name": "Contacts Add Tags Success English",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "advanced",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding and managing tags for contacts",
+    "estimatedDuration": 50000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_advanced.py",
+    "testFunction": "test_contacts_add_tags_success_english"
+  },
+  {
+    "id": "contacts-test_contacts_delete_contact_success_english-9142",
+    "name": "Contacts Delete Contact Success English",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "advanced",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test deleting contact",
+    "estimatedDuration": 50000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_advanced.py",
+    "testFunction": "test_contacts_delete_contact_success_english"
+  },
+  {
+    "id": "contacts-test_contacts_edit_contact_validation_english-3355",
+    "name": "Contacts Edit Contact Validation English",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "advanced",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test editing contact information with validation",
+    "estimatedDuration": 50000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_advanced.py",
+    "testFunction": "test_contacts_edit_contact_validation_english"
+  },
+  {
+    "id": "contacts-test_contacts_import_invalid_xlsx_validation-0118",
+    "name": "Contacts Import Invalid Xlsx Validation",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "advanced",
+      "wesign",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test XLSX import with invalid data shows validation errors",
+    "estimatedDuration": 75000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_advanced.py",
+    "testFunction": "test_contacts_import_invalid_xlsx_validation"
+  },
+  {
+    "id": "contacts-test_contacts_import_skip_existing_contacts-3746",
+    "name": "Contacts Import Skip Existing Contacts",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "advanced",
+      "wesign",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test skipping existing contacts during XLSX import",
+    "estimatedDuration": 75000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_advanced.py",
+    "testFunction": "test_contacts_import_skip_existing_contacts"
+  },
+  {
+    "id": "contacts-test_contacts_import_valid_xlsx_file_hebrew_names_success-5475",
+    "name": "Contacts Import Valid Xlsx File Hebrew Names Success",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "advanced",
+      "hebrew",
+      "wesign",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test importing XLSX file with Hebrew names in Hebrew interface",
+    "estimatedDuration": 85000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_advanced.py",
+    "testFunction": "test_contacts_import_valid_xlsx_file_hebrew_names_success"
+  },
+  {
+    "id": "contacts-test_contacts_import_valid_xlsx_file_with_email_and_sms_success_english-7847",
+    "name": "Contacts Import Valid Xlsx File With Email And Sms Success English",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "advanced",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test importing XLSX file with both email and SMS contacts in English interface",
+    "estimatedDuration": 75000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_advanced.py",
+    "testFunction": "test_contacts_import_valid_xlsx_file_with_email_and_sms_success_english"
+  },
+  {
+    "id": "contacts-test_contacts_page_load_time-8730",
+    "name": "Contacts Page Load Time",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "performance",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test contacts page loads within acceptable time",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_performance.py",
+    "testFunction": "test_contacts_page_load_time"
+  },
+  {
+    "id": "contacts-test_contacts_page_loads-6652",
+    "name": "Contacts Page Loads",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test that contacts page loads successfully",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_contacts_page_loads"
+  },
+  {
+    "id": "contacts-test_contacts_page_loads_hebrew-1490",
+    "name": "Contacts Page Loads Hebrew",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test that contacts page loads successfully in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_hebrew.py",
+    "testFunction": "test_contacts_page_loads_hebrew"
+  },
+  {
+    "id": "contacts-test_contacts_search_functionality_english-9577",
+    "name": "Contacts Search Functionality English",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "advanced",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test contact search functionality",
+    "estimatedDuration": 50000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_advanced.py",
+    "testFunction": "test_contacts_search_functionality_english"
+  },
+  {
+    "id": "contacts-test_contacts_table_display-8670",
+    "name": "Contacts Table Display",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test contacts table displays correctly",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_contacts_table_display"
+  },
+  {
+    "id": "contacts-test_delete_contact_functionality-6525",
+    "name": "Delete Contact Functionality",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test deleting contact with confirmation",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_delete_contact_functionality"
+  },
+  {
+    "id": "contacts-test_edit_contact_functionality-3725",
+    "name": "Edit Contact Functionality",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test editing existing contact",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_edit_contact_functionality"
+  },
+  {
+    "id": "contacts-test_empty_database_pagination-7098",
+    "name": "Empty Database Pagination",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "edge-cases",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test pagination behavior with no contacts",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_edge_cases.py",
+    "testFunction": "test_empty_database_pagination"
+  },
+  {
+    "id": "contacts-test_error_messages_accessibility-1742",
+    "name": "Error Messages Accessibility",
+    "module": "contacts",
+    "tags": [
+      "accessibility",
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test error messages are accessible to screen readers",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_accessibility.py",
+    "testFunction": "test_error_messages_accessibility"
+  },
+  {
+    "id": "contacts-test_extremely_long_name_input-1754",
+    "name": "Extremely Long Name Input",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "edge-cases",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test form handling with extremely long names",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_edge_cases.py",
+    "testFunction": "test_extremely_long_name_input"
+  },
+  {
+    "id": "contacts-test_focus_indicators_visible-1525",
+    "name": "Focus Indicators Visible",
+    "module": "contacts",
+    "tags": [
+      "accessibility",
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test focus indicators are visible for keyboard users",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_accessibility.py",
+    "testFunction": "test_focus_indicators_visible"
+  },
+  {
+    "id": "contacts-test_form_labels_accessibility-8021",
+    "name": "Form Labels Accessibility",
+    "module": "contacts",
+    "tags": [
+      "accessibility",
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test form labels are properly associated with inputs",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_accessibility.py",
+    "testFunction": "test_form_labels_accessibility"
+  },
+  {
+    "id": "contacts-test_form_submission_performance-7652",
+    "name": "Form Submission Performance",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "performance",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test contact form submission performance",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_performance.py",
+    "testFunction": "test_form_submission_performance"
+  },
+  {
+    "id": "contacts-test_form_validation_required_fields-7234",
+    "name": "Form Validation Required Fields",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test form validation for required fields",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_form_validation_required_fields"
+  },
+  {
+    "id": "contacts-test_hebrew_button_labels-4874",
+    "name": "Hebrew Button Labels",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test that buttons display Hebrew labels",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_hebrew.py",
+    "testFunction": "test_hebrew_button_labels"
+  },
+  {
+    "id": "contacts-test_hebrew_confirmation_dialog-8536",
+    "name": "Hebrew Confirmation Dialog",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test confirmation dialog in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_hebrew.py",
+    "testFunction": "test_hebrew_confirmation_dialog"
+  },
+  {
+    "id": "contacts-test_hebrew_error_messages-0623",
+    "name": "Hebrew Error Messages",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test error messages display in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_hebrew.py",
+    "testFunction": "test_hebrew_error_messages"
+  },
+  {
+    "id": "contacts-test_hebrew_form_labels-1417",
+    "name": "Hebrew Form Labels",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test that form labels display correctly in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_hebrew.py",
+    "testFunction": "test_hebrew_form_labels"
+  },
+  {
+    "id": "contacts-test_hebrew_no_results_message-2617",
+    "name": "Hebrew No Results Message",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test no results message in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_hebrew.py",
+    "testFunction": "test_hebrew_no_results_message"
+  },
+  {
+    "id": "contacts-test_hebrew_pagination_labels-4854",
+    "name": "Hebrew Pagination Labels",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test pagination labels in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_hebrew.py",
+    "testFunction": "test_hebrew_pagination_labels"
+  },
+  {
+    "id": "contacts-test_hebrew_search_functionality-4474",
+    "name": "Hebrew Search Functionality",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test search functionality with Hebrew text",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_hebrew.py",
+    "testFunction": "test_hebrew_search_functionality"
+  },
+  {
+    "id": "contacts-test_hebrew_search_placeholder-8490",
+    "name": "Hebrew Search Placeholder",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test search input placeholder in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_hebrew.py",
+    "testFunction": "test_hebrew_search_placeholder"
+  },
+  {
+    "id": "contacts-test_hebrew_table_headers-6771",
+    "name": "Hebrew Table Headers",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test table headers in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_hebrew.py",
+    "testFunction": "test_hebrew_table_headers"
+  },
+  {
+    "id": "contacts-test_keyboard_navigation_support-4290",
+    "name": "Keyboard Navigation Support",
+    "module": "contacts",
+    "tags": [
+      "accessibility",
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test keyboard navigation through interactive elements",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_accessibility.py",
+    "testFunction": "test_keyboard_navigation_support"
+  },
+  {
+    "id": "contacts-test_large_dataset_pagination_performance-4797",
+    "name": "Large Dataset Pagination Performance",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "performance",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test pagination performs well with large datasets",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_performance.py",
+    "testFunction": "test_large_dataset_pagination_performance"
+  },
+  {
+    "id": "contacts-test_maximum_search_query_length-6972",
+    "name": "Maximum Search Query Length",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "edge-cases",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test search with maximum length query",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_edge_cases.py",
+    "testFunction": "test_maximum_search_query_length"
+  },
+  {
+    "id": "contacts-test_navigation_to_contacts-1988",
+    "name": "Navigation To Contacts",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test navigation to contacts page via menu",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_navigation_to_contacts"
+  },
+  {
+    "id": "contacts-test_network_interruption_handling-3106",
+    "name": "Network Interruption Handling",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "edge-cases",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test graceful handling of network issues",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_edge_cases.py",
+    "testFunction": "test_network_interruption_handling"
+  },
+  {
+    "id": "contacts-test_pagination_next_page-1048",
+    "name": "Pagination Next Page",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test pagination next page functionality",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_pagination_next_page"
+  },
+  {
+    "id": "contacts-test_pagination_previous_page-1955",
+    "name": "Pagination Previous Page",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test pagination previous page functionality",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_pagination_previous_page"
+  },
+  {
+    "id": "contacts-test_responsive_design_desktop_viewport-1502",
+    "name": "Responsive Design Desktop Viewport",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "cross-browser",
+      "regression",
+      "compatibility"
+    ],
+    "risk": "HIGH",
+    "description": "Test contacts page in desktop viewport",
+    "estimatedDuration": 60000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_cross_browser.py",
+    "testFunction": "test_responsive_design_desktop_viewport"
+  },
+  {
+    "id": "contacts-test_responsive_design_mobile_viewport-3071",
+    "name": "Responsive Design Mobile Viewport",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "cross-browser",
+      "regression",
+      "compatibility"
+    ],
+    "risk": "HIGH",
+    "description": "Test contacts page in mobile viewport",
+    "estimatedDuration": 60000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_cross_browser.py",
+    "testFunction": "test_responsive_design_mobile_viewport"
+  },
+  {
+    "id": "contacts-test_responsive_design_tablet_viewport-3539",
+    "name": "Responsive Design Tablet Viewport",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "cross-browser",
+      "regression",
+      "compatibility"
+    ],
+    "risk": "HIGH",
+    "description": "Test contacts page in tablet viewport",
+    "estimatedDuration": 60000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_cross_browser.py",
+    "testFunction": "test_responsive_design_tablet_viewport"
+  },
+  {
+    "id": "contacts-test_rtl_layout_hebrew-2069",
+    "name": "Rtl Layout Hebrew",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression"
+    ],
+    "risk": "HIGH",
+    "description": "Test Right-to-Left layout in Hebrew interface",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_hebrew.py",
+    "testFunction": "test_rtl_layout_hebrew"
+  },
+  {
+    "id": "contacts-test_search_functionality_with_empty_query-8738",
+    "name": "Search Functionality With Empty Query",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test search with empty query shows all contacts",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_search_functionality_with_empty_query"
+  },
+  {
+    "id": "contacts-test_search_functionality_with_valid_query-5843",
+    "name": "Search Functionality With Valid Query",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test search with valid contact name",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_search_functionality_with_valid_query"
+  },
+  {
+    "id": "contacts-test_search_response_time-2801",
+    "name": "Search Response Time",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "performance",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test search functionality responds quickly",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_performance.py",
+    "testFunction": "test_search_response_time"
+  },
+  {
+    "id": "contacts-test_select_all_contacts_functionality-9579",
+    "name": "Select All Contacts Functionality",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test select all contacts functionality",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_english.py",
+    "testFunction": "test_select_all_contacts_functionality"
+  },
+  {
+    "id": "contacts-test_semantic_html_structure-4378",
+    "name": "Semantic Html Structure",
+    "module": "contacts",
+    "tags": [
+      "accessibility",
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test proper semantic HTML structure",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_accessibility.py",
+    "testFunction": "test_semantic_html_structure"
+  },
+  {
+    "id": "contacts-test_special_characters_in_names-3365",
+    "name": "Special Characters In Names",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "edge-cases",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test form handling with special characters",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_edge_cases.py",
+    "testFunction": "test_special_characters_in_names"
+  },
+  {
+    "id": "contacts-test_sql_injection_prevention-7883",
+    "name": "Sql Injection Prevention",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "edge-cases",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test SQL injection prevention in search",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_edge_cases.py",
+    "testFunction": "test_sql_injection_prevention"
+  },
+  {
+    "id": "contacts-test_table_accessibility_headers-5494",
+    "name": "Table Accessibility Headers",
+    "module": "contacts",
+    "tags": [
+      "accessibility",
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test table has proper headers for screen readers",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_accessibility.py",
+    "testFunction": "test_table_accessibility_headers"
+  },
+  {
+    "id": "contacts-test_table_rendering_performance-3657",
+    "name": "Table Rendering Performance",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "regression",
+      "performance",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test contacts table renders efficiently",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_performance.py",
+    "testFunction": "test_table_rendering_performance"
+  },
+  {
+    "id": "contacts-test_unicode_characters_support-7478",
+    "name": "Unicode Characters Support",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "edge-cases",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test support for Unicode characters",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_edge_cases.py",
+    "testFunction": "test_unicode_characters_support"
+  },
+  {
+    "id": "contacts-test_xss_prevention_in_form-5449",
+    "name": "Xss Prevention In Form",
+    "module": "contacts",
+    "tags": [
+      "contacts",
+      "business-critical",
+      "wesign",
+      "edge-cases",
+      "regression",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test XSS prevention in contact forms",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/contacts/test_contacts_edge_cases.py",
+    "testFunction": "test_xss_prevention_in_form"
+  },
+  {
+    "id": "dashboard-test_aria_labels_and_roles_present-3595",
+    "name": "Aria Labels And Roles Present",
+    "module": "dashboard",
+    "tags": [
+      "accessibility",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test that ARIA labels and roles are present for accessibility",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_accessibility.py",
+    "testFunction": "test_aria_labels_and_roles_present"
+  },
+  {
+    "id": "dashboard-test_basic_dashboard_functionality_all_browsers-8243",
+    "name": "Basic Dashboard Functionality All Browsers",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "cross-browser",
+      "regression",
+      "ui",
+      "compatibility"
+    ],
+    "risk": "HIGH",
+    "description": "Test basic dashboard functionality across different browsers",
+    "estimatedDuration": 60000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_cross_browser.py",
+    "testFunction": "test_basic_dashboard_functionality_all_browsers"
+  },
+  {
+    "id": "dashboard-test_breadcrumb_navigation-9416",
+    "name": "Breadcrumb Navigation",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test breadcrumb navigation display",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_breadcrumb_navigation"
+  },
+  {
+    "id": "dashboard-test_browser_back_forward_navigation-6235",
+    "name": "Browser Back Forward Navigation",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "edge-cases",
+      "regression",
+      "ui",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test browser back/forward button handling",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_edge_cases.py",
+    "testFunction": "test_browser_back_forward_navigation"
+  },
+  {
+    "id": "dashboard-test_charts_and_analytics_display-9011",
+    "name": "Charts And Analytics Display",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test charts and analytics sections",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_charts_and_analytics_display"
+  },
+  {
+    "id": "dashboard-test_color_contrast_compliance-3101",
+    "name": "Color Contrast Compliance",
+    "module": "dashboard",
+    "tags": [
+      "accessibility",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test color contrast meets WCAG guidelines",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_accessibility.py",
+    "testFunction": "test_color_contrast_compliance"
+  },
+  {
+    "id": "dashboard-test_concurrent_navigation_attempts-0461",
+    "name": "Concurrent Navigation Attempts",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "edge-cases",
+      "regression",
+      "ui",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test concurrent navigation attempts",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_edge_cases.py",
+    "testFunction": "test_concurrent_navigation_attempts"
+  },
+  {
+    "id": "dashboard-test_concurrent_operations_performance-8578",
+    "name": "Concurrent Operations Performance",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "performance",
+      "ui",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard handles concurrent operations efficiently",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_performance.py",
+    "testFunction": "test_concurrent_operations_performance"
+  },
+  {
+    "id": "dashboard-test_dashboard_accessibility_cross_browser-2479",
+    "name": "Dashboard Accessibility Cross Browser",
+    "module": "dashboard",
+    "tags": [
+      "accessibility",
+      "wesign",
+      "dashboard",
+      "cross-browser",
+      "regression",
+      "ui",
+      "a11y",
+      "compatibility"
+    ],
+    "risk": "HIGH",
+    "description": "Test accessibility features work across browsers",
+    "estimatedDuration": 75000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_cross_browser.py",
+    "testFunction": "test_dashboard_accessibility_cross_browser"
+  },
+  {
+    "id": "dashboard-test_dashboard_css_compatibility-1050",
+    "name": "Dashboard Css Compatibility",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "cross-browser",
+      "regression",
+      "ui",
+      "compatibility"
+    ],
+    "risk": "HIGH",
+    "description": "Test CSS compatibility and styling",
+    "estimatedDuration": 60000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_cross_browser.py",
+    "testFunction": "test_dashboard_css_compatibility"
+  },
+  {
+    "id": "dashboard-test_dashboard_error_recovery-2156",
+    "name": "Dashboard Error Recovery",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "edge-cases",
+      "regression",
+      "ui",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard recovery from errors",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_edge_cases.py",
+    "testFunction": "test_dashboard_error_recovery"
+  },
+  {
+    "id": "dashboard-test_dashboard_key_elements_validation-1412",
+    "name": "Dashboard Key Elements Validation",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test that key dashboard elements are present and functional",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_dashboard_key_elements_validation"
+  },
+  {
+    "id": "dashboard-test_dashboard_keyboard_shortcuts_compatibility-5800",
+    "name": "Dashboard Keyboard Shortcuts Compatibility",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "cross-browser",
+      "regression",
+      "ui",
+      "compatibility"
+    ],
+    "risk": "HIGH",
+    "description": "Test keyboard shortcuts work across browsers",
+    "estimatedDuration": 60000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_cross_browser.py",
+    "testFunction": "test_dashboard_keyboard_shortcuts_compatibility"
+  },
+  {
+    "id": "dashboard-test_dashboard_loading_performance-5095",
+    "name": "Dashboard Loading Performance",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "performance",
+      "ui",
+      "non-functional",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard loads within acceptable time",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_dashboard_loading_performance"
+  },
+  {
+    "id": "dashboard-test_dashboard_memory_usage-9454",
+    "name": "Dashboard Memory Usage",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "performance",
+      "ui",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard doesn't cause excessive memory usage",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_performance.py",
+    "testFunction": "test_dashboard_memory_usage"
+  },
+  {
+    "id": "dashboard-test_dashboard_page_load_time-3228",
+    "name": "Dashboard Page Load Time",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "performance",
+      "ui",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard page loads within acceptable time",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_performance.py",
+    "testFunction": "test_dashboard_page_load_time"
+  },
+  {
+    "id": "dashboard-test_dashboard_page_loads-1389",
+    "name": "Dashboard Page Loads",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test that dashboard page loads successfully",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_dashboard_page_loads"
+  },
+  {
+    "id": "dashboard-test_dashboard_page_loads_hebrew-2958",
+    "name": "Dashboard Page Loads Hebrew",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test that dashboard page loads successfully in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_dashboard_page_loads_hebrew"
+  },
+  {
+    "id": "dashboard-test_dashboard_print_compatibility-0703",
+    "name": "Dashboard Print Compatibility",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "cross-browser",
+      "regression",
+      "ui",
+      "compatibility"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard print styles and compatibility",
+    "estimatedDuration": 60000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_cross_browser.py",
+    "testFunction": "test_dashboard_print_compatibility"
+  },
+  {
+    "id": "dashboard-test_dashboard_resize_boundary_conditions-9598",
+    "name": "Dashboard Resize Boundary Conditions",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "edge-cases",
+      "regression",
+      "ui",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard at extreme viewport sizes",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_edge_cases.py",
+    "testFunction": "test_dashboard_resize_boundary_conditions"
+  },
+  {
+    "id": "dashboard-test_dashboard_responsive_design_desktop-3258",
+    "name": "Dashboard Responsive Design Desktop",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "cross-browser",
+      "regression",
+      "ui",
+      "compatibility"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard responsive design on desktop viewport",
+    "estimatedDuration": 60000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_cross_browser.py",
+    "testFunction": "test_dashboard_responsive_design_desktop"
+  },
+  {
+    "id": "dashboard-test_dashboard_responsive_design_mobile-0382",
+    "name": "Dashboard Responsive Design Mobile",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "cross-browser",
+      "regression",
+      "ui",
+      "compatibility"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard responsive design on mobile viewport",
+    "estimatedDuration": 60000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_cross_browser.py",
+    "testFunction": "test_dashboard_responsive_design_mobile"
+  },
+  {
+    "id": "dashboard-test_dashboard_responsive_design_tablet-7505",
+    "name": "Dashboard Responsive Design Tablet",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "cross-browser",
+      "regression",
+      "ui",
+      "compatibility"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard responsive design on tablet viewport",
+    "estimatedDuration": 60000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_cross_browser.py",
+    "testFunction": "test_dashboard_responsive_design_tablet"
+  },
+  {
+    "id": "dashboard-test_dashboard_responsive_performance-3121",
+    "name": "Dashboard Responsive Performance",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "performance",
+      "ui",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard performance across different viewport sizes",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_performance.py",
+    "testFunction": "test_dashboard_responsive_performance"
+  },
+  {
+    "id": "dashboard-test_dashboard_responsiveness_desktop-1313",
+    "name": "Dashboard Responsiveness Desktop",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard layout on desktop viewport",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_dashboard_responsiveness_desktop"
+  },
+  {
+    "id": "dashboard-test_dashboard_responsiveness_mobile-1669",
+    "name": "Dashboard Responsiveness Mobile",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard layout on mobile viewport",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_dashboard_responsiveness_mobile"
+  },
+  {
+    "id": "dashboard-test_dashboard_responsiveness_tablet-0363",
+    "name": "Dashboard Responsiveness Tablet",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard layout on tablet viewport",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_dashboard_responsiveness_tablet"
+  },
+  {
+    "id": "dashboard-test_dashboard_touch_compatibility-0345",
+    "name": "Dashboard Touch Compatibility",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "cross-browser",
+      "regression",
+      "ui",
+      "compatibility"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard touch interface compatibility",
+    "estimatedDuration": 60000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_cross_browser.py",
+    "testFunction": "test_dashboard_touch_compatibility"
+  },
+  {
+    "id": "dashboard-test_dashboard_with_ad_blockers_simulation-9816",
+    "name": "Dashboard With Ad Blockers Simulation",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "edge-cases",
+      "regression",
+      "ui",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard when certain resources might be blocked",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_edge_cases.py",
+    "testFunction": "test_dashboard_with_ad_blockers_simulation"
+  },
+  {
+    "id": "dashboard-test_dashboard_with_javascript_disabled-1932",
+    "name": "Dashboard With Javascript Disabled",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "edge-cases",
+      "regression",
+      "ui",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard graceful degradation when JavaScript features fail",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_edge_cases.py",
+    "testFunction": "test_dashboard_with_javascript_disabled"
+  },
+  {
+    "id": "dashboard-test_dashboard_with_no_data-3413",
+    "name": "Dashboard With No Data",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "edge-cases",
+      "regression",
+      "ui",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard behavior when no data is available",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_edge_cases.py",
+    "testFunction": "test_dashboard_with_no_data"
+  },
+  {
+    "id": "dashboard-test_dashboard_with_slow_network_conditions-5985",
+    "name": "Dashboard With Slow Network Conditions",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "edge-cases",
+      "regression",
+      "ui",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard under slow network conditions",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_edge_cases.py",
+    "testFunction": "test_dashboard_with_slow_network_conditions"
+  },
+  {
+    "id": "dashboard-test_dashboard_zoom_levels_compatibility-3420",
+    "name": "Dashboard Zoom Levels Compatibility",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "cross-browser",
+      "regression",
+      "ui",
+      "compatibility"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard at different zoom levels",
+    "estimatedDuration": 60000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_cross_browser.py",
+    "testFunction": "test_dashboard_zoom_levels_compatibility"
+  },
+  {
+    "id": "dashboard-test_extremely_long_search_query-8298",
+    "name": "Extremely Long Search Query",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "edge-cases",
+      "regression",
+      "ui",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test search with extremely long query",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_edge_cases.py",
+    "testFunction": "test_extremely_long_search_query"
+  },
+  {
+    "id": "dashboard-test_focus_indicators_visible-1277",
+    "name": "Focus Indicators Visible",
+    "module": "dashboard",
+    "tags": [
+      "accessibility",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test focus indicators are visible for keyboard users",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_accessibility.py",
+    "testFunction": "test_focus_indicators_visible"
+  },
+  {
+    "id": "dashboard-test_heading_hierarchy-6887",
+    "name": "Heading Hierarchy",
+    "module": "dashboard",
+    "tags": [
+      "accessibility",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test proper heading hierarchy for screen readers",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_accessibility.py",
+    "testFunction": "test_heading_hierarchy"
+  },
+  {
+    "id": "dashboard-test_hebrew_breadcrumb_navigation-2620",
+    "name": "Hebrew Breadcrumb Navigation",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test breadcrumb navigation in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_hebrew_breadcrumb_navigation"
+  },
+  {
+    "id": "dashboard-test_hebrew_button_labels-6286",
+    "name": "Hebrew Button Labels",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test button labels in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_hebrew_button_labels"
+  },
+  {
+    "id": "dashboard-test_hebrew_error_success_messages-5291",
+    "name": "Hebrew Error Success Messages",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test error and success messages in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_hebrew_error_success_messages"
+  },
+  {
+    "id": "dashboard-test_hebrew_modal_dialogs-2759",
+    "name": "Hebrew Modal Dialogs",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test modal dialog content in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_hebrew_modal_dialogs"
+  },
+  {
+    "id": "dashboard-test_hebrew_navigation_labels-1487",
+    "name": "Hebrew Navigation Labels",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test navigation menu labels in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_hebrew_navigation_labels"
+  },
+  {
+    "id": "dashboard-test_hebrew_notifications_content-3766",
+    "name": "Hebrew Notifications Content",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test notifications content in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_hebrew_notifications_content"
+  },
+  {
+    "id": "dashboard-test_hebrew_page_title-7005",
+    "name": "Hebrew Page Title",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test page title displays correctly in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_hebrew_page_title"
+  },
+  {
+    "id": "dashboard-test_hebrew_pagination_labels-4555",
+    "name": "Hebrew Pagination Labels",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test pagination labels in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_hebrew_pagination_labels"
+  },
+  {
+    "id": "dashboard-test_hebrew_quick_actions_labels-2000",
+    "name": "Hebrew Quick Actions Labels",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test quick actions section displays Hebrew labels",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_hebrew_quick_actions_labels"
+  },
+  {
+    "id": "dashboard-test_hebrew_recent_activity_labels-3143",
+    "name": "Hebrew Recent Activity Labels",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test recent activity section in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_hebrew_recent_activity_labels"
+  },
+  {
+    "id": "dashboard-test_hebrew_responsive_mobile_layout-3307",
+    "name": "Hebrew Responsive Mobile Layout",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test Hebrew RTL layout on mobile devices",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_hebrew_responsive_mobile_layout"
+  },
+  {
+    "id": "dashboard-test_hebrew_search_placeholder-4424",
+    "name": "Hebrew Search Placeholder",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test search input placeholder in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_hebrew_search_placeholder"
+  },
+  {
+    "id": "dashboard-test_hebrew_sidebar_navigation_rtl-2742",
+    "name": "Hebrew Sidebar Navigation Rtl",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test sidebar navigation RTL alignment",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_hebrew_sidebar_navigation_rtl"
+  },
+  {
+    "id": "dashboard-test_hebrew_statistics_cards_labels-5252",
+    "name": "Hebrew Statistics Cards Labels",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test statistics cards display Hebrew labels",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_hebrew_statistics_cards_labels"
+  },
+  {
+    "id": "dashboard-test_hebrew_table_headers-1842",
+    "name": "Hebrew Table Headers",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test table headers in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_hebrew_table_headers"
+  },
+  {
+    "id": "dashboard-test_hebrew_user_interface_elements-2401",
+    "name": "Hebrew User Interface Elements",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test general Hebrew UI elements",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_hebrew_user_interface_elements"
+  },
+  {
+    "id": "dashboard-test_invalid_url_parameters-6950",
+    "name": "Invalid Url Parameters",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "edge-cases",
+      "regression",
+      "ui",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard with invalid URL parameters",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_edge_cases.py",
+    "testFunction": "test_invalid_url_parameters"
+  },
+  {
+    "id": "dashboard-test_javascript_functionality_compatibility-9609",
+    "name": "Javascript Functionality Compatibility",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "cross-browser",
+      "regression",
+      "ui",
+      "compatibility"
+    ],
+    "risk": "HIGH",
+    "description": "Test JavaScript functionality works across browsers",
+    "estimatedDuration": 60000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_cross_browser.py",
+    "testFunction": "test_javascript_functionality_compatibility"
+  },
+  {
+    "id": "dashboard-test_keyboard_navigation_dashboard-0781",
+    "name": "Keyboard Navigation Dashboard",
+    "module": "dashboard",
+    "tags": [
+      "accessibility",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test keyboard navigation through dashboard elements",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_accessibility.py",
+    "testFunction": "test_keyboard_navigation_dashboard"
+  },
+  {
+    "id": "dashboard-test_logout_functionality-2309",
+    "name": "Logout Functionality",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test logout functionality from dashboard",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_logout_functionality"
+  },
+  {
+    "id": "dashboard-test_memory_leak_prevention-2361",
+    "name": "Memory Leak Prevention",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "edge-cases",
+      "regression",
+      "ui",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard doesn't create memory leaks",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_edge_cases.py",
+    "testFunction": "test_memory_leak_prevention"
+  },
+  {
+    "id": "dashboard-test_modal_dialog_edge_cases-0571",
+    "name": "Modal Dialog Edge Cases",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "edge-cases",
+      "regression",
+      "ui",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test modal dialog edge cases",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_edge_cases.py",
+    "testFunction": "test_modal_dialog_edge_cases"
+  },
+  {
+    "id": "dashboard-test_modal_dialogs_accessibility-0877",
+    "name": "Modal Dialogs Accessibility",
+    "module": "dashboard",
+    "tags": [
+      "accessibility",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test modal dialogs accessibility",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_accessibility.py",
+    "testFunction": "test_modal_dialogs_accessibility"
+  },
+  {
+    "id": "dashboard-test_navigation_menu_accessibility-3509",
+    "name": "Navigation Menu Accessibility",
+    "module": "dashboard",
+    "tags": [
+      "accessibility",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test navigation menu accessibility",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_accessibility.py",
+    "testFunction": "test_navigation_menu_accessibility"
+  },
+  {
+    "id": "dashboard-test_navigation_menu_items-0207",
+    "name": "Navigation Menu Items",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test navigation menu items are functional",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_navigation_menu_items"
+  },
+  {
+    "id": "dashboard-test_navigation_response_time-5981",
+    "name": "Navigation Response Time",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "performance",
+      "ui",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test navigation between sections responds quickly",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_performance.py",
+    "testFunction": "test_navigation_response_time"
+  },
+  {
+    "id": "dashboard-test_navigation_to_dashboard-9513",
+    "name": "Navigation To Dashboard",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test navigation to dashboard page",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_navigation_to_dashboard"
+  },
+  {
+    "id": "dashboard-test_network_interruption_simulation-3726",
+    "name": "Network Interruption Simulation",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "edge-cases",
+      "regression",
+      "ui",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard behavior during network issues",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_edge_cases.py",
+    "testFunction": "test_network_interruption_simulation"
+  },
+  {
+    "id": "dashboard-test_new_document_quick_action-0606",
+    "name": "New Document Quick Action",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test new document quick action button",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_new_document_quick_action"
+  },
+  {
+    "id": "dashboard-test_notifications_accessibility-8398",
+    "name": "Notifications Accessibility",
+    "module": "dashboard",
+    "tags": [
+      "accessibility",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test notifications accessibility",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_accessibility.py",
+    "testFunction": "test_notifications_accessibility"
+  },
+  {
+    "id": "dashboard-test_notifications_functionality-6560",
+    "name": "Notifications Functionality",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test notifications bell and dropdown",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_notifications_functionality"
+  },
+  {
+    "id": "dashboard-test_notifications_load_performance-3215",
+    "name": "Notifications Load Performance",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "performance",
+      "ui",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test notifications load quickly",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_performance.py",
+    "testFunction": "test_notifications_load_performance"
+  },
+  {
+    "id": "dashboard-test_page_title_display-9610",
+    "name": "Page Title Display",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard page title is displayed",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_page_title_display"
+  },
+  {
+    "id": "dashboard-test_pagination_functionality-2165",
+    "name": "Pagination Functionality",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test pagination in dashboard tables",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_pagination_functionality"
+  },
+  {
+    "id": "dashboard-test_quick_actions_accessibility-7085",
+    "name": "Quick Actions Accessibility",
+    "module": "dashboard",
+    "tags": [
+      "accessibility",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test quick actions buttons accessibility",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_accessibility.py",
+    "testFunction": "test_quick_actions_accessibility"
+  },
+  {
+    "id": "dashboard-test_quick_actions_response_time-1223",
+    "name": "Quick Actions Response Time",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "performance",
+      "ui",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test quick action buttons respond quickly",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_performance.py",
+    "testFunction": "test_quick_actions_response_time"
+  },
+  {
+    "id": "dashboard-test_quick_actions_section_present-5999",
+    "name": "Quick Actions Section Present",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test quick actions section is present",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_quick_actions_section_present"
+  },
+  {
+    "id": "dashboard-test_rapid_successive_clicks-6684",
+    "name": "Rapid Successive Clicks",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "edge-cases",
+      "regression",
+      "ui",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test rapid successive clicks on dashboard elements",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_edge_cases.py",
+    "testFunction": "test_rapid_successive_clicks"
+  },
+  {
+    "id": "dashboard-test_recent_activity_section-2376",
+    "name": "Recent Activity Section",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test recent activity section display",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_recent_activity_section"
+  },
+  {
+    "id": "dashboard-test_recent_documents_table-0619",
+    "name": "Recent Documents Table",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test recent documents table display",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_recent_documents_table"
+  },
+  {
+    "id": "dashboard-test_rtl_layout_hebrew-7485",
+    "name": "Rtl Layout Hebrew",
+    "module": "dashboard",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui"
+    ],
+    "risk": "HIGH",
+    "description": "Test Right-to-Left layout in Hebrew interface",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_hebrew.py",
+    "testFunction": "test_rtl_layout_hebrew"
+  },
+  {
+    "id": "dashboard-test_search_functionality-4291",
+    "name": "Search Functionality",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard search functionality",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_search_functionality"
+  },
+  {
+    "id": "dashboard-test_search_functionality_accessibility-0241",
+    "name": "Search Functionality Accessibility",
+    "module": "dashboard",
+    "tags": [
+      "accessibility",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test search input accessibility",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_accessibility.py",
+    "testFunction": "test_search_functionality_accessibility"
+  },
+  {
+    "id": "dashboard-test_search_response_time-0710",
+    "name": "Search Response Time",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "performance",
+      "ui",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test search functionality responds quickly",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_performance.py",
+    "testFunction": "test_search_response_time"
+  },
+  {
+    "id": "dashboard-test_semantic_html_structure-4881",
+    "name": "Semantic Html Structure",
+    "module": "dashboard",
+    "tags": [
+      "accessibility",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test proper semantic HTML structure",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_accessibility.py",
+    "testFunction": "test_semantic_html_structure"
+  },
+  {
+    "id": "dashboard-test_session_timeout_handling-6852",
+    "name": "Session Timeout Handling",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "edge-cases",
+      "regression",
+      "ui",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test dashboard behavior on session timeout",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_edge_cases.py",
+    "testFunction": "test_session_timeout_handling"
+  },
+  {
+    "id": "dashboard-test_sidebar_navigation_present-2360",
+    "name": "Sidebar Navigation Present",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test sidebar navigation is present",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_sidebar_navigation_present"
+  },
+  {
+    "id": "dashboard-test_sidebar_toggle_functionality-0685",
+    "name": "Sidebar Toggle Functionality",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test sidebar toggle button functionality",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_sidebar_toggle_functionality"
+  },
+  {
+    "id": "dashboard-test_sidebar_toggle_performance-3183",
+    "name": "Sidebar Toggle Performance",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "performance",
+      "ui",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test sidebar toggle animation performance",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_performance.py",
+    "testFunction": "test_sidebar_toggle_performance"
+  },
+  {
+    "id": "dashboard-test_skip_navigation_links-0935",
+    "name": "Skip Navigation Links",
+    "module": "dashboard",
+    "tags": [
+      "accessibility",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test for skip navigation links",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_accessibility.py",
+    "testFunction": "test_skip_navigation_links"
+  },
+  {
+    "id": "dashboard-test_statistics_cards_accessibility-8738",
+    "name": "Statistics Cards Accessibility",
+    "module": "dashboard",
+    "tags": [
+      "accessibility",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test statistics cards are accessible to screen readers",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_accessibility.py",
+    "testFunction": "test_statistics_cards_accessibility"
+  },
+  {
+    "id": "dashboard-test_statistics_cards_display-0713",
+    "name": "Statistics Cards Display",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test statistics cards are displayed",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_statistics_cards_display"
+  },
+  {
+    "id": "dashboard-test_statistics_cards_have_values-5231",
+    "name": "Statistics Cards Have Values",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test statistics cards contain numeric values",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_statistics_cards_have_values"
+  },
+  {
+    "id": "dashboard-test_statistics_cards_load_time-7567",
+    "name": "Statistics Cards Load Time",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "performance",
+      "ui",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test statistics cards load quickly",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_performance.py",
+    "testFunction": "test_statistics_cards_load_time"
+  },
+  {
+    "id": "dashboard-test_table_accessibility_structure-8911",
+    "name": "Table Accessibility Structure",
+    "module": "dashboard",
+    "tags": [
+      "accessibility",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "a11y"
+    ],
+    "risk": "HIGH",
+    "description": "Test table accessibility for screen readers",
+    "estimatedDuration": 45000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_accessibility.py",
+    "testFunction": "test_table_accessibility_structure"
+  },
+  {
+    "id": "dashboard-test_table_rendering_performance-9137",
+    "name": "Table Rendering Performance",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "performance",
+      "ui",
+      "non-functional"
+    ],
+    "risk": "HIGH",
+    "description": "Test recent documents table renders efficiently",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_performance.py",
+    "testFunction": "test_table_rendering_performance"
+  },
+  {
+    "id": "dashboard-test_theme_toggle_functionality-4614",
+    "name": "Theme Toggle Functionality",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test dark/light theme toggle",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_theme_toggle_functionality"
+  },
+  {
+    "id": "dashboard-test_unicode_and_special_characters_in_search-4162",
+    "name": "Unicode And Special Characters In Search",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "edge-cases",
+      "regression",
+      "ui",
+      "negative"
+    ],
+    "risk": "HIGH",
+    "description": "Test search with Unicode and special characters",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_edge_cases.py",
+    "testFunction": "test_unicode_and_special_characters_in_search"
+  },
+  {
+    "id": "dashboard-test_upload_document_quick_action-6368",
+    "name": "Upload Document Quick Action",
+    "module": "dashboard",
+    "tags": [
+      "sanity",
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test upload document quick action button",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_upload_document_quick_action"
+  },
+  {
+    "id": "dashboard-test_user_profile_section_display-3707",
+    "name": "User Profile Section Display",
+    "module": "dashboard",
+    "tags": [
+      "wesign",
+      "dashboard",
+      "regression",
+      "ui",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test user profile section displays user information",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/dashboard/test_dashboard_english.py",
+    "testFunction": "test_user_profile_section_display"
+  },
+  {
+    "id": "documents-test_add_checkbox_field_english-9084",
+    "name": "Add Checkbox Field English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding checkbox field in English interface",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_add_checkbox_field_english"
+  },
+  {
+    "id": "documents-test_add_checkbox_field_hebrew-7450",
+    "name": "Add Checkbox Field Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding checkbox field in Hebrew interface",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_add_checkbox_field_hebrew"
+  },
+  {
+    "id": "documents-test_add_date_field_english-1918",
+    "name": "Add Date Field English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding date field in English interface",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_add_date_field_english"
+  },
+  {
+    "id": "documents-test_add_date_field_hebrew-3956",
+    "name": "Add Date Field Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding date field in Hebrew interface",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_add_date_field_hebrew"
+  },
+  {
+    "id": "documents-test_add_dropdown_field_english-2031",
+    "name": "Add Dropdown Field English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding dropdown field in English interface",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_add_dropdown_field_english"
+  },
+  {
+    "id": "documents-test_add_dropdown_field_hebrew-8154",
+    "name": "Add Dropdown Field Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding dropdown field in Hebrew interface",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_add_dropdown_field_hebrew"
+  },
+  {
+    "id": "documents-test_add_email_field_english-2094",
+    "name": "Add Email Field English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding email field in English interface",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_add_email_field_english"
+  },
+  {
+    "id": "documents-test_add_email_field_hebrew-3119",
+    "name": "Add Email Field Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding email field in Hebrew interface",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_add_email_field_hebrew"
+  },
+  {
+    "id": "documents-test_add_fields_multiple_pages_english-7753",
+    "name": "Add Fields Multiple Pages English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding fields on multiple pages in English interface",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_add_fields_multiple_pages_english"
+  },
+  {
+    "id": "documents-test_add_multiple_field_types_english-2939",
+    "name": "Add Multiple Field Types English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding multiple different field types in English interface",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_add_multiple_field_types_english"
+  },
+  {
+    "id": "documents-test_add_multiple_field_types_hebrew-7399",
+    "name": "Add Multiple Field Types Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding multiple different field types in Hebrew interface",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_add_multiple_field_types_hebrew"
+  },
+  {
+    "id": "documents-test_add_number_field_english-0806",
+    "name": "Add Number Field English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding number field in English interface",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_add_number_field_english"
+  },
+  {
+    "id": "documents-test_add_signature_field_english-4012",
+    "name": "Add Signature Field English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding signature field in English interface",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_add_signature_field_english"
+  },
+  {
+    "id": "documents-test_add_signature_field_hebrew-7119",
+    "name": "Add Signature Field Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding signature field in Hebrew interface",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_add_signature_field_hebrew"
+  },
+  {
+    "id": "documents-test_add_text_field_english-1047",
+    "name": "Add Text Field English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding text field in English interface",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_add_text_field_english"
+  },
+  {
+    "id": "documents-test_add_text_field_hebrew-1787",
+    "name": "Add Text Field Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding text field in Hebrew interface",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_add_text_field_hebrew"
+  },
+  {
+    "id": "documents-test_assign_send_invalid_email_english-4754",
+    "name": "Assign Send Invalid Email English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "negative",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test that invalid email addresses are properly validated in English",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_assign_send_functionality.py",
+    "testFunction": "test_assign_send_invalid_email_english"
+  },
+  {
+    "id": "documents-test_assign_send_invalid_email_hebrew-6860",
+    "name": "Assign Send Invalid Email Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "negative",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test that invalid email addresses are properly validated in Hebrew",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_assign_send_functionality.py",
+    "testFunction": "test_assign_send_invalid_email_hebrew"
+  },
+  {
+    "id": "documents-test_assign_send_invalid_name_english-7486",
+    "name": "Assign Send Invalid Name English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "negative",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test that invalid names are properly handled in English",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_assign_send_functionality.py",
+    "testFunction": "test_assign_send_invalid_name_english"
+  },
+  {
+    "id": "documents-test_assign_send_invalid_name_hebrew-7018",
+    "name": "Assign Send Invalid Name Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "negative",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test that invalid names are properly handled in Hebrew",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_assign_send_functionality.py",
+    "testFunction": "test_assign_send_invalid_name_hebrew"
+  },
+  {
+    "id": "documents-test_assign_send_large_document_english-3494",
+    "name": "Assign Send Large Document English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test assigning and sending large document in English",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_assign_send_functionality.py",
+    "testFunction": "test_assign_send_large_document_english"
+  },
+  {
+    "id": "documents-test_assign_send_large_document_hebrew-1423",
+    "name": "Assign Send Large Document Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test assigning and sending large document in Hebrew",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_assign_send_functionality.py",
+    "testFunction": "test_assign_send_large_document_hebrew"
+  },
+  {
+    "id": "documents-test_assign_send_multiple_recipients_english-9558",
+    "name": "Assign Send Multiple Recipients English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test assigning and sending document to multiple recipients in English",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_assign_send_functionality.py",
+    "testFunction": "test_assign_send_multiple_recipients_english"
+  },
+  {
+    "id": "documents-test_assign_send_multiple_recipients_hebrew-0287",
+    "name": "Assign Send Multiple Recipients Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test assigning and sending document to multiple recipients in Hebrew",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_assign_send_functionality.py",
+    "testFunction": "test_assign_send_multiple_recipients_hebrew"
+  },
+  {
+    "id": "documents-test_assign_send_performance_multiple_recipients-4169",
+    "name": "Assign Send Performance Multiple Recipients",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "performance",
+      "non-functional",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test assign and send performance for multiple recipients",
+    "estimatedDuration": 115000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_assign_send_functionality.py",
+    "testFunction": "test_assign_send_performance_multiple_recipients"
+  },
+  {
+    "id": "documents-test_assign_send_performance_single_recipient-3611",
+    "name": "Assign Send Performance Single Recipient",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "performance",
+      "non-functional",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test assign and send performance for single recipient",
+    "estimatedDuration": 115000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_assign_send_functionality.py",
+    "testFunction": "test_assign_send_performance_single_recipient"
+  },
+  {
+    "id": "documents-test_assign_send_single_recipient_english-9330",
+    "name": "Assign Send Single Recipient English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test assigning and sending document to single recipient in English",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_assign_send_functionality.py",
+    "testFunction": "test_assign_send_single_recipient_english"
+  },
+  {
+    "id": "documents-test_assign_send_single_recipient_hebrew-9687",
+    "name": "Assign Send Single Recipient Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test assigning and sending document to single recipient in Hebrew",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_assign_send_functionality.py",
+    "testFunction": "test_assign_send_single_recipient_hebrew"
+  },
+  {
+    "id": "documents-test_assign_send_specific_document_english-4036",
+    "name": "Assign Send Specific Document English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test assigning and sending a specific document by name in English",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_assign_send_functionality.py",
+    "testFunction": "test_assign_send_specific_document_english"
+  },
+  {
+    "id": "documents-test_assign_send_specific_document_hebrew-2182",
+    "name": "Assign Send Specific Document Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test assigning and sending a specific document by name in Hebrew",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_assign_send_functionality.py",
+    "testFunction": "test_assign_send_specific_document_hebrew"
+  },
+  {
+    "id": "documents-test_delete_all_fields_english-2990",
+    "name": "Delete All Fields English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test deleting all fields in English interface",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_delete_all_fields_english"
+  },
+  {
+    "id": "documents-test_delete_specific_field_english-9777",
+    "name": "Delete Specific Field English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test deleting a specific field in English interface",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_delete_specific_field_english"
+  },
+  {
+    "id": "documents-test_distribute_document_with_xlsx_multiple_signers-1322",
+    "name": "Distribute Document With Xlsx Multiple Signers",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "regression",
+      "wesign",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test document distribution using XLSX file with multiple signers",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_document_workflows.py",
+    "testFunction": "test_distribute_document_with_xlsx_multiple_signers"
+  },
+  {
+    "id": "documents-test_document_status_tracking-0832",
+    "name": "Document Status Tracking",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "regression",
+      "wesign",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test tracking document status through the signing workflow",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_document_workflows.py",
+    "testFunction": "test_document_status_tracking"
+  },
+  {
+    "id": "documents-test_document_workflow_performance-0889",
+    "name": "Document Workflow Performance",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "wesign",
+      "regression",
+      "performance",
+      "non-functional",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test document workflow performance",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_document_workflows.py",
+    "testFunction": "test_document_workflow_performance"
+  },
+  {
+    "id": "documents-test_duplicate_signer_email_handling-8772",
+    "name": "Duplicate Signer Email Handling",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "regression",
+      "wesign",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test handling of duplicate signer emails during distribution",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_document_workflows.py",
+    "testFunction": "test_duplicate_signer_email_handling"
+  },
+  {
+    "id": "documents-test_field_properties_validation_english-1237",
+    "name": "Field Properties Validation English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test field properties and validation in English interface",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_field_properties_validation_english"
+  },
+  {
+    "id": "documents-test_large_file_distribution_handling-8349",
+    "name": "Large File Distribution Handling",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "regression",
+      "wesign",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test distribution of large files",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_document_workflows.py",
+    "testFunction": "test_large_file_distribution_handling"
+  },
+  {
+    "id": "documents-test_merge_confirmation_dialog_english-4884",
+    "name": "Merge Confirmation Dialog English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test that merge confirmation dialog appears and works correctly in English",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_merge_functionality.py",
+    "testFunction": "test_merge_confirmation_dialog_english"
+  },
+  {
+    "id": "documents-test_merge_confirmation_dialog_hebrew-8818",
+    "name": "Merge Confirmation Dialog Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test that merge confirmation dialog appears and works correctly in Hebrew",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_merge_functionality.py",
+    "testFunction": "test_merge_confirmation_dialog_hebrew"
+  },
+  {
+    "id": "documents-test_merge_files_and_distribute-1845",
+    "name": "Merge Files And Distribute",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test merging multiple files and distributing the result",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_document_workflows.py",
+    "testFunction": "test_merge_files_and_distribute"
+  },
+  {
+    "id": "documents-test_merge_files_in_specific_order_english-5904",
+    "name": "Merge Files In Specific Order English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test that files are merged in the selected order in English",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_merge_functionality.py",
+    "testFunction": "test_merge_files_in_specific_order_english"
+  },
+  {
+    "id": "documents-test_merge_files_in_specific_order_hebrew-8046",
+    "name": "Merge Files In Specific Order Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test that files are merged in the selected order in Hebrew",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_merge_functionality.py",
+    "testFunction": "test_merge_files_in_specific_order_hebrew"
+  },
+  {
+    "id": "documents-test_merge_no_files_selected_english-0073",
+    "name": "Merge No Files Selected English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test merge operation with no files selected in English",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_merge_functionality.py",
+    "testFunction": "test_merge_no_files_selected_english"
+  },
+  {
+    "id": "documents-test_merge_no_files_selected_hebrew-7026",
+    "name": "Merge No Files Selected Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test merge operation with no files selected in Hebrew",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_merge_functionality.py",
+    "testFunction": "test_merge_no_files_selected_hebrew"
+  },
+  {
+    "id": "documents-test_merge_performance_large_files-3072",
+    "name": "Merge Performance Large Files",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "performance",
+      "non-functional",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test merge performance with larger files",
+    "estimatedDuration": 115000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_merge_functionality.py",
+    "testFunction": "test_merge_performance_large_files"
+  },
+  {
+    "id": "documents-test_merge_performance_two_files-3064",
+    "name": "Merge Performance Two Files",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "performance",
+      "non-functional",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test merge performance for two files meets requirements",
+    "estimatedDuration": 115000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_merge_functionality.py",
+    "testFunction": "test_merge_performance_two_files"
+  },
+  {
+    "id": "documents-test_merge_single_file_error_english-6966",
+    "name": "Merge Single File Error English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test that attempting to merge a single file shows appropriate error in English",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_merge_functionality.py",
+    "testFunction": "test_merge_single_file_error_english"
+  },
+  {
+    "id": "documents-test_merge_single_file_error_hebrew-3089",
+    "name": "Merge Single File Error Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test that attempting to merge a single file shows appropriate error in Hebrew",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_merge_functionality.py",
+    "testFunction": "test_merge_single_file_error_hebrew"
+  },
+  {
+    "id": "documents-test_merge_three_pdf_files_english-2844",
+    "name": "Merge Three Pdf Files English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test merging three PDF files in English interface",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_merge_functionality.py",
+    "testFunction": "test_merge_three_pdf_files_english"
+  },
+  {
+    "id": "documents-test_merge_three_pdf_files_hebrew-8295",
+    "name": "Merge Three Pdf Files Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test merging three PDF files in Hebrew interface",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_merge_functionality.py",
+    "testFunction": "test_merge_three_pdf_files_hebrew"
+  },
+  {
+    "id": "documents-test_merge_two_pdf_files_english-4106",
+    "name": "Merge Two Pdf Files English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test merging two PDF files in English interface",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_merge_functionality.py",
+    "testFunction": "test_merge_two_pdf_files_english"
+  },
+  {
+    "id": "documents-test_merge_two_pdf_files_hebrew-6290",
+    "name": "Merge Two Pdf Files Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test merging two PDF files in Hebrew interface",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_merge_functionality.py",
+    "testFunction": "test_merge_two_pdf_files_hebrew"
+  },
+  {
+    "id": "documents-test_others_signing_workflow_assignment-3372",
+    "name": "Others Signing Workflow Assignment",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test assigning document to others for signing",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_document_workflows.py",
+    "testFunction": "test_others_signing_workflow_assignment"
+  },
+  {
+    "id": "documents-test_self_signing_workflow_complete-8852",
+    "name": "Self Signing Workflow Complete",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "regression",
+      "wesign",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test complete self-signing workflow",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_document_workflows.py",
+    "testFunction": "test_self_signing_workflow_complete"
+  },
+  {
+    "id": "documents-test_template_field_mapping_distribution-1567",
+    "name": "Template Field Mapping Distribution",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "regression",
+      "wesign",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test mapping template fields during document distribution",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_document_workflows.py",
+    "testFunction": "test_template_field_mapping_distribution"
+  },
+  {
+    "id": "documents-test_upload_large_pdf_file_english-9073",
+    "name": "Upload Large Pdf File English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test uploading large PDF file in English interface",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_upload_large_pdf_file_english"
+  },
+  {
+    "id": "documents-test_upload_large_pdf_file_hebrew-1592",
+    "name": "Upload Large Pdf File Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test uploading large PDF file in Hebrew interface",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_upload_large_pdf_file_hebrew"
+  },
+  {
+    "id": "documents-test_upload_multiple_pdf_files_english-2600",
+    "name": "Upload Multiple Pdf Files English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test uploading multiple PDF files simultaneously in English",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_upload_multiple_pdf_files_english"
+  },
+  {
+    "id": "documents-test_upload_multiple_pdf_files_hebrew-6088",
+    "name": "Upload Multiple Pdf Files Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test uploading multiple PDF files simultaneously in Hebrew",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_upload_multiple_pdf_files_hebrew"
+  },
+  {
+    "id": "documents-test_upload_nonexistent_file_english-6374",
+    "name": "Upload Nonexistent File English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test uploading non-existent file handles error gracefully in English",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_upload_nonexistent_file_english"
+  },
+  {
+    "id": "documents-test_upload_nonexistent_file_hebrew-7653",
+    "name": "Upload Nonexistent File Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test uploading non-existent file handles error gracefully in Hebrew",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_upload_nonexistent_file_hebrew"
+  },
+  {
+    "id": "documents-test_upload_performance_single_file-9225",
+    "name": "Upload Performance Single File",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "performance",
+      "non-functional",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test upload performance for single file meets requirements",
+    "estimatedDuration": 115000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_upload_performance_single_file"
+  },
+  {
+    "id": "documents-test_upload_progress_indicator_english-0546",
+    "name": "Upload Progress Indicator English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test that upload progress indicator works correctly in English",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_upload_progress_indicator_english"
+  },
+  {
+    "id": "documents-test_upload_progress_indicator_hebrew-4687",
+    "name": "Upload Progress Indicator Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test that upload progress indicator works correctly in Hebrew",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_upload_progress_indicator_hebrew"
+  },
+  {
+    "id": "documents-test_upload_single_pdf_file_english-0410",
+    "name": "Upload Single Pdf File English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test uploading a single PDF file in English interface",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_upload_single_pdf_file_english"
+  },
+  {
+    "id": "documents-test_upload_single_pdf_file_hebrew-4914",
+    "name": "Upload Single Pdf File Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test uploading a single PDF file in Hebrew interface",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_upload_single_pdf_file_hebrew"
+  },
+  {
+    "id": "documents-test_upload_supported_file_types_english-3848",
+    "name": "Upload Supported File Types English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test uploading various supported file types in English",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_upload_supported_file_types_english"
+  },
+  {
+    "id": "documents-test_upload_supported_file_types_hebrew-1103",
+    "name": "Upload Supported File Types Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test uploading various supported file types in Hebrew",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_upload_supported_file_types_hebrew"
+  },
+  {
+    "id": "documents-test_upload_unsupported_file_type_english-9999",
+    "name": "Upload Unsupported File Type English",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "wesign",
+      "regression",
+      "documents",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test uploading unsupported file type shows appropriate error in English",
+    "estimatedDuration": 55000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_upload_unsupported_file_type_english"
+  },
+  {
+    "id": "documents-test_upload_unsupported_file_type_hebrew-0141",
+    "name": "Upload Unsupported File Type Hebrew",
+    "module": "documents",
+    "tags": [
+      "business-critical",
+      "sanity",
+      "hebrew",
+      "wesign",
+      "regression",
+      "documents"
+    ],
+    "risk": "HIGH",
+    "description": "Test uploading unsupported file type shows appropriate error in Hebrew",
+    "estimatedDuration": 65000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/document_workflows/test_wesign_upload_functionality.py",
+    "testFunction": "test_upload_unsupported_file_type_hebrew"
+  },
+  {
+    "id": "integrations-test_add_manage_payment_methods-4145",
+    "name": "Add Manage Payment Methods",
+    "module": "integrations",
+    "tags": [
+      "wesign",
+      "regression",
+      "critical",
+      "integrations"
+    ],
+    "risk": "HIGH",
+    "description": "Test adding and managing payment methods",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_payments.py",
+    "testFunction": "test_add_manage_payment_methods"
+  },
+  {
+    "id": "integrations-test_invoice_generation_download-8725",
+    "name": "Invoice Generation Download",
+    "module": "integrations",
+    "tags": [
+      "wesign",
+      "regression",
+      "critical",
+      "integrations"
+    ],
+    "risk": "HIGH",
+    "description": "Test generating and downloading invoices for payments",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_payments.py",
+    "testFunction": "test_invoice_generation_download"
+  },
+  {
+    "id": "integrations-test_manage_subscription_billing-0662",
+    "name": "Manage Subscription Billing",
+    "module": "integrations",
+    "tags": [
+      "wesign",
+      "regression",
+      "critical",
+      "integrations"
+    ],
+    "risk": "HIGH",
+    "description": "Test managing subscription and billing preferences",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_payments.py",
+    "testFunction": "test_manage_subscription_billing"
+  },
+  {
+    "id": "integrations-test_multiple_currency_support-5938",
+    "name": "Multiple Currency Support",
+    "module": "integrations",
+    "tags": [
+      "wesign",
+      "regression",
+      "critical",
+      "integrations"
+    ],
+    "risk": "HIGH",
+    "description": "Test support for multiple currencies in payment processing",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_payments.py",
+    "testFunction": "test_multiple_currency_support"
+  },
+  {
+    "id": "integrations-test_payment_form_security_features-3881",
+    "name": "Payment Form Security Features",
+    "module": "integrations",
+    "tags": [
+      "wesign",
+      "regression",
+      "critical",
+      "integrations"
+    ],
+    "risk": "HIGH",
+    "description": "Test payment form security features",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_payments.py",
+    "testFunction": "test_payment_form_security_features"
+  },
+  {
+    "id": "integrations-test_payment_form_validation_invalid_card-1090",
+    "name": "Payment Form Validation Invalid Card",
+    "module": "integrations",
+    "tags": [
+      "wesign",
+      "critical",
+      "regression",
+      "negative",
+      "integrations"
+    ],
+    "risk": "HIGH",
+    "description": "Test payment form validation with invalid card details",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_payments.py",
+    "testFunction": "test_payment_form_validation_invalid_card"
+  },
+  {
+    "id": "integrations-test_payment_processing_performance-7213",
+    "name": "Payment Processing Performance",
+    "module": "integrations",
+    "tags": [
+      "critical",
+      "wesign",
+      "regression",
+      "performance",
+      "non-functional",
+      "integrations"
+    ],
+    "risk": "HIGH",
+    "description": "Test payment processing performance",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_payments.py",
+    "testFunction": "test_payment_processing_performance"
+  },
+  {
+    "id": "integrations-test_payment_success_valid_test_card-8301",
+    "name": "Payment Success Valid Card",
+    "module": "integrations",
+    "tags": [
+      "wesign",
+      "regression",
+      "critical",
+      "integrations"
+    ],
+    "risk": "HIGH",
+    "description": "Test successful payment with valid test card details (if test environment supports it)",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_payments.py",
+    "testFunction": "test_payment_success_valid_test_card"
+  },
+  {
+    "id": "integrations-test_payment_workflow_premium_features-2621",
+    "name": "Payment Workflow Premium Features",
+    "module": "integrations",
+    "tags": [
+      "wesign",
+      "regression",
+      "critical",
+      "integrations"
+    ],
+    "risk": "HIGH",
+    "description": "Test complete payment workflow for accessing premium features",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_payments.py",
+    "testFunction": "test_payment_workflow_premium_features"
+  },
+  {
+    "id": "integrations-test_smart_card_batch_signing-0324",
+    "name": "Smart Card Batch Signing",
+    "module": "integrations",
+    "tags": [
+      "wesign",
+      "regression",
+      "critical",
+      "integrations"
+    ],
+    "risk": "HIGH",
+    "description": "Test batch signing of multiple files with smart card",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_smart_card_integration.py",
+    "testFunction": "test_smart_card_batch_signing"
+  },
+  {
+    "id": "integrations-test_smart_card_certificate_validation-2464",
+    "name": "Smart Card Certificate Validation",
+    "module": "integrations",
+    "tags": [
+      "wesign",
+      "regression",
+      "critical",
+      "integrations"
+    ],
+    "risk": "HIGH",
+    "description": "Test smart card certificate validation",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_smart_card_integration.py",
+    "testFunction": "test_smart_card_certificate_validation"
+  },
+  {
+    "id": "integrations-test_smart_card_excel_signing_english-1664",
+    "name": "Smart Card Excel Signing English",
+    "module": "integrations",
+    "tags": [
+      "wesign",
+      "critical",
+      "integrations",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test Excel file signing with smart card",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_smart_card_integration.py",
+    "testFunction": "test_smart_card_excel_signing_english"
+  },
+  {
+    "id": "integrations-test_smart_card_invalid_password_failure-5238",
+    "name": "Smart Card Invalid Password Failure",
+    "module": "integrations",
+    "tags": [
+      "wesign",
+      "critical",
+      "regression",
+      "negative",
+      "integrations"
+    ],
+    "risk": "HIGH",
+    "description": "Test smart card authentication failure with invalid password",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_smart_card_integration.py",
+    "testFunction": "test_smart_card_invalid_password_failure"
+  },
+  {
+    "id": "integrations-test_smart_card_pdf_draw_signing_english-7320",
+    "name": "Smart Card Pdf Draw Signing English",
+    "module": "integrations",
+    "tags": [
+      "wesign",
+      "critical",
+      "integrations",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test PDF signing with smart card using draw signature method",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_smart_card_integration.py",
+    "testFunction": "test_smart_card_pdf_draw_signing_english"
+  },
+  {
+    "id": "integrations-test_smart_card_pdf_initials_signing_hebrew-6268",
+    "name": "Smart Card Pdf Initials Signing Hebrew",
+    "module": "integrations",
+    "tags": [
+      "hebrew",
+      "wesign",
+      "critical",
+      "regression",
+      "integrations"
+    ],
+    "risk": "HIGH",
+    "description": "Test PDF signing with smart card using initials signature method in Hebrew",
+    "estimatedDuration": 40000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_smart_card_integration.py",
+    "testFunction": "test_smart_card_pdf_initials_signing_hebrew"
+  },
+  {
+    "id": "integrations-test_smart_card_png_signing_english-3732",
+    "name": "Smart Card Png Signing English",
+    "module": "integrations",
+    "tags": [
+      "wesign",
+      "critical",
+      "integrations",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test PNG image signing with smart card",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_smart_card_integration.py",
+    "testFunction": "test_smart_card_png_signing_english"
+  },
+  {
+    "id": "integrations-test_smart_card_signing_performance-6526",
+    "name": "Smart Card Signing Performance",
+    "module": "integrations",
+    "tags": [
+      "critical",
+      "wesign",
+      "regression",
+      "performance",
+      "non-functional",
+      "integrations"
+    ],
+    "risk": "HIGH",
+    "description": "Test smart card signing performance",
+    "estimatedDuration": 90000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_smart_card_integration.py",
+    "testFunction": "test_smart_card_signing_performance"
+  },
+  {
+    "id": "integrations-test_smart_card_word_graphic_signing_english-6911",
+    "name": "Smart Card Word Graphic Signing English",
+    "module": "integrations",
+    "tags": [
+      "wesign",
+      "critical",
+      "integrations",
+      "regression",
+      "english"
+    ],
+    "risk": "HIGH",
+    "description": "Test Word document signing with smart card using graphic signature method",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_smart_card_integration.py",
+    "testFunction": "test_smart_card_word_graphic_signing_english"
+  },
+  {
+    "id": "integrations-test_view_payment_history-4089",
+    "name": "View Payment History",
+    "module": "integrations",
+    "tags": [
+      "wesign",
+      "regression",
+      "critical",
+      "integrations"
+    ],
+    "risk": "HIGH",
+    "description": "Test viewing payment history and transaction details",
+    "estimatedDuration": 30000,
+    "filePath": "C:/Users/gals/Desktop/playwrightTestsClaude/tests/integrations/test_payments.py",
+    "testFunction": "test_view_payment_history"
+  }
+]

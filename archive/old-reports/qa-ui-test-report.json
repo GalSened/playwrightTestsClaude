@@ -1,0 +1,151 @@
+{
+  "timestamp": "2025-09-04T09:05:00.139Z",
+  "summary": {
+    "total": 6,
+    "successful": 1,
+    "failed": 5,
+    "consoleErrors": 14,
+    "networkErrors": 0
+  },
+  "testResults": [
+    {
+      "page": "Main Dashboard",
+      "path": "/",
+      "url": "http://localhost:3002/",
+      "status": "error",
+      "error": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "page": "Sub-Agents",
+      "path": "/sub-agents",
+      "url": "http://localhost:3002/sub-agents",
+      "status": "success",
+      "loadTime": 606,
+      "title": "QA Intelligence",
+      "hasMainContent": true,
+      "navElements": 1,
+      "buttons": 1,
+      "links": 8,
+      "errorElements": 0,
+      "loadingElements": 0,
+      "specificContent": "0 agent elements found",
+      "consoleErrorsCount": 12,
+      "networkErrorsCount": 0
+    },
+    {
+      "page": "Schedules",
+      "path": "/schedules",
+      "url": "http://localhost:3002/schedules",
+      "status": "error",
+      "error": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/schedules\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "page": "Test Runs",
+      "path": "/test-runs",
+      "url": "http://localhost:3002/test-runs",
+      "status": "error",
+      "error": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/test-runs\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "page": "Reports",
+      "path": "/reports",
+      "url": "http://localhost:3002/reports",
+      "status": "error",
+      "error": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/reports\", waiting until \"networkidle\"\u001b[22m\n"
+    },
+    {
+      "page": "Analytics",
+      "path": "/analytics",
+      "url": "http://localhost:3002/analytics",
+      "status": "error",
+      "error": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/analytics\", waiting until \"networkidle\"\u001b[22m\n"
+    }
+  ],
+  "consoleErrors": [
+    {
+      "type": "console",
+      "message": "Access to fetch at 'http://localhost:8080/api/sub-agents/status' from origin 'http://localhost:3002' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "url": "http://localhost:3002/sub-agents",
+      "timestamp": "2025-09-04T09:04:17.391Z"
+    },
+    {
+      "type": "console",
+      "message": "Failed to load resource: net::ERR_FAILED",
+      "url": "http://localhost:3002/sub-agents",
+      "timestamp": "2025-09-04T09:04:17.394Z"
+    },
+    {
+      "type": "console",
+      "message": "Failed to load agent status: TypeError: Failed to fetch\n    at loadAgentStatus (http://localhost:3002/src/pages/SubAgents/SubAgentsPage.tsx:46:30)\n    at initialize (http://localhost:3002/src/pages/SubAgents/SubAgentsPage.tsx:99:26)\n    at http://localhost:3002/src/pages/SubAgents/SubAgentsPage.tsx:102:5\n    at commitHookEffectListMount (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:16936:34)\n    at commitPassiveMountOnFiber (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:18184:19)\n    at commitPassiveMountEffects_complete (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:18157:17)\n    at commitPassiveMountEffects_begin (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:18147:15)\n    at commitPassiveMountEffects (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:18137:11)\n    at flushPassiveEffectsImpl (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19518:11)\n    at flushPassiveEffects (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19475:22)",
+      "url": "http://localhost:3002/sub-agents",
+      "timestamp": "2025-09-04T09:04:17.395Z"
+    },
+    {
+      "type": "console",
+      "message": "Access to fetch at 'http://localhost:8080/api/sub-agents/status' from origin 'http://localhost:3002' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "url": "http://localhost:3002/sub-agents",
+      "timestamp": "2025-09-04T09:04:17.396Z"
+    },
+    {
+      "type": "console",
+      "message": "Failed to load resource: net::ERR_FAILED",
+      "url": "http://localhost:3002/sub-agents",
+      "timestamp": "2025-09-04T09:04:17.396Z"
+    },
+    {
+      "type": "console",
+      "message": "Failed to load agent status: TypeError: Failed to fetch\n    at loadAgentStatus (http://localhost:3002/src/pages/SubAgents/SubAgentsPage.tsx:46:30)\n    at initialize (http://localhost:3002/src/pages/SubAgents/SubAgentsPage.tsx:99:26)\n    at http://localhost:3002/src/pages/SubAgents/SubAgentsPage.tsx:102:5\n    at commitHookEffectListMount (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:16936:34)\n    at invokePassiveEffectMountInDEV (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:18352:19)\n    at invokeEffectsInDev (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19729:19)\n    at commitDoubleInvokeEffectsInDEV (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19714:15)\n    at flushPassiveEffectsImpl (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19531:13)\n    at flushPassiveEffects (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19475:22)\n    at http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19356:17",
+      "url": "http://localhost:3002/sub-agents",
+      "timestamp": "2025-09-04T09:04:17.396Z"
+    },
+    {
+      "type": "console",
+      "message": "Access to fetch at 'http://localhost:8080/api/sub-agents/workflow-templates' from origin 'http://localhost:3002' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "url": "http://localhost:3002/sub-agents",
+      "timestamp": "2025-09-04T09:04:17.396Z"
+    },
+    {
+      "type": "console",
+      "message": "Failed to load resource: net::ERR_FAILED",
+      "url": "http://localhost:3002/sub-agents",
+      "timestamp": "2025-09-04T09:04:17.396Z"
+    },
+    {
+      "type": "console",
+      "message": "Failed to load templates: TypeError: Failed to fetch\n    at loadTemplates (http://localhost:3002/src/pages/SubAgents/SubAgentsPage.tsx:58:30)\n    at initialize (http://localhost:3002/src/pages/SubAgents/SubAgentsPage.tsx:99:45)\n    at http://localhost:3002/src/pages/SubAgents/SubAgentsPage.tsx:102:5\n    at commitHookEffectListMount (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:16936:34)\n    at commitPassiveMountOnFiber (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:18184:19)\n    at commitPassiveMountEffects_complete (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:18157:17)\n    at commitPassiveMountEffects_begin (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:18147:15)\n    at commitPassiveMountEffects (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:18137:11)\n    at flushPassiveEffectsImpl (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19518:11)\n    at flushPassiveEffects (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19475:22)",
+      "url": "http://localhost:3002/sub-agents",
+      "timestamp": "2025-09-04T09:04:17.397Z"
+    },
+    {
+      "type": "console",
+      "message": "Access to fetch at 'http://localhost:8080/api/sub-agents/workflow-templates' from origin 'http://localhost:3002' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+      "url": "http://localhost:3002/sub-agents",
+      "timestamp": "2025-09-04T09:04:17.401Z"
+    },
+    {
+      "type": "console",
+      "message": "Failed to load resource: net::ERR_FAILED",
+      "url": "http://localhost:3002/sub-agents",
+      "timestamp": "2025-09-04T09:04:17.401Z"
+    },
+    {
+      "type": "console",
+      "message": "Failed to load templates: TypeError: Failed to fetch\n    at loadTemplates (http://localhost:3002/src/pages/SubAgents/SubAgentsPage.tsx:58:30)\n    at initialize (http://localhost:3002/src/pages/SubAgents/SubAgentsPage.tsx:99:45)\n    at http://localhost:3002/src/pages/SubAgents/SubAgentsPage.tsx:102:5\n    at commitHookEffectListMount (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:16936:34)\n    at invokePassiveEffectMountInDEV (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:18352:19)\n    at invokeEffectsInDev (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19729:19)\n    at commitDoubleInvokeEffectsInDEV (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19714:15)\n    at flushPassiveEffectsImpl (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19531:13)\n    at flushPassiveEffects (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19475:22)\n    at http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19356:17",
+      "url": "http://localhost:3002/sub-agents",
+      "timestamp": "2025-09-04T09:04:17.402Z"
+    },
+    {
+      "type": "console",
+      "message": "Failed to fetch runs from backend: TypeError: Failed to fetch\n    at Object.getRuns (http://localhost:3002/src/app/api.ts:801:30)\n    at loadReportsData (http://localhost:3002/src/pages/Reports/ReportsPage.tsx:76:36)\n    at http://localhost:3002/src/pages/Reports/ReportsPage.tsx:105:5\n    at commitHookEffectListMount (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:16936:34)\n    at commitPassiveMountOnFiber (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:18184:19)\n    at commitPassiveMountEffects_complete (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:18157:17)\n    at commitPassiveMountEffects_begin (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:18147:15)\n    at commitPassiveMountEffects (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:18137:11)\n    at flushPassiveEffectsImpl (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19518:11)\n    at flushPassiveEffects (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19475:22)",
+      "url": "http://localhost:3002/reports",
+      "timestamp": "2025-09-04T09:04:50.076Z"
+    },
+    {
+      "type": "console",
+      "message": "Failed to fetch runs from backend: TypeError: Failed to fetch\n    at Object.getRuns (http://localhost:3002/src/app/api.ts:801:30)\n    at loadReportsData (http://localhost:3002/src/pages/Reports/ReportsPage.tsx:76:36)\n    at http://localhost:3002/src/pages/Reports/ReportsPage.tsx:105:5\n    at commitHookEffectListMount (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:16936:34)\n    at invokePassiveEffectMountInDEV (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:18352:19)\n    at invokeEffectsInDev (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19729:19)\n    at commitDoubleInvokeEffectsInDEV (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19714:15)\n    at flushPassiveEffectsImpl (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19531:13)\n    at flushPassiveEffects (http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19475:22)\n    at http://localhost:3002/node_modules/.vite/deps/chunk-WALXKXZM.js?v=85fe596b:19356:17",
+      "url": "http://localhost:3002/reports",
+      "timestamp": "2025-09-04T09:04:50.076Z"
+    }
+  ],
+  "networkErrors": []
+}

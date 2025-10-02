@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "a2a_version": "1.0",
+    "message_id": "f6789012345678901234567890abcdef",
+    "trace_id": "trace-004",
+    "ts": "2025-01-15T11:00:00.000Z",
+    "from": {
+      "id": "cmo-001",
+      "type": "cmo",
+      "version": "1.0.0"
+    },
+    "to": [
+      {
+        "id": "specialist-healing-001",
+        "type": "specialist",
+        "version": "1.0.0"
+      }
+    ],
+    "tenant": "wesign",
+    "project": "qa-platform",
+    "type": "SpecialistInvocationRequest",
+    "priority": "high"
+  },
+  "payload": {
+    "task": "self-healing",
+    "inputs": {
+      "test_id": "login-spec-001",
+      "failure_reason": "Element not found: #login-button",
+      "screenshot_url": "s3://qa-screenshots/login-fail-001.png"
+    },
+    "context_slice": {
+      "test_results": [
+        {
+          "test_name": "login-spec",
+          "status": "failed",
+          "error": "Element not found"
+        }
+      ],
+      "custom": {
+        "test-code": "await page.click('#login-button');",
+        "page-html": "<button id=\"loginBtn\">Login</button>"
+      }
+    },
+    "budget": {
+      "max_minutes": 0.5,
+      "max_cost_usd": 1
+    }
+  }
+}
