@@ -1,79 +1,141 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://qa-intelligence.com/schemas/a2a/RetryDirective.schema.json",
-  "title": "Retry Directive Envelope",
-  "description": "Directive to retry a failed task with adjusted parameters",
+  "$id": "https://a2a.wesign.ai/schemas/RetryDirective.schema.json",
+  "title": "RetryDirective",
+  "description": "CMO retry directive sent to specialist for reattempt",
   "type": "object",
-  "required": ["meta", "payload"],
+  "required": ["retry_depth", "target_specialist", "original_task", "context_adjustments"],
   "properties": {
-    "meta": {
-      "$ref": "EnvelopeMeta.schema.json",
-      "description": "Envelope metadata with type=RetryDirective"
+    "retry_depth": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Current retry depth (0 = first attempt, 1 = first retry, etc.)"
     },
-    "payload": {
+    "target_specialist": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$",
+      "description": "Specialist ID to handle retry"
+    },
+    "original_task": {
       "type": "object",
-      "required": ["original_message_id", "retry_strategy"],
+      "required": ["type", "inputs"],
       "properties": {
-        "original_message_id": {
+        "type": {
           "type": "string",
-          "pattern": "^[a-f0-9-]{16,}$",
-          "description": "Message ID of the original failed request"
+          "description": "Original task type"
         },
-        "retry_strategy": {
-          "type": "string",
-          "enum": [
-            "immediate",
-            "backoff_exponential",
-            "backoff_linear",
-            "adjusted_params",
-            "different_specialist"
-          ],
-          "description": "Retry strategy to apply"
-        },
-        "adjustments": {
+        "inputs": {
           "type": "object",
-          "properties": {
-            "budget": {
-              "type": "object",
-              "description": "Adjusted budget constraints (e.g., increase max_minutes)"
-            },
-            "inputs": {
-              "type": "object",
-              "description": "Adjusted input parameters"
-            },
-            "preferences": {
-              "type": "object",
-              "description": "Adjusted preferences (e.g., different model, different strategy)"
-            },
-            "target_agent": {
-              "$ref": "AgentId.schema.json",
-              "description": "Different specialist to try (for 'different_specialist' strategy)"
-            }
-          },
-          "description": "Adjustments to apply on retry"
-        },
-        "reason": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 1024,
-          "description": "Human-readable reason for retry"
-        },
-        "max_attempts": {
-          "type": "integer",
-          "minimum": 1,
-          "maximum": 10,
-          "default": 3,
-          "description": "Maximum total retry attempts"
-        },
-        "delay_ms": {
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 300000,
-          "description": "Delay before retry in milliseconds (for backoff strategies)"
+          "description": "Original task inputs"
         }
       },
-      "additionalProperties": false
+      "description": "Original task that triggered the retry"
+    },
+    "previous_result": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "affordances": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["action", "why"],
+            "properties": {
+              "action": {"type": "string"},
+              "why": {"type": "string"}
+            }
+          }
+        },
+        "qscore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "description": "Previous attempt result for context"
+    },
+    "failure_reason": {
+      "type": "object",
+      "required": ["category", "explanation"],
+      "properties": {
+        "category": {
+          "type": "string",
+          "enum": [
+            "SCHEMA_VIOLATION",
+            "MISSING_EVIDENCE",
+            "FLAKY_PATTERN",
+            "SELECTOR_ISSUE",
+            "POLICY_DEGRADED",
+            "LOW_CONFIDENCE",
+            "TIMEOUT",
+            "INCONSISTENT",
+            "UNKNOWN"
+          ]
+        },
+        "explanation": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "object",
+          "description": "Supporting evidence for classification"
+        }
+      },
+      "description": "Why the previous attempt failed"
+    },
+    "context_adjustments": {
+      "type": "object",
+      "properties": {
+        "budget_delta": {
+          "type": "object",
+          "properties": {
+            "expand_bytes": {"type": "integer", "minimum": 0},
+            "expand_tokens": {"type": "integer", "minimum": 0},
+            "expand_items": {"type": "integer", "minimum": 0}
+          },
+          "description": "Budget expansions to apply"
+        },
+        "additional_hints": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Additional hints to guide specialist"
+        },
+        "include_schema": {
+          "type": "boolean",
+          "description": "Include expected schema in context"
+        },
+        "expected_schema": {
+          "type": "object",
+          "description": "Expected result schema (if include_schema=true)"
+        },
+        "focus_areas": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Specific areas to focus on (e.g., 'selector stability', 'evidence depth')"
+        }
+      },
+      "description": "Adjustments to apply for retry attempt"
+    },
+    "max_retries_remaining": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "How many more retries allowed after this one"
+    },
+    "deadline": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Retry attempt deadline"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "original_message_id": {"type": "string", "pattern": "^[a-f0-9]{32}$"},
+        "retry_sequence_id": {"type": "string", "pattern": "^[a-f0-9]{32}$"},
+        "correlation_id": {"type": "string", "pattern": "^[a-f0-9]{32}$"}
+      },
+      "description": "Tracing metadata"
     }
-  },
-  "additionalProperties": false
+  }
 }
