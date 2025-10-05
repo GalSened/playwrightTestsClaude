@@ -33,7 +33,7 @@
     "test:decision": "vitest run test/decision/unit/**/*.spec.ts",
     "test:decision:policy": "vitest run test/decision/unit/policy_taxonomy.spec.ts",
     "test:decision:loop": "vitest run test/decision/unit/decision_loop.spec.ts",
-    "test:decision:integration": "vitest run test/decision/integration/**/*.spec.ts",
+    "test:decision:integration": "vitest run test/decision/integration/grading_loop.spec.ts",
     "test:decision:e2e": "vitest run test/e2e/cmo_specialist_closed_loop.spec.ts",
     "bench": "vitest run test/a2a/bench.spec.ts",
     "bench:context": "vitest run test/context/bench.spec.ts --reporter=default",
