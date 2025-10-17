@@ -5,6 +5,10 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'node',
+    // NO_MOCKS=1: Load mock API blocker setup
+    setupFiles: process.env.NO_MOCKS === '1'
+      ? ['./test/setup.no-mocks.ts']
+      : [],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],

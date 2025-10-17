@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+#
+# NO_MOCKS Pre-commit Hook
+#
+# Prevents adding mock/fake/stub files to the repository.
+# Enforces real-only testing policy at commit time.
+#
+
+set -euo pipefail
+
+echo "🔍 Checking for NO_MOCKS policy violations..."
+
+# Get staged files
+STAGED_FILES=$(git diff --cached --name-only)
+
+if [ -z "$STAGED_FILES" ]; then
+  exit 0
+fi
+
+# Check for forbidden patterns in filenames
+VIOLATIONS=$(echo "$STAGED_FILES" | grep -E '/(\\b__mocks__\\b|\\bmocks?\\b|\\bfakes?\\b|\\bstubs?\\b|\\bInprocBus\\b)' || true)
+
+if [ -n "$VIOLATIONS" ]; then
+  echo ""
+  echo "❌ NO_MOCKS policy violation detected!"
+  echo ""
+  echo "Staged files contain forbidden mocks/fakes/stubs:"
+  echo "$VIOLATIONS"
+  echo ""
+  echo "Fix:"
+  echo "  - Remove mock/fake/stub files"
+  echo "  - Use real implementations in tests"
+  echo "  - Or unstage these files: git restore --staged <file>"
+  echo ""
+  exit 1
+fi
+
+# Check file contents of staged TypeScript/JavaScript files
+TS_JS_FILES=$(echo "$STAGED_FILES" | grep -E '\\.(ts|js|tsx|jsx)$' || true)
+
+if [ -n "$TS_JS_FILES" ]; then
+  # Check for mock API usage in staged files
+  MOCK_API_USAGE=$(git diff --cached -G '\\b(vi|jest)\\.(mock|doMock|unmock|doUnmock|spyOn)\\s*\\(' --name-only | head -n 5 || true)
+
+  if [ -n "$MOCK_API_USAGE" ]; then
+    echo ""
+    echo "⚠️  Warning: Staged files contain mocking API calls:"
+    echo "$MOCK_API_USAGE"
+    echo ""
+    echo "Consider using real implementations instead of mocks."
+    echo "If this is intentional for unit tests, you may proceed."
+    echo ""
+  fi
+fi
+
+echo "✅ NO_MOCKS pre-commit check passed"
+exit 0

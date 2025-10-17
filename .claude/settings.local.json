@@ -68,7 +68,11 @@
       "Bash(git restore:*)",
       "Bash(npm run test:context:*)",
       "Bash(npm run bench:context:*)",
-      "Bash(npx vitest run:*)"
+      "Bash(npx vitest run:*)",
+      "Bash(npm run test:decision:policy:*)",
+      "Bash(npm run bench:decision:*)",
+      "Bash(npm run test:decision:loop:*)",
+      "Bash(npm run test:decision:integration:*)"
     ],
     "deny": [],
     "ask": []

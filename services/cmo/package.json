@@ -44,9 +44,13 @@
     "codemod:fixtures": "node ../../tools/codemods/patch-fixtures.js",
     "codemod:topics": "node ../../tools/codemods/patch-system-topics.js",
     "policy:test": "vitest run test/contract/policy.spec.ts",
-    "ci": "npm run lint && npm run typecheck && npm run schema:validate && npm run test:a2a && npm run bench",
+    "scan:no-mocks": "node ../../tools/ci/no-mocks-scan.js",
+    "prepare": "husky install || true",
+    "ci": "npm run scan:no-mocks && npm run lint && npm run typecheck && npm run schema:validate && npm run test:a2a && npm run bench",
+    "ci:no-mocks": "NO_MOCKS=1 npm run ci",
     "replay": "tsx src/elg/replay/cli.ts",
     "lint": "eslint src test --ext .ts",
+    "lint:fix": "eslint src test --ext .ts --fix",
     "typecheck": "tsc --noEmit"
   },
   "keywords": [
@@ -89,6 +93,7 @@
     "@vitest/coverage-v8": "^2.1.0",
     "eslint": "^8.55.0",
     "fast-check": "^3.22.0",
+    "husky": "^9.0.11",
     "testcontainers": "^11.7.0",
     "tsx": "^4.6.2",
     "typescript": "^5.3.3",
