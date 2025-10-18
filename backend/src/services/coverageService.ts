@@ -232,7 +232,7 @@ export class CoverageService {
   /**
    * Get tests that have never been executed
    */
-  async getUntested Tests(): Promise<Array<{
+  async getUntestedTests(): Promise<Array<{
     id: string;
     testName: string;
     category: string;

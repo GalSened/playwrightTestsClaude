@@ -25,6 +25,7 @@ import { ciRouter } from '@/routes/ci-comprehensive';
 import { apiTestingRouter } from '@/routes/api-testing';
 import { loadTestingRouter } from '@/routes/load-testing';
 import { wesignTestsRouter } from '@/routes/wesign-tests';
+import { realtimeRouter } from '@/routes/realtime-endpoints';
 import { wesignIntegrationMiddleware } from '@/middleware/wesignIntegration';
 import { getDatabase, initializeFullDatabase, validateDatabaseIntegrity, getDatabaseStats } from '@/database/database';
 import { startWorker, stopWorker, getWorker } from '@/workers/scheduler';
@@ -169,6 +170,7 @@ app.use('/api/mcp-regression', mcpRegressionRouter);
 app.use('/api/ai', aiRouter);
 app.use('/api/knowledge', knowledgeRouter);
 app.use('/api/analytics', analyticsRouter);
+app.use('/api/realtime', realtimeRouter); // Real-time endpoints (BUG-002 FIX)
 app.use('/api/healing', healingRouter);
 app.use('/api/test-generator', testGeneratorRouter);
 app.use('/api/test-bank', testBankRouter);
