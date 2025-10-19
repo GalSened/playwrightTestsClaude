@@ -1,0 +1,216 @@
+{
+  "total_files_scanned": 35,
+  "violations": {
+    "time_sleep": [],
+    "missing_expect": [
+      {
+        "file": "test_advanced_signing_workflows_comprehensive.py",
+        "tests": 10,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_api_integrations_comprehensive.py",
+        "tests": 10,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_auth_comprehensive_flows.py",
+        "tests": 16,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_auth_simplified.py",
+        "tests": 3,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_basic.py",
+        "tests": 2,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_bulk_operations_stress_comprehensive.py",
+        "tests": 10,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_comprehensive_auth.py",
+        "tests": 14,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_connectivity.py",
+        "tests": 1,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_cross_module_integration_comprehensive.py",
+        "tests": 6,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_data_validation_comprehensive.py",
+        "tests": 10,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_direct_auth.py",
+        "tests": 1,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_docs_simplified.py",
+        "tests": 3,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_document_advanced_management.py",
+        "tests": 15,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_final_comprehensive.py",
+        "tests": 13,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_group_signing_comprehensive.py",
+        "tests": 10,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_integration_cross_module.py",
+        "tests": 7,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_negative_scenarios_systematic.py",
+        "tests": 10,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_profile_settings_comprehensive.py",
+        "tests": 10,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_reports_analytics_comprehensive.py",
+        "tests": 10,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_signing_advanced_scenarios.py",
+        "tests": 8,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_signing_validation.py",
+        "tests": 4,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_simple.py",
+        "tests": 1,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "test_templates_advanced_comprehensive.py",
+        "tests": 15,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "tests/auth/test_authentication_advanced.py",
+        "tests": 15,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "tests/auth/test_authentication_core.py",
+        "tests": 15,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "tests/auth/test_authentication_core_fixed.py",
+        "tests": 15,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "tests/contacts/test_contacts_core_fixed.py",
+        "tests": 94,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "tests/documents/test_documents_advanced.py",
+        "tests": 15,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "tests/documents/test_documents_core.py",
+        "tests": 20,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "tests/documents/test_documents_core_fixed.py",
+        "tests": 20,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "tests/self_signing/test_self_signing_core_fixed.py",
+        "tests": 140,
+        "expects": 5,
+        "ratio": 0.04
+      },
+      {
+        "file": "tests/templates/test_templates_core_fixed.py",
+        "tests": 94,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "wesign_comprehensive_tests/test_foundation_validation.py",
+        "tests": 5,
+        "expects": 0,
+        "ratio": 0.0
+      },
+      {
+        "file": "wesign_comprehensive_tests/test_validation_simple.py",
+        "tests": 2,
+        "expects": 0,
+        "ratio": 0.0
+      }
+    ]
+  },
+  "summary": {
+    "time_sleep_count": 0,
+    "low_expect_files": 34
+  }
+}

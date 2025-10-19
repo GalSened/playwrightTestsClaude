@@ -1,0 +1,5122 @@
+{
+  "summary": {
+    "total": 577,
+    "stable": 24,
+    "moderate": 37,
+    "brittle": 516,
+    "stable_pct": 4.16,
+    "moderate_pct": 6.41,
+    "brittle_pct": 89.43
+  },
+  "top_20_brittle": [
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "table tbody tr, .template-list item, [class*=",
+      "score": 9,
+      "category": "brittle",
+      "alternatives": [
+        "Use data-testid attribute"
+      ]
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "select, combobox, [class*=",
+      "score": 9,
+      "category": "brittle",
+      "alternatives": [
+        "Use data-testid attribute"
+      ]
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "table tbody tr, [class*=",
+      "score": 9,
+      "category": "brittle",
+      "alternatives": [
+        "Use data-testid attribute"
+      ]
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": ".tag, .badge, .chip, [class*=",
+      "score": 9,
+      "category": "brittle",
+      "alternatives": [
+        "Use data-testid attribute"
+      ]
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "text=/[\\u0590-\\u05FF]+/",
+      "score": 8,
+      "category": "brittle",
+      "alternatives": [
+        "Simpler selector or data-testid"
+      ]
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "text=/[A-Za-z]+/",
+      "score": 8,
+      "category": "brittle",
+      "alternatives": [
+        "Simpler selector or data-testid"
+      ]
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[id]:has(+ label), label:has(+ input)",
+      "score": 8,
+      "category": "brittle",
+      "alternatives": [
+        "Simpler selector or data-testid"
+      ]
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "button[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "simple_signing_test.py",
+      "method": "locator_css",
+      "value": "button[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "simple_signing_test.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "simple_signing_test.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "simple_signing_test.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "simple_signing_test.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    }
+  ],
+  "brittle_by_file": {
+    "manual_signing_test_demo.py": 8,
+    "simple_signing_test.py": 5,
+    "test_api_integrations_comprehensive.py": 43,
+    "test_cross_module_integration_comprehensive.py": 17,
+    "test_data_validation_comprehensive.py": 18,
+    "test_direct_auth.py": 3,
+    "test_document_advanced_management.py": 32,
+    "test_group_signing_comprehensive.py": 24,
+    "test_integration_cross_module.py": 29,
+    "test_profile_settings_comprehensive.py": 13,
+    "test_reports_analytics_comprehensive.py": 21,
+    "test_signing_advanced_scenarios.py": 37,
+    "test_signing_flows_comprehensive.py": 61,
+    "test_signing_validation.py": 7,
+    "tests/contacts/test_contacts_core_fixed.py": 42,
+    "tests/documents/test_documents_advanced.py": 2,
+    "tests/documents/test_documents_core_fixed.py": 1,
+    "tests/templates/test_templates_core_fixed.py": 143,
+    "wesign_comprehensive_tests/quality_integration/boundary_testing.py": 10
+  },
+  "all_scores": [
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "button[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "button",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"button\")"
+      ]
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "manual_signing_test_demo.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "simple_signing_test.py",
+      "method": "locator_css",
+      "value": "button[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "simple_signing_test.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "simple_signing_test.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "simple_signing_test.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "simple_signing_test.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "simple_signing_test.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error, .invalid-feedback",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": ".test-result, .success, .error",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "..",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error, .invalid-feedback",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error, .invalid-feedback",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error, .invalid-feedback",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error, .invalid-feedback",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": ":has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": ".test-result, .success, .error, .response",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": ".api-usage, .usage-analytics, .metrics, canvas",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": ".success, :has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_api_integrations_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "textbox",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "textbox",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "table",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "table",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "table",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "searchbox",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_role",
+      "value": "button",
+      "score": 1,
+      "category": "stable",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_text",
+      "value": "Total documents amount:",
+      "score": 4,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role with name=\"Total documents amount:\""
+      ]
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_text",
+      "value": "Add a new template",
+      "score": 4,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role with name=\"Add a new template\""
+      ]
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_text",
+      "value": "Add a new contact",
+      "score": 4,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role with name=\"Add a new contact\""
+      ]
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "get_by_text",
+      "value": "Total documents amount:",
+      "score": 4,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role with name=\"Total documents amount:\""
+      ]
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=\u05d4\u05e2\u05dc\u05d0\u05ea \u05de\u05e1\u05de\u05da, text=Upload Document",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=\u05d9\u05e6\u05d9\u05e8\u05ea \u05ea\u05d1\u05e0\u05d9\u05ea, text=Create Template",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=\u05d4\u05e2\u05dc\u05d0\u05d4 \u05e7\u05d1\u05d5\u05e6\u05ea\u05d9\u05ea",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=\u05d4\u05d7\u05dc\u05ea \u05ea\u05d1\u05e0\u05d9\u05ea \u05e2\u05dc \u05de\u05e1\u05e4\u05e8 \u05de\u05e1\u05de\u05db\u05d9\u05dd",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=\u05e7\u05d1\u05d5\u05e6\u05d5\u05ea",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=\u05d7\u05ea\u05d9\u05de\u05d4 \u05d4\u05de\u05d5\u05e0\u05d9\u05ea",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=\u05de\u05e2\u05e7\u05d1 \u05d4\u05ea\u05e7\u05d3\u05de\u05d5\u05ea",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=\u05d3\u05d5\u05d7 \u05e7\u05d1\u05d5\u05e6\u05ea\u05d9",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=API",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=Webhook",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=\u05d4\u05e2\u05dc\u05d0\u05ea \u05de\u05e1\u05de\u05da",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=\u05d7\u05ea\u05dd",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=\u05e4\u05e2\u05d9\u05dc\u05d5\u05ea API",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=\u05e9\u05d2\u05d9\u05d0\u05d4",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=\u05d4\u05ea\u05d7\u05d1\u05e8",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_cross_module_integration_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=\u05d9\u05e6\u05d9\u05e8\u05ea \u05ea\u05d1\u05e0\u05d9\u05ea",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error, .alert-danger, [role=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error, .alert-danger, [role=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has(svg), button[title*=",
+      "score": 6,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": "dialog, .modal, .confirmation",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_data_validation_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_direct_auth.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_direct_auth.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_direct_auth.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "table",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"table\")"
+      ]
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "text=Signed",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "text=Pending",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "td:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "td:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "td:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "td:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "td:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "td:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "select option[value*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "table",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"table\")"
+      ]
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "table tr",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "table tbody tr",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "button[aria-label*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "button[aria-label*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "thead input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "tbody input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "table tbody tr button, table tbody tr a",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "table tbody tr",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "table tbody tr",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "table tbody tr",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "table tbody tr",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "table tbody tr",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "table tbody tr",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_document_advanced_management.py",
+      "method": "locator_css",
+      "value": "table tbody tr button",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": ".signer, .assign, [data-testid*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": ".workflow, .sequence, .order",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error, .invalid-feedback",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error, [role=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": "select[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": "select[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": "select[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_group_signing_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "table tbody tr",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "table tbody tr input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "table tbody tr",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "td",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"td\")"
+      ]
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "main",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"main\")"
+      ]
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "table tbody tr, .template-list item, [class*=",
+      "score": 9,
+      "category": "brittle",
+      "alternatives": [
+        "Use data-testid attribute"
+      ]
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "select option:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "a[href*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "[dir=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "[dir=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "[dir=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "[dir=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "text=/[\\u0590-\\u05FF]+/",
+      "score": 8,
+      "category": "brittle",
+      "alternatives": [
+        "Simpler selector or data-testid"
+      ]
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "text=/[A-Za-z]+/",
+      "score": 8,
+      "category": "brittle",
+      "alternatives": [
+        "Simpler selector or data-testid"
+      ]
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "select, combobox, [class*=",
+      "score": 9,
+      "category": "brittle",
+      "alternatives": [
+        "Use data-testid attribute"
+      ]
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "[dir=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "table tbody tr",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "table tbody tr, [class*=",
+      "score": 9,
+      "category": "brittle",
+      "alternatives": [
+        "Use data-testid attribute"
+      ]
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "[dir=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_integration_cross_module.py",
+      "method": "locator_css",
+      "value": "[dir=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": "form, .profile-form, [data-testid=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[name=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": "body",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"body\")"
+      ]
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error, .invalid-feedback, [role=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error, .alert-danger, [role=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": "input",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"input\")"
+      ]
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": "input",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"input\")"
+      ]
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": "[aria-label], [aria-describedby], [role]",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": "input",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"input\")"
+      ]
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": "[role=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": "button",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"button\")"
+      ]
+    },
+    {
+      "file": "test_profile_settings_comprehensive.py",
+      "method": "locator_css",
+      "value": "input, select, textarea",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": ".reports-container, [data-testid=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": ".report-filter, [data-testid=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": ".report-results, [data-testid=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "option",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"option\")"
+      ]
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": ".report-results, table, .data-grid",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error, .alert-danger, [role=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": ".error, .alert-danger",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "[aria-label], [role]",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[id]:has(+ label), label:has(+ input)",
+      "score": 8,
+      "category": "brittle",
+      "alternatives": [
+        "Simpler selector or data-testid"
+      ]
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "label",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"label\")"
+      ]
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": "button",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"button\")"
+      ]
+    },
+    {
+      "file": "test_reports_analytics_comprehensive.py",
+      "method": "locator_css",
+      "value": ".loading, .spinner, [role=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "button[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "[role=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "[role=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "button[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "h3[text()=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_advanced_scenarios.py",
+      "method": "locator_css",
+      "value": "button img[alt*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=You are the only signer",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[value*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=You are the only signer",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=You are the only signer",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=You are the only signer",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[value*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "text=Add recipients and drag tiles",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "h3:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button img[src*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "checkbox:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "select[value*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button[aria-label*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_flows_comprehensive.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_validation.py",
+      "method": "locator_css",
+      "value": "button[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_validation.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_validation.py",
+      "method": "locator_css",
+      "value": "button",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"button\")"
+      ]
+    },
+    {
+      "file": "test_signing_validation.py",
+      "method": "locator_css",
+      "value": "input[value*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_validation.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_validation.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_validation.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "test_signing_validation.py",
+      "method": "locator_css",
+      "value": "select",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"select\")"
+      ]
+    },
+    {
+      "file": "test_signing_validation.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "h1, h2, h3, form, input, button",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "select[data-testid=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "[dir=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": ".tag, .badge, .chip, [class*=",
+      "score": 9,
+      "category": "brittle",
+      "alternatives": [
+        "Use data-testid attribute"
+      ]
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": ".pagination, .page-nav, button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": ".page-number, [data-page]",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "a[href*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "a[href*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": ".mobile-nav, .hamburger-menu, .nav-toggle",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": ".responsive-grid, .mobile-grid, @media",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "button[data-sort], .sort-header, th[sortable]",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "select[name=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "select:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": ".activity-log, .history, .interactions",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": ".timestamp, .last-activity, .created-at",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": ".api-settings, .integration-settings",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": ".notification-settings, .alert-preferences",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "select[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": ".duplicate-warning, .merge-suggestion",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": ".history, .audit-log, .change-log",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": ".version, .modified-by, .created-by",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": ".permissions, .access-control",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "select[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": ".analytics, .metrics, .statistics",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": ".admin-panel, .system-settings",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/contacts/test_contacts_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/documents/test_documents_advanced.py",
+      "method": "locator_css",
+      "value": "text=\u05de\u05e1\u05de\u05db\u05d9\u05dd",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/documents/test_documents_advanced.py",
+      "method": "locator_css",
+      "value": "text=Documents",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/documents/test_documents_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/self_signing/test_self_signing_core_fixed.py",
+      "method": "locator_css",
+      "value": "html",
+      "score": 5,
+      "category": "moderate",
+      "alternatives": [
+        "get_by_role(\"html\")"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "h1, h2, h3, title, [data-title], .title",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".context-menu, .template-actions",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".template-editor, .field-overlay, .edit-mode",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".share-modal, .url-modal, input[readonly]",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".send-for-signing, .signature-flow, .signing-workflow",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".field-overlay, .signature-field, .field-manager",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".field-tools, .signature-tools, .overlay-editor",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".admin-only, [data-permission=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button[disabled], .disabled",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".usage-count, .template-stats, .usage-tracking",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".analytics, .metrics, .template-analytics",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".version, .template-history, .version-control",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".collaboration, .team-share, .template-permissions",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".validation-error, .file-error, .invalid-file",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".supported-formats, .file-requirements",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "a[href*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".template-to-document, .create-from-template, .use-template",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "[dir=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".template-card:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".template-content[lang], .bilingual-content, .multi-lang",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".auto-attach, input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".signer-field, .field-assignment, .attach-to-signer",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".template-card, .template-item, .template-row",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".template-name, .name, h3, h4",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "a:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".template-card, .template-item, .template-row",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".workflow-automation, .auto-send, text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".template-card, .template-item, .template-row",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".signing-order, .signer-sequence, text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[value=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[value=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".branding-section, .custom-branding, text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".notifications, text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".template-card, .template-item",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".field-properties, .field-settings, text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "select:near(text=",
+      "score": 6,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".template-card, .template-item",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".conditional-logic, text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".logic-rules, .field-conditions, .if-then",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "select.condition-field, .trigger-field",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".integrations, text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".contact-sync, text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".date-filter, input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".tag-filter, .tags-selector",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".type-filter, select[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".template-card, .template-item",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".version-item, .history-item, .version-entry",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".bulk-actions, button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".template-card, .template-item",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "select.permissions, .role-selector",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".api-integration, text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[placeholder*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".logs-section, text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".activity-log, .audit-entry, .log-item",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "[aria-label], [aria-labelledby]",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".template-card, .template-item",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[required], .required-field",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "nav a, .navigation a",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".template-card, .template-item",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "text=/[\u05d0-\u05ea]/",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "text=/[A-Za-z]/",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".template-card, .template-item",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "[https], .secure, text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".advanced-search, input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".template-card, .template-item",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "text=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".template-card, .template-item, .template-row",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": ".language-selector, [dir=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "nav a, .navigation a",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": [
+        "get_by_role or data-testid"
+      ]
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "[https], input[name*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "tests/templates/test_templates_core_fixed.py",
+      "method": "locator_css",
+      "value": "button:visible, a:visible, input:visible",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py",
+      "method": "locator_css",
+      "value": "text*=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py",
+      "method": "locator_css",
+      "value": "input[type=",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    },
+    {
+      "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py",
+      "method": "locator_css",
+      "value": "button:has-text(",
+      "score": 7,
+      "category": "brittle",
+      "alternatives": []
+    }
+  ]
+}

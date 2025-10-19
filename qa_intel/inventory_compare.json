@@ -1,0 +1,33 @@
+{
+  "pytest_collected": 616,
+  "backend_db_reported": 288,
+  "discrepancy": 328,
+  "discrepancy_pct": 113.89,
+  "analysis": {
+    "status": "SIGNIFICANT_EXPANSION",
+    "explanation": "Pytest collection found 616 tests vs 288 in DB. Likely causes: (1) Additional test files added since DB scan, (2) Higher parametrization expansion factor than DB parser, (3) DB may filter certain test types",
+    "breakdown_comparison": {
+      "pytest_by_module": {
+        "root": 189,
+        "auth": 45,
+        "contacts": 94,
+        "documents": 55,
+        "self_signing": 139,
+        "templates": 94
+      },
+      "known_db_breakdown": {
+        "auth": 45,
+        "contacts": 94,
+        "documents": 55,
+        "templates": 94,
+        "total": 288
+      }
+    }
+  },
+  "recommendations": [
+    "Re-scan database with latest test discovery service",
+    "Verify parametrize expansion logic in backend parser",
+    "Check if DB filters out certain test types (e.g., validation tests)",
+    "Run pytest with --collect-only and update DB to match 616 count"
+  ]
+}

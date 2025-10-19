@@ -19,7 +19,8 @@
 6. [Component-Specific Skills](#component-specific-skills)
 7. [Full-Stack Workflows](#full-stack-workflows)
 8. [AI & Advanced Features](#ai-advanced-features)
-9. [Quick Reference](#quick-reference)
+9. [Code Runner MCP - Execute & Validate](#code-runner-skills)
+10. [Quick Reference](#quick-reference)
 
 ---
 
@@ -935,6 +936,465 @@ claude "integrate predictive analytics into test scheduler"
 
 ---
 
+## 🚀 Code Runner MCP - Execute & Validate {#code-runner-skills}
+
+### Overview
+
+The **Code Runner MCP Server** enables Claude to execute code snippets in 30+ programming languages directly within your workflow. This is perfect for rapid prototyping, testing algorithms, generating test data, and validating code logic.
+
+**Status**: ✅ Installed and Connected
+
+---
+
+### 4.1 Quick Code Execution
+
+#### Test Algorithms & Logic
+
+```bash
+# Test Python algorithm
+claude "run this Python code to validate the fibonacci function"
+
+# Test JavaScript logic
+claude "execute this JS code to test the array sorting algorithm"
+
+# Test multiple languages
+claude "implement and test the same algorithm in Python, JavaScript, and Java"
+```
+
+#### Real-World Examples
+
+**Python - Test Data Generation:**
+```bash
+claude "write and run Python code to generate 10 test users with random data"
+```
+
+**JavaScript - Validate Logic:**
+```bash
+claude "run JavaScript to calculate test execution metrics from this data: [data]"
+```
+
+**Java - Quick Test:**
+```bash
+claude "execute Java code to validate email regex pattern"
+```
+
+---
+
+### 4.2 Test Data Generation
+
+#### Generate Mock Data
+
+```bash
+# User data
+claude "generate 50 test users with Israeli phone numbers and WeSign-compatible fields"
+
+# Document data
+claude "create test document metadata in JSON format"
+
+# Test scenarios
+claude "generate test cases for login validation (valid, invalid, edge cases)"
+```
+
+#### Real Examples
+
+**Generate WeSign Test Data:**
+```bash
+claude "write and run Python code to generate test data for:
+- 10 companies with contact info
+- 5 documents per company
+- Random signatures and timestamps
+Output as JSON"
+```
+
+**Generate API Test Payloads:**
+```bash
+claude "create JavaScript code that generates valid and invalid API request payloads for authentication"
+```
+
+---
+
+### 4.3 Quick Calculations & Analysis
+
+#### Test Metrics
+
+```bash
+# Performance analysis
+claude "calculate average, min, max, and p95 for these test execution times: [times]"
+
+# Success rate
+claude "run code to calculate test pass rate, failure trends, and flakiness score"
+
+# Resource usage
+claude "analyze test resource consumption and identify optimization opportunities"
+```
+
+#### Real Examples
+
+**Performance Analysis:**
+```bash
+claude "run Python code to analyze test execution data:
+- Total time: 156.7s
+- Tests: 61
+- Calculate: avg time per test, outliers, efficiency score"
+```
+
+**Coverage Calculation:**
+```bash
+claude "execute code to calculate test coverage:
+- Total features: 25
+- Tested: 18
+- Calculate percentage and identify gaps"
+```
+
+---
+
+### 4.4 Validation & Testing
+
+#### Validate Selectors
+
+```bash
+# CSS selectors
+claude "run JavaScript to validate these CSS selectors are syntactically correct"
+
+# Regex patterns
+claude "test this regex pattern against sample data"
+
+# Data formats
+claude "validate JSON schema compliance"
+```
+
+#### Real Examples
+
+**Selector Validation:**
+```bash
+claude "write and run code to validate these Playwright selectors:
+- '#login-button'
+- '[data-testid=\"upload\"]'
+- '.document-list > li:nth-child(2)'
+Check syntax and suggest improvements"
+```
+
+**API Response Validation:**
+```bash
+claude "run code to validate this API response matches expected schema"
+```
+
+---
+
+### 4.5 Data Transformation
+
+#### Convert Formats
+
+```bash
+# CSV to JSON
+claude "convert this CSV test data to JSON format"
+
+# XML to JSON
+claude "parse and convert this XML API response to JSON"
+
+# Data cleaning
+claude "clean and normalize this test data"
+```
+
+#### Real Examples
+
+**Test Data Conversion:**
+```bash
+claude "write Python code to convert this WeSign CSV export to JSON:
+name,email,phone,status
+Alice,alice@test.com,+972551234567,active
+Bob,bob@test.com,+972552345678,pending"
+```
+
+**Log Parsing:**
+```bash
+claude "parse and extract errors from this test execution log"
+```
+
+---
+
+### 4.6 Algorithm Testing
+
+#### Compare Implementations
+
+```bash
+# Multi-language comparison
+claude "implement binary search in Python, JavaScript, and Java - show execution and results"
+
+# Performance comparison
+claude "compare sorting algorithms (bubble, quick, merge) and show time complexity"
+
+# Pattern testing
+claude "test different regex patterns for email validation"
+```
+
+#### Real Examples
+
+**Test Different Approaches:**
+```bash
+claude "implement WeSign document validation in 3 ways:
+1. Imperative approach
+2. Functional approach
+3. Object-oriented approach
+Run all and compare readability"
+```
+
+---
+
+### 4.7 Quick Prototypes
+
+#### Test Code Snippets
+
+```bash
+# Test before implementing
+claude "run this code snippet to verify it works before adding to codebase"
+
+# Validate API calls
+claude "test this API request code to ensure correct structure"
+
+# Check compatibility
+claude "run code in different language versions to check compatibility"
+```
+
+#### Real Examples
+
+**Prototype Feature:**
+```bash
+claude "write and run a quick prototype of the document signature validator before full implementation"
+```
+
+**Test Integration:**
+```bash
+claude "execute sample code to test WeSign API integration before implementing in production"
+```
+
+---
+
+### 4.8 QA Intelligence Platform Use Cases
+
+#### 1. Test Suite Metrics
+
+```bash
+claude "calculate comprehensive test suite metrics:
+- Total tests: 61
+- Passing: 9
+- Failing: 32
+- Skipped: 20
+Calculate pass rate, reliability score, and health status"
+```
+
+#### 2. WeSign Test Data
+
+```bash
+claude "generate realistic WeSign test data:
+- Hebrew and English names
+- Israeli phone numbers
+- Valid email addresses
+- Document types (PDF, DOCX, XLSX)
+- Signature coordinates
+Output as JSON for test fixtures"
+```
+
+#### 3. Performance Benchmarking
+
+```bash
+claude "analyze these Playwright test timings and identify slowest tests:
+[paste test results]
+Calculate: avg time, outliers, bottlenecks"
+```
+
+#### 4. Selector Strategy Testing
+
+```bash
+claude "test selector fallback strategy:
+Primary: #login-button
+Fallback: button[type='submit']
+Fallback: .login-btn
+Validate all variations"
+```
+
+#### 5. API Response Validation
+
+```bash
+claude "validate this WeSign API response structure:
+- Required fields present
+- Data types correct
+- Status codes valid
+- Error handling proper"
+```
+
+#### 6. Test Data Generator
+
+```bash
+claude "create a test data generator for:
+- User authentication (valid, invalid, edge cases)
+- Document upload (various file types and sizes)
+- Signature workflows (single, multiple signers)"
+```
+
+#### 7. Error Pattern Analysis
+
+```bash
+claude "analyze these error logs and identify patterns:
+[paste logs]
+Group by: error type, frequency, time of day"
+```
+
+#### 8. Database Query Builder
+
+```bash
+claude "generate SQL queries for test data:
+- Create 100 test users
+- Create 500 test documents
+- Link documents to users
+- Add signatures
+Show queries and sample data"
+```
+
+---
+
+### 4.9 Code Runner Commands Reference
+
+#### Supported Languages (30+)
+
+| Category | Languages |
+|----------|-----------|
+| **Scripting** | JavaScript, TypeScript, Python, Ruby, Perl, PHP, Lua |
+| **Compiled** | Go, Rust, C, C++, Java, Kotlin, Swift, Scala |
+| **Shell** | Bash, PowerShell, CMD, VBScript, AppleScript |
+| **Functional** | Haskell, Clojure, Elixir, Lisp, Scheme, F#, OCaml |
+| **Other** | Julia, Dart, Groovy, CoffeeScript, Crystal, Nim |
+
+#### Quick Commands
+
+```bash
+# Execute code
+claude "run this [language] code: [code]"
+
+# Generate and execute
+claude "write [language] code to [task] and execute it"
+
+# Multi-language test
+claude "implement [algorithm] in Python and JavaScript, run both"
+
+# Performance test
+claude "run this code and measure execution time"
+
+# Validate output
+claude "execute this code and verify output matches [expected]"
+```
+
+---
+
+### 4.10 Best Practices
+
+#### ✅ DO Use Code Runner For:
+
+- **Rapid Prototyping**: Test ideas before full implementation
+- **Algorithm Validation**: Verify logic correctness
+- **Test Data Generation**: Create realistic mock data
+- **Quick Calculations**: Analyze metrics and statistics
+- **Format Conversion**: Transform data between formats
+- **Regex Testing**: Validate patterns before use
+- **API Testing**: Test request/response structures
+- **Learning**: Experiment with new languages/concepts
+
+#### ❌ DON'T Use Code Runner For:
+
+- **Production Code**: Use proper deployment pipelines
+- **Sensitive Data**: Don't process PII or secrets
+- **Long-Running Tasks**: Has execution timeouts
+- **File System Operations**: Limited file access
+- **Network Operations**: Restricted network access
+- **Database Modifications**: Use proper DB tools
+- **Security Testing**: Use dedicated security tools
+
+---
+
+### 4.11 Integration with Other Skills
+
+**Combine with Skill #1 (Understanding):**
+```bash
+# Understand by executing
+claude "run this code from the codebase to understand what it does"
+```
+
+**Combine with Skill #2 (Refactoring):**
+```bash
+# Test before refactoring
+claude "run both old and new implementations to verify same output"
+```
+
+**Combine with Skill #3 (Debugging):**
+```bash
+# Debug by executing
+claude "run this code with different inputs to isolate the bug"
+```
+
+**With AI Services:**
+```bash
+# Test AI prompts
+claude "execute code to test different AI prompt variations"
+```
+
+**With Testing:**
+```bash
+# Generate test data
+claude "run code to generate test fixtures for Playwright tests"
+```
+
+---
+
+### 4.12 Security & Safety
+
+⚠️ **Important Security Notes:**
+
+1. **Code Review**: Always review code before execution
+2. **Trust Level**: Only run code you understand
+3. **Permissions**: Code runs with your user permissions
+4. **File Access**: Can read/write files on your system
+5. **Network Access**: Can make network requests
+6. **No Sandboxing**: Not isolated from your system
+
+**Safe Usage:**
+- ✅ Review all code before asking Claude to execute
+- ✅ Use for testing and development only
+- ✅ Keep interpreters up to date
+- ❌ Don't run code from untrusted sources
+- ❌ Don't process sensitive production data
+- ❌ Don't run code requiring elevated privileges
+
+---
+
+### 4.13 Quick Examples for Daily Use
+
+**Morning Standup:**
+```bash
+claude "analyze yesterday's test results and calculate success metrics"
+```
+
+**Before Implementing:**
+```bash
+claude "prototype this feature logic in Python to verify approach"
+```
+
+**During Testing:**
+```bash
+claude "generate 100 test users for load testing"
+```
+
+**Before Commit:**
+```bash
+claude "validate all regex patterns used in the code"
+```
+
+**Performance Check:**
+```bash
+claude "calculate and compare performance metrics for last 5 test runs"
+```
+
+---
+
 ## 📋 Quick Reference {#quick-reference}
 
 ### Common Commands by Task
@@ -951,6 +1411,9 @@ claude "integrate predictive analytics into test scheduler"
 | **Test** | `claude "write tests for [feature]"` |
 | **Debug** | `claude "debug why [expected behavior] doesn't work"` |
 | **Document** | `claude "document [component/API/feature]"` |
+| **Execute Code** | `claude "run this [language] code: [code]"` |
+| **Generate Data** | `claude "generate test data for [scenario]"` |
+| **Calculate** | `claude "calculate [metrics] from this data"` |
 
 ### Commands by Component
 
