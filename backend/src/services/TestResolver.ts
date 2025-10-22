@@ -8,6 +8,7 @@ import Database from 'better-sqlite3';
 import path from 'path';
 import { logger } from '@/utils/logger';
 import type { UnifiedTestConfig } from '@/types/unified';
+import { CATEGORY_MAP as CATEGORY_MAP_CONFIG } from '@/config/categoryMap';
 
 export interface ResolvedTest {
   id: string;
@@ -25,34 +26,7 @@ export class TestResolver {
   private db: Database.Database;
 
   // Category mapping: Frontend-friendly names → Database category names
-  private readonly CATEGORY_MAP: Record<string, string[]> = {
-    'authentication': ['wesign-auth', 'wesign-authentication'],
-    'auth': ['wesign-auth', 'wesign-authentication'],
-    'documents': ['wesign-documents'],
-    'contacts': ['wesign-contacts'],
-    'templates': ['wesign-templates'],
-    'signing': ['wesign-signing'],
-    'bulk-operations': ['wesign-bulk-operations'],
-    'integration': ['wesign-integration'],
-    'system': ['wesign-system'],
-    'core': ['wesign-core'],
-    'wesign': [
-      'wesign-auth', 'wesign-documents', 'wesign-contacts',
-      'wesign-templates', 'wesign-signing', 'wesign-bulk-operations',
-      'wesign-integration', 'wesign-system', 'wesign-core'
-    ],
-    // Also support direct database category names
-    'wesign-auth': ['wesign-auth'],
-    'wesign-authentication': ['wesign-authentication'],
-    'wesign-documents': ['wesign-documents'],
-    'wesign-contacts': ['wesign-contacts'],
-    'wesign-templates': ['wesign-templates'],
-    'wesign-signing': ['wesign-signing'],
-    'wesign-bulk-operations': ['wesign-bulk-operations'],
-    'wesign-integration': ['wesign-integration'],
-    'wesign-system': ['wesign-system'],
-    'wesign-core': ['wesign-core']
-  };
+  private readonly CATEGORY_MAP: Record<string, string[]> = CATEGORY_MAP_CONFIG;
 
   constructor() {
     const dbPath = path.join(process.cwd(), 'data', 'qa-intel.db');
@@ -153,9 +127,7 @@ export class TestResolver {
 
     // Filter by tags (JSON contains check)
     if (testsConfig.tags && testsConfig.tags.length > 0) {
-      const tagConditions = testsConfig.tags.map(() =>
-        `tags LIKE ?`
-      ).join(' OR ');
+      const tagConditions = testsConfig.tags.map(() => `tags LIKE ?`).join(' OR ');
       query += ` AND (${tagConditions})`;
       testsConfig.tags.forEach((tag: string) => {
         params.push(`%"${tag}"%`);
@@ -164,9 +136,7 @@ export class TestResolver {
 
     // Filter by suites (module_path)
     if (testsConfig.suites && testsConfig.suites.length > 0) {
-      const suiteConditions = testsConfig.suites.map(() =>
-        `module_path LIKE ?`
-      ).join(' OR ');
+      const suiteConditions = testsConfig.suites.map(() => `module_path LIKE ?`).join(' OR ');
       query += ` AND (${suiteConditions})`;
       testsConfig.suites.forEach((suite: string) => {
         params.push(`%${suite}%`);
@@ -215,9 +185,7 @@ export class TestResolver {
 
     // Filter by tags
     if (testsConfig.tags && testsConfig.tags.length > 0) {
-      const tagConditions = testsConfig.tags.map(() =>
-        `tags LIKE ?`
-      ).join(' OR ');
+      const tagConditions = testsConfig.tags.map(() => `tags LIKE ?`).join(' OR ');
       query += ` AND (${tagConditions})`;
       testsConfig.tags.forEach((tag: string) => {
         params.push(`%"${tag}"%`);
@@ -267,9 +235,7 @@ export class TestResolver {
 
     // Filter by tags
     if (testsConfig.tags && testsConfig.tags.length > 0) {
-      const tagConditions = testsConfig.tags.map(() =>
-        `tags LIKE ?`
-      ).join(' OR ');
+      const tagConditions = testsConfig.tags.map(() => `tags LIKE ?`).join(' OR ');
       query += ` AND (${tagConditions})`;
       testsConfig.tags.forEach((tag: string) => {
         params.push(`%"${tag}"%`);
