@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events';
 import { logger } from '@/utils/logger';
 import { SubAgent, AgentCapability, AgentTask, AgentResult } from './agent-orchestrator';
-import { AIService } from '@/services/ai/AIService';
+import { AIService } from '@/services/ai/aiService';
 import { mcpRegressionService } from '@/services/mcpRegressionService';
 import { getSelfHealingService } from '@/services/selfHealingService';
 import WeSignCodebaseAnalyzer, { WeSignCodeStructure } from './wesignCodebaseAnalyzer';

@@ -2,7 +2,7 @@ import * as tf from '@tensorflow/tfjs-node';
 import { logger } from '@/utils/logger';
 import WeSignCodebaseAnalyzer, { WeSignCodeStructure } from './wesignCodebaseAnalyzer';
 import UnifiedKnowledgeService from './unifiedKnowledgeService';
-import { AIService } from './AIService';
+import { AIService } from './aiService';
 
 // Interfaces
 export interface PerformanceMetrics {

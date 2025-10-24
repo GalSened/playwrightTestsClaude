@@ -5,7 +5,7 @@ import { logger } from '@/utils/logger';
 import MLPatternLearningService from './mlPatternLearning';
 import WeSignCodebaseAnalyzer, { WeSignCodeStructure } from './wesignCodebaseAnalyzer';
 import UnifiedKnowledgeService from './unifiedKnowledgeService';
-import { AIService } from './AIService';
+import { AIService } from './aiService';
 
 export interface TestExecutionPrediction {
   testId: string;
