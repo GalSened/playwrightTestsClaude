@@ -13,14 +13,15 @@ async def browser():
     """Create a browser instance for the test session."""
     async with async_playwright() as p:
         browser = await p.chromium.launch(
-            headless=True,  # Run in headless mode for server environment
-            timeout=10000,  # 10 second timeout for browser launch
+            headless=False,  # Run in HEADED mode for visibility and debugging
+            slow_mo=50,      # Add 50ms delay between actions for observation
+            timeout=10000,   # 10 second timeout for browser launch
             args=[
                 '--no-sandbox',
                 '--disable-dev-shm-usage',
                 '--disable-web-security',
                 '--allow-running-insecure-content',
-                '--disable-gpu',
+                '--start-maximized',  # Start browser in full-screen mode
                 '--disable-extensions',
                 '--disable-background-timer-throttling',
                 '--disable-backgrounding-occluded-windows',

@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 import { createServer } from 'http';
+import path from 'path';
 import { WebSocketServer } from 'ws';
 import { schedulesRouter } from '@/routes/schedules';
 import { authRouter } from '@/routes/auth';
@@ -24,7 +25,9 @@ import { wesignRouter as unifiedWesignRouter } from '@/api/unified/WeSignRoutes'
 import { ciRouter } from '@/routes/ci-comprehensive';
 import { apiTestingRouter } from '@/routes/api-testing';
 import { loadTestingRouter } from '@/routes/load-testing';
-import { wesignTestsRouter } from '@/routes/wesign-tests';
+// import { wesignTestsRouter } from '@/routes/wesign-tests'; // DISABLED: Syntax error in legacy file, using unified routes instead
+import { realtimeRouter } from '@/routes/realtime-endpoints';
+import { allureRouter } from '@/routes/allure-reports';
 import { wesignIntegrationMiddleware } from '@/middleware/wesignIntegration';
 import { getDatabase, initializeFullDatabase, validateDatabaseIntegrity, getDatabaseStats } from '@/database/database';
 import { startWorker, stopWorker, getWorker } from '@/workers/scheduler';
@@ -102,6 +105,10 @@ app.use(cors({
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
+// Static file serving for Allure reports
+const ALLURE_REPORTS_PATH = path.resolve(__dirname, '../../../new_tests_for_wesign/reports/allure-reports');
+app.use('/allure-reports', express.static(ALLURE_REPORTS_PATH));
+
 // Request logging
 app.use((req, res, next) => {
   const startTime = Date.now();
@@ -169,17 +176,19 @@ app.use('/api/mcp-regression', mcpRegressionRouter);
 app.use('/api/ai', aiRouter);
 app.use('/api/knowledge', knowledgeRouter);
 app.use('/api/analytics', analyticsRouter);
+app.use('/api/realtime', realtimeRouter); // Real-time endpoints (BUG-002 FIX)
 app.use('/api/healing', healingRouter);
 app.use('/api/test-generator', testGeneratorRouter);
 app.use('/api/test-bank', testBankRouter);
 app.use('/api/sub-agents', subAgentsRouter);
 app.use('/api/wesign', wesignRouter);
-app.use('/api/wesign-tests', wesignTestsRouter); // WeSign Testing Hub routes
+// app.use('/api/wesign-tests', wesignTestsRouter); // DISABLED: Legacy route with syntax errors, using unified API instead
 app.use('/api/wesign/unified', unifiedWesignRouter); // New unified WeSign API - Re-enabled
 app.use('/api/jira', jiraRouter);
 app.use('/api/ci', ciRouter); // CI/CD API routes - Re-enabled
 app.use('/api/api-testing', apiTestingRouter); // Newman API testing routes
 app.use('/api/load-testing', loadTestingRouter); // k6 Load testing routes
+app.use('/api/allure', allureRouter); // Allure report generation and serving
 
 // WeSign-specific error handling
 app.use('/api/wesign/unified', wesignIntegrationMiddleware.errorHandler());

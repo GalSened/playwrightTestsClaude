@@ -1,9 +1,16 @@
 import express from 'express';
+import path from 'path';
 import { wesignTestExecutor, WeSignTestConfig } from '../../services/wesign/testExecutor';
 import WeSignApiGateway from '../../services/wesign/apiGateway';
 import { logger } from '../../utils/logger';
 
 const router = express.Router();
+
+// Cross-platform path configuration using environment variables
+const PYTHON_PATH = process.env.PYTHON_PATH || 'python';
+const WESIGN_TEST_BASE_DIR = process.env.WESIGN_TEST_SUITE_PATH
+  ? path.resolve(__dirname, '../../../', process.env.WESIGN_TEST_SUITE_PATH)
+  : path.resolve(__dirname, '../../../new_tests_for_wesign');
 
 // Initialize WeSign API Gateway
 const apiGateway = new WeSignApiGateway({
@@ -19,10 +26,21 @@ router.post('/test/run', async (req, res) => {
   try {
     const { testId, testFile, config } = req.body;
 
-    console.log('🚀 Single WeSign test execution request:', { testId, testFile, config });
+    logger.info('🚀 Single WeSign test execution request', { testId, testFile, config });
 
-    const pythonPath = 'C:/Users/gals/AppData/Local/Programs/Python/Python312/python.exe';
-    const testPath = `C:/Users/gals/Desktop/playwrightTestsClaude/new_tests_for_wesign/${testFile}`;
+    // Resolve test file path (cross-platform)
+    const testPath = path.join(WESIGN_TEST_BASE_DIR, testFile);
+
+    // Validate test file exists
+    const fs = require('fs');
+    if (!fs.existsSync(testPath)) {
+      return res.status(404).json({
+        success: false,
+        error: `Test file not found: ${testFile}`,
+        message: 'Test file does not exist',
+        resolvedPath: testPath
+      });
+    }
 
     // Build pytest command for single test
     const args = [
@@ -55,12 +73,18 @@ router.post('/test/run', async (req, res) => {
       exitCode: null
     };
 
+    logger.info('Spawning test execution', {
+      python: PYTHON_PATH,
+      cwd: WESIGN_TEST_BASE_DIR,
+      testPath
+    });
+
     // Execute test asynchronously
-    const testExecution = spawn(pythonPath, args, {
-      cwd: 'C:/Users/gals/Desktop/playwrightTestsClaude/new_tests_for_wesign',
+    const testExecution = spawn(PYTHON_PATH, args, {
+      cwd: WESIGN_TEST_BASE_DIR,
       env: {
         ...process.env,
-        PYTHONPATH: 'C:/Users/gals/Desktop/playwrightTestsClaude/new_tests_for_wesign'
+        PYTHONPATH: WESIGN_TEST_BASE_DIR
       }
     });
 
@@ -393,16 +417,19 @@ router.get('/suites', async (req, res) => {
 router.get('/tests', async (req, res) => {
   try {
     const fs = require('fs').promises;
-    const path = require('path');
 
-    const WESIGN_TEST_PATH = 'C:/Users/gals/Desktop/playwrightTestsClaude/new_tests_for_wesign';
     const testDirs = ['auth', 'documents', 'self_signing', 'contacts', 'templates',
                      'bulk_operations', 'distribution', 'reports', 'user_management'];
 
     const tests = [];
 
+    logger.info('Discovering WeSign tests', {
+      baseDir: WESIGN_TEST_BASE_DIR,
+      testDirs
+    });
+
     for (const dir of testDirs) {
-      const dirPath = path.join(WESIGN_TEST_PATH, 'tests', dir);
+      const dirPath = path.join(WESIGN_TEST_BASE_DIR, 'tests', dir);
       try {
         const files = await fs.readdir(dirPath);
         const pyFiles = files.filter(f => f.endsWith('.py') && f.startsWith('test_'));
@@ -618,15 +645,25 @@ router.get('/health', async (req, res) => {
     const checks = {
       pythonAvailable: false,
       wesignTestsExists: false,
-      playwrightInstalled: false
+      playwrightInstalled: false,
+      pythonPath: PYTHON_PATH,
+      testBasePath: WESIGN_TEST_BASE_DIR
     };
 
-    // Check Python - simplified for immediate testing
-    checks.pythonAvailable = true; // We verified this works manually
+    // Check Python availability
+    try {
+      const { execSync } = require('child_process');
+      const pythonVersion = execSync(`${PYTHON_PATH} --version`, { encoding: 'utf8' });
+      checks.pythonAvailable = true;
+      checks.pythonVersion = pythonVersion.trim();
+    } catch (e) {
+      logger.warn('Python not available', { path: PYTHON_PATH, error: e.message });
+      checks.pythonAvailable = false;
+    }
 
     // Check WeSign tests directory
     const fs = require('fs');
-    checks.wesignTestsExists = fs.existsSync("C:/Users/gals/Desktop/playwrightTestsClaude/new_tests_for_wesign");
+    checks.wesignTestsExists = fs.existsSync(WESIGN_TEST_BASE_DIR);
 
     // Check if Playwright is available - simplified for immediate testing
     checks.playwrightInstalled = true; // We verified this works manually

@@ -1,118 +1,133 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://qa-intelligence.com/schemas/a2a/DecisionNotice.schema.json",
-  "title": "Decision Notice Envelope",
-  "description": "Final decision notice after CMO scoring and selection",
+  "$id": "https://a2a.wesign.ai/schemas/DecisionNotice.schema.json",
+  "title": "DecisionNotice",
+  "description": "CMO decision loop outcome notification",
   "type": "object",
-  "required": ["meta", "payload"],
+  "required": ["decision", "qscore", "verification_summary"],
   "properties": {
-    "meta": {
-      "$ref": "EnvelopeMeta.schema.json",
-      "description": "Envelope metadata with type=DecisionNotice"
+    "decision": {
+      "type": "string",
+      "enum": ["ACCEPT", "RETRY", "ESCALATE"],
+      "description": "Decision outcome"
     },
-    "payload": {
+    "qscore": {
       "type": "object",
-      "required": ["decision", "selected_proposal"],
+      "required": ["score", "calibrated", "signals"],
       "properties": {
-        "decision": {
-          "type": "string",
-          "enum": ["approve", "reject", "defer", "escalate"],
-          "description": "Final decision outcome"
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Raw QScore from weighted fusion"
         },
-        "selected_proposal": {
+        "calibrated": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Calibrated QScore"
+        },
+        "signals": {
           "type": "object",
-          "required": ["specialist_id", "message_id"],
+          "required": [
+            "resultConfidence",
+            "policyOk",
+            "schemaOk",
+            "evidenceCoverage",
+            "affordanceAlignment",
+            "latencyNorm",
+            "retryDepthPenalty",
+            "consistencyPrev"
+          ],
           "properties": {
-            "specialist_id": {
-              "$ref": "AgentId.schema.json",
-              "description": "Specialist that provided the selected proposal"
-            },
-            "message_id": {
-              "type": "string",
-              "pattern": "^[a-f0-9-]{16,}$",
-              "description": "Message ID of the SpecialistResult that was selected"
-            },
-            "proposal": {
-              "type": "object",
-              "description": "The selected proposal content"
-            },
-            "confidence": {
-              "type": "number",
-              "minimum": 0,
-              "maximum": 1,
-              "description": "Specialist's original confidence score"
-            }
-          },
-          "description": "The proposal that was selected (or null if all rejected)"
+            "resultConfidence": {"type": "number", "minimum": 0, "maximum": 1},
+            "policyOk": {"type": "number", "minimum": 0, "maximum": 1},
+            "schemaOk": {"type": "number", "minimum": 0, "maximum": 1},
+            "evidenceCoverage": {"type": "number", "minimum": 0, "maximum": 1},
+            "affordanceAlignment": {"type": "number", "minimum": 0, "maximum": 1},
+            "latencyNorm": {"type": "number", "minimum": 0, "maximum": 1},
+            "retryDepthPenalty": {"type": "number", "minimum": 0, "maximum": 1},
+            "consistencyPrev": {"type": "number", "minimum": 0, "maximum": 1}
+          }
         },
-        "scoring_summary": {
-          "type": "object",
-          "properties": {
-            "total_proposals": {
-              "type": "integer",
-              "minimum": 0,
-              "description": "Total number of proposals evaluated"
-            },
-            "scoring_dimensions": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "name": {"type": "string"},
-                  "weight": {"type": "number", "minimum": 0, "maximum": 1}
-                }
-              },
-              "description": "Dimensions used for scoring (e.g., confidence, evidence_quality, cost)"
-            },
-            "proposal_scores": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "specialist_id": {"type": "string"},
-                  "message_id": {"type": "string"},
-                  "score": {"type": "number", "minimum": 0, "maximum": 1},
-                  "breakdown": {"type": "object"}
-                }
-              },
-              "description": "Score breakdown for each proposal"
-            }
-          },
-          "description": "Summary of the scoring process"
-        },
-        "rationale": {
+        "explanation": {
           "type": "string",
-          "minLength": 1,
-          "maxLength": 4096,
-          "description": "Human-readable explanation of the decision"
-        },
-        "next_actions": {
+          "description": "Human-readable explanation"
+        }
+      }
+    },
+    "verification_summary": {
+      "type": "object",
+      "required": ["passed", "verifiers_run", "average_confidence"],
+      "properties": {
+        "passed": {"type": "boolean"},
+        "verifiers_run": {"type": "array", "items": {"type": "string"}},
+        "average_confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "failures": {
           "type": "array",
           "items": {
             "type": "object",
+            "required": ["verifier", "reason"],
             "properties": {
-              "action": {"type": "string"},
-              "agent": {"$ref": "AgentId.schema.json"},
-              "deadline": {"type": "string", "format": "date-time"}
-            }
-          },
-          "description": "Recommended follow-up actions (e.g., 'apply_fix', 'run_tests', 'deploy')"
-        },
-        "rejection_reasons": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "specialist_id": {"type": "string"},
-              "message_id": {"type": "string"},
+              "verifier": {"type": "string"},
               "reason": {"type": "string"}
             }
-          },
-          "description": "Reasons for rejecting proposals (present if decision=reject)"
+          }
         }
-      },
-      "additionalProperties": false
-    }
-  },
-  "additionalProperties": false
+      }
+    },
+    "classification": {
+      "type": "object",
+      "required": ["category", "confidence", "reason"],
+      "properties": {
+        "category": {
+          "type": "string",
+          "enum": [
+            "SCHEMA_VIOLATION",
+            "MISSING_EVIDENCE",
+            "FLAKY_PATTERN",
+            "SELECTOR_ISSUE",
+            "POLICY_DEGRADED",
+            "LOW_CONFIDENCE",
+            "TIMEOUT",
+            "INCONSISTENT",
+            "UNKNOWN"
+          ]
+        },
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "reason": {"type": "string"}
+      }
+    },
+    "retry_decision": {
+      "type": "object",
+      "required": ["action", "target_specialist", "reason"],
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": [
+            "ACCEPT",
+            "RETRY_EXPAND_CONTEXT",
+            "RETRY_DIFFERENT_SPECIALIST",
+            "RETRY_WITH_SCHEMA",
+            "RETRY_STABILITY",
+            "RETRY_SELECTOR_HEAL",
+            "ESCALATE"
+          ]
+        },
+        "target_specialist": {"type": "string"},
+        "context_delta": {
+          "type": "object",
+          "properties": {
+            "expand_budget": {"type": "integer"},
+            "add_hints": {"type": "array", "items": {"type": "string"}},
+            "include_schema": {"type": "boolean"}
+          }
+        },
+        "max_retries": {"type": "integer"},
+        "reason": {"type": "string"}
+      }
+    },
+    "summary": {"type": "string"},
+    "timestamp": {"type": "string", "format": "date-time"}
+  }
 }

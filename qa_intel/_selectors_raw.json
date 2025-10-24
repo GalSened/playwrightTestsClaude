@@ -1,0 +1,2959 @@
+{
+  "total_occurrences": 577,
+  "unique_selectors": 175,
+  "files_scanned": 20,
+  "by_method": {
+    "locator_css": 549,
+    "get_by_role": 24,
+    "get_by_text": 4
+  },
+  "by_file": {
+    ".\\manual_signing_test_demo.py": 11,
+    ".\\simple_signing_test.py": 6,
+    ".\\test_api_integrations_comprehensive.py": 43,
+    ".\\test_cross_module_integration_comprehensive.py": 45,
+    ".\\test_data_validation_comprehensive.py": 18,
+    ".\\test_direct_auth.py": 3,
+    ".\\test_document_advanced_management.py": 34,
+    ".\\test_group_signing_comprehensive.py": 24,
+    ".\\test_integration_cross_module.py": 31,
+    ".\\test_profile_settings_comprehensive.py": 18,
+    ".\\test_reports_analytics_comprehensive.py": 28,
+    ".\\test_signing_advanced_scenarios.py": 39,
+    ".\\test_signing_flows_comprehensive.py": 69,
+    ".\\test_signing_validation.py": 9,
+    ".\\tests\\contacts\\test_contacts_core_fixed.py": 42,
+    ".\\tests\\documents\\test_documents_advanced.py": 2,
+    ".\\tests\\documents\\test_documents_core_fixed.py": 1,
+    ".\\tests\\self_signing\\test_self_signing_core_fixed.py": 1,
+    ".\\tests\\templates\\test_templates_core_fixed.py": 143,
+    ".\\wesign_comprehensive_tests\\quality_integration\\boundary_testing.py": 10
+  },
+  "selectors": {
+    ".\\manual_signing_test_demo.py": [
+      {
+        "method": "locator_css",
+        "value": "button[type=",
+        "file": "manual_signing_test_demo.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "manual_signing_test_demo.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button",
+        "file": "manual_signing_test_demo.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "manual_signing_test_demo.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "manual_signing_test_demo.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "manual_signing_test_demo.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "manual_signing_test_demo.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "manual_signing_test_demo.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "manual_signing_test_demo.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "manual_signing_test_demo.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "manual_signing_test_demo.py"
+      }
+    ],
+    ".\\simple_signing_test.py": [
+      {
+        "method": "locator_css",
+        "value": "button[type=",
+        "file": "simple_signing_test.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "simple_signing_test.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "simple_signing_test.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "simple_signing_test.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "simple_signing_test.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "simple_signing_test.py"
+      }
+    ],
+    ".\\test_api_integrations_comprehensive.py": [
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error, .invalid-feedback",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".test-result, .success, .error",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "..",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error, .invalid-feedback",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error, .invalid-feedback",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error, .invalid-feedback",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error, .invalid-feedback",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error:has-text(",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ":has-text(",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".test-result, .success, .error, .response",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".api-usage, .usage-analytics, .metrics, canvas",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".success, :has-text(",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_api_integrations_comprehensive.py"
+      }
+    ],
+    ".\\test_cross_module_integration_comprehensive.py": [
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "textbox",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "textbox",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "table",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "table",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "table",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "searchbox",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_role",
+        "value": "button",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_text",
+        "value": "Total documents amount:",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_text",
+        "value": "Add a new template",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_text",
+        "value": "Add a new contact",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "get_by_text",
+        "value": "Total documents amount:",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=\u05d4\u05e2\u05dc\u05d0\u05ea \u05de\u05e1\u05de\u05da, text=Upload Document",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=\u05d9\u05e6\u05d9\u05e8\u05ea \u05ea\u05d1\u05e0\u05d9\u05ea, text=Create Template",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=\u05d4\u05e2\u05dc\u05d0\u05d4 \u05e7\u05d1\u05d5\u05e6\u05ea\u05d9\u05ea",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=\u05d4\u05d7\u05dc\u05ea \u05ea\u05d1\u05e0\u05d9\u05ea \u05e2\u05dc \u05de\u05e1\u05e4\u05e8 \u05de\u05e1\u05de\u05db\u05d9\u05dd",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=\u05e7\u05d1\u05d5\u05e6\u05d5\u05ea",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=\u05d7\u05ea\u05d9\u05de\u05d4 \u05d4\u05de\u05d5\u05e0\u05d9\u05ea",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=\u05de\u05e2\u05e7\u05d1 \u05d4\u05ea\u05e7\u05d3\u05de\u05d5\u05ea",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=\u05d3\u05d5\u05d7 \u05e7\u05d1\u05d5\u05e6\u05ea\u05d9",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=API",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=Webhook",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=\u05d4\u05e2\u05dc\u05d0\u05ea \u05de\u05e1\u05de\u05da",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=\u05d7\u05ea\u05dd",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=\u05e4\u05e2\u05d9\u05dc\u05d5\u05ea API",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=\u05e9\u05d2\u05d9\u05d0\u05d4",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=\u05d4\u05ea\u05d7\u05d1\u05e8",
+        "file": "test_cross_module_integration_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=\u05d9\u05e6\u05d9\u05e8\u05ea \u05ea\u05d1\u05e0\u05d9\u05ea",
+        "file": "test_cross_module_integration_comprehensive.py"
+      }
+    ],
+    ".\\test_data_validation_comprehensive.py": [
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_data_validation_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_data_validation_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error, .alert-danger, [role=",
+        "file": "test_data_validation_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_data_validation_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_data_validation_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "test_data_validation_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_data_validation_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_data_validation_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_data_validation_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error, .alert-danger, [role=",
+        "file": "test_data_validation_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_data_validation_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "test_data_validation_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has(svg), button[title*=",
+        "file": "test_data_validation_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "dialog, .modal, .confirmation",
+        "file": "test_data_validation_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_data_validation_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_data_validation_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_data_validation_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_data_validation_comprehensive.py"
+      }
+    ],
+    ".\\test_direct_auth.py": [
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_direct_auth.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_direct_auth.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_direct_auth.py"
+      }
+    ],
+    ".\\test_document_advanced_management.py": [
+      {
+        "method": "locator_css",
+        "value": "table",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=Signed",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=Pending",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "td:has-text(",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "td:has-text(",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "td:has-text(",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "td:has-text(",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "td:has-text(",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "td:has-text(",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select option[value*=",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "table",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "table tr",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "table tbody tr",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button[aria-label*=",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button[aria-label*=",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "thead input[type=",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "tbody input[type=",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "table tbody tr button, table tbody tr a",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "table tbody tr",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "table tbody tr",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "table tbody tr",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "table tbody tr",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "table tbody tr",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "table tbody tr",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_document_advanced_management.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "table tbody tr button",
+        "file": "test_document_advanced_management.py"
+      }
+    ],
+    ".\\test_group_signing_comprehensive.py": [
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".signer, .assign, [data-testid*=",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".workflow, .sequence, .order",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error:has-text(",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error, .invalid-feedback",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error, [role=",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select[name*=",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select[name*=",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select[name*=",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error:has-text(",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error:has-text(",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_group_signing_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error:has-text(",
+        "file": "test_group_signing_comprehensive.py"
+      }
+    ],
+    ".\\test_integration_cross_module.py": [
+      {
+        "method": "locator_css",
+        "value": "table tbody tr",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "table tbody tr input[type=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "table tbody tr",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "td",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "main",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "table tbody tr, .template-list item, [class*=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select option:has-text(",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "a[href*=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "[dir=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "[dir=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "[dir=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "[dir=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=/[\\u0590-\\u05FF]+/",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=/[A-Za-z]+/",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select, combobox, [class*=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "[dir=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "table tbody tr",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "table tbody tr, [class*=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "[dir=",
+        "file": "test_integration_cross_module.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "[dir=",
+        "file": "test_integration_cross_module.py"
+      }
+    ],
+    ".\\test_profile_settings_comprehensive.py": [
+      {
+        "method": "locator_css",
+        "value": "form, .profile-form, [data-testid=",
+        "file": "test_profile_settings_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name=",
+        "file": "test_profile_settings_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name=",
+        "file": "test_profile_settings_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_profile_settings_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name=",
+        "file": "test_profile_settings_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name=",
+        "file": "test_profile_settings_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "body",
+        "file": "test_profile_settings_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_profile_settings_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_profile_settings_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error, .invalid-feedback, [role=",
+        "file": "test_profile_settings_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error, .alert-danger, [role=",
+        "file": "test_profile_settings_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input",
+        "file": "test_profile_settings_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input",
+        "file": "test_profile_settings_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "[aria-label], [aria-describedby], [role]",
+        "file": "test_profile_settings_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input",
+        "file": "test_profile_settings_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "[role=",
+        "file": "test_profile_settings_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button",
+        "file": "test_profile_settings_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input, select, textarea",
+        "file": "test_profile_settings_comprehensive.py"
+      }
+    ],
+    ".\\test_reports_analytics_comprehensive.py": [
+      {
+        "method": "locator_css",
+        "value": ".reports-container, [data-testid=",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".report-filter, [data-testid=",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".report-results, [data-testid=",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "option",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".report-results, table, .data-grid",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error, .alert-danger, [role=",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".error, .alert-danger",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "[aria-label], [role]",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[id]:has(+ label), label:has(+ input)",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "label",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button",
+        "file": "test_reports_analytics_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".loading, .spinner, [role=",
+        "file": "test_reports_analytics_comprehensive.py"
+      }
+    ],
+    ".\\test_signing_advanced_scenarios.py": [
+      {
+        "method": "locator_css",
+        "value": "button[type=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "[role=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "[role=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button[type=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "h3[text()=",
+        "file": "test_signing_advanced_scenarios.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button img[alt*=",
+        "file": "test_signing_advanced_scenarios.py"
+      }
+    ],
+    ".\\test_signing_flows_comprehensive.py": [
+      {
+        "method": "locator_css",
+        "value": "button[type=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=You are the only signer",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[value*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=You are the only signer",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=You are the only signer",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=You are the only signer",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[value*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=Add recipients and drag tiles",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "h3:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button img[src*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "checkbox:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select[value*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button[aria-label*=",
+        "file": "test_signing_flows_comprehensive.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_flows_comprehensive.py"
+      }
+    ],
+    ".\\test_signing_validation.py": [
+      {
+        "method": "locator_css",
+        "value": "button[type=",
+        "file": "test_signing_validation.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_validation.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button",
+        "file": "test_signing_validation.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[value*=",
+        "file": "test_signing_validation.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "test_signing_validation.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_validation.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_validation.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select",
+        "file": "test_signing_validation.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "test_signing_validation.py"
+      }
+    ],
+    ".\\tests\\contacts\\test_contacts_core_fixed.py": [
+      {
+        "method": "locator_css",
+        "value": "h1, h2, h3, form, input, button",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select[data-testid=",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "[dir=",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".tag, .badge, .chip, [class*=",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".pagination, .page-nav, button:has-text(",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".page-number, [data-page]",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "a[href*=",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "a[href*=",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".mobile-nav, .hamburger-menu, .nav-toggle",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".responsive-grid, .mobile-grid, @media",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button[data-sort], .sort-header, th[sortable]",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select[name=",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select:has-text(",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".activity-log, .history, .interactions",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".timestamp, .last-activity, .created-at",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".api-settings, .integration-settings",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".notification-settings, .alert-preferences",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select[name*=",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".duplicate-warning, .merge-suggestion",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".history, .audit-log, .change-log",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".version, .modified-by, .created-by",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".permissions, .access-control",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select[name*=",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".analytics, .metrics, .statistics",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".admin-panel, .system-settings",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/contacts/test_contacts_core_fixed.py"
+      }
+    ],
+    ".\\tests\\documents\\test_documents_advanced.py": [
+      {
+        "method": "locator_css",
+        "value": "text=\u05de\u05e1\u05de\u05db\u05d9\u05dd",
+        "file": "tests/documents/test_documents_advanced.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=Documents",
+        "file": "tests/documents/test_documents_advanced.py"
+      }
+    ],
+    ".\\tests\\documents\\test_documents_core_fixed.py": [
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/documents/test_documents_core_fixed.py"
+      }
+    ],
+    ".\\tests\\self_signing\\test_self_signing_core_fixed.py": [
+      {
+        "method": "locator_css",
+        "value": "html",
+        "file": "tests/self_signing/test_self_signing_core_fixed.py"
+      }
+    ],
+    ".\\tests\\templates\\test_templates_core_fixed.py": [
+      {
+        "method": "locator_css",
+        "value": "h1, h2, h3, title, [data-title], .title",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".context-menu, .template-actions",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".template-editor, .field-overlay, .edit-mode",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".share-modal, .url-modal, input[readonly]",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".send-for-signing, .signature-flow, .signing-workflow",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".field-overlay, .signature-field, .field-manager",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".field-tools, .signature-tools, .overlay-editor",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".admin-only, [data-permission=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button[disabled], .disabled",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".usage-count, .template-stats, .usage-tracking",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".analytics, .metrics, .template-analytics",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".version, .template-history, .version-control",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".collaboration, .team-share, .template-permissions",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".validation-error, .file-error, .invalid-file",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".supported-formats, .file-requirements",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "a[href*=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".template-to-document, .create-from-template, .use-template",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "[dir=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".template-card:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".template-content[lang], .bilingual-content, .multi-lang",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".auto-attach, input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".signer-field, .field-assignment, .attach-to-signer",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".template-card, .template-item, .template-row",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".template-name, .name, h3, h4",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "a:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".template-card, .template-item, .template-row",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".workflow-automation, .auto-send, text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".template-card, .template-item, .template-row",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".signing-order, .signer-sequence, text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[value=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[value=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".branding-section, .custom-branding, text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".notifications, text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".template-card, .template-item",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".field-properties, .field-settings, text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select:near(text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".template-card, .template-item",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".conditional-logic, text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".logic-rules, .field-conditions, .if-then",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select.condition-field, .trigger-field",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".integrations, text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".contact-sync, text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".date-filter, input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".tag-filter, .tags-selector",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".type-filter, select[name*=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".template-card, .template-item",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".version-item, .history-item, .version-entry",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".bulk-actions, button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".template-card, .template-item",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "select.permissions, .role-selector",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".api-integration, text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[placeholder*=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".logs-section, text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".activity-log, .audit-entry, .log-item",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "[aria-label], [aria-labelledby]",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".template-card, .template-item",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[required], .required-field",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "nav a, .navigation a",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".template-card, .template-item",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[name*=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=/[\u05d0-\u05ea]/",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=/[A-Za-z]/",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".template-card, .template-item",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "[https], .secure, text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".advanced-search, input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".template-card, .template-item",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".template-card, .template-item, .template-row",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": ".language-selector, [dir=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "nav a, .navigation a",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "[https], input[name*=",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:visible, a:visible, input:visible",
+        "file": "tests/templates/test_templates_core_fixed.py"
+      }
+    ],
+    ".\\wesign_comprehensive_tests\\quality_integration\\boundary_testing.py": [
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "text*=",
+        "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "input[type=",
+        "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py"
+      },
+      {
+        "method": "locator_css",
+        "value": "button:has-text(",
+        "file": "wesign_comprehensive_tests/quality_integration/boundary_testing.py"
+      }
+    ]
+  }
+}
