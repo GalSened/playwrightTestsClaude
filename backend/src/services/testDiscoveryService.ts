@@ -48,7 +48,10 @@ export class TestDiscoveryService {
     '../playwright-system-tests/tests',
     '../tests-enterprise/src'
   ];
-  private wesignTestDir: string = 'C:/Users/gals/Desktop/playwrightTestsClaude/new_tests_for_wesign'; // Updated to new test directory
+  // Use environment variable for cross-platform compatibility
+  private wesignTestDir: string = process.env.WESIGN_TEST_SUITE_PATH
+    ? path.resolve(process.cwd(), process.env.WESIGN_TEST_SUITE_PATH)
+    : path.resolve(process.cwd(), '../new_tests_for_wesign');
 
   constructor(testRootPath: string = '../tests') {
     this.testRootPath = path.resolve(testRootPath);

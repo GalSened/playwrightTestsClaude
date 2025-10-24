@@ -29,8 +29,11 @@ export interface TestResult {
 }
 
 export class WeSignTestExecutor extends EventEmitter {
-  private static readonly WESIGN_TESTS_PATH = "C:/Users/gals/Desktop/playwrightTestsClaude/new_tests_for_wesign";
-  private static readonly PYTHON_PATH = "C:/Users/gals/AppData/Local/Programs/Python/Python312/python.exe";
+  // Use environment variables for cross-platform compatibility
+  private static readonly WESIGN_TESTS_PATH = process.env.WESIGN_TEST_SUITE_PATH
+    ? path.resolve(process.cwd(), process.env.WESIGN_TEST_SUITE_PATH)
+    : path.resolve(process.cwd(), '../new_tests_for_wesign');
+  private static readonly PYTHON_PATH = process.env.PYTHON_PATH || 'python';
   private runningTests: Map<string, ChildProcess> = new Map();
   private testResults: Map<string, TestResult> = new Map();
 
