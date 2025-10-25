@@ -1,0 +1,49 @@
+policy_id: qa_root_cause
+task: root_cause_analysis
+description: Policy optimized for root cause analysis of test failures
+
+# Weight configuration for hybrid retrieval
+weights:
+  pinned: 4.0        # Heavily prioritize explicitly pinned events
+  importance: 3.5    # High weight for important events (failures, critical issues)
+  semantic: 2.5      # Strong semantic matching for similar failure patterns
+  recency: 1.5       # Moderate recency bias (recent failures more relevant)
+  diversity: 0.3     # Low diversity (focus on similar patterns, not variety)
+
+# Token budget for context packing
+budget_tokens: 6144  # Larger budget for comprehensive root cause analysis
+
+# Event type filtering
+event_types:
+  - test_failure
+  - agent_action
+  - code_change
+  - deployment
+
+# Minimum importance threshold (0-5 scale)
+min_importance: 2.5
+
+# Tag filtering
+tags_include:
+  - regression
+  - flaky
+  - recurring-failure
+  - timeout
+  - selector-failure
+  - api-error
+  - assertion-failure
+  - root-cause
+
+# Include roll-up summaries for historical context
+include_rollups: true
+
+# Maximum events to retrieve
+max_events: 100
+
+# Retrieval strategy notes
+# This policy prioritizes:
+# 1. High-importance failures (pinned + importance weights)
+# 2. Semantically similar failures (helps identify patterns)
+# 3. Recent occurrences (but not too heavily weighted)
+# 4. Clusters of similar failures (low diversity = focus on patterns)
+# 5. Historical context via roll-ups
