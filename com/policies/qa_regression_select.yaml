@@ -1,0 +1,57 @@
+policy_id: qa_regression_select
+task: smart_regression_selection
+description: Policy optimized for intelligent regression test selection based on code changes
+
+# Weight configuration for hybrid retrieval
+weights:
+  pinned: 4.5        # Heavily prioritize explicitly selected tests
+  importance: 3.0    # High weight for critical tests
+  semantic: 3.5      # Very strong semantic matching (code change → affected tests)
+  recency: 2.5       # Higher recency (recent failures indicate fragility)
+  diversity: 1.5     # Moderate diversity (cover different areas)
+
+# Token budget for context packing
+budget_tokens: 8192  # Large budget for comprehensive test selection context
+
+# Event type filtering
+event_types:
+  - test_failure
+  - test_execution
+  - code_change
+  - deployment
+  - agent_action
+
+# Minimum importance threshold (0-5 scale)
+min_importance: 1.0  # Lower threshold to include borderline tests
+
+# Tag filtering
+tags_include:
+  - regression
+  - affected-by-change
+  - high-coverage
+  - critical-path
+  - integration
+  - e2e
+  - api-test
+  - flaky  # Include flaky tests (need more scrutiny)
+  - recently-failed
+
+# Include roll-up summaries for failure rate analysis
+include_rollups: true
+
+# Maximum events to retrieve
+max_events: 200  # Large set for comprehensive selection
+
+# Retrieval strategy notes
+# This policy prioritizes:
+# 1. Strong semantic matching between code changes and test coverage
+# 2. Tests that recently failed (may be fragile in changed areas)
+# 3. Critical path and high-coverage tests
+# 4. Diverse test selection across different areas
+# 5. Historical failure patterns via roll-ups
+# 6. Explicit test selections (pinned events)
+#
+# Use case:
+# - Input: Code changes (files, functions, modules)
+# - Output: Ranked list of tests to run in regression suite
+# - Goal: Maximize defect detection while minimizing test execution time

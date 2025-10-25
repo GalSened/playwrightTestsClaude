@@ -1,0 +1,38 @@
+policy_id: qa_code_review_py
+task: code_review
+description: Default policy for Python code review with QA context
+
+# Weight configuration for hybrid retrieval
+weights:
+  pinned: 3.0        # Prioritize explicitly pinned events
+  importance: 2.0    # Moderate importance weight
+  semantic: 1.6      # Moderate semantic matching
+  recency: 1.0       # Standard recency bias
+  diversity: 0.5     # Low diversity (focus on relevant context)
+
+# Token budget for context packing
+budget_tokens: 4096  # Standard budget (fits in most LLM contexts)
+
+# Event type filtering
+event_types:
+  - test_failure
+  - code_change
+  - agent_action
+
+# Minimum importance threshold (0-5 scale)
+min_importance: 2.0
+
+# Tag filtering
+tags_include:
+  - regression
+  - flaky
+
+# Include roll-up summaries for broader context
+include_rollups: true
+
+# Maximum events to retrieve
+max_events: 50
+
+# Retrieval strategy notes
+# This is the default policy for general code review tasks
+# Balances comprehensiveness with token efficiency

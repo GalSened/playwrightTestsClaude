@@ -1,0 +1,62 @@
+policy_id: qa_healing
+task: self_healing_recommendation
+description: Policy optimized for generating self-healing recommendations for test failures
+
+# Weight configuration for hybrid retrieval
+weights:
+  pinned: 4.0        # Prioritize pinned healing patterns
+  importance: 2.0    # Moderate importance (failures of all severities can be healed)
+  semantic: 4.0      # Very strong semantic matching (find similar healed failures)
+  recency: 1.8       # Moderate recency (recent healings show current patterns)
+  diversity: 0.8     # Low-moderate diversity (focus on proven healing patterns)
+
+# Token budget for context packing
+budget_tokens: 4096  # Standard budget for healing recommendations
+
+# Event type filtering
+event_types:
+  - test_failure
+  - agent_action
+  - code_change
+
+# Minimum importance threshold (0-5 scale)
+min_importance: 1.0  # Include all failures (even minor ones can be healed)
+
+# Tag filtering
+tags_include:
+  - healable-failure
+  - healed-successfully
+  - selector-failure
+  - timeout
+  - timing-issue
+  - state-dependent
+  - self-healing
+  - healing-pattern
+  - auto-fix
+  - retry-success
+
+# Include roll-up summaries for healing success rates
+include_rollups: true
+
+# Maximum events to retrieve
+max_events: 80
+
+# Retrieval strategy notes
+# This policy prioritizes:
+# 1. Semantically similar failures that were successfully healed
+# 2. Proven healing patterns (tagged healing-pattern, healed-successfully)
+# 3. Recent healing strategies (may reflect current best practices)
+# 4. Agent actions that resulted in successful fixes
+# 5. Low diversity (focus on repeatable, proven patterns)
+#
+# Use case:
+# - Input: Current test failure (error message, stack trace, context)
+# - Output: Ranked healing strategies based on similar past failures
+# - Goal: Automatically fix or suggest fixes for common failure patterns
+#
+# Healing categories:
+# - Selector healing: Update outdated selectors, use backup selectors
+# - Timing healing: Add waits, adjust timeouts, retry with backoff
+# - State healing: Reset state, clear cache, restart service
+# - Data healing: Refresh test data, fix data dependencies
+# - Environment healing: Check environment config, reconnect services

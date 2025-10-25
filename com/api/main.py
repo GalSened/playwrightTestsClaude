@@ -33,6 +33,8 @@ from storage.vector_index import VectorIndex, HybridRetriever
 from core.policy_engine import PolicyEngine
 from core.memory_journal import MemoryJournalService
 from core.roll_ups import RollUpService
+from core.flaky_registry import FlakyRegistry
+from core.regression_selector import RegressionSelector, CodeChange
 from services.llm_service import LLMService, get_llm_service
 
 
@@ -63,6 +65,8 @@ class COMState:
     memory_journal: Optional[MemoryJournalService] = None
     rollup_service: Optional[RollUpService] = None
     llm_service: Optional[LLMService] = None
+    flaky_registry: Optional[FlakyRegistry] = None
+    regression_selector: Optional[RegressionSelector] = None
 
 
 com_state = COMState()
@@ -142,6 +146,24 @@ async def lifespan(app: FastAPI):
         enable_llm=True
     )
     print(f"   ✓ Roll-up Service ready (LLM enabled: {com_state.llm_service is not None})")
+
+    # Initialize flaky registry
+    print(f"\n8. Initializing Flaky Test Registry")
+    com_state.flaky_registry = FlakyRegistry(
+        event_store=com_state.event_store,
+        memory_journal=com_state.memory_journal,
+        branch="main"
+    )
+    print(f"   ✓ Flaky Registry ready")
+
+    # Initialize regression selector
+    print(f"\n9. Initializing Smart Regression Selector")
+    com_state.regression_selector = RegressionSelector(
+        event_store=com_state.event_store,
+        hybrid_retriever=com_state.hybrid_retriever,
+        policy_engine=com_state.policy_engine
+    )
+    print(f"   ✓ Regression Selector ready")
 
     print("\n" + "=" * 80)
     print("COM Service Ready!")
@@ -712,6 +734,163 @@ async def check_llm_status():
         "fallback_mode": not healthy,
         "model": com_state.llm_service.model if healthy else None
     }
+
+
+# =============================================================================
+# Flaky Test Registry Endpoints
+# =============================================================================
+
+class FlakyDetectionRequest(BaseModel):
+    """Request for flaky test detection"""
+    project: str
+    days: int = 30
+    min_executions: int = 5
+    flakiness_threshold: float = 0.1
+
+
+class HealingAttemptRequest(BaseModel):
+    """Request to record healing attempt"""
+    test_id: str
+    healing_strategy: str
+    success: bool
+    project: str
+    details: Optional[Dict[str, Any]] = None
+
+
+@app.post("/flaky/detect")
+async def detect_flaky_tests(request: FlakyDetectionRequest):
+    """Detect flaky tests from execution history"""
+    flaky_tests = com_state.flaky_registry.detect_flaky_tests(
+        project=request.project,
+        days=request.days,
+        min_executions=request.min_executions,
+        flakiness_threshold=request.flakiness_threshold
+    )
+
+    return {
+        "project": request.project,
+        "detected_count": len(flaky_tests),
+        "flaky_tests": [test.to_dict() for test in flaky_tests]
+    }
+
+
+@app.get("/flaky/analyze/{test_id}")
+async def analyze_manifestations(test_id: str, project: str, days: int = 30):
+    """Analyze manifestations of a flaky test"""
+    analysis = com_state.flaky_registry.analyze_manifestations(
+        test_id=test_id,
+        project=project,
+        days=days
+    )
+
+    return analysis
+
+
+@app.post("/flaky/healing")
+async def record_healing_attempt(request: HealingAttemptRequest):
+    """Record a healing attempt"""
+    event_id = com_state.flaky_registry.record_healing_attempt(
+        test_id=request.test_id,
+        healing_strategy=request.healing_strategy,
+        success=request.success,
+        details={
+            'project': request.project,
+            **(request.details or {})
+        }
+    )
+
+    return {
+        "success": True,
+        "event_id": event_id,
+        "test_id": request.test_id
+    }
+
+
+@app.get("/flaky/healing-stats")
+async def get_healing_stats(
+    test_id: Optional[str] = None,
+    strategy: Optional[str] = None,
+    days: int = 30
+):
+    """Get healing success rate statistics"""
+    stats = com_state.flaky_registry.get_healing_success_rate(
+        test_id=test_id,
+        strategy=strategy,
+        days=days
+    )
+
+    return stats
+
+
+@app.get("/flaky/report/{project}")
+async def generate_flakiness_report(project: str, days: int = 30):
+    """Generate comprehensive flakiness report"""
+    report = com_state.flaky_registry.generate_flakiness_report(
+        project=project,
+        days=days
+    )
+
+    return report
+
+
+# =============================================================================
+# Smart Regression Selection Endpoints
+# =============================================================================
+
+class CodeChangeInput(BaseModel):
+    """Code change input"""
+    file_path: str
+    change_type: str  # added, modified, deleted
+    lines_added: int = 0
+    lines_deleted: int = 0
+    functions_changed: Optional[List[str]] = None
+    modules_changed: Optional[List[str]] = None
+
+
+class RegressionSelectionRequest(BaseModel):
+    """Request for regression test selection"""
+    project: str
+    code_changes: List[CodeChangeInput]
+    available_tests: List[str]
+    max_tests: Optional[int] = None
+    time_budget_minutes: Optional[int] = None
+    branch: str = "main"
+
+
+@app.post("/regression/select")
+async def select_regression_tests(request: RegressionSelectionRequest):
+    """Select regression tests based on code changes"""
+    # Convert input to CodeChange objects
+    code_changes = [
+        CodeChange(
+            file_path=change.file_path,
+            change_type=change.change_type,
+            lines_added=change.lines_added,
+            lines_deleted=change.lines_deleted,
+            functions_changed=change.functions_changed,
+            modules_changed=change.modules_changed
+        )
+        for change in request.code_changes
+    ]
+
+    # Select tests
+    selected_tests = com_state.regression_selector.select_tests(
+        project=request.project,
+        code_changes=code_changes,
+        available_tests=request.available_tests,
+        max_tests=request.max_tests,
+        time_budget_minutes=request.time_budget_minutes,
+        branch=request.branch
+    )
+
+    # Generate report
+    report = com_state.regression_selector.generate_selection_report(
+        selected_tests=selected_tests,
+        total_available=len(request.available_tests),
+        code_changes=code_changes
+    )
+
+    return report
 
 
 # =============================================================================
