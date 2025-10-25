@@ -5,7 +5,7 @@ import { logger } from '@/utils/logger';
 import type { Page } from 'playwright';
 import WeSignCodebaseAnalyzer, { WeSignCodeStructure } from './ai/wesignCodebaseAnalyzer';
 import UnifiedKnowledgeService from './ai/unifiedKnowledgeService';
-import { AIService } from './ai/AIService';
+import { AIService } from './ai/aiService';
 
 export interface FailureContext {
   dom: string;
