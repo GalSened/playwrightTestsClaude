@@ -78,7 +78,23 @@ export class EventBus {
   addWebSocketClient(ws: WebSocket): void {
     this.wsClients.add(ws);
 
-    // Send recent events to new client
+    // SIMPLIFIED based on minimal test success
+    // server.ts already waits 500ms before calling this method
+    // So we can just send messages immediately here
+
+    // Send connection acknowledgment
+    this.sendToWebSocket(ws, {
+      id: uuidv4(),
+      timestamp: new Date(),
+      source: 'EventBus',
+      type: 'connection' as EventType,
+      data: {
+        status: 'connected',
+        message: 'Connected to WeSign real-time updates'
+      }
+    });
+
+    // Send recent events
     const recentEvents = this.eventHistory.slice(-10);
     recentEvents.forEach(event => {
       this.sendToWebSocket(ws, event);
@@ -97,7 +113,7 @@ export class EventBus {
       this.wsClients.delete(ws);
     });
 
-    logger.info('WebSocket client connected', {
+    logger.info('WebSocket client connected to EventBus', {
       totalClients: this.wsClients.size
     });
   }
@@ -191,12 +207,35 @@ export class EventBus {
   }
 
   private sendToWebSocket(ws: WebSocket, event: WeSignEvent): void {
-    const message = JSON.stringify({
-      type: 'wesign-event',
-      event: event
-    });
+    // Safety check: only send if connection is open
+    if (ws.readyState !== WebSocket.OPEN) {
+      logger.warn('Attempted to send to non-open WebSocket', {
+        readyState: ws.readyState,
+        eventId: event.id
+      });
+      return;
+    }
 
-    ws.send(message);
+    try {
+      const message = JSON.stringify({
+        type: 'wesign-event',
+        event: event
+      });
+
+      ws.send(message, (error) => {
+        if (error) {
+          logger.error('WebSocket send error', {
+            eventId: event.id,
+            error: error.message
+          });
+        }
+      });
+    } catch (error) {
+      logger.error('Failed to serialize or send WebSocket message', {
+        eventId: event.id,
+        error: error instanceof Error ? error.message : error
+      });
+    }
   }
 
   private addToHistory(event: WeSignEvent): void {

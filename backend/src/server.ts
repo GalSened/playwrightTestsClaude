@@ -18,6 +18,7 @@ import analyticsRouter from '@/routes/analytics';
 import healingRouter from '@/routes/healing';
 import testGeneratorRouter from '@/routes/testGenerator';
 import testBankRouter from '@/routes/testBank';
+import testBanksRouter from '@/routes/test-banks';
 import subAgentsRouter from '@/routes/subAgents';
 import { jiraRouter } from '@/routes/jira';
 import wesignRouter from '@/routes/wesign';
@@ -42,6 +43,8 @@ import { wesignKnowledgeInitializer } from '@/services/ai/wesignKnowledgeInitial
 import { eventBus } from '@/core/wesign/EventBus';
 import { ciWebSocketHandler } from '@/services/CIWebSocketHandler';
 import { logger, requestLogger } from '@/utils/logger';
+import { executionManager } from '@/core/wesign/ExecutionManager';
+import { unifiedTestEngine } from '@/core/wesign/UnifiedTestEngine';
 
 const app = express();
 const PORT = process.env.PORT || 8082;
@@ -76,6 +79,46 @@ async function initializeSubAgents(): Promise<void> {
     contextManager.subscribe('test-intelligence-agent', ['failureHistory', 'codeChanges', 'systemHealth']);
     contextManager.subscribe('jira-integration-agent', ['testRun', 'failureHistory']);
     contextManager.subscribe('failure-analysis-agent', ['failureHistory', 'testRun', 'systemHealth']);
+
+    // Setup execution orchestration - Connect ExecutionManager to UnifiedTestEngine
+    logger.info('Setting up execution orchestration...');
+
+    executionManager.on('executionStarted', async ({ executionId, config, pool }: any) => {
+      logger.info('Execution started - delegating to UnifiedTestEngine', {
+        executionId,
+        framework: config.framework,
+        pool
+      });
+
+      try {
+        // Start the actual test execution
+        const handle = await unifiedTestEngine.executeTests(config);
+
+        logger.info('UnifiedTestEngine execution initiated successfully', {
+          executionId: handle.executionId,
+          framework: config.framework,
+          status: handle.status
+        });
+      } catch (error) {
+        logger.error('Failed to start UnifiedTestEngine execution', {
+          executionId,
+          error: error instanceof Error ? error.message : error,
+          stack: error instanceof Error ? error.stack : undefined
+        });
+
+        // Mark execution as failed
+        try {
+          await executionManager.cancelExecution(executionId);
+        } catch (cancelError) {
+          logger.error('Failed to cancel execution after error', {
+            executionId,
+            error: cancelError instanceof Error ? cancelError.message : cancelError
+          });
+        }
+      }
+    });
+
+    logger.info('Execution orchestration setup complete');
 
     logger.info('Sub-agents and WeSign core system initialized successfully', {
       totalAgents: Object.keys(agentOrchestrator.getAgentStatus()).length,
@@ -180,6 +223,7 @@ app.use('/api/realtime', realtimeRouter); // Real-time endpoints (BUG-002 FIX)
 app.use('/api/healing', healingRouter);
 app.use('/api/test-generator', testGeneratorRouter);
 app.use('/api/test-bank', testBankRouter);
+app.use('/api', testBanksRouter); // New separate test banks API
 app.use('/api/sub-agents', subAgentsRouter);
 app.use('/api/wesign', wesignRouter);
 // app.use('/api/wesign-tests', wesignTestsRouter); // DISABLED: Legacy route with syntax errors, using unified API instead
@@ -310,18 +354,39 @@ async function startServer(): Promise<void> {
     // Create HTTP server
     const httpServer = createServer(app);
 
-    // Create WebSocket server for WeSign real-time updates
+    // Create WebSocket servers with noServer: true (manual upgrade handling)
+    // This prevents EADDRINUSE errors when multiple WebSocket servers exist
     const wss = new WebSocketServer({
-      server: httpServer,
-      path: '/ws/wesign',
+      noServer: true,
       clientTracking: true
     });
 
-    // Create WebSocket server for CI/CD real-time updates
     const ciWss = new WebSocketServer({
-      server: httpServer,
-      path: '/ws/ci',
+      noServer: true,
       clientTracking: true
+    });
+
+    // Manual upgrade handling - route to correct WebSocket server
+    httpServer.on('upgrade', (request, socket, head) => {
+      try {
+        const { pathname } = new URL(request.url!, `http://${request.headers.host}`);
+
+        if (pathname === '/ws/wesign') {
+          wss.handleUpgrade(request, socket, head, (ws) => {
+            wss.emit('connection', ws, request);
+          });
+        } else if (pathname === '/ws/ci') {
+          ciWss.handleUpgrade(request, socket, head, (ws) => {
+            ciWss.emit('connection', ws, request);
+          });
+        } else {
+          // Close connections to unknown paths
+          socket.destroy();
+        }
+      } catch (error) {
+        logger.error('WebSocket upgrade error', { error });
+        socket.destroy();
+      }
     });
 
     // Handle WebSocket connections
@@ -331,19 +396,19 @@ async function startServer(): Promise<void> {
         userAgent: req.headers['user-agent']
       });
 
-      // Add client to event bus for real-time updates
-      eventBus.addWebSocketClient(ws as any);
-
-      // Send initial connection message
-      ws.send(JSON.stringify({
-        type: 'connection',
-        executionId: 'system',
-        timestamp: new Date().toISOString(),
-        data: {
-          status: 'connected',
-          message: 'Connected to WeSign real-time updates'
+      // CRITICAL FIX: Based on minimal test success
+      // Wait 500ms before ANY EventBus interaction to ensure
+      // WebSocket handshake is fully complete at protocol level
+      setTimeout(() => {
+        if (ws.readyState === 1) { // 1 = OPEN
+          logger.info('Attaching EventBus to WebSocket client after 500ms delay');
+          eventBus.addWebSocketClient(ws);
+        } else {
+          logger.warn('WebSocket closed before EventBus could be attached', {
+            readyState: ws.readyState
+          });
         }
-      }));
+      }, 500);
 
       // Handle ping/pong for connection health
       ws.on('ping', () => {
