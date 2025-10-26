@@ -7,7 +7,7 @@ import { SelfHealingService } from '../selfHealingService';
 import VisualHealingAI from './visualHealingAI';
 import PerformanceIntelligenceSystem from './performanceIntelligence';
 import PredictiveAnalyticsEngine from './predictiveAnalyticsEngine';
-import { AIService } from './AIService';
+import { AIService } from './aiService';
 
 export interface UnifiedAIRequest {
   type: 'analysis' | 'healing' | 'prediction' | 'optimization' | 'knowledge';

@@ -1,0 +1,51 @@
+policy_id: qa_flaky_triage
+task: flaky_test_triage
+description: Policy optimized for triaging and analyzing flaky tests
+
+# Weight configuration for hybrid retrieval
+weights:
+  pinned: 3.5        # Prioritize pinned flaky test investigations
+  importance: 2.5    # Moderate importance weight
+  semantic: 3.0      # Strong semantic matching for similar flaky patterns
+  recency: 2.0       # Higher recency bias (flakiness often time-dependent)
+  diversity: 1.2     # Higher diversity to capture different manifestations
+
+# Token budget for context packing
+budget_tokens: 5120  # Medium-large budget for comprehensive flaky analysis
+
+# Event type filtering
+event_types:
+  - test_failure
+  - test_execution
+  - agent_action
+  - code_change
+
+# Minimum importance threshold (0-5 scale)
+min_importance: 1.5  # Lower threshold to catch intermittent issues
+
+# Tag filtering
+tags_include:
+  - flaky
+  - intermittent
+  - timing-issue
+  - race-condition
+  - timeout
+  - selector-failure
+  - state-dependent
+  - environment-dependent
+  - healable-failure
+
+# Include roll-up summaries for trend analysis
+include_rollups: true
+
+# Maximum events to retrieve
+max_events: 150  # Larger set to capture multiple manifestations
+
+# Retrieval strategy notes
+# This policy prioritizes:
+# 1. Diverse manifestations of flakiness (higher diversity weight)
+# 2. Semantic similarity (identify similar flaky patterns)
+# 3. Recent occurrences (flakiness often environmental/time-dependent)
+# 4. Lower importance threshold (catch intermittent issues)
+# 5. Multiple event types to understand full context
+# 6. Trend analysis via roll-ups to identify increasing flakiness

@@ -6,7 +6,7 @@ import { SelfHealingService } from '@/services/selfHealingService';
 import type { FailureContext } from '@/services/selfHealingService';
 import WeSignCodebaseAnalyzer, { WeSignCodeStructure } from './wesignCodebaseAnalyzer';
 import UnifiedKnowledgeService from './unifiedKnowledgeService';
-import { AIService } from './AIService';
+import { AIService } from './aiService';
 
 export interface VisualAnalysis {
   elements: DetectedElement[];

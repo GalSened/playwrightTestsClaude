@@ -45,6 +45,7 @@
   "author": "Enterprise Team",
   "license": "MIT",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.67.0",
     "@langchain/community": "^0.3.53",
     "@langchain/core": "^0.3.72",
     "@langchain/openai": "^0.6.9",

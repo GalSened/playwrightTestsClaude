@@ -19,8 +19,11 @@ import {
 
 export class WeSignAdapter implements TestFrameworkAdapter {
   readonly name = 'wesign';
-  private readonly pythonPath = 'C:/Users/gals/AppData/Local/Programs/Python/Python312/python.exe';
-  private readonly testDirectory = 'C:/Users/gals/Desktop/playwrightTestsClaude/new_tests_for_wesign';
+  // Use environment variables for cross-platform compatibility
+  private readonly pythonPath = process.env.PYTHON_PATH || 'python';
+  private readonly testDirectory = process.env.WESIGN_TEST_SUITE_PATH
+    ? path.resolve(process.cwd(), process.env.WESIGN_TEST_SUITE_PATH)
+    : path.resolve(process.cwd(), '../new_tests_for_wesign');
 
   supports(config: UnifiedTestConfig): boolean {
     return config.framework === 'wesign';
