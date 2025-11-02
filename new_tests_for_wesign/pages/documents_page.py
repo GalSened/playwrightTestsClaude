@@ -25,10 +25,10 @@ class DocumentsPage(BasePage):
         self.file_input = 'input[type="file"]'
         self.upload_submit = 'text=העלה, text=Upload, button:has-text("Upload"), input[type="submit"]'
 
-        # Document list elements
-        self.document_list = '.documents-list, .document-grid, [data-component="documents-list"]'
-        self.document_items = '.document-item, .document-card, [data-item="document"]'
-        self.document_names = '.document-name, .document-title, [data-field="name"]'
+        # Document list elements (VALIDATED 2025-11-02)
+        self.document_list = 'table'
+        self.document_items = 'table tbody tr'
+        self.document_names = 'table tbody tr td:nth-child(3)'
 
         # Document actions
         self.download_button = 'text=הורד, text=Download, [data-action="download"], .download-btn'
@@ -69,16 +69,12 @@ class DocumentsPage(BasePage):
         }
 
     async def navigate_to_documents(self) -> None:
-        """Navigate to documents page"""
-        try:
-            await self.page.goto(f"{self.base_url}/dashboard/documents")
-            await self.page.wait_for_load_state("domcontentloaded")
-        except:
-            # Alternative: click navigation link
-            docs_nav = self.page.locator(self.documents_nav).first
-            if await docs_nav.is_visible():
-                await docs_nav.click()
-                await self.page.wait_for_load_state("domcontentloaded")
+        """Navigate to documents page by clicking the navigation link"""
+        # Click the "מסמכים" (Documents) navigation link
+        docs_link = self.page.locator('text=מסמכים').first
+        await docs_link.click()
+        await self.page.wait_for_load_state("domcontentloaded")
+        await self.page.wait_for_timeout(2000)  # Wait for page transition
 
     async def is_documents_page_loaded(self) -> bool:
         """Check if documents page has loaded successfully"""
@@ -139,31 +135,33 @@ class DocumentsPage(BasePage):
             return False
 
     async def get_document_list(self) -> list:
-        """Get list of documents on the page"""
+        """Get list of documents on the page - VALIDATED 2025-11-02"""
         try:
             # Wait for documents to load
             await self.page.wait_for_timeout(2000)
 
             documents = []
-            document_items = self.page.locator(self.document_items)
-            count = await document_items.count()
+            # Get all table rows
+            document_rows = self.page.locator(self.document_items)
+            count = await document_rows.count()
 
             for i in range(count):
-                item = document_items.nth(i)
+                row = document_rows.nth(i)
 
-                # Get document name
-                name_element = item.locator(self.document_names).first
-                name = await name_element.text_content() if await name_element.count() > 0 else f"Document {i+1}"
+                # Get document name from 3rd column (td:nth-child(3))
+                name_cell = row.locator('td:nth-child(3)').first
+                name = await name_cell.inner_text() if await name_cell.count() > 0 else f"Document {i+1}"
 
                 documents.append({
                     'index': i,
                     'name': name.strip() if name else f"Document {i+1}",
-                    'element': item
+                    'element': row
                 })
 
             return documents
 
-        except:
+        except Exception as e:
+            print(f"Error getting document list: {e}")
             return []
 
     async def search_documents(self, search_term: str) -> None:
