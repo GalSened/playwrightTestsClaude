@@ -30,30 +30,24 @@ class TestDocumentsPagination:
                 await auth_page.login_with_company_user()
                 await documents_page.navigate_to_documents()
 
-                # Find page size selector
-                page_size_select = page.locator('select').filter(has_text="10")
-                if not await page_size_select.is_visible():
-                    page_size_select = page.locator('select[name*="pageSize"], select[name*="itemsPerPage"]').first
+                # Use validated selector: 3rd combobox on page (nth(2))
+                page_size_select = page.get_by_role('combobox').nth(2)
+                await page_size_select.select_option("10")
+                await page.wait_for_timeout(1000)
 
-                if await page_size_select.is_visible():
-                    await page_size_select.select_option("10")
-                    await page.wait_for_timeout(1000)
-
-                    # Verify max 10 items shown
-                    doc_rows = page.locator('table tbody tr, .document-item')
-                    count = await doc_rows.count()
-                    assert count <= 10, f"Should show max 10 items, got {count}"
-                    print(f"✅ Page size 10: Showing {count} documents")
-                else:
-                    print("⚠️  Page size selector not found")
+                # Count only data rows (exclude header row which has th cells)
+                doc_rows = page.locator('table tbody tr:has(td)')
+                count = await doc_rows.count()
+                assert count <= 10, f"Should show max 10 items, got {count}"
+                print(f"✅ Page size 10: Showing {count} documents")
 
             finally:
                 await browser.close()
 
     @pytest.mark.asyncio
     @pytest.mark.pagination
-    async def test_change_page_size_to_20(self):
-        """DOC-PAGE-002: Set page size to 20 items"""
+    async def test_change_page_size_to_25(self):
+        """DOC-PAGE-002: Set page size to 25 items (valid option: 10, 25, 50)"""
         async with async_playwright() as p:
             browser = await p.chromium.launch(headless=False, args=['--no-sandbox', '--start-maximized'], slow_mo=500)
             context = await browser.new_context(no_viewport=True)
@@ -67,17 +61,16 @@ class TestDocumentsPagination:
                 await auth_page.login_with_company_user()
                 await documents_page.navigate_to_documents()
 
-                page_size_select = page.locator('select[name*="pageSize"], select[name*="itemsPerPage"]').first
-                if await page_size_select.is_visible():
-                    await page_size_select.select_option("20")
-                    await page.wait_for_timeout(1000)
+                # Use validated selector - select 25 (valid option)
+                page_size_select = page.get_by_role('combobox').nth(2)
+                await page_size_select.select_option("25")
+                await page.wait_for_timeout(1000)
 
-                    doc_rows = page.locator('table tbody tr, .document-item')
-                    count = await doc_rows.count()
-                    assert count <= 20, f"Should show max 20 items, got {count}"
-                    print(f"✅ Page size 20: Showing {count} documents")
-                else:
-                    print("⚠️  Page size selector not found")
+                # Count only data rows
+                doc_rows = page.locator('table tbody tr:has(td)')
+                count = await doc_rows.count()
+                assert count <= 25, f"Should show max 25 items, got {count}"
+                print(f"✅ Page size 25: Showing {count} documents")
 
             finally:
                 await browser.close()
@@ -99,17 +92,16 @@ class TestDocumentsPagination:
                 await auth_page.login_with_company_user()
                 await documents_page.navigate_to_documents()
 
-                page_size_select = page.locator('select[name*="pageSize"], select[name*="itemsPerPage"]').first
-                if await page_size_select.is_visible():
-                    await page_size_select.select_option("50")
-                    await page.wait_for_timeout(1000)
+                # Use validated selector
+                page_size_select = page.get_by_role('combobox').nth(2)
+                await page_size_select.select_option("50")
+                await page.wait_for_timeout(1000)
 
-                    doc_rows = page.locator('table tbody tr, .document-item')
-                    count = await doc_rows.count()
-                    assert count <= 50, f"Should show max 50 items, got {count}"
-                    print(f"✅ Page size 50: Showing {count} documents")
-                else:
-                    print("⚠️  Page size selector not found")
+                # Count only data rows
+                doc_rows = page.locator('table tbody tr:has(td)')
+                count = await doc_rows.count()
+                assert count <= 50, f"Should show max 50 items, got {count}"
+                print(f"✅ Page size 50: Showing {count} documents")
 
             finally:
                 await browser.close()
@@ -132,10 +124,9 @@ class TestDocumentsPagination:
                 await documents_page.navigate_to_documents()
 
                 # Set small page size to ensure multiple pages
-                page_size_select = page.locator('select[name*="pageSize"]').first
-                if await page_size_select.is_visible():
-                    await page_size_select.select_option("10")
-                    await page.wait_for_timeout(1000)
+                page_size_select = page.get_by_role('combobox').nth(2)
+                await page_size_select.select_option("10")
+                await page.wait_for_timeout(1000)
 
                 # Click next page button
                 next_btn = page.locator('button:has-text("הבא"), button:has-text("Next"), button[aria-label*="next"]').first
@@ -167,10 +158,9 @@ class TestDocumentsPagination:
                 await documents_page.navigate_to_documents()
 
                 # Set small page size
-                page_size_select = page.locator('select[name*="pageSize"]').first
-                if await page_size_select.is_visible():
-                    await page_size_select.select_option("10")
-                    await page.wait_for_timeout(1000)
+                page_size_select = page.get_by_role('combobox').nth(2)
+                await page_size_select.select_option("10")
+                await page.wait_for_timeout(1000)
 
                 # Go to next page first
                 next_btn = page.locator('button:has-text("הבא"), button:has-text("Next")').first
@@ -208,20 +198,14 @@ class TestDocumentsPagination:
                 await auth_page.login_with_company_user()
                 await documents_page.navigate_to_documents()
 
-                # Look for page indicator (e.g., "Page 1 of 3" or "1-10 of 25")
-                page_indicator = page.locator('text=/Page \\d+ of \\d+/, text=/\\d+-\\d+ of \\d+/, .pagination-info').first
+                # Look for page indicator - we know it shows "1 /4" format from our exploration
+                page_indicator = page.get_by_role('spinbutton')  # The page number input
 
                 if await page_indicator.is_visible():
-                    indicator_text = await page_indicator.inner_text()
-                    print(f"✅ Page indicator: {indicator_text}")
+                    current_page = await page_indicator.input_value()
+                    print(f"✅ Page indicator visible: Page {current_page}")
                 else:
-                    # Alternative: check for page number buttons
-                    page_numbers = page.locator('button.page-number, .pagination button')
-                    count = await page_numbers.count()
-                    if count > 0:
-                        print(f"✅ Page numbers: {count} page buttons found")
-                    else:
-                        print("⚠️  Page indicator not found (may have single page)")
+                    print("⚠️  Page indicator not found")
 
             finally:
                 await browser.close()
