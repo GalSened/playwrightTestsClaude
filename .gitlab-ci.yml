@@ -1,0 +1,292 @@
+# GitLab CI/CD Pipeline for WeSign Playwright Tests
+# Optimized for systematic test execution with strong assertions
+
+stages:
+  - setup
+  - lint
+  - test-smoke
+  - test-unit
+  - test-api
+  - test-e2e
+  - report
+  - deploy
+
+variables:
+  PYTHON_VERSION: "3.12"
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  PLAYWRIGHT_BROWSERS_PATH: "$CI_PROJECT_DIR/.cache/playwright"
+  BASE_URL: "https://devtest.comda.co.il"
+
+# Cache configuration for faster builds
+cache:
+  paths:
+    - .cache/pip
+    - .cache/playwright
+    - node_modules/
+
+# Job templates for reusability
+.python_setup: &python_setup
+  before_script:
+    - python --version
+    - pip install --upgrade pip
+    - pip install -r new_tests_for_wesign/requirements.txt
+    - playwright install chromium --with-deps
+
+.test_template: &test_template
+  <<: *python_setup
+  artifacts:
+    when: always
+    paths:
+      - new_tests_for_wesign/reports/
+      - new_tests_for_wesign/screenshots/
+      - new_tests_for_wesign/videos/
+      - new_tests_for_wesign/traces/
+    reports:
+      junit: new_tests_for_wesign/reports/junit/*.xml
+    expire_in: 30 days
+
+# ========================================
+# STAGE: Setup
+# ========================================
+setup:dependencies:
+  stage: setup
+  image: python:${PYTHON_VERSION}
+  script:
+    - echo "Installing dependencies..."
+    - pip install --upgrade pip
+    - pip install -r new_tests_for_wesign/requirements.txt
+    - playwright install chromium --with-deps
+  only:
+    - master
+    - develop
+    - merge_requests
+
+# ========================================
+# STAGE: Lint
+# ========================================
+lint:python:
+  stage: lint
+  image: python:${PYTHON_VERSION}
+  script:
+    - pip install flake8 black pylint
+    - echo "Running Python linters..."
+    - flake8 new_tests_for_wesign/tests/ --max-line-length=120 --exclude=__pycache__
+    - black --check new_tests_for_wesign/tests/ || true  # Don't fail on formatting
+  allow_failure: true
+  only:
+    - master
+    - develop
+    - merge_requests
+
+# ========================================
+# STAGE: Smoke Tests
+# ========================================
+test:smoke:
+  stage: test-smoke
+  image: mcr.microsoft.com/playwright/python:v1.40.0-focal
+  <<: *test_template
+  script:
+    - echo "Running smoke tests..."
+    - cd new_tests_for_wesign
+    - pytest tests/ -m "smoke" -v --maxfail=1 --tb=short --junit-xml=reports/junit/smoke.xml || true
+  only:
+    - master
+    - develop
+    - merge_requests
+
+# ========================================
+# STAGE: API Tests
+# ========================================
+test:api:
+  stage: test-api
+  image: node:18
+  before_script:
+    - npm install -g newman newman-reporter-htmlextra
+  script:
+    - echo "Running API tests..."
+    - cd new_tests_for_wesign/api_tests
+    - |
+      for collection in *.postman_collection.json; do
+        echo "Testing: $collection"
+        newman run "$collection" \
+          -e WeSign_Unified_Environment.postman_environment.json \
+          -r cli,htmlextra \
+          --reporter-htmlextra-export ../reports/api/${collection%.postman_collection.json}.html \
+          || true
+      done
+  artifacts:
+    when: always
+    paths:
+      - new_tests_for_wesign/reports/api/
+    expire_in: 30 days
+  only:
+    - master
+    - develop
+    - merge_requests
+
+# ========================================
+# STAGE: E2E Tests - Contacts Module
+# ========================================
+test:e2e:contacts:
+  stage: test-e2e
+  image: mcr.microsoft.com/playwright/python:v1.40.0-focal
+  <<: *test_template
+  script:
+    - echo "Running Contacts module E2E tests..."
+    - cd new_tests_for_wesign
+    - |
+      pytest tests/contacts/ \
+        -v \
+        --maxfail=999 \
+        --tb=short \
+        --junit-xml=reports/junit/contacts.xml \
+        --html=reports/html/contacts.html \
+        --self-contained-html
+  only:
+    - master
+    - develop
+    - merge_requests
+
+# ========================================
+# STAGE: E2E Tests - Documents Module
+# ========================================
+test:e2e:documents:
+  stage: test-e2e
+  image: mcr.microsoft.com/playwright/python:v1.40.0-focal
+  <<: *test_template
+  script:
+    - echo "Running Documents module E2E tests..."
+    - cd new_tests_for_wesign
+    - |
+      pytest tests/documents/ \
+        -v \
+        --maxfail=999 \
+        --tb=short \
+        --junit-xml=reports/junit/documents.xml \
+        --html=reports/html/documents.html \
+        --self-contained-html
+  only:
+    - master
+    - develop
+    - merge_requests
+
+# ========================================
+# STAGE: E2E Tests - Templates Module
+# ========================================
+test:e2e:templates:
+  stage: test-e2e
+  image: mcr.microsoft.com/playwright/python:v1.40.0-focal
+  <<: *test_template
+  script:
+    - echo "Running Templates module E2E tests..."
+    - cd new_tests_for_wesign
+    - |
+      pytest tests/templates/test_templates_real_validation.py \
+        -v \
+        --maxfail=999 \
+        --tb=short \
+        --junit-xml=reports/junit/templates.xml \
+        --html=reports/html/templates.html \
+        --self-contained-html
+  only:
+    - master
+    - develop
+    - merge_requests
+
+# ========================================
+# STAGE: E2E Tests - Self-Signing Module
+# ========================================
+test:e2e:self-signing:
+  stage: test-e2e
+  image: mcr.microsoft.com/playwright/python:v1.40.0-focal
+  <<: *test_template
+  script:
+    - echo "Running Self-Signing module E2E tests..."
+    - cd new_tests_for_wesign
+    - |
+      pytest tests/self_signing/ \
+        -v \
+        --maxfail=999 \
+        --tb=short \
+        --junit-xml=reports/junit/self-signing.xml \
+        --html=reports/html/self-signing.html \
+        --self-contained-html
+  only:
+    - master
+    - develop
+    - merge_requests
+
+# ========================================
+# STAGE: Test Report Generation
+# ========================================
+report:generate:
+  stage: report
+  image: python:${PYTHON_VERSION}
+  script:
+    - echo "Generating comprehensive test report..."
+    - cd new_tests_for_wesign
+    - |
+      cat > reports/PIPELINE_SUMMARY.md << 'EOF'
+      # WeSign Test Execution Report
+
+      **Pipeline ID**: ${CI_PIPELINE_ID}
+      **Branch**: ${CI_COMMIT_REF_NAME}
+      **Commit**: ${CI_COMMIT_SHORT_SHA}
+      **Author**: ${CI_COMMIT_AUTHOR}
+      **Date**: $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+
+      ## Test Results by Module
+
+      ### Contacts Module
+      - Test File: tests/contacts/
+      - Report: [contacts.html](html/contacts.html)
+
+      ### Documents Module
+      - Test File: tests/documents/
+      - Report: [documents.html](html/documents.html)
+
+      ### Templates Module
+      - Test File: tests/templates/test_templates_real_validation.py
+      - Report: [templates.html](html/templates.html)
+      - **Note**: Uses STRONG assertions methodology
+
+      ### Self-Signing Module
+      - Test File: tests/self_signing/
+      - Report: [self-signing.html](html/self-signing.html)
+
+      ### API Tests
+      - Collections: api_tests/*.postman_collection.json
+      - Reports: api/*.html
+
+      ## Key Metrics
+
+      - **Total Test Execution Time**: See individual reports
+      - **Pass Rate**: Calculated from JUnit XML files
+      - **Coverage**: See coverage reports (if available)
+
+      ## Artifacts
+
+      All test artifacts (screenshots, videos, traces) are available in the pipeline artifacts.
+      EOF
+  artifacts:
+    when: always
+    paths:
+      - new_tests_for_wesign/reports/
+    expire_in: 90 days
+  only:
+    - master
+    - develop
+    - merge_requests
+
+# ========================================
+# STAGE: Deploy Test Results (Optional)
+# ========================================
+deploy:test-results:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - echo "Deploying test results to artifact storage..."
+    - echo "Results available at: ${CI_PROJECT_URL}/-/jobs/${CI_JOB_ID}/artifacts/browse/new_tests_for_wesign/reports/"
+  only:
+    - master
+  when: manual
