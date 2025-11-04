@@ -1,0 +1,1071 @@
+{
+	"info": {
+		"_postman_id": "doccoll-expansion-2025-11-02",
+		"name": "DocumentCollections Expansion Tests - Coverage Completion",
+		"description": "Comprehensive tests for 14 previously untested DocumentCollections endpoints\n\nCoverage: 50% → 100% (14/28 → 28/28 endpoints)\n\nPhases:\n1. Authentication Setup\n2. Data Discovery & Exploration  \n3. Document Creation (for testing)\n4. Missing Endpoints Testing (14 endpoints)\n5. Management Operations\n6. Edge Cases & Error Handling\n7. Security Testing\n8. Final Validation & Cleanup",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Phase 1: Authentication Setup",
+			"item": [
+				{
+					"name": "Login - Get JWT Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Login successful', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('JWT token received', function() {",
+									"        pm.expect(response).to.have.property('token');",
+									"    });",
+									"    pm.collectionVariables.set('jwtToken', response.token);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"{{userPassword}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/users/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"users",
+								"login"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 2: Data Discovery",
+			"item": [
+				{
+					"name": "Get All Document Collections",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Document collections retrieved', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('Response has documentCollections array', function() {",
+									"        pm.expect(response).to.have.property('documentCollections');",
+									"        pm.expect(response.documentCollections).to.be.an('array');",
+									"    });",
+									"    ",
+									"    // Store first doc collection ID if exists",
+									"    if (response.documentCollections && response.documentCollections.length > 0) {",
+									"        pm.collectionVariables.set('existingDocCollectionId', response.documentCollections[0].id);",
+									"    }",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections?limit=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 3: Document Creation",
+			"item": [
+				{
+					"name": "Upload Template for Testing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Template created successfully', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.collectionVariables.set('testTemplateId', response.id);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"DocColl Expansion Test Template\",\n  \"files\": [\n    {\n      \"name\": \"test_doc.pdf\",\n      \"ext\": \"pdf\",\n      \"data\": \"data:application/pdf;base64,JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PC9UeXBlL0NhdGFsb2cvUGFnZXMgMiAwIFI+PgplbmRvYmoKMiAwIG9iago8PC9UeXBlL1BhZ2VzL0tpZHNbMyAwIFJdL0NvdW50IDE+PgplbmRvYmoKMyAwIG9iago8PC9UeXBlL1BhZ2UvTWVkaWFCb3hbMCAwIDYxMiA3OTJdL1Jlc291cmNlczw8L0ZvbnQ8PC9GMSw0IDAgUj4+Pj4vQ29udGVudHMgNSAwIFI+PgplbmRvYmoKNCAwIG9iago8PC9UeXBlL0ZvbnQvU3VidHlwZS9UeXBlMS9CYXNlRm9udC9UaW1lcy1Sb21hbj4+CmVuZG9iago1IDAgb2JqCjw8L0xlbmd0aCA0ND4+CnN0cmVhbQpCVAovRjEgMjQgVGYKMTAwIDcwMCBUZAooVGVzdCBEb2N1bWVudCkgVGoKRVQKZW5kc3RyZWFtCmVuZG9iagp4cmVmCjAgNgowMDAwMDAwMDAwIDY1NTM1IGYNCjAwMDAwMDAwMTUgMDAwMDAgbg0KMDAwMDAwMDA2MCAwMDAwMCBuDQowMDAwMDAwMTE3IDAwMDAwIG4NCjAwMDAwMDAyMjYgMDAwMDAgbg0KMDAwMDAwMDMwMSAwMDAwMCBuDQp0cmFpbGVyCjw8L1NpemUgNi9Sb290IDEgMCBSPj4Kc3RhcnR4cmVmCjM5MwolJUVPRg==\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/templates",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"templates"
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Document Collection with Fields",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Document collection created', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.collectionVariables.set('testDocCollectionId', response.documentCollectionId);",
+									"    pm.collectionVariables.set('testDocumentId', response.documentId);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"signers\": [\n    {\n      \"sendingMethod\": 2,\n      \"contactName\": \"Test Signer 1\",\n      \"contactMeans\": \"testsigner1@example.com\"\n    }\n  ],\n  \"fields\": [\n    {\n      \"type\": 1,\n      \"page\": 1,\n      \"x\": 100,\n      \"y\": 600,\n      \"width\": 200,\n      \"height\": 50,\n      \"signerIndex\": 0\n    }\n  ],\n  \"documentName\": \"Expansion Test Document\",\n  \"documentMode\": 3,\n  \"templates\": [\n    \"{{testTemplateId}}\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections"
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Second Document Collection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.collectionVariables.set('testDocCollectionId2', response.documentCollectionId);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"signers\": [\n    {\n      \"email\": \"testsigner2@example.com\",\n      \"sendingMethod\": 1,\n      \"contactName\": \"Test Signer 2\",\n      \"contactMeans\": \"+972501234567\"\n    }\n  ],\n  \"documentName\": \"Second Test Document\",\n  \"documentMode\": 3,\n  \"templates\": [\n    \"{{testTemplateId}}\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 4: Missing Endpoints - Testing",
+			"item": [
+				{
+					"name": "1. Batch Download Documents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Batch download successful', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('Response is file stream', function() {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.be.oneOf([",
+									"        'application/pdf',",
+									"        'application/octet-stream'",
+									"    ]);",
+									"});",
+									"",
+									"pm.test('x-file-name header present', function() {",
+									"    pm.expect(pm.response.headers.has('x-file-name')).to.be.true;",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ids\": [\n    \"{{testDocCollectionId}}\",\n    \"{{testDocCollectionId2}}\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections/downloadbatch",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections",
+								"downloadbatch"
+							]
+						}
+					}
+				},
+				{
+					"name": "2. Get Document Extra Info JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Extra info retrieved successfully', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('Response has files array', function() {",
+									"        pm.expect(response).to.have.property('files');",
+									"        pm.expect(response.files).to.be.an('array');",
+									"    });",
+									"    ",
+									"    pm.test('Files contain required fields', function() {",
+									"        if (response.files.length > 0) {",
+									"            pm.expect(response.files[0]).to.have.property('name');",
+									"            pm.expect(response.files[0]).to.have.property('ext');",
+									"            pm.expect(response.files[0]).to.have.property('data');",
+									"            pm.expect(response.files[0]).to.have.property('templateId');",
+									"        }",
+									"    });",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections/{{testDocCollectionId}}/ExtraInfo/json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections",
+								"{{testDocCollectionId}}",
+								"ExtraInfo",
+								"json"
+							]
+						}
+					}
+				},
+				{
+					"name": "3. Get Document as JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Document JSON retrieved successfully', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('Response has files array', function() {",
+									"        pm.expect(response).to.have.property('files');",
+									"        pm.expect(response.files).to.be.an('array');",
+									"    });",
+									"    ",
+									"    pm.test('Files have base64 data', function() {",
+									"        if (response.files.length > 0) {",
+									"            pm.expect(response.files[0]).to.have.property('data');",
+									"            pm.expect(response.files[0].data).to.be.a('string');",
+									"        }",
+									"    });",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections/{{testDocCollectionId}}/json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections",
+								"{{testDocCollectionId}}",
+								"json"
+							]
+						}
+					}
+				},
+				{
+					"name": "4. Export PDF Fields",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('PDF fields exported successfully', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('Response has fields data', function() {",
+									"        pm.expect(response).to.be.an('object');",
+									"    });",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections/{{testDocCollectionId}}/fields",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections",
+								"{{testDocCollectionId}}",
+								"fields"
+							]
+						}
+					}
+				},
+				{
+					"name": "5. Export PDF Fields as JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('PDF fields JSON exported successfully', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('Response is valid JSON', function() {",
+									"        pm.expect(response).to.be.an('object');",
+									"    });",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections/{{testDocCollectionId}}/fields/json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections",
+								"{{testDocCollectionId}}",
+								"fields",
+								"json"
+							]
+						}
+					}
+				},
+				{
+					"name": "6. Export PDF Fields as CSV/XML",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('PDF fields CSV/XML exported successfully', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('Response is file stream', function() {",
+									"    const contentType = pm.response.headers.get('Content-Type');",
+									"    pm.expect(contentType).to.be.oneOf([",
+									"        'text/csv',",
+									"        'application/xml',",
+									"        'text/xml',",
+									"        'application/octet-stream'",
+									"    ]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections/{{testDocCollectionId}}/fields/CsvXml",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections",
+								"{{testDocCollectionId}}",
+								"fields",
+								"CsvXml"
+							]
+						}
+					}
+				},
+				{
+					"name": "7. Export Distribution Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Distribution data exported', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('Response is file or data stream', function() {",
+									"    pm.expect(pm.response).to.be.ok;",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections/exportDistribution",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections",
+								"exportDistribution"
+							]
+						}
+					}
+				},
+				{
+					"name": "8. Get Document Pages Count",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Pages count retrieved', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('Response has page count', function() {",
+									"        pm.expect(response).to.have.property('pagesCount');",
+									"        pm.expect(response.pagesCount).to.be.a('number');",
+									"    });",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections/{{testDocCollectionId}}/documents/{{testDocumentId}}/pages",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections",
+								"{{testDocCollectionId}}",
+								"documents",
+								"{{testDocumentId}}",
+								"pages"
+							]
+						}
+					}
+				},
+				{
+					"name": "9. Get All Document Pages Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Document pages info retrieved', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('Response has pages data', function() {",
+									"        pm.expect(response).to.be.an('object');",
+									"    });",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections/{{testDocCollectionId}}/documents/{{testDocumentId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections",
+								"{{testDocCollectionId}}",
+								"documents",
+								"{{testDocumentId}}"
+							]
+						}
+					}
+				},
+				{
+					"name": "10. Get Document Collection Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Document collection data retrieved', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('Response has document data', function() {",
+									"        pm.expect(response).to.be.an('object');",
+									"    });",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections/{{testDocCollectionId}}/data",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections",
+								"{{testDocCollectionId}}",
+								"data"
+							]
+						}
+					}
+				},
+				{
+					"name": "11. Get Live Sender Link",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Live sender link retrieved', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('Response has link data', function() {",
+									"        pm.expect(response).to.have.property('link');",
+									"        pm.expect(response.link).to.be.a('string');",
+									"    });",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections/{{testDocCollectionId}}/senderlink",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections",
+								"{{testDocCollectionId}}",
+								"senderlink"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 5: Edge Cases",
+			"item": [
+				{
+					"name": "Batch Download - Invalid IDs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Invalid IDs handled', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 404]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ids\": [\n    \"00000000-0000-0000-0000-000000000000\",\n    \"invalid-id\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections/downloadbatch",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections",
+								"downloadbatch"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Fields - Non-existent Document",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Non-existent document handled', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([404, 400]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections/00000000-0000-0000-0000-000000000000/fields",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections",
+								"00000000-0000-0000-0000-000000000000",
+								"fields"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 6: Security Testing",
+			"item": [
+				{
+					"name": "Batch Download - No Auth Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Unauthorized access blocked', function() {",
+									"    pm.expect(pm.response.code).to.equal(401);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ids\": [\"{{testDocCollectionId}}\"]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections/downloadbatch",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections",
+								"downloadbatch"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Fields - Invalid Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Invalid token rejected', function() {",
+									"    pm.expect(pm.response.code).to.equal(401);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer invalid_token_12345"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections/{{testDocCollectionId}}/fields",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections",
+								"{{testDocCollectionId}}",
+								"fields"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 7: Cleanup",
+			"item": [
+				{
+					"name": "Delete Test Documents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Batch delete successful', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ids\": [\n    \"{{testDocCollectionId}}\",\n    \"{{testDocCollectionId2}}\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections/deletebatch",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"documentcollections",
+								"deletebatch"
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Test Template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Template deleted', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/templates/{{testTemplateId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"templates",
+								"{{testTemplateId}}"
+							]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://api.wesign.co.il",
+			"type": "string"
+		},
+		{
+			"key": "userEmail",
+			"value": "your-email@example.com",
+			"type": "string"
+		},
+		{
+			"key": "userPassword",
+			"value": "your-password",
+			"type": "string"
+		},
+		{
+			"key": "jwtToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "testTemplateId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "testDocCollectionId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "testDocCollectionId2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "testDocumentId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "existingDocCollectionId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

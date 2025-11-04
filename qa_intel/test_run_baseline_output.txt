@@ -1,0 +1,11 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\gals\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+metadata: {'Python': '3.13.5', 'Platform': 'Windows-11-10.0.26200-SP0', 'Packages': {'pytest': '8.4.1', 'pluggy': '1.6.0'}, 'Plugins': {'allure-pytest': '2.15.0', 'anyio': '4.10.0', 'Faker': '37.6.0', 'asyncio': '1.2.0', 'base-url': '2.1.0', 'html': '4.1.1', 'json-report': '1.5.0', 'metadata': '3.1.1', 'playwright': '0.7.1', 'xdist': '3.8.0'}, 'JAVA_HOME': 'C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.15.6-hotspot', 'Base URL': ''}
+rootdir: C:\Users\gals\Desktop\playwrightTestsClaude\new_tests_for_wesign
+configfile: pytest.ini
+plugins: allure-pytest-2.15.0, anyio-4.10.0, Faker-37.6.0, asyncio-1.2.0, base-url-2.1.0, html-4.1.1, json-report-1.5.0, metadata-3.1.1, playwright-0.7.1, xdist-3.8.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 427 items
+
+tests/auth/test_authentication_advanced.py::TestAuthenticationAdvanced::test_sql_injection_protection_email_field 

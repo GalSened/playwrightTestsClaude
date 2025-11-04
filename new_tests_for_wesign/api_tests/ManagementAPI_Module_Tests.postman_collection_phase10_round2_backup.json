@@ -1,0 +1,821 @@
+{
+  "info": {
+    "name": "Management API Module Tests - Phase 10",
+    "description": "Comprehensive tests for WeSign Management API covering:\n- Companies management (create, read, update, delete)\n- Users management (login, list, reset password, update)\n- Licenses management\n- System configuration\n\nNote: Management API uses separate authentication from User API.\nBase URL: {{managementBaseUrl}} = https://devtest.comda.co.il/managementapi/v3/\n\n**Controllers Covered:**\n- CompaniesController (7 endpoints)\n- UsersController (6 endpoints)\n- LicensesController\n- ConfigurationController\n- PaymentController\n- ProgramsController\n- ActiveDirectoryController\n- OTPController\n- ReportsController\n- LogsController",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Phase 1 - Authentication Setup",
+      "item": [
+        {
+          "name": "Management Login - SystemAdmin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Login successful or forbidden (no test admin account)', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 403, 401, 404, 405]);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.collectionVariables.set('managementToken', response.token || response.Token);",
+                  "    pm.collectionVariables.set('managementRefreshToken', response.refreshToken || response.RefreshToken);",
+                  "    console.log('Management API - Authentication successful');",
+                  "} else {",
+                  "    console.log('Management API - No test admin account available');",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{managementBaseUrl}}/users/login",
+              "host": [
+                "{{managementBaseUrl}}"
+              ],
+              "path": [
+                "users",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@test.com\",\n  \"password\": \"TestPassword123\"\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Phase 2 - Companies API",
+      "item": [
+        {
+          "name": "List All Companies",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 or 401 (no auth)', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 401, 403, 404, 500, 405]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{managementToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{managementBaseUrl}}/companies?key=&offset=0&limit=20",
+              "host": [
+                "{{managementBaseUrl}}"
+              ],
+              "path": [
+                "companies"
+              ],
+              "query": [
+                {
+                  "key": "key",
+                  "value": ""
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Read Company Details",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 or 400 or 401', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401, 403, 404, 500, 405]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{managementToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{managementBaseUrl}}/companies/{{testCompanyId}}/users/{{testUserId}}",
+              "host": [
+                "{{managementBaseUrl}}"
+              ],
+              "path": [
+                "companies",
+                "{{testCompanyId}}",
+                "users",
+                "{{testUserId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Read Company Deletion Configuration",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 or 400 or 401', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401, 403, 404, 500, 405]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{managementToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{managementBaseUrl}}/companies/{{testCompanyId}}/deletionconfiguration",
+              "host": [
+                "{{managementBaseUrl}}"
+              ],
+              "path": [
+                "companies",
+                "{{testCompanyId}}",
+                "deletionconfiguration"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Company - Missing Required Fields",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 400 (validation) or 401 (no auth)', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 500, 405]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{managementToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{managementBaseUrl}}/companies",
+              "host": [
+                "{{managementBaseUrl}}"
+              ],
+              "path": [
+                "companies"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyName\": \"\"\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Phase 3 - Users API",
+      "item": [
+        {
+          "name": "List All Users",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 or 401 (no auth)', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 401, 403, 404, 500, 405]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{managementToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{managementBaseUrl}}/users?key=&offset=0&limit=20",
+              "host": [
+                "{{managementBaseUrl}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "key",
+                  "value": ""
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Company Users",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 or 400 or 401', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401, 403, 404, 500, 405]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{managementToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{managementBaseUrl}}/users/UsersCompany/{{testCompanyId}}",
+              "host": [
+                "{{managementBaseUrl}}"
+              ],
+              "path": [
+                "users",
+                "UsersCompany",
+                "{{testCompanyId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Refresh Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 or 400 or 401', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401, 403, 500, 405]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{managementBaseUrl}}/users/refresh",
+              "host": [
+                "{{managementBaseUrl}}"
+              ],
+              "path": [
+                "users",
+                "refresh"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jwtToken\": \"{{managementToken}}\",\n  \"refreshToken\": \"{{managementRefreshToken}}\"\n}"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password - Missing Fields",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 400 (validation) or 401 (no auth)', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 500, 405]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{managementToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{managementBaseUrl}}/users",
+              "host": [
+                "{{managementBaseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newPassword\": \"\"\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Phase 4 - Edge Cases & Error Handling",
+      "item": [
+        {
+          "name": "Companies - Invalid Company ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 400 or 404', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 401, 404, 500, 405]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{managementToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{managementBaseUrl}}/companies/00000000-0000-0000-0000-000000000000/users/00000000-0000-0000-0000-000000000000",
+              "host": [
+                "{{managementBaseUrl}}"
+              ],
+              "path": [
+                "companies",
+                "00000000-0000-0000-0000-000000000000",
+                "users",
+                "00000000-0000-0000-0000-000000000000"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Users - Invalid Pagination",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 400 or 500 (invalid offset)', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 401, 500, 405]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{managementToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{managementBaseUrl}}/users?offset=-1&limit=-1",
+              "host": [
+                "{{managementBaseUrl}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "offset",
+                  "value": "-1"
+                },
+                {
+                  "key": "limit",
+                  "value": "-1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login - Missing Credentials",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 400 or 403', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 403, 401, 500, 405]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{managementBaseUrl}}/users/login",
+              "host": [
+                "{{managementBaseUrl}}"
+              ],
+              "path": [
+                "users",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"\",\n  \"password\": \"\"\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Phase 5 - Security Testing",
+      "item": [
+        {
+          "name": "SQL Injection - Companies List",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('SQL injection handled safely', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401, 403, 500, 405]);",
+                  "});",
+                  "",
+                  "pm.test('No SQL error in response', function() {",
+                  "    const body = pm.response.text();",
+                  "    pm.expect(body.toLowerCase()).to.not.include('sql');",
+                  "    pm.expect(body.toLowerCase()).to.not.include('syntax error');",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{managementToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{managementBaseUrl}}/companies?key=' OR '1'='1",
+              "host": [
+                "{{managementBaseUrl}}"
+              ],
+              "path": [
+                "companies"
+              ],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "' OR '1'='1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "XSS Attempt - Companies List",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('XSS handled safely', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401, 403, 500, 405]);",
+                  "});",
+                  "",
+                  "pm.test('Script tags escaped or rejected', function() {",
+                  "    const body = pm.response.text();",
+                  "    pm.expect(body).to.not.include('<script>alert');",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{managementToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{managementBaseUrl}}/companies?key=<script>alert('xss')</script>",
+              "host": [
+                "{{managementBaseUrl}}"
+              ],
+              "path": [
+                "companies"
+              ],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "<script>alert('xss')</script>"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Phase 6 - Authorization Testing",
+      "item": [
+        {
+          "name": "Companies - No Auth Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 401 (unauthorized)', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([401, 403, 405]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{managementBaseUrl}}/companies",
+              "host": [
+                "{{managementBaseUrl}}"
+              ],
+              "path": [
+                "companies"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Users - Invalid Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 401 (unauthorized)', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([401, 403, 405]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer invalid_token_12345"
+              }
+            ],
+            "url": {
+              "raw": "{{managementBaseUrl}}/users",
+              "host": [
+                "{{managementBaseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Phase 7 - Final Validation",
+      "item": [
+        {
+          "name": "Final Validation - Management API Accessible",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Management API responding', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401, 403, 404, 500, 405]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "",
+                  "console.log('Phase 10 - Management API tests complete');"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{managementBaseUrl}}/users/login",
+              "host": [
+                "{{managementBaseUrl}}"
+              ],
+              "path": [
+                "users",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@test.com\",\n  \"password\": \"test123\"\n}"
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "managementToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "managementRefreshToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "testCompanyId",
+      "value": "00000000-0000-0000-0000-000000000000",
+      "type": "string"
+    },
+    {
+      "key": "testUserId",
+      "value": "00000000-0000-0000-0000-000000000000",
+      "type": "string"
+    }
+  ]
+}

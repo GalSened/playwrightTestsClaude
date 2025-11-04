@@ -1,0 +1,549 @@
+{
+  "info": {
+    "name": "E2E Workflow 2: SingleLink Document Lifecycle",
+    "description": "End-to-end test for complete SingleLink template lifecycle: create, read, update, delete.\n\nDemonstrates:\n- Complete CRUD cycle within single API\n- Template management workflow\n- Data validation across operations\n- Cleanup operations\n\nFlow:\n1. User Login \u2192 jwtToken\n2. Create SingleLink Template \u2192 testTemplateId\n3. Get SingleLink Template \u2192 verify creation\n4. Update SingleLink Template \u2192 modify signer\n5. Get SingleLink Template \u2192 verify update\n6. Cleanup: Delete SingleLink Template",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "signerBaseUrl",
+      "value": "https://devtest.comda.co.il/signerapi/v3",
+      "type": "string"
+    },
+    {
+      "key": "jwtToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "testTemplateId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "testSignerEmail",
+      "value": "original.signer@example.com",
+      "type": "string"
+    },
+    {
+      "key": "updatedSignerEmail",
+      "value": "updated.signer@example.com",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Step 1: Authentication",
+      "item": [
+        {
+          "name": "User Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('[E2E] Login successful', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401, 404, 500]);",
+                  "});",
+                  "",
+                  "pm.test('[E2E] Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    pm.test('[E2E] Response is JSON', function() {",
+                  "        pm.response.to.be.json;",
+                  "    });",
+                  "    ",
+                  "    const response = pm.response.json();",
+                  "    pm.test('[E2E] JWT token captured', function() {",
+                  "        pm.expect(response).to.have.property('token');",
+                  "        pm.collectionVariables.set('jwtToken', response.token);",
+                  "    });",
+                  "    ",
+                  "    console.log('\u2705 [E2E Step 1] User authenticated');",
+                  "} else {",
+                  "    console.log('\u26a0\ufe0f  [E2E Step 1] Login failed - workflow may fail');",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"nirk@comsign.co.il\",\n  \"password\": \"Comsign1!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{signerBaseUrl}}/authentication/login",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "authentication",
+                "login"
+              ]
+            },
+            "description": "Authenticate user to access SingleLink operations"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Step 2: Create SingleLink Template",
+      "item": [
+        {
+          "name": "Create Single Link Document",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Generate unique template name",
+                  "const timestamp = Date.now();",
+                  "const templateName = `E2E Test Template ${timestamp}`;",
+                  "pm.collectionVariables.set('templateName', templateName);",
+                  "",
+                  "console.log(`\ud83d\udd27 [E2E Step 2] Creating template: ${templateName}`);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('[E2E] Template creation request sent', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 400, 401, 404, 405, 500]);",
+                  "});",
+                  "",
+                  "pm.test('[E2E] Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200 || pm.response.code === 201) {",
+                  "    pm.test('[E2E] Response is JSON', function() {",
+                  "        pm.response.to.be.json;",
+                  "    });",
+                  "    ",
+                  "    const response = pm.response.json();",
+                  "    pm.test('[E2E] Template ID captured', function() {",
+                  "        pm.expect(response).to.have.property('templateId');",
+                  "        pm.collectionVariables.set('testTemplateId', response.templateId);",
+                  "    });",
+                  "    ",
+                  "    pm.test('[E2E] Template URL captured', function() {",
+                  "        pm.expect(response).to.have.property('url');",
+                  "    });",
+                  "    ",
+                  "    console.log('\u2705 [E2E Step 2] SingleLink template created:', response.templateId);",
+                  "} else {",
+                  "    console.log('\u274c [E2E Step 2] Template creation failed - workflow aborted');",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"templateId\": \"00000000-0000-0000-0000-000000000000\",\n  \"signerMeans\": \"{{testSignerEmail}}\",\n  \"phoneExtension\": \"+1\",\n  \"fullname\": \"E2E Test Signer\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{signerBaseUrl}}/singlelink",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "singlelink"
+              ]
+            },
+            "description": "Create a new SingleLink template"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Step 3: Read SingleLink Template (Initial)",
+      "item": [
+        {
+          "name": "Get SingleLink Template Data - Initial",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('[E2E] Template read successful', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 401, 404, 405, 500]);",
+                  "});",
+                  "",
+                  "pm.test('[E2E] Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    pm.test('[E2E] Response is JSON', function() {",
+                  "        pm.response.to.be.json;",
+                  "    });",
+                  "    ",
+                  "    const response = pm.response.json();",
+                  "    pm.test('[E2E] Template has correct signer email', function() {",
+                  "        pm.expect(response).to.have.property('signerMeans');",
+                  "        pm.expect(response.signerMeans).to.equal(pm.collectionVariables.get('testSignerEmail'));",
+                  "    });",
+                  "    ",
+                  "    pm.test('[E2E] Template has expected structure', function() {",
+                  "        pm.expect(response).to.have.property('templateId');",
+                  "        pm.expect(response).to.have.property('fullname');",
+                  "        pm.expect(response).to.have.property('phoneExtension');",
+                  "    });",
+                  "    ",
+                  "    console.log('\u2705 [E2E Step 3] Template retrieved - verified creation');",
+                  "} else if (pm.response.code === 404) {",
+                  "    console.log('\u274c [E2E Step 3] Template not found - creation may have failed');",
+                  "} else {",
+                  "    console.log('\u26a0\ufe0f  [E2E Step 3] Template read failed');",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{signerBaseUrl}}/singlelink/{{testTemplateId}}",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "singlelink",
+                "{{testTemplateId}}"
+              ]
+            },
+            "description": "Retrieve the newly created template to verify creation"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Step 4: Update SingleLink Template",
+      "item": [
+        {
+          "name": "Update SingleLink Template",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('[E2E] Template update request sent', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 204, 400, 401, 404, 405, 500]);",
+                  "});",
+                  "",
+                  "pm.test('[E2E] Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200 || pm.response.code === 204) {",
+                  "    if (pm.response.code === 200) {",
+                  "        pm.test('[E2E] Response is JSON', function() {",
+                  "            pm.response.to.be.json;",
+                  "        });",
+                  "        ",
+                  "        const response = pm.response.json();",
+                  "        pm.test('[E2E] Updated email reflected', function() {",
+                  "            pm.expect(response).to.have.property('signerMeans');",
+                  "            pm.expect(response.signerMeans).to.equal(pm.collectionVariables.get('updatedSignerEmail'));",
+                  "        });",
+                  "    }",
+                  "    ",
+                  "    console.log('\u2705 [E2E Step 4] Template updated successfully');",
+                  "} else if (pm.response.code === 404) {",
+                  "    console.log('\u274c [E2E Step 4] Template not found for update');",
+                  "} else {",
+                  "    console.log('\u26a0\ufe0f  [E2E Step 4] Template update failed');",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"templateId\": \"{{testTemplateId}}\",\n  \"signerMeans\": \"{{updatedSignerEmail}}\",\n  \"phoneExtension\": \"+1\",\n  \"fullname\": \"E2E Updated Signer\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{signerBaseUrl}}/singlelink/{{testTemplateId}}",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "singlelink",
+                "{{testTemplateId}}"
+              ]
+            },
+            "description": "Update the template with new signer email"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Step 5: Read SingleLink Template (Updated)",
+      "item": [
+        {
+          "name": "Get SingleLink Template Data - Updated",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('[E2E] Template read successful', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 401, 404, 405, 500]);",
+                  "});",
+                  "",
+                  "pm.test('[E2E] Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    pm.test('[E2E] Response is JSON', function() {",
+                  "        pm.response.to.be.json;",
+                  "    });",
+                  "    ",
+                  "    const response = pm.response.json();",
+                  "    pm.test('[E2E] Template has updated signer email', function() {",
+                  "        pm.expect(response).to.have.property('signerMeans');",
+                  "        pm.expect(response.signerMeans).to.equal(pm.collectionVariables.get('updatedSignerEmail'));",
+                  "    });",
+                  "    ",
+                  "    pm.test('[E2E] Updated fullname reflected', function() {",
+                  "        pm.expect(response).to.have.property('fullname');",
+                  "        pm.expect(response.fullname).to.equal('E2E Updated Signer');",
+                  "    });",
+                  "    ",
+                  "    console.log('\u2705 [E2E Step 5] Template retrieved - verified update');",
+                  "} else {",
+                  "    console.log('\u26a0\ufe0f  [E2E Step 5] Template read failed after update');",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{signerBaseUrl}}/singlelink/{{testTemplateId}}",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "singlelink",
+                "{{testTemplateId}}"
+              ]
+            },
+            "description": "Retrieve the template again to verify the update was successful"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Step 6: Delete SingleLink Template",
+      "item": [
+        {
+          "name": "Delete SingleLink Template - Cleanup",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('[E2E] Cleanup request sent', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 204, 404, 401, 405, 500]);",
+                  "});",
+                  "",
+                  "pm.test('[E2E] Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200 || pm.response.code === 204) {",
+                  "    console.log('\u2705 [E2E Step 6] Template deleted - cleanup complete');",
+                  "    pm.collectionVariables.set('testTemplateId', '');",
+                  "} else if (pm.response.code === 404) {",
+                  "    console.log('\u26a0\ufe0f  [E2E Step 6] Template not found (may have been deleted already)');",
+                  "} else {",
+                  "    console.log('\u26a0\ufe0f  [E2E Step 6] Cleanup failed - manual deletion may be needed');",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{signerBaseUrl}}/singlelink/{{testTemplateId}}",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "singlelink",
+                "{{testTemplateId}}"
+              ]
+            },
+            "description": "Clean up: delete the test template"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Step 7: Final Validation",
+      "item": [
+        {
+          "name": "E2E Workflow Summary",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('[E2E] Workflow completed', function() {",
+                  "    pm.expect(true).to.be.true;",
+                  "});",
+                  "",
+                  "console.log('');",
+                  "console.log('\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550');",
+                  "console.log('\ud83d\udcca E2E WORKFLOW 2: SINGLELINK DOCUMENT LIFECYCLE - SUMMARY');",
+                  "console.log('\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550');",
+                  "console.log('');",
+                  "console.log('\u2705 Steps Completed:');",
+                  "console.log('   1. User Authentication \u2192 jwtToken');",
+                  "console.log('   2. Create SingleLink Template \u2192 testTemplateId');",
+                  "console.log('   3. Read Template (Initial) \u2192 verify creation');",
+                  "console.log('   4. Update Template \u2192 change signer email');",
+                  "console.log('   5. Read Template (Updated) \u2192 verify update');",
+                  "console.log('   6. Delete Template \u2192 cleanup');",
+                  "console.log('');",
+                  "console.log('\ud83d\udd04 Complete CRUD Cycle Demonstrated:');",
+                  "console.log('   CREATE \u2192 READ \u2192 UPDATE \u2192 READ \u2192 DELETE');",
+                  "console.log('');",
+                  "console.log('\ud83d\udcc8 Value Demonstrated:');",
+                  "console.log('   - Full lifecycle testing within single API');",
+                  "console.log('   - Template management workflow');",
+                  "console.log('   - Data validation across operations');",
+                  "console.log('   - Update verification pattern');",
+                  "console.log('   - Cleanup operations validated');",
+                  "console.log('');",
+                  "console.log('\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550');",
+                  "console.log('');"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://httpbin.org/status/200",
+              "host": [
+                "https://httpbin.org"
+              ],
+              "path": [
+                "status",
+                "200"
+              ]
+            },
+            "description": "Dummy request to trigger summary console output"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+# Environment files with real credentials
+environment.json
+*.postman_environment.json
+!environment.template.json
+
+# Test reports (generated during test runs)
+test-report.html
+test-report.xml
+newman-*.html
+newman-*.json
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Temporary files
+*.tmp
+*.log
+.DS_Store
+Thumbs.db

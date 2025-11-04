@@ -1,0 +1,16 @@
+{
+    "status": "healthy",
+    "timestamp": "2025-10-27T13:15:51.551Z",
+    "version": "2.0.0",
+    "database": {
+        "healthy": true,
+        "path": "scheduler.db"
+    },
+    "worker": {
+        "running": true,
+        "activeExecutions": 0,
+        "maxConcurrent": 3,
+        "uptime": 4304.8592636
+    },
+    "environment": "development"
+}

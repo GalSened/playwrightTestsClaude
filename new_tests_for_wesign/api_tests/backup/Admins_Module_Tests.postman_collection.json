@@ -1,0 +1,817 @@
+{
+	"info": {
+		"_postman_id": "admins-module-tests-2025",
+		"name": "Admins Module Tests",
+		"description": "Comprehensive API tests for WeSign Admins module - 9 endpoints across 8 phases\n\nCreated: 2025-11-02\nCoverage: Group management, User management (Admin operations)\nPhases: Auth → Discovery → CRUD → Workflow → Management → Edge Cases → Security → Cleanup\n\nIMPORTANT: Requires CompanyAdmin or SystemAdmin role",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Phase 1 - Authentication Setup",
+			"item": [
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Login successful', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('JWT token received', function() {",
+									"        pm.expect(response).to.have.property('jwtToken');",
+									"    });",
+									"    pm.collectionVariables.set('adminToken', response.jwtToken);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"{{adminEmail}}\",\n  \"password\": \"{{adminPassword}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/users/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "users", "login"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 2 - Data Discovery & Exploration",
+			"item": [
+				{
+					"name": "Get All Groups",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200 or 403', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 403]);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    pm.test('Response contains groups array', function() {",
+									"        const response = pm.response.json();",
+									"        pm.expect(response).to.have.property('groups');",
+									"        pm.expect(response.groups).to.be.an('array');",
+									"    });",
+									"    ",
+									"    pm.test('Total count header present', function() {",
+									"        pm.expect(pm.response.headers.get('x-total-count')).to.exist;",
+									"    });",
+									"}",
+									"",
+									"pm.test('Response time acceptable', function() {",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/groups",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "groups"]
+						}
+					}
+				},
+				{
+					"name": "Get All Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200 or 403', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 403]);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    pm.test('Response contains users array', function() {",
+									"        const response = pm.response.json();",
+									"        pm.expect(response).to.have.property('users');",
+									"        pm.expect(response.users).to.be.an('array');",
+									"    });",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/users?offset=0&limit=20",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "users"],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search Users by Key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200 or 403', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 403]);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    pm.test('Search returns users', function() {",
+									"        const response = pm.response.json();",
+									"        pm.expect(response).to.have.property('users');",
+									"    });",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/users?key=Test",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "users"],
+							"query": [
+								{
+									"key": "key",
+									"value": "Test"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 3 - CRUD Operations (Groups)",
+			"item": [
+				{
+					"name": "Create Group - Happy Path",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Group creation attempted', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 403]);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('Response contains group ID', function() {",
+									"        pm.expect(response).to.have.property('groupId');",
+									"    });",
+									"    pm.collectionVariables.set('testGroupId', response.groupId);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test Admin Group\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/groups",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "groups"]
+						}
+					}
+				},
+				{
+					"name": "Create Second Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Second group creation attempted', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 403]);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.collectionVariables.set('testGroupId2', response.groupId);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Second Admin Group\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/groups",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "groups"]
+						}
+					}
+				},
+				{
+					"name": "Update Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Group update attempted', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 403, 404]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated Admin Group\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/groups/{{testGroupId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "groups", "{{testGroupId}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 4 - CRUD Operations (Users)",
+			"item": [
+				{
+					"name": "Create User - Happy Path",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('User creation attempted', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 403, 400]);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('Response contains user ID', function() {",
+									"        pm.expect(response).to.have.property('userId');",
+									"    });",
+									"    pm.collectionVariables.set('testUserId', response.userId);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test Admin User\",\n  \"email\": \"testadminuser@example.com\",\n  \"username\": \"testadminuser\",\n  \"type\": 1,\n  \"groupId\": \"{{testGroupId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/users",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "users"]
+						}
+					}
+				},
+				{
+					"name": "Update User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('User update attempted', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 403, 404]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated Admin User\",\n  \"email\": \"updatedadminuser@example.com\",\n  \"username\": \"updatedadminuser\",\n  \"type\": 2,\n  \"groupId\": \"{{testGroupId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/users/{{testUserId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "users", "{{testUserId}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 5 - Management Operations",
+			"item": [
+				{
+					"name": "Get Users with Pagination",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Pagination works', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 403]);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    pm.test('Limited results returned', function() {",
+									"        const response = pm.response.json();",
+									"        pm.expect(response.users).to.be.an('array');",
+									"        pm.expect(response.users.length).to.be.at.most(5);",
+									"    });",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/users?offset=0&limit=5",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "users"],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Verify Groups After Updates",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Groups accessible', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 403]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/groups",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "groups"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 6 - Edge Cases & Error Handling",
+			"item": [
+				{
+					"name": "Create Group - Missing Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Validation error for missing name', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 403, 500]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/groups",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "groups"]
+						}
+					}
+				},
+				{
+					"name": "Create User - Invalid Group ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Error for invalid group', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 403, 404, 500]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Invalid Group User\",\n  \"email\": \"invalid@example.com\",\n  \"username\": \"invaliduser\",\n  \"type\": 1,\n  \"groupId\": \"00000000-0000-0000-0000-000000000000\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/users",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "users"]
+						}
+					}
+				},
+				{
+					"name": "Update Non-Existent User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Error for non-existent user', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([404, 403, 400, 500]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Ghost User\",\n  \"email\": \"ghost@example.com\",\n  \"username\": \"ghostuser\",\n  \"type\": 1,\n  \"groupId\": \"{{testGroupId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/users/00000000-0000-0000-0000-000000000000",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "users", "00000000-0000-0000-0000-000000000000"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 7 - Security Testing",
+			"item": [
+				{
+					"name": "Get Groups - No Auth Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Unauthorized without token', function() {",
+									"    pm.expect(pm.response.code).to.equal(401);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/groups",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "groups"]
+						}
+					}
+				},
+				{
+					"name": "Get Users - Non-Admin Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Forbidden for non-admin user', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([403, 401]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}",
+								"description": "Using regular user token instead of admin"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/users",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "users"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 8 - Final Validation & Cleanup",
+			"item": [
+				{
+					"name": "Verify Test Data Integrity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Test data accessible', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 403]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/groups",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "groups"]
+						}
+					}
+				},
+				{
+					"name": "Delete Test User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('User deletion attempted', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 403, 404]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/users/{{testUserId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "users", "{{testUserId}}"]
+						}
+					}
+				},
+				{
+					"name": "Delete First Test Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Group deletion attempted', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 403, 404]);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    pm.test('Response contains remaining groups', function() {",
+									"        const response = pm.response.json();",
+									"        pm.expect(response).to.have.property('groups');",
+									"    });",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/groups/{{testGroupId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "groups", "{{testGroupId}}"]
+						}
+					}
+				},
+				{
+					"name": "Delete Second Test Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Second group deletion attempted', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 403, 404]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/admins/groups/{{testGroupId2}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "admins", "groups", "{{testGroupId2}}"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "adminToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "testGroupId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "testGroupId2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "testUserId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

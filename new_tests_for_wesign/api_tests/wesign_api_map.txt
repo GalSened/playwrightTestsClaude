@@ -1,0 +1,131 @@
+========================================================================================================================
+WESIGN API ENDPOINT MAPPING - COMPREHENSIVE
+========================================================================================================================
+
+
+========================================================================================================================
+CONTROLLER: AdminsController
+Route Prefix: userapi/v3/admins
+Total Endpoints: 0
+========================================================================================================================
+
+   ⚠️  No endpoints extracted (may need manual review)
+
+========================================================================================================================
+CONTROLLER: ConfigurationController
+Route Prefix: userapi/v3/configuration
+Total Endpoints: 0
+========================================================================================================================
+
+   ⚠️  No endpoints extracted (may need manual review)
+
+========================================================================================================================
+CONTROLLER: ContactsController
+Route Prefix: userapi/v3/contacts
+Total Endpoints: 0
+========================================================================================================================
+
+   ⚠️  No endpoints extracted (may need manual review)
+
+========================================================================================================================
+CONTROLLER: DashboardController
+Route Prefix: userapi/v3/dashboard
+Total Endpoints: 0
+========================================================================================================================
+
+   ⚠️  No endpoints extracted (may need manual review)
+
+========================================================================================================================
+CONTROLLER: DistributionController
+Route Prefix: userapi/v3/documents/distribution
+Total Endpoints: 0
+========================================================================================================================
+
+   ⚠️  No endpoints extracted (may need manual review)
+
+========================================================================================================================
+CONTROLLER: DocumentCollectionsController
+Route Prefix: userapi/v3/documentcollections
+Total Endpoints: 0
+========================================================================================================================
+
+   ⚠️  No endpoints extracted (may need manual review)
+
+========================================================================================================================
+CONTROLLER: LinksController
+Route Prefix: userapi/v3/links
+Total Endpoints: 0
+========================================================================================================================
+
+   ⚠️  No endpoints extracted (may need manual review)
+
+========================================================================================================================
+CONTROLLER: ReportsController
+Route Prefix: userapi/v3/reports
+Total Endpoints: 0
+========================================================================================================================
+
+   ⚠️  No endpoints extracted (may need manual review)
+
+========================================================================================================================
+CONTROLLER: SelfSignController
+Route Prefix: userapi/v3/selfsign
+Total Endpoints: 0
+========================================================================================================================
+
+   ⚠️  No endpoints extracted (may need manual review)
+
+========================================================================================================================
+CONTROLLER: SignersController
+Route Prefix: userapi/v3/signers
+Total Endpoints: 0
+========================================================================================================================
+
+   ⚠️  No endpoints extracted (may need manual review)
+
+========================================================================================================================
+CONTROLLER: TemplatesController
+Route Prefix: userapi/v3/templates
+Total Endpoints: 0
+========================================================================================================================
+
+   ⚠️  No endpoints extracted (may need manual review)
+
+========================================================================================================================
+CONTROLLER: UsersController
+Route Prefix: userapi/v3/users
+Total Endpoints: 0
+========================================================================================================================
+
+   ⚠️  No endpoints extracted (may need manual review)
+
+
+========================================================================================================================
+SUMMARY - ALL WESIGN APIs
+========================================================================================================================
+
+Total Controllers: 12
+Total API Endpoints: 0
+
+📊 Endpoints by HTTP Method:
+
+📋 Endpoints by Controller:
+   AdminsController                        :   0 endpoints
+   ConfigurationController                 :   0 endpoints
+   ContactsController                      :   0 endpoints
+   DashboardController                     :   0 endpoints
+   DistributionController                  :   0 endpoints
+   DocumentCollectionsController           :   0 endpoints
+   LinksController                         :   0 endpoints
+   ReportsController                       :   0 endpoints
+   SelfSignController                      :   0 endpoints
+   SignersController                       :   0 endpoints
+   TemplatesController                     :   0 endpoints
+   UsersController                         :   0 endpoints
+
+🔐 Authorization Distribution:
+Traceback (most recent call last):
+  File "C:\Users\gals\Desktop\playwrightTestsClaude\new_tests_for_wesign\api_tests\map_wesign_apis.py", line 150, in <module>
+    print(f"   Authorized (requires token): {authorized_count} ({authorized_count/total_endpoints*100:.1f}%)")
+                                                                 ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero

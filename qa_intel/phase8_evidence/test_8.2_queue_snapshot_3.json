@@ -1,0 +1,62 @@
+{
+    "success": true,
+    "data": {
+        "executions": [
+            {
+                "executionId": "a4e48158-cf29-404b-99d9-942c58f0cc1f",
+                "status": "queued",
+                "framework": "wesign",
+                "priority": "normal",
+                "queuedAt": "2025-10-27T13:03:17.976Z",
+                "estimatedDuration": 180000,
+                "requestedBy": "api"
+            },
+            {
+                "executionId": "56feb9ba-c5b6-4bba-a032-50b6dbe78c69",
+                "status": "queued",
+                "framework": "wesign",
+                "priority": "normal",
+                "queuedAt": "2025-10-27T13:03:20.590Z",
+                "estimatedDuration": 180000,
+                "requestedBy": "api"
+            },
+            {
+                "executionId": "82e6ac91-7213-4ebc-82b6-84b269ce3667",
+                "status": "queued",
+                "framework": "wesign",
+                "priority": "normal",
+                "queuedAt": "2025-10-27T13:03:23.186Z",
+                "estimatedDuration": 180000,
+                "requestedBy": "api"
+            },
+            {
+                "executionId": "871f8916-2fc2-4577-8e0f-10ad6aa979ba",
+                "status": "running",
+                "framework": "wesign",
+                "startTime": "2025-10-27T12:04:40.204Z",
+                "pool": "WeSign Tests"
+            },
+            {
+                "executionId": "c7dfdc59-2683-4ac4-9c1d-f4a85907bd32",
+                "status": "running",
+                "framework": "wesign",
+                "startTime": "2025-10-27T13:03:12.662Z",
+                "pool": "WeSign Tests"
+            },
+            {
+                "executionId": "f06f6ae0-1565-4683-8954-36364d54c121",
+                "status": "running",
+                "framework": "wesign",
+                "startTime": "2025-10-27T13:03:15.286Z",
+                "pool": "WeSign Tests"
+            }
+        ],
+        "summary": {
+            "total": 6,
+            "running": 3,
+            "completed": 0,
+            "failed": 0,
+            "queued": 3
+        }
+    }
+}

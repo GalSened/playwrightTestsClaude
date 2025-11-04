@@ -1,0 +1,1083 @@
+==========================================
+Running All WeSign API Test Collections
+==========================================
+
+Running: Templates_Module_Tests
+newman
+
+WeSign API - Templates Module (Complete)
+
+□ Templates - Phase 1: Authentication Setup
+└ Login - Get Authentication Token
+  POST https://devtest.comda.co.il/userapi/v3/users/login [200 OK, 831B, 1589ms]
+  √  Login successful
+  √  Response contains authentication tokens
+  ┌
+  │ 'Authentication successful - tokens stored'
+  └
+  √  Response time acceptable
+
+□ Templates - Phase 2: Data Discovery & Exploration
+└ Get All Templates - Initial Discovery
+  GET https://devtest.comda.co.il/userapi/v3/templates?offset=0&limit=20 [200 OK, 7.07kB, 192ms]
+  √  Request successful
+  √  Response has templates array
+  √  Response has total count header
+  √  Response time acceptable
+
+└ Get Templates with Search Filter
+  GET https://devtest.comda.co.il/userapi/v3/templates?key=test&offset=0&limit=10 [200 OK, 3.71kB, 95ms]
+  √  Search request successful
+  √  Response has templates array
+  √  Response time acceptable
+
+□ Templates - Phase 3: CRUD Operations Testing
+└ Create Template - Happy Path
+  POST https://devtest.comda.co.il/userapi/v3/templates [200 OK, 529B, 501ms]
+  √  Template created successfully
+  √  Response contains template ID
+  1. Template name matches input
+  √  Template ID is valid GUID
+  ┌
+  │ 'Template created with ID:', '820cbc15-d3f7-4c81-6fab-
+  │ 08de19f613c4'
+  └
+  √  Response time acceptable
+
+└ Create Second Template for Testing
+  POST https://devtest.comda.co.il/userapi/v3/templates [200 OK, 531B, 257ms]
+  √  Second template created successfully
+  ┌
+  │ 'Second template created with ID:', 'db944542-e3c3-4be
+  │ 2-6fac-08de19f613c4'
+  └
+  √  Response time acceptable
+
+└ Update Template - Happy Path
+  PUT https://devtest.comda.co.il/userapi/v3/templates/820cbc15-d3f7-4c81-6fab-08de19f613c4 [400 Bad Request, 1.08kB, 88ms]
+  2. Template updated successfully
+  √  Response time acceptable
+
+└ Get Template Pages Count
+  GET https://devtest.comda.co.il/userapi/v3/templates/820cbc15-d3f7-4c81-6fab-08de19f613c4/pages [200 OK, 442B, 86ms]
+  √  Pages count retrieved successfully
+  √  Response contains page count information
+  √  Page count header present
+  √  Response time acceptable
+
+□ Templates - Phase 4: Template Workflow Testing
+└ Duplicate Template
+  POST https://devtest.comda.co.il/userapi/v3/templates/820cbc15-d3f7-4c81-6fab-08de19f613c4 [200 OK, 456B, 136ms]
+  √  Template duplicated successfully
+  √  Response contains new template ID
+  √  New template ID is different from original
+  ┌
+  │ 'Template duplicated with ID:', '2fe62b2f-5964-4255-6f
+  │ ad-08de19f613c4'
+  └
+  √  Response time acceptable
+
+└ Download Template
+  GET https://devtest.comda.co.il/userapi/v3/templates/820cbc15-d3f7-4c81-6fab-08de19f613c4/download [200 OK, 3.28kB, 62ms]
+  √  Template downloaded successfully
+  √  Response is PDF content
+  √  File name header present
+  √  Response has content
+  √  Response time acceptable
+
+└ Get Specific Page Information
+  GET https://devtest.comda.co.il/userapi/v3/templates/820cbc15-d3f7-4c81-6fab-08de19f613c4/pages/1 [200 OK, 44.38kB, 77ms]
+  √  Page information retrieved successfully
+  √  Response contains page details
+  √  Response time acceptable
+
+└ Get Page Range Information
+  GET https://devtest.comda.co.il/userapi/v3/templates/820cbc15-d3f7-4c81-6fab-08de19f613c4/pages/range?offset=1&limit=5&withImages=true [200 OK, 44.4kB, 83ms]
+  √  Page range retrieved successfully
+  √  Response contains template pages array
+  √  Response time acceptable
+
+□ Templates - Phase 5: Management Operations
+└ Merge Templates
+  POST https://devtest.comda.co.il/userapi/v3/templates/merge [400 Bad Request, 498B, 3.1s]
+  3. Templates merged successfully
+  √  Response time acceptable
+
+└ Get Templates - Popular Sort
+  GET https://devtest.comda.co.il/userapi/v3/templates?popular=true&limit=10 [200 OK, 3.61kB, 78ms]
+  √  Popular templates retrieved successfully
+  √  Response has templates array
+  √  Response time acceptable
+
+└ Get Templates - Recent Sort
+  GET https://devtest.comda.co.il/userapi/v3/templates?recent=true&limit=10 [200 OK, 3.36kB, 66ms]
+  √  Recent templates retrieved successfully
+  √  Response has templates array
+  √  Response time acceptable
+
+□ Templates - Phase 6: Edge Cases & Error Handling
+└ Create Template - Missing Name (Error)
+  POST https://devtest.comda.co.il/userapi/v3/templates [400 Bad Request, 608B, 52ms]
+  √  Request fails with bad request
+  √  Error response structure appropriate
+  √  Response time acceptable
+
+└ Get Template with Invalid ID (Error)
+  GET https://devtest.comda.co.il/userapi/v3/templates/00000000-0000-0000-0000-000000000000/pages [400 Bad Request, 363B, 41ms]
+  √  Request fails appropriately
+  √  Error response received
+  √  Response time acceptable
+
+└ Get Page with Invalid Page Number (Error)
+  GET https://devtest.comda.co.il/userapi/v3/templates/820cbc15-d3f7-4c81-6fab-08de19f613c4/pages/0 [400 Bad Request, 363B, 38ms]
+  √  Request fails with invalid page number
+  √  Error response received
+  √  Response time acceptable
+
+└ Get Templates - Negative Offset (Error)
+  GET https://devtest.comda.co.il/userapi/v3/templates?offset=-1&limit=10 [400 Bad Request, 367B, 33ms]
+  √  Request fails with negative offset
+  √  Error response received
+  √  Response time acceptable
+
+□ Templates - Phase 7: Security Testing
+└ Get Templates - No Auth Token (Security Test)
+  GET https://devtest.comda.co.il/userapi/v3/templates [401 Unauthorized, 246B, 11ms]
+  √  Request fails without authentication
+  √  Unauthorized access blocked
+  √  Response time acceptable
+
+└ SQL Injection Attempt - Template Name (Security Test)
+  GET https://devtest.comda.co.il/userapi/v3/templates?key=' OR '1'='1 [200 OK, 283B, 44ms]
+  √  SQL injection attempt handled safely
+  √  No SQL error in response
+  √  Response time acceptable
+
+□ Templates - Phase 8: Final Validation & Cleanup
+└ Final Validation - Get All Created Templates
+  GET https://devtest.comda.co.il/userapi/v3/templates?recent=true&limit=50 [200 OK, 16.65kB, 43ms]
+  √  Final validation successful
+  √  Response contains templates
+  √  Created templates exist in list
+  √  Response time acceptable
+
+└ Cleanup - Delete Batch Templates
+  PUT https://devtest.comda.co.il/userapi/v3/templates/deletebatch [500 Internal Server Error, 432B, 55ms]
+  4. Batch delete successful
+  ┌
+  │ 'Test templates cleaned up successfully'
+  └
+  √  Response time acceptable
+
+┌─────────────────────────┬────────────────────┬───────────────────┐
+│                         │           executed │            failed │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│              iterations │                  1 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│                requests │                 22 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│            test-scripts │                 22 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│      prerequest-scripts │                  0 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│              assertions │                 70 │                 4 │
+├─────────────────────────┴────────────────────┴───────────────────┤
+│ total run duration: 8.5s                                         │
+├──────────────────────────────────────────────────────────────────┤
+│ total data received: 126.97kB (approx)                           │
+├──────────────────────────────────────────────────────────────────┤
+│ average response time: 307ms [min: 11ms, max: 3.1s, s.d.: 698ms] │
+└──────────────────────────────────────────────────────────────────┘
+
+[31m  # [39m[31m failure        [39m[31m detail                                                                                      [39m
+[90m    [39m[90m                [39m[90m                                                                                             [39m
+ 1.  AssertionError  Template name matches input                                                                 
+                     expected 'Test Template - API - Copy_/RhzHxGL' to equal 'Test Template - API'               
+                     at assertion:2 in test-script                                                               
+                     inside "Templates - Phase 3: CRUD Operations Testing / Create Template - Happy Path"        
+[90m    [39m[90m                [39m[90m                                                                                             [39m
+ 2.  AssertionError  Template updated successfully                                                               
+                     expected 400 to equal 200                                                                   
+                     at assertion:0 in test-script                                                               
+                     inside "Templates - Phase 3: CRUD Operations Testing / Update Template - Happy Path"        
+[90m    [39m[90m                [39m[90m                                                                                             [39m
+ 3.  AssertionError  Templates merged successfully                                                               
+                     expected 400 to equal 200                                                                   
+                     at assertion:0 in test-script                                                               
+                     inside "Templates - Phase 5: Management Operations / Merge Templates"                       
+[90m    [39m[90m                [39m[90m                                                                                             [39m
+ 4.  AssertionError  Batch delete successful                                                                     
+                     expected 500 to equal 200                                                                   
+                     at assertion:0 in test-script                                                               
+                     inside "Templates - Phase 8: Final Validation & Cleanup / Cleanup - Delete Batch Templates" 
+---
+
+Running: Contacts_Module_Tests
+newman
+
+Contacts Module Tests
+
+□ Phase 1 - Authentication Setup
+└ User Login
+  POST https://devtest.comda.co.il/userapi/v3/users/login [200 OK, 831B, 156ms]
+  √  Login successful
+  √  JWT token received
+  ┌
+  │ 'Contacts module - Authentication successful'
+  └
+
+□ Phase 2 - Data Discovery & Exploration
+└ Get All Contacts
+  GET https://devtest.comda.co.il/userapi/v3/contacts?offset=0&limit=20 [200 OK, 4.1kB, 145ms]
+  √  Status code is 200
+  √  Response contains contacts array
+  √  Total count header present
+  √  Response time acceptable
+
+└ Search Contacts by Key
+  GET https://devtest.comda.co.il/userapi/v3/contacts?key=Test [200 OK, 4.04kB, 111ms]
+  √  Status code is 200
+  √  Search returns contacts
+
+└ Get All Contact Groups
+  GET https://devtest.comda.co.il/userapi/v3/contacts/Groups [200 OK, 14.64kB, 47ms]
+  √  Status code is 200
+  √  Response contains contact groups
+
+□ Phase 3 - CRUD Operations
+└ Create Contact - Happy Path
+  POST https://devtest.comda.co.il/userapi/v3/contacts [400 Bad Request, 382B, 186ms]
+  1. Contact created successfully
+
+└ Create Second Contact
+  POST https://devtest.comda.co.il/userapi/v3/contacts [400 Bad Request, 382B, 22ms]
+  2. Second contact created
+
+└ Get Contact by ID
+  GET https://devtest.comda.co.il/userapi/v3/contacts/ [200 OK, 4.1kB, 45ms]
+  √  Status code is 200
+  3. Contact details returned
+
+└ Update Contact
+  PUT https://devtest.comda.co.il/userapi/v3/contacts/ [405 Method Not Allowed, 244B, 7ms]
+  4. Contact updated successfully
+
+└ Create Contact Group
+  POST https://devtest.comda.co.il/userapi/v3/contacts/Group [400 Bad Request, 778B, 32ms]
+  5. Group created successfully
+
+□ Phase 4 - Workflow Testing
+└ Get Popular Contacts
+  GET https://devtest.comda.co.il/userapi/v3/contacts?popular=true&limit=10 [200 OK, 2.13kB, 39ms]
+  √  Status code is 200
+  √  Popular contacts returned
+
+└ Get Recent Contacts
+  GET https://devtest.comda.co.il/userapi/v3/contacts?recent=true&limit=10 [200 OK, 2.13kB, 35ms]
+  √  Status code is 200
+  √  Recent contacts returned
+
+└ Get Contact Group by ID
+  GET https://devtest.comda.co.il/userapi/v3/contacts/Group/ [400 Bad Request, 511B, 16ms]
+  6. Status code is 200
+  7. Group details returned
+
+└ Update Contact Group
+  PUT https://devtest.comda.co.il/userapi/v3/contacts/Group/ [400 Bad Request, 642B, 16ms]
+  8. Group updated successfully
+
+□ Phase 5 - Management Operations
+└ Bulk Import Contacts (Excel)
+  POST https://devtest.comda.co.il/userapi/v3/contacts/bulk [400 Bad Request, 608B, 19ms]
+  9. Status code is 200
+ 10. Bulk import response contains IDs
+ 11. Total count header present
+
+└ Search Groups by Key
+  GET https://devtest.comda.co.il/userapi/v3/contacts/Groups?key=Test [200 OK, 16.1kB, 176ms]
+  √  Status code is 200
+  √  Groups search returns results
+
+└ Pagination - Offset and Limit
+  GET https://devtest.comda.co.il/userapi/v3/contacts?offset=0&limit=5 [200 OK, 1.15kB, 34ms]
+  √  Status code is 200
+  √  Pagination works correctly
+
+□ Phase 6 - Edge Cases & Error Handling
+└ Create Contact - Missing Name
+  POST https://devtest.comda.co.il/userapi/v3/contacts [400 Bad Request, 634B, 10ms]
+  √  Validation error for missing name
+
+└ Get Contact - Invalid ID
+  GET https://devtest.comda.co.il/userapi/v3/contacts/00000000-0000-0000-0000-000000000000 [400 Bad Request, 362B, 27ms]
+  √  Not found error for invalid ID
+
+└ Get Contacts - Negative Offset
+  GET https://devtest.comda.co.il/userapi/v3/contacts?offset=-1 [500 Internal Server Error, 432B, 65ms]
+ 12. Handles negative offset gracefully
+
+└ Update Non-Existent Contact
+  PUT https://devtest.comda.co.il/userapi/v3/contacts/00000000-0000-0000-0000-000000000000 [400 Bad Request, 601B, 12ms]
+  √  Error for non-existent contact update
+
+□ Phase 7 - Security Testing
+└ Get Contacts - No Auth Token
+  GET https://devtest.comda.co.il/userapi/v3/contacts [401 Unauthorized, 246B, 6ms]
+  √  Unauthorized without token
+
+└ Search Contacts - SQL Injection Attempt
+  GET https://devtest.comda.co.il/userapi/v3/contacts?key=' OR '1'='1 [200 OK, 282B, 72ms]
+  √  SQL injection safely handled
+  √  No SQL errors in response
+
+□ Phase 8 - Final Validation & Cleanup
+└ Verify Test Data Integrity
+  GET https://devtest.comda.co.il/userapi/v3/contacts?key=Test [200 OK, 4.04kB, 57ms]
+  √  Test contacts exist
+  √  Can search for test contacts
+
+└ Delete Contact Group
+  DELETE https://devtest.comda.co.il/userapi/v3/contacts/Group/ [400 Bad Request, 511B, 14ms]
+ 13. Group deleted successfully
+
+└ Delete Contacts - Batch
+  PUT https://devtest.comda.co.il/userapi/v3/contacts/deletebatch [500 Internal Server Error, 432B, 20ms]
+ 14. Batch delete successful
+
+┌─────────────────────────┬───────────────────┬──────────────────┐
+│                         │          executed │           failed │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              iterations │                 1 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│                requests │                25 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│            test-scripts │                25 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│      prerequest-scripts │                 0 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              assertions │                41 │               14 │
+├─────────────────────────┴───────────────────┴──────────────────┤
+│ total run duration: 3.1s                                       │
+├────────────────────────────────────────────────────────────────┤
+│ total data received: 53.6kB (approx)                           │
+├────────────────────────────────────────────────────────────────┤
+│ average response time: 54ms [min: 6ms, max: 186ms, s.d.: 54ms] │
+└────────────────────────────────────────────────────────────────┘
+
+[31m   # [39m[31m failure        [39m[31m detail                                                                          [39m
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 01.  AssertionError  Contact created successfully                                                    
+                      expected 400 to equal 200                                                       
+                      at assertion:0 in test-script                                                   
+                      inside "Phase 3 - CRUD Operations / Create Contact - Happy Path"                
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 02.  AssertionError  Second contact created                                                          
+                      expected 400 to equal 200                                                       
+                      at assertion:0 in test-script                                                   
+                      inside "Phase 3 - CRUD Operations / Create Second Contact"                      
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 03.  AssertionError  Contact details returned                                                        
+                      expected { contacts: [ { …(8) }, …(19) ] } to have property 'id'                
+                      at assertion:1 in test-script                                                   
+                      inside "Phase 3 - CRUD Operations / Get Contact by ID"                          
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 04.  AssertionError  Contact updated successfully                                                    
+                      expected 405 to equal 200                                                       
+                      at assertion:0 in test-script                                                   
+                      inside "Phase 3 - CRUD Operations / Update Contact"                             
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 05.  AssertionError  Group created successfully                                                      
+                      expected 400 to equal 200                                                       
+                      at assertion:0 in test-script                                                   
+                      inside "Phase 3 - CRUD Operations / Create Contact Group"                       
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 06.  AssertionError  Status code is 200                                                              
+                      expected 400 to equal 200                                                       
+                      at assertion:0 in test-script                                                   
+                      inside "Phase 4 - Workflow Testing / Get Contact Group by ID"                   
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 07.  AssertionError  Group details returned                                                          
+                      expected { …(5) } to have property 'id'                                         
+                      at assertion:1 in test-script                                                   
+                      inside "Phase 4 - Workflow Testing / Get Contact Group by ID"                   
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 08.  AssertionError  Group updated successfully                                                      
+                      expected 400 to equal 200                                                       
+                      at assertion:0 in test-script                                                   
+                      inside "Phase 4 - Workflow Testing / Update Contact Group"                      
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 09.  AssertionError  Status code is 200                                                              
+                      expected 400 to equal 200                                                       
+                      at assertion:0 in test-script                                                   
+                      inside "Phase 5 - Management Operations / Bulk Import Contacts (Excel)"         
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 10.  AssertionError  Bulk import response contains IDs                                               
+                      expected { …(5) } to have property 'contactsId'                                 
+                      at assertion:1 in test-script                                                   
+                      inside "Phase 5 - Management Operations / Bulk Import Contacts (Excel)"         
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 11.  AssertionError  Total count header present                                                      
+                      expected undefined to exist                                                     
+                      at assertion:2 in test-script                                                   
+                      inside "Phase 5 - Management Operations / Bulk Import Contacts (Excel)"         
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 12.  AssertionError  Handles negative offset gracefully                                              
+                      expected 500 to be one of [ 200, 400 ]                                          
+                      at assertion:0 in test-script                                                   
+                      inside "Phase 6 - Edge Cases & Error Handling / Get Contacts - Negative Offset" 
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 13.  AssertionError  Group deleted successfully                                                      
+                      expected 400 to equal 200                                                       
+                      at assertion:0 in test-script                                                   
+                      inside "Phase 8 - Final Validation & Cleanup / Delete Contact Group"            
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 14.  AssertionError  Batch delete successful                                                         
+                      expected 500 to equal 200                                                       
+                      at assertion:0 in test-script                                                   
+                      inside "Phase 8 - Final Validation & Cleanup / Delete Contacts - Batch"         
+---
+
+Running: SelfSign_Module_Tests
+newman
+
+SelfSign Module Tests
+
+□ Phase 1 - Authentication Setup
+└ User Login
+  POST https://devtest.comda.co.il/userapi/v3/users/login [200 OK, 831B, 138ms]
+  √  Login successful
+  √  JWT token received
+
+□ Phase 2 - Data Discovery & Exploration
+└ Get Document Collections (for SelfSign)
+  GET https://devtest.comda.co.il/userapi/v3/documentcollections?offset=0&limit=10 [200 OK, 26.46kB, 481ms]
+  √  Status code is 200
+  √  Response contains document collections
+  √  Response time acceptable
+
+□ Phase 3 - CRUD Operations
+└ Create SelfSign Document - Happy Path
+  POST https://devtest.comda.co.il/userapi/v3/selfsign [200 OK, 516B, 341ms]
+  √  SelfSign document created successfully
+  √  Response contains document IDs
+
+└ Create Second SelfSign Document
+  POST https://devtest.comda.co.il/userapi/v3/selfsign [200 OK, 518B, 424ms]
+  √  Second document created
+
+□ Phase 4 - Workflow Testing
+└ Update SelfSign Document - Save Operation
+  PUT https://devtest.comda.co.il/userapi/v3/selfsign [400 Bad Request, 1.08kB, 78ms]
+  1. Document saved successfully
+  √  Update result contains data
+
+└ Create SelfSign from Template
+  POST https://devtest.comda.co.il/userapi/v3/selfsign [200 OK, 516B, 260ms]
+  √  Document created from template
+
+└ Verify Signer Credential
+  POST https://devtest.comda.co.il/userapi/v3/selfsign/sign/verify [400 Bad Request, 415B, 1271ms]
+  √  Credential verification attempted
+
+□ Phase 5 - Management Operations
+└ Download SmartCard Installer
+  GET https://devtest.comda.co.il/userapi/v3/selfsign/download/smartcard [200 OK, 4.98MB, 222ms]
+  √  SmartCard installer download
+  √  File name header present
+  √  Content type is binary
+
+└ Create SmartCard Signing Flow
+  POST https://devtest.comda.co.il/userapi/v3/selfsign/CreateSmartCardSigningFlow [400 Bad Request, 1.08kB, 214ms]
+  √  SmartCard flow creation attempted
+
+□ Phase 6 - Edge Cases & Error Handling
+└ Create SelfSign - Missing Name
+  POST https://devtest.comda.co.il/userapi/v3/selfsign [400 Bad Request, 607B, 59ms]
+  √  Validation error for missing name
+
+└ Update Non-Existent Document
+  PUT https://devtest.comda.co.il/userapi/v3/selfsign [400 Bad Request, 1.08kB, 63ms]
+  √  Error for non-existent document
+
+└ Delete Non-Existent Document
+  DELETE https://devtest.comda.co.il/userapi/v3/selfsign/00000000-0000-0000-0000-000000000000 [500 Internal Server Error, 432B, 75ms]
+  √  Handles non-existent delete gracefully
+
+□ Phase 7 - Security Testing
+└ Create SelfSign - No Auth Token
+  POST https://devtest.comda.co.il/userapi/v3/selfsign [401 Unauthorized, 350B, 6ms]
+  √  Unauthorized without token
+
+└ Update Document - Invalid Operation
+  PUT https://devtest.comda.co.il/userapi/v3/selfsign [400 Bad Request, 1.08kB, 50ms]
+  √  Invalid operation handled
+
+□ Phase 8 - Final Validation & Cleanup
+└ Verify Documents Exist
+  GET https://devtest.comda.co.il/userapi/v3/documentcollections [200 OK, 52.38kB, 76ms]
+  √  Document collections accessible
+  √  Can retrieve document collections
+
+└ Delete First SelfSign Document
+  DELETE https://devtest.comda.co.il/userapi/v3/selfsign/6b76773e-fda4-4889-ac84-08de19f6140f [200 OK, 210B, 128ms]
+  √  First document deleted
+
+└ Delete Second SelfSign Document
+  DELETE https://devtest.comda.co.il/userapi/v3/selfsign/c2474cc1-975a-4a92-ac85-08de19f6140f [200 OK, 210B, 136ms]
+  √  Second document deleted
+
+└ Delete Template-based Document
+  DELETE https://devtest.comda.co.il/userapi/v3/selfsign/eb53c658-b26f-4b75-ac86-08de19f6140f [200 OK, 210B, 104ms]
+  √  Template-based document deleted
+
+┌─────────────────────────┬────────────────────┬────────────────────┐
+│                         │           executed │             failed │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│              iterations │                  1 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│                requests │                 18 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│            test-scripts │                 18 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│      prerequest-scripts │                  0 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│              assertions │                 26 │                  1 │
+├─────────────────────────┴────────────────────┴────────────────────┤
+│ total run duration: 5.8s                                          │
+├───────────────────────────────────────────────────────────────────┤
+│ total data received: 5.07MB (approx)                              │
+├───────────────────────────────────────────────────────────────────┤
+│ average response time: 229ms [min: 6ms, max: 1271ms, s.d.: 284ms] │
+└───────────────────────────────────────────────────────────────────┘
+
+[31m  # [39m[31m failure        [39m[31m detail                                                                          [39m
+[90m    [39m[90m                [39m[90m                                                                                 [39m
+ 1.  AssertionError  Document saved successfully                                                     
+                     expected 400 to equal 200                                                       
+                     at assertion:0 in test-script                                                   
+                     inside "Phase 4 - Workflow Testing / Update SelfSign Document - Save Operation" 
+---
+
+Running: Admins_Module_Tests
+newman
+
+Admins Module Tests
+
+□ Phase 1 - Authentication Setup
+└ Admin Login
+  POST https://devtest.comda.co.il/userapi/v3/users/login [200 OK, 831B, 120ms]
+  √  Login successful
+  √  JWT token received
+  ┌
+  │ 'Admins module - Authentication successful'
+  └
+
+□ Phase 2 - Data Discovery & Exploration
+└ Get All Groups
+  GET https://devtest.comda.co.il/userapi/v3/admins/groups [200 OK, 10.58kB, 76ms]
+  √  Status code is 200 or 403
+  √  Response contains groups array
+  √  Total count header present
+  √  Response time acceptable
+
+└ Get All Users
+  GET https://devtest.comda.co.il/userapi/v3/admins/users?offset=0&limit=20 [200 OK, 4.32kB, 147ms]
+  √  Status code is 200 or 403
+  √  Response contains users array
+
+└ Search Users by Key
+  GET https://devtest.comda.co.il/userapi/v3/admins/users?key=Test [200 OK, 496B, 230ms]
+  √  Status code is 200 or 403
+  √  Search returns users
+
+□ Phase 3 - CRUD Operations (Groups)
+└ Create Group - Happy Path
+  POST https://devtest.comda.co.il/userapi/v3/admins/groups [200 OK, 299B, 111ms]
+  √  Group creation attempted
+  √  Response contains group ID
+
+└ Create Second Group
+  POST https://devtest.comda.co.il/userapi/v3/admins/groups [400 Bad Request, 398B, 23ms]
+  1. Second group creation attempted
+
+└ Update Group
+  PUT https://devtest.comda.co.il/userapi/v3/admins/groups/fe820b2f-f993-425e-90fd-08de19f7b142 [400 Bad Request, 398B, 41ms]
+  2. Group update attempted
+
+□ Phase 4 - CRUD Operations (Users)
+└ Create User - Happy Path
+  POST https://devtest.comda.co.il/userapi/v3/admins/users [400 Bad Request, 377B, 162ms]
+  √  User creation attempted
+
+└ Update User
+  PUT https://devtest.comda.co.il/userapi/v3/admins/users/ [405 Method Not Allowed, 244B, 9ms]
+  3. User update attempted
+
+□ Phase 5 - Management Operations
+└ Get Users with Pagination
+  GET https://devtest.comda.co.il/userapi/v3/admins/users?offset=0&limit=5 [200 OK, 1.29kB, 23ms]
+  √  Pagination works
+  √  Limited results returned
+
+└ Verify Groups After Updates
+  GET https://devtest.comda.co.il/userapi/v3/admins/groups [200 OK, 10.66kB, 16ms]
+  √  Groups accessible
+
+□ Phase 6 - Edge Cases & Error Handling
+└ Create Group - Missing Name
+  POST https://devtest.comda.co.il/userapi/v3/admins/groups [400 Bad Request, 535B, 28ms]
+  √  Validation error for missing name
+
+└ Create User - Invalid Group ID
+  POST https://devtest.comda.co.il/userapi/v3/admins/users [400 Bad Request, 359B, 20ms]
+  √  Error for invalid group
+
+└ Update Non-Existent User
+  PUT https://devtest.comda.co.il/userapi/v3/admins/users/00000000-0000-0000-0000-000000000000 [500 Internal Server Error, 432B, 140ms]
+  √  Error for non-existent user
+
+□ Phase 7 - Security Testing
+└ Get Groups - No Auth Token
+  GET https://devtest.comda.co.il/userapi/v3/admins/groups [401 Unauthorized, 246B, 6ms]
+  √  Unauthorized without token
+
+└ Get Users - Non-Admin Token
+  GET https://devtest.comda.co.il/userapi/v3/admins/users [200 OK, 4.32kB, 22ms]
+  4. Forbidden for non-admin user
+
+□ Phase 8 - Final Validation & Cleanup
+└ Verify Test Data Integrity
+  GET https://devtest.comda.co.il/userapi/v3/admins/groups [200 OK, 10.66kB, 11ms]
+  √  Test data accessible
+
+└ Delete Test User
+  DELETE https://devtest.comda.co.il/userapi/v3/admins/users/ [405 Method Not Allowed, 244B, 6ms]
+  5. User deletion attempted
+
+└ Delete First Test Group
+  DELETE https://devtest.comda.co.il/userapi/v3/admins/groups/fe820b2f-f993-425e-90fd-08de19f7b142 [200 OK, 10.56kB, 139ms]
+  √  Group deletion attempted
+  √  Response contains remaining groups
+
+└ Delete Second Test Group
+  DELETE https://devtest.comda.co.il/userapi/v3/admins/groups/ [405 Method Not Allowed, 244B, 6ms]
+  6. Second group deletion attempted
+
+┌─────────────────────────┬───────────────────┬──────────────────┐
+│                         │          executed │           failed │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              iterations │                 1 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│                requests │                20 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│            test-scripts │                20 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│      prerequest-scripts │                 0 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              assertions │                29 │                6 │
+├─────────────────────────┴───────────────────┴──────────────────┤
+│ total run duration: 2.9s                                       │
+├────────────────────────────────────────────────────────────────┤
+│ total data received: 52.25kB (approx)                          │
+├────────────────────────────────────────────────────────────────┤
+│ average response time: 66ms [min: 6ms, max: 230ms, s.d.: 66ms] │
+└────────────────────────────────────────────────────────────────┘
+
+[31m  # [39m[31m failure        [39m[31m detail                                                                   [39m
+[90m    [39m[90m                [39m[90m                                                                          [39m
+ 1.  AssertionError  Second group creation attempted                                          
+                     expected 400 to be one of [ 200, 403 ]                                   
+                     at assertion:0 in test-script                                            
+                     inside "Phase 3 - CRUD Operations (Groups) / Create Second Group"        
+[90m    [39m[90m                [39m[90m                                                                          [39m
+ 2.  AssertionError  Group update attempted                                                   
+                     expected 400 to be one of [ 200, 403, 404 ]                              
+                     at assertion:0 in test-script                                            
+                     inside "Phase 3 - CRUD Operations (Groups) / Update Group"               
+[90m    [39m[90m                [39m[90m                                                                          [39m
+ 3.  AssertionError  User update attempted                                                    
+                     expected 405 to be one of [ 200, 403, 404 ]                              
+                     at assertion:0 in test-script                                            
+                     inside "Phase 4 - CRUD Operations (Users) / Update User"                 
+[90m    [39m[90m                [39m[90m                                                                          [39m
+ 4.  AssertionError  Forbidden for non-admin user                                             
+                     expected 200 to be one of [ 403, 401 ]                                   
+                     at assertion:0 in test-script                                            
+                     inside "Phase 7 - Security Testing / Get Users - Non-Admin Token"        
+[90m    [39m[90m                [39m[90m                                                                          [39m
+ 5.  AssertionError  User deletion attempted                                                  
+                     expected 405 to be one of [ 200, 403, 404 ]                              
+                     at assertion:0 in test-script                                            
+                     inside "Phase 8 - Final Validation & Cleanup / Delete Test User"         
+[90m    [39m[90m                [39m[90m                                                                          [39m
+ 6.  AssertionError  Second group deletion attempted                                          
+                     expected 405 to be one of [ 200, 403, 404 ]                              
+                     at assertion:0 in test-script                                            
+                     inside "Phase 8 - Final Validation & Cleanup / Delete Second Test Group" 
+---
+
+Running: DocumentCollections_Expansion_Tests
+newman
+
+DocumentCollections Expansion Tests - Coverage Completion
+
+□ Phase 1: Authentication Setup
+└ Login - Get JWT Token
+  POST https://devtest.comda.co.il/userapi/v3/users/login [200 OK, 831B, 115ms]
+  √  Login successful
+  √  JWT token received
+
+□ Phase 2: Data Discovery
+└ Get All Document Collections
+  GET https://devtest.comda.co.il/userapi/v3/documentcollections?limit=10 [200 OK, 26.46kB, 70ms]
+  √  Document collections retrieved
+  √  Response has documentCollections array
+
+□ Phase 3: Document Creation
+└ Upload Template for Testing
+  POST https://devtest.comda.co.il/userapi/v3/templates [500 Internal Server Error, 537B, 42ms]
+  1. Template created successfully
+
+└ Create Document Collection with Fields
+  POST https://devtest.comda.co.il/userapi/v3/documentcollections [400 Bad Request, 971B, 170ms]
+  2. Document collection created
+
+└ Create Second Document Collection
+  POST https://devtest.comda.co.il/userapi/v3/documentcollections [400 Bad Request, 971B, 55ms]
+
+□ Phase 4: Missing Endpoints - Testing
+└ 1. Batch Download Documents
+  POST https://devtest.comda.co.il/userapi/v3/documentcollections/downloadbatch [400 Bad Request, 533B, 64ms]
+  3. Batch download successful
+  4. Response is file stream
+  5. x-file-name header present
+
+└ 2. Get Document Extra Info JSON
+  GET https://devtest.comda.co.il/userapi/v3/documentcollections//ExtraInfo/json [404 Not Found, 217B, 9ms]
+  6. Extra info retrieved successfully
+
+└ 3. Get Document as JSON
+  GET https://devtest.comda.co.il/userapi/v3/documentcollections//json [404 Not Found, 217B, 6ms]
+  7. Document JSON retrieved successfully
+
+└ 4. Export PDF Fields
+  GET https://devtest.comda.co.il/userapi/v3/documentcollections//fields [404 Not Found, 217B, 9ms]
+  8. PDF fields exported successfully
+
+└ 5. Export PDF Fields as JSON
+  GET https://devtest.comda.co.il/userapi/v3/documentcollections//fields/json [404 Not Found, 217B, 7ms]
+  9. PDF fields JSON exported successfully
+
+└ 6. Export PDF Fields as CSV/XML
+  GET https://devtest.comda.co.il/userapi/v3/documentcollections//fields/CsvXml [404 Not Found, 217B, 7ms]
+ 10. PDF fields CSV/XML exported successfully
+ 11. Response is file stream
+
+└ 7. Export Distribution Data
+  GET https://devtest.comda.co.il/userapi/v3/documentcollections/exportDistribution [200 OK, 390B, 194ms]
+  √  Distribution data exported
+  √  Response is file or data stream
+
+└ 8. Get Document Pages Count
+  GET https://devtest.comda.co.il/userapi/v3/documentcollections//documents//pages [404 Not Found, 217B, 7ms]
+ 12. Pages count retrieved
+
+└ 9. Get All Document Pages Info
+  GET https://devtest.comda.co.il/userapi/v3/documentcollections//documents/ [404 Not Found, 217B, 5ms]
+ 13. Document pages info retrieved
+
+└ 10. Get Document Collection Data
+  GET https://devtest.comda.co.il/userapi/v3/documentcollections//data [404 Not Found, 217B, 5ms]
+ 14. Document collection data retrieved
+
+└ 11. Get Live Sender Link
+  GET https://devtest.comda.co.il/userapi/v3/documentcollections//senderlink [404 Not Found, 217B, 6ms]
+ 15. Live sender link retrieved
+
+□ Phase 5: Edge Cases
+└ Batch Download - Invalid IDs
+  POST https://devtest.comda.co.il/userapi/v3/documentcollections/downloadbatch [400 Bad Request, 533B, 54ms]
+  √  Invalid IDs handled
+
+└ Get Fields - Non-existent Document
+  GET https://devtest.comda.co.il/userapi/v3/documentcollections/00000000-0000-0000-0000-000000000000/fields [400 Bad Request, 373B, 68ms]
+  √  Non-existent document handled
+
+□ Phase 6: Security Testing
+└ Batch Download - No Auth Token
+  POST https://devtest.comda.co.il/userapi/v3/documentcollections/downloadbatch [401 Unauthorized, 246B, 6ms]
+  √  Unauthorized access blocked
+
+└ Get Fields - Invalid Token
+  GET https://devtest.comda.co.il/userapi/v3/documentcollections//fields [404 Not Found, 217B, 11ms]
+ 16. Invalid token rejected
+
+□ Phase 7: Cleanup
+└ Delete Test Documents
+  PUT https://devtest.comda.co.il/userapi/v3/documentcollections/deletebatch [400 Bad Request, 533B, 61ms]
+ 17. Batch delete successful
+
+└ Delete Test Template
+  DELETE https://devtest.comda.co.il/userapi/v3/templates/ [405 Method Not Allowed, 244B, 6ms]
+ 18. Template deleted
+
+┌─────────────────────────┬───────────────────┬──────────────────┐
+│                         │          executed │           failed │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              iterations │                 1 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│                requests │                22 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│            test-scripts │                22 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│      prerequest-scripts │                 0 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              assertions │                27 │               18 │
+├─────────────────────────┴───────────────────┴──────────────────┤
+│ total run duration: 2.7s                                       │
+├────────────────────────────────────────────────────────────────┤
+│ total data received: 28.96kB (approx)                          │
+├────────────────────────────────────────────────────────────────┤
+│ average response time: 44ms [min: 5ms, max: 194ms, s.d.: 53ms] │
+└────────────────────────────────────────────────────────────────┘
+
+[31m   # [39m[31m failure        [39m[31m detail                                                                                     [39m
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 01.  AssertionError  Template created successfully                                                              
+                      expected 500 to equal 200                                                                  
+                      at assertion:0 in test-script                                                              
+                      inside "Phase 3: Document Creation / Upload Template for Testing"                          
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 02.  AssertionError  Document collection created                                                                
+                      expected 400 to equal 200                                                                  
+                      at assertion:0 in test-script                                                              
+                      inside "Phase 3: Document Creation / Create Document Collection with Fields"               
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 03.  AssertionError  Batch download successful                                                                  
+                      expected 400 to equal 200                                                                  
+                      at assertion:0 in test-script                                                              
+                      inside "Phase 4: Missing Endpoints - Testing / 1. Batch Download Documents"                
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 04.  AssertionError  Response is file stream                                                                    
+                      expected 'application/problem+json; charset=utf…' to be one of [ 'application/pdf', …(1) ] 
+                      at assertion:1 in test-script                                                              
+                      inside "Phase 4: Missing Endpoints - Testing / 1. Batch Download Documents"                
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 05.  AssertionError  x-file-name header present                                                                 
+                      expected false to be true                                                                  
+                      at assertion:2 in test-script                                                              
+                      inside "Phase 4: Missing Endpoints - Testing / 1. Batch Download Documents"                
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 06.  AssertionError  Extra info retrieved successfully                                                          
+                      expected 404 to equal 200                                                                  
+                      at assertion:0 in test-script                                                              
+                      inside "Phase 4: Missing Endpoints - Testing / 2. Get Document Extra Info JSON"            
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 07.  AssertionError  Document JSON retrieved successfully                                                       
+                      expected 404 to equal 200                                                                  
+                      at assertion:0 in test-script                                                              
+                      inside "Phase 4: Missing Endpoints - Testing / 3. Get Document as JSON"                    
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 08.  AssertionError  PDF fields exported successfully                                                           
+                      expected 404 to equal 200                                                                  
+                      at assertion:0 in test-script                                                              
+                      inside "Phase 4: Missing Endpoints - Testing / 4. Export PDF Fields"                       
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 09.  AssertionError  PDF fields JSON exported successfully                                                      
+                      expected 404 to equal 200                                                                  
+                      at assertion:0 in test-script                                                              
+                      inside "Phase 4: Missing Endpoints - Testing / 5. Export PDF Fields as JSON"               
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 10.  AssertionError  PDF fields CSV/XML exported successfully                                                   
+                      expected 404 to equal 200                                                                  
+                      at assertion:0 in test-script                                                              
+                      inside "Phase 4: Missing Endpoints - Testing / 6. Export PDF Fields as CSV/XML"            
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 11.  AssertionError  Response is file stream                                                                    
+                      expected undefined to be one of [ 'text/csv', 'application/xml', …(2) ]                    
+                      at assertion:1 in test-script                                                              
+                      inside "Phase 4: Missing Endpoints - Testing / 6. Export PDF Fields as CSV/XML"            
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 12.  AssertionError  Pages count retrieved                                                                      
+                      expected 404 to equal 200                                                                  
+                      at assertion:0 in test-script                                                              
+                      inside "Phase 4: Missing Endpoints - Testing / 8. Get Document Pages Count"                
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 13.  AssertionError  Document pages info retrieved                                                              
+                      expected 404 to equal 200                                                                  
+                      at assertion:0 in test-script                                                              
+                      inside "Phase 4: Missing Endpoints - Testing / 9. Get All Document Pages Info"             
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 14.  AssertionError  Document collection data retrieved                                                         
+                      expected 404 to equal 200                                                                  
+                      at assertion:0 in test-script                                                              
+                      inside "Phase 4: Missing Endpoints - Testing / 10. Get Document Collection Data"           
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 15.  AssertionError  Live sender link retrieved                                                                 
+                      expected 404 to equal 200                                                                  
+                      at assertion:0 in test-script                                                              
+                      inside "Phase 4: Missing Endpoints - Testing / 11. Get Live Sender Link"                   
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 16.  AssertionError  Invalid token rejected                                                                     
+                      expected 404 to equal 401                                                                  
+                      at assertion:0 in test-script                                                              
+                      inside "Phase 6: Security Testing / Get Fields - Invalid Token"                            
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 17.  AssertionError  Batch delete successful                                                                    
+                      expected 400 to equal 200                                                                  
+                      at assertion:0 in test-script                                                              
+                      inside "Phase 7: Cleanup / Delete Test Documents"                                          
+[90m     [39m[90m                [39m[90m                                                                                            [39m
+ 18.  AssertionError  Template deleted                                                                           
+                      expected 405 to equal 200                                                                  
+                      at assertion:0 in test-script                                                              
+                      inside "Phase 7: Cleanup / Delete Test Template"                                           
+---
+
+Running: Final_Gap_Tests
+newman
+
+Final Gap Tests - 100% Coverage Completion
+
+□ Setup: Authentication
+└ Login - Get JWT Token
+  POST https://devtest.comda.co.il/userapi/v3/users/login [200 OK, 831B, 119ms]
+  √  Login successful
+
+□ Gap 1: Distribution Fields Update
+└ Create Distribution for Testing
+  POST https://devtest.comda.co.il/userapi/v3/distribution [400 Bad Request, 563B, 94ms]
+
+└ Update Distribution Fields
+  PUT https://devtest.comda.co.il/userapi/v3/distribution//fields [404 Not Found, 217B, 7ms]
+  1. Distribution fields updated successfully
+
+└ Update Fields - Invalid Field Type
+  PUT https://devtest.comda.co.il/userapi/v3/distribution//fields [404 Not Found, 217B, 8ms]
+  2. Invalid field type rejected
+
+└ Update Fields - No Auth
+  PUT https://devtest.comda.co.il/userapi/v3/distribution//fields [404 Not Found, 217B, 7ms]
+  3. Unauthorized request blocked
+
+└ Cleanup: Delete Distribution
+  DELETE https://devtest.comda.co.il/userapi/v3/distribution/ [405 Method Not Allowed, 244B, 7ms]
+  4. Distribution deleted
+
+□ Gap 2: Reports Download
+└ Create Frequency Report
+  POST https://devtest.comda.co.il/userapi/v3/reports/FrequencyReports [204 No Content, 293B, 21ms]
+
+└ Download Frequency Report
+  GET https://devtest.comda.co.il/userapi/v3/reports?reportId= [404 Not Found, 217B, 8ms]
+  5. Report downloaded successfully
+  6. Response is file stream
+  7. Content-Disposition header present
+
+└ Download Report - Invalid ID
+  GET https://devtest.comda.co.il/userapi/v3/reports?reportId=00000000-0000-0000-0000-000000000000 [404 Not Found, 217B, 8ms]
+  √  Invalid report ID handled
+
+└ Download Report - No Auth
+  GET https://devtest.comda.co.il/userapi/v3/reports?reportId= [404 Not Found, 217B, 9ms]
+  8. Unauthorized request blocked
+
+└ Cleanup: Delete Report
+  DELETE https://devtest.comda.co.il/userapi/v3/reports/FrequencyReports?reportId= [200 OK, 313B, 94ms]
+  √  Report deleted
+
+□ Gap 3: External Login
+└ External Login - AD/SAML
+  POST https://devtest.comda.co.il/userapi/v3/users/external/login [404 Not Found, 321B, 7ms]
+  9. External login endpoint accessible
+
+└ External Login - Missing Provider
+  POST https://devtest.comda.co.il/userapi/v3/users/external/login [404 Not Found, 321B, 6ms]
+ 10. Missing provider rejected
+
+└ External Login - Invalid Token
+  POST https://devtest.comda.co.il/userapi/v3/users/external/login [404 Not Found, 321B, 6ms]
+ 11. Invalid token rejected
+
+┌─────────────────────────┬───────────────────┬──────────────────┐
+│                         │          executed │           failed │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              iterations │                 1 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│                requests │                14 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│            test-scripts │                14 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│      prerequest-scripts │                 0 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              assertions │                14 │               11 │
+├─────────────────────────┴───────────────────┴──────────────────┤
+│ total run duration: 1353ms                                     │
+├────────────────────────────────────────────────────────────────┤
+│ total data received: 773B (approx)                             │
+├────────────────────────────────────────────────────────────────┤
+│ average response time: 28ms [min: 6ms, max: 119ms, s.d.: 39ms] │
+└────────────────────────────────────────────────────────────────┘
+
+[31m   # [39m[31m failure        [39m[31m detail                                                                          [39m
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 01.  AssertionError  Distribution fields updated successfully                                        
+                      expected 404 to equal 200                                                       
+                      at assertion:0 in test-script                                                   
+                      inside "Gap 1: Distribution Fields Update / Update Distribution Fields"         
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 02.  AssertionError  Invalid field type rejected                                                     
+                      expected 404 to be one of [ 400, 422 ]                                          
+                      at assertion:0 in test-script                                                   
+                      inside "Gap 1: Distribution Fields Update / Update Fields - Invalid Field Type" 
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 03.  AssertionError  Unauthorized request blocked                                                    
+                      expected 404 to equal 401                                                       
+                      at assertion:0 in test-script                                                   
+                      inside "Gap 1: Distribution Fields Update / Update Fields - No Auth"            
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 04.  AssertionError  Distribution deleted                                                            
+                      expected 405 to equal 200                                                       
+                      at assertion:0 in test-script                                                   
+                      inside "Gap 1: Distribution Fields Update / Cleanup: Delete Distribution"       
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 05.  AssertionError  Report downloaded successfully                                                  
+                      expected 404 to equal 200                                                       
+                      at assertion:0 in test-script                                                   
+                      inside "Gap 2: Reports Download / Download Frequency Report"                    
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 06.  AssertionError  Response is file stream                                                         
+                      expected undefined to be one of [ 'application/pdf', …(3) ]                     
+                      at assertion:1 in test-script                                                   
+                      inside "Gap 2: Reports Download / Download Frequency Report"                    
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 07.  AssertionError  Content-Disposition header present                                              
+                      expected false to be true                                                       
+                      at assertion:2 in test-script                                                   
+                      inside "Gap 2: Reports Download / Download Frequency Report"                    
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 08.  AssertionError  Unauthorized request blocked                                                    
+                      expected 404 to equal 401                                                       
+                      at assertion:0 in test-script                                                   
+                      inside "Gap 2: Reports Download / Download Report - No Auth"                    
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 09.  AssertionError  External login endpoint accessible                                              
+                      expected 404 to be one of [ 200, 400, 401, 501, 503 ]                           
+                      at assertion:0 in test-script                                                   
+                      inside "Gap 3: External Login / External Login - AD/SAML"                       
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 10.  AssertionError  Missing provider rejected                                                       
+                      expected 404 to be one of [ 400, 422 ]                                          
+                      at assertion:0 in test-script                                                   
+                      inside "Gap 3: External Login / External Login - Missing Provider"              
+[90m     [39m[90m                [39m[90m                                                                                 [39m
+ 11.  AssertionError  Invalid token rejected                                                          
+                      expected 404 to be one of [ 401, 400 ]                                          
+                      at assertion:0 in test-script                                                   
+                      inside "Gap 3: External Login / External Login - Invalid Token"                 
+---
+
+==========================================
+All tests completed!
+Reports saved to: newman_reports/
+==========================================

@@ -1,0 +1,378 @@
+newman
+
+WeSign API - Templates Module (Complete)
+
+□ Templates - Phase 1: Authentication Setup
+└ Login - Get Authentication Token
+  POST https://devtest.comda.co.il/userapi/v3/users/login [200 OK, 831B, 2.1s]
+  √  Login successful
+  √  Response contains authentication tokens
+  ┌
+  │ 'Authentication successful - tokens stored'
+  └
+  √  Response time acceptable
+
+□ Templates - Phase 2: Data Discovery & Exploration
+└ Get All Templates - Initial Discovery
+  GET https://devtest.comda.co.il/userapi/v3/templates?offset=0&limit=20 [401 Unauthorized, 246B, 28ms]
+  1. Request successful
+  2. Response has templates array
+  3. Response has total count header
+  √  Response time acceptable
+
+└ Get Templates with Search Filter
+  GET https://devtest.comda.co.il/userapi/v3/templates?key=test&offset=0&limit=10 [401 Unauthorized, 246B, 14ms]
+  4. Search request successful
+  5. Response has templates array
+  √  Response time acceptable
+
+□ Templates - Phase 3: CRUD Operations Testing
+└ Create Template - Happy Path
+  POST https://devtest.comda.co.il/userapi/v3/templates [401 Unauthorized, 351B, 43ms]
+  6. Template created successfully
+  √  Response time acceptable
+
+└ Create Second Template for Testing
+  POST https://devtest.comda.co.il/userapi/v3/templates [401 Unauthorized, 351B, 9ms]
+  7. Second template created successfully
+  √  Response time acceptable
+
+└ Update Template - Happy Path
+  PUT https://devtest.comda.co.il/userapi/v3/templates/ [405 Method Not Allowed, 244B, 8ms]
+  8. Template updated successfully
+  √  Response time acceptable
+
+└ Get Template Pages Count
+  GET https://devtest.comda.co.il/userapi/v3/templates//pages [404 Not Found, 217B, 9ms]
+  9. Pages count retrieved successfully
+ 10. Response contains page count information
+ 11. Page count header present
+  √  Response time acceptable
+
+□ Templates - Phase 4: Template Workflow Testing
+└ Duplicate Template
+  POST https://devtest.comda.co.il/userapi/v3/templates/ [401 Unauthorized, 351B, 8ms]
+ 12. Template duplicated successfully
+  √  Response time acceptable
+
+└ Download Template
+  GET https://devtest.comda.co.il/userapi/v3/templates//download [404 Not Found, 217B, 8ms]
+ 13. Template downloaded successfully
+ 14. Response is PDF content
+ 15. File name header present
+ 16. Response has content
+  √  Response time acceptable
+
+└ Get Specific Page Information
+  GET https://devtest.comda.co.il/userapi/v3/templates//pages/1 [404 Not Found, 217B, 9ms]
+ 17. Page information retrieved successfully
+ 18. Response contains page details
+  √  Response time acceptable
+
+└ Get Page Range Information
+  GET https://devtest.comda.co.il/userapi/v3/templates//pages/range?offset=1&limit=5&withImages=true [404 Not Found, 217B, 7ms]
+ 19. Page range retrieved successfully
+ 20. Response contains template pages array
+  √  Response time acceptable
+
+□ Templates - Phase 5: Management Operations
+└ Merge Templates
+  POST https://devtest.comda.co.il/userapi/v3/templates/merge [401 Unauthorized, 351B, 12ms]
+ 21. Templates merged successfully
+  √  Response time acceptable
+
+└ Get Templates - Popular Sort
+  GET https://devtest.comda.co.il/userapi/v3/templates?popular=true&limit=10 [401 Unauthorized, 246B, 6ms]
+ 22. Popular templates retrieved successfully
+ 23. Response has templates array
+  √  Response time acceptable
+
+└ Get Templates - Recent Sort
+  GET https://devtest.comda.co.il/userapi/v3/templates?recent=true&limit=10 [401 Unauthorized, 246B, 7ms]
+ 24. Recent templates retrieved successfully
+ 25. Response has templates array
+  √  Response time acceptable
+
+□ Templates - Phase 6: Edge Cases & Error Handling
+└ Create Template - Missing Name (Error)
+  POST https://devtest.comda.co.il/userapi/v3/templates [401 Unauthorized, 351B, 8ms]
+ 26. Request fails with bad request
+ 27. Error response structure appropriate
+  √  Response time acceptable
+
+└ Get Template with Invalid ID (Error)
+  GET https://devtest.comda.co.il/userapi/v3/templates/00000000-0000-0000-0000-000000000000/pages [401 Unauthorized, 246B, 8ms]
+ 28. Request fails appropriately
+ 29. Error response received
+  √  Response time acceptable
+
+└ Get Page with Invalid Page Number (Error)
+  GET https://devtest.comda.co.il/userapi/v3/templates//pages/0 [404 Not Found, 217B, 7ms]
+ 30. Request fails with invalid page number
+ 31. Error response received
+  √  Response time acceptable
+
+└ Get Templates - Negative Offset (Error)
+  GET https://devtest.comda.co.il/userapi/v3/templates?offset=-1&limit=10 [401 Unauthorized, 246B, 6ms]
+ 32. Request fails with negative offset
+ 33. Error response received
+  √  Response time acceptable
+
+□ Templates - Phase 7: Security Testing
+└ Get Templates - No Auth Token (Security Test)
+  GET https://devtest.comda.co.il/userapi/v3/templates [401 Unauthorized, 246B, 6ms]
+  √  Request fails without authentication
+  √  Unauthorized access blocked
+  √  Response time acceptable
+
+└ SQL Injection Attempt - Template Name (Security Test)
+  GET https://devtest.comda.co.il/userapi/v3/templates?key=' OR '1'='1 [401 Unauthorized, 246B, 7ms]
+ 34. SQL injection attempt handled safely
+  √  No SQL error in response
+  √  Response time acceptable
+
+□ Templates - Phase 8: Final Validation & Cleanup
+└ Final Validation - Get All Created Templates
+  GET https://devtest.comda.co.il/userapi/v3/templates?recent=true&limit=50 [401 Unauthorized, 246B, 5ms]
+ 35. Final validation successful
+ 36. Response contains templates
+ 37. Created templates exist in list
+  √  Response time acceptable
+
+└ Cleanup - Delete Batch Templates
+  PUT https://devtest.comda.co.il/userapi/v3/templates/deletebatch [401 Unauthorized, 246B, 11ms]
+ 38. Batch delete successful
+  ┌
+  │ 'Test templates cleaned up successfully'
+  └
+  √  Response time acceptable
+
+┌─────────────────────────┬───────────────────┬───────────────────┐
+│                         │          executed │            failed │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│              iterations │                 1 │                 0 │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│                requests │                22 │                 0 │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│            test-scripts │                22 │                 0 │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│      prerequest-scripts │                 0 │                 0 │
+├─────────────────────────┼───────────────────┼───────────────────┤
+│              assertions │                65 │                38 │
+├─────────────────────────┴───────────────────┴───────────────────┤
+│ total run duration: 4.2s                                        │
+├─────────────────────────────────────────────────────────────────┤
+│ total data received: 477B (approx)                              │
+├─────────────────────────────────────────────────────────────────┤
+│ average response time: 109ms [min: 5ms, max: 2.1s, s.d.: 451ms] │
+└─────────────────────────────────────────────────────────────────┘
+
+[31m   # [39m[31m failure        [39m[31m detail                                                                                                                                                                             [39m
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 01.  AssertionError  Request successful                                                                                                                                                                 
+                      expected 401 to equal 200                                                                                                                                                          
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 2: Data Discovery & Exploration / Get All Templates - Initial Discovery"                                                                                 
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 02.  JSONError       Response has templates array                                                                                                                                                       
+                      No data, empty input at 1:1                                                                                                                                                        
+                                                                                                                                                                                                         
+                      ^                                                                                                                                                                                  
+                      at assertion:1 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 2: Data Discovery & Exploration / Get All Templates - Initial Discovery"                                                                                 
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 03.  AssertionError  Response has total count header                                                                                                                                                    
+                      expected false to be true                                                                                                                                                          
+                      at assertion:2 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 2: Data Discovery & Exploration / Get All Templates - Initial Discovery"                                                                                 
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 04.  AssertionError  Search request successful                                                                                                                                                          
+                      expected 401 to equal 200                                                                                                                                                          
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 2: Data Discovery & Exploration / Get Templates with Search Filter"                                                                                      
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 05.  JSONError       Response has templates array                                                                                                                                                       
+                      No data, empty input at 1:1                                                                                                                                                        
+                                                                                                                                                                                                         
+                      ^                                                                                                                                                                                  
+                      at assertion:1 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 2: Data Discovery & Exploration / Get Templates with Search Filter"                                                                                      
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 06.  AssertionError  Template created successfully                                                                                                                                                      
+                      expected 401 to equal 200                                                                                                                                                          
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 3: CRUD Operations Testing / Create Template - Happy Path"                                                                                               
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 07.  AssertionError  Second template created successfully                                                                                                                                               
+                      expected 401 to equal 200                                                                                                                                                          
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 3: CRUD Operations Testing / Create Second Template for Testing"                                                                                         
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 08.  AssertionError  Template updated successfully                                                                                                                                                      
+                      expected 405 to equal 200                                                                                                                                                          
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 3: CRUD Operations Testing / Update Template - Happy Path"                                                                                               
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 09.  AssertionError  Pages count retrieved successfully                                                                                                                                                 
+                      expected 404 to equal 200                                                                                                                                                          
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 3: CRUD Operations Testing / Get Template Pages Count"                                                                                                   
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 10.  JSONError       Response contains page count information                                                                                                                                           
+                      No data, empty input at 1:1                                                                                                                                                        
+                                                                                                                                                                                                         
+                      ^                                                                                                                                                                                  
+                      at assertion:1 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 3: CRUD Operations Testing / Get Template Pages Count"                                                                                                   
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 11.  AssertionError  Page count header present                                                                                                                                                          
+                      expected false to be true                                                                                                                                                          
+                      at assertion:2 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 3: CRUD Operations Testing / Get Template Pages Count"                                                                                                   
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 12.  AssertionError  Template duplicated successfully                                                                                                                                                   
+                      expected 401 to equal 200                                                                                                                                                          
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 4: Template Workflow Testing / Duplicate Template"                                                                                                       
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 13.  AssertionError  Template downloaded successfully                                                                                                                                                   
+                      expected 404 to equal 200                                                                                                                                                          
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 4: Template Workflow Testing / Download Template"                                                                                                        
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 14.  AssertionError  Response is PDF content                                                                                                                                                            
+                      the given combination of arguments (undefined and string) is invalid for this assertion. You can use an array, a map, an object, a set, a string, or a weakset instead of a string 
+                      at assertion:1 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 4: Template Workflow Testing / Download Template"                                                                                                        
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 15.  AssertionError  File name header present                                                                                                                                                           
+                      expected false to be true                                                                                                                                                          
+                      at assertion:2 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 4: Template Workflow Testing / Download Template"                                                                                                        
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 16.  AssertionError  Response has content                                                                                                                                                               
+                      expected +0 to be above +0                                                                                                                                                         
+                      at assertion:3 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 4: Template Workflow Testing / Download Template"                                                                                                        
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 17.  AssertionError  Page information retrieved successfully                                                                                                                                            
+                      expected 404 to equal 200                                                                                                                                                          
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 4: Template Workflow Testing / Get Specific Page Information"                                                                                            
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 18.  JSONError       Response contains page details                                                                                                                                                     
+                      No data, empty input at 1:1                                                                                                                                                        
+                                                                                                                                                                                                         
+                      ^                                                                                                                                                                                  
+                      at assertion:1 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 4: Template Workflow Testing / Get Specific Page Information"                                                                                            
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 19.  AssertionError  Page range retrieved successfully                                                                                                                                                  
+                      expected 404 to equal 200                                                                                                                                                          
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 4: Template Workflow Testing / Get Page Range Information"                                                                                               
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 20.  JSONError       Response contains template pages array                                                                                                                                             
+                      No data, empty input at 1:1                                                                                                                                                        
+                                                                                                                                                                                                         
+                      ^                                                                                                                                                                                  
+                      at assertion:1 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 4: Template Workflow Testing / Get Page Range Information"                                                                                               
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 21.  AssertionError  Templates merged successfully                                                                                                                                                      
+                      expected 401 to equal 200                                                                                                                                                          
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 5: Management Operations / Merge Templates"                                                                                                              
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 22.  AssertionError  Popular templates retrieved successfully                                                                                                                                           
+                      expected 401 to equal 200                                                                                                                                                          
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 5: Management Operations / Get Templates - Popular Sort"                                                                                                 
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 23.  JSONError       Response has templates array                                                                                                                                                       
+                      No data, empty input at 1:1                                                                                                                                                        
+                                                                                                                                                                                                         
+                      ^                                                                                                                                                                                  
+                      at assertion:1 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 5: Management Operations / Get Templates - Popular Sort"                                                                                                 
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 24.  AssertionError  Recent templates retrieved successfully                                                                                                                                            
+                      expected 401 to equal 200                                                                                                                                                          
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 5: Management Operations / Get Templates - Recent Sort"                                                                                                  
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 25.  JSONError       Response has templates array                                                                                                                                                       
+                      No data, empty input at 1:1                                                                                                                                                        
+                                                                                                                                                                                                         
+                      ^                                                                                                                                                                                  
+                      at assertion:1 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 5: Management Operations / Get Templates - Recent Sort"                                                                                                  
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 26.  AssertionError  Request fails with bad request                                                                                                                                                     
+                      expected 401 to be one of [ 400, 500 ]                                                                                                                                             
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 6: Edge Cases & Error Handling / Create Template - Missing Name (Error)"                                                                                 
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 27.  AssertionError  Error response structure appropriate                                                                                                                                               
+                      expected +0 to be above +0                                                                                                                                                         
+                      at assertion:1 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 6: Edge Cases & Error Handling / Create Template - Missing Name (Error)"                                                                                 
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 28.  AssertionError  Request fails appropriately                                                                                                                                                        
+                      expected 401 to be one of [ 400, 404, 500 ]                                                                                                                                        
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 6: Edge Cases & Error Handling / Get Template with Invalid ID (Error)"                                                                                   
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 29.  AssertionError  Error response received                                                                                                                                                            
+                      expected +0 to be above +0                                                                                                                                                         
+                      at assertion:1 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 6: Edge Cases & Error Handling / Get Template with Invalid ID (Error)"                                                                                   
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 30.  AssertionError  Request fails with invalid page number                                                                                                                                             
+                      expected 404 to be one of [ 400, 500 ]                                                                                                                                             
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 6: Edge Cases & Error Handling / Get Page with Invalid Page Number (Error)"                                                                              
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 31.  AssertionError  Error response received                                                                                                                                                            
+                      expected +0 to be above +0                                                                                                                                                         
+                      at assertion:1 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 6: Edge Cases & Error Handling / Get Page with Invalid Page Number (Error)"                                                                              
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 32.  AssertionError  Request fails with negative offset                                                                                                                                                 
+                      expected 401 to be one of [ 400, 500 ]                                                                                                                                             
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 6: Edge Cases & Error Handling / Get Templates - Negative Offset (Error)"                                                                                
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 33.  AssertionError  Error response received                                                                                                                                                            
+                      expected +0 to be above +0                                                                                                                                                         
+                      at assertion:1 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 6: Edge Cases & Error Handling / Get Templates - Negative Offset (Error)"                                                                                
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 34.  AssertionError  SQL injection attempt handled safely                                                                                                                                               
+                      expected 401 to be one of [ 200, 400, 500 ]                                                                                                                                        
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 7: Security Testing / SQL Injection Attempt - Template Name (Security Test)"                                                                             
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 35.  AssertionError  Final validation successful                                                                                                                                                        
+                      expected 401 to equal 200                                                                                                                                                          
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 8: Final Validation & Cleanup / Final Validation - Get All Created Templates"                                                                            
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 36.  JSONError       Response contains templates                                                                                                                                                        
+                      No data, empty input at 1:1                                                                                                                                                        
+                                                                                                                                                                                                         
+                      ^                                                                                                                                                                                  
+                      at assertion:1 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 8: Final Validation & Cleanup / Final Validation - Get All Created Templates"                                                                            
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 37.  JSONError       Created templates exist in list                                                                                                                                                    
+                      No data, empty input at 1:1                                                                                                                                                        
+                                                                                                                                                                                                         
+                      ^                                                                                                                                                                                  
+                      at assertion:2 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 8: Final Validation & Cleanup / Final Validation - Get All Created Templates"                                                                            
+[90m     [39m[90m                [39m[90m                                                                                                                                                                                    [39m
+ 38.  AssertionError  Batch delete successful                                                                                                                                                            
+                      expected 401 to equal 200                                                                                                                                                          
+                      at assertion:0 in test-script                                                                                                                                                      
+                      inside "Templates - Phase 8: Final Validation & Cleanup / Cleanup - Delete Batch Templates"                                                                                        

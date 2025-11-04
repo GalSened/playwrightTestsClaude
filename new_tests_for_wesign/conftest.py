@@ -1,18 +1,17 @@
 """
 Pytest configuration and fixtures for WeSign tests
+SYNC Playwright fixtures for deterministic testing
 """
 
 import pytest
-import pytest_asyncio
-import asyncio
-from playwright.async_api import async_playwright, Browser, BrowserContext, Page
+from playwright.sync_api import sync_playwright, Browser, BrowserContext, Page
 
 
-@pytest_asyncio.fixture(scope="session")
-async def browser():
-    """Create a browser instance for the test session."""
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(
+@pytest.fixture(scope="session")
+def browser():
+    """Create a SYNC browser instance for the test session."""
+    with sync_playwright() as p:
+        browser = p.chromium.launch(
             headless=False,  # Run in HEADED mode for visibility and debugging
             slow_mo=50,      # Add 50ms delay between actions for observation
             timeout=10000,   # 10 second timeout for browser launch
@@ -29,58 +28,58 @@ async def browser():
             ]
         )
         yield browser
-        await browser.close()
+        browser.close()
 
 
-@pytest_asyncio.fixture(scope="function")
-async def context(browser: Browser):
-    """Create a browser context for each test."""
-    context = await browser.new_context(
+@pytest.fixture(scope="function")
+def context(browser: Browser):
+    """Create a SYNC browser context for each test."""
+    context = browser.new_context(
         viewport={'width': 1280, 'height': 720},
         locale='en-US',
         timezone_id='America/New_York'
     )
     yield context
-    await context.close()
+    context.close()
 
 
-@pytest_asyncio.fixture(scope="function")
-async def page(context: BrowserContext):
-    """Create a page instance for each test."""
-    page = await context.new_page()
+@pytest.fixture(scope="function")
+def page(context: BrowserContext):
+    """Create a SYNC page instance for each test."""
+    page = context.new_page()
     # Set default timeout for all operations
     page.set_default_timeout(30000)
     yield page
-    await page.close()
+    page.close()
 
 
-@pytest_asyncio.fixture(scope="function")
-async def authenticated_page(context: BrowserContext):
-    """Create an authenticated page that's already logged in."""
-    page = await context.new_page()
+@pytest.fixture(scope="function")
+def authenticated_page(context: BrowserContext):
+    """Create a SYNC authenticated page that's already logged in."""
+    page = context.new_page()
 
     # Navigate to login page
-    await page.goto("https://devtest.comda.co.il/")
-    await page.wait_for_load_state("domcontentloaded")
+    page.goto("https://devtest.comda.co.il/")
+    page.wait_for_load_state("domcontentloaded")
 
     # Perform login
     email_field = 'input[type="email"], input[name="email"], input[placeholder*="email"], input[placeholder*="Username"], input[placeholder*="שם משתמש"]'
     password_field = 'input[type="password"], input[name="password"], input[placeholder*="Password"], input[placeholder*="סיסמה"]'
     login_button = 'input[type="submit"], button[type="submit"], input[value="Sign in"], input[value="התחברות"]'
 
-    await page.locator(email_field).first.fill("nirk@comsign.co.il")
-    await page.locator(password_field).first.fill("Comsign1!")
-    await page.locator(login_button).first.click()
+    page.locator(email_field).first.fill("nirk@comsign.co.il")
+    page.locator(password_field).first.fill("Comsign1!")
+    page.locator(login_button).first.click()
 
     # Wait for dashboard to load
     try:
-        await page.wait_for_url("**/dashboard**", timeout=15000)
+        page.wait_for_url("**/dashboard**", timeout=15000)
     except:
         # Fallback: wait for dashboard elements
-        await page.wait_for_selector('text=ראשי, text=מסמכים', timeout=10000)
+        page.wait_for_selector('text=ראשי, text=מסמכים', timeout=10000)
 
     yield page
-    await page.close()
+    page.close()
 
 
 # Test configuration fixtures

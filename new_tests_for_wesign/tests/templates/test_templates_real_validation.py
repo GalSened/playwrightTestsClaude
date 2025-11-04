@@ -202,14 +202,8 @@ class TestTemplatesRealValidation:
             page = await browser.new_page()
 
             try:
-                # Login and navigate
-                await page.goto(f"{self.BASE_URL}/login")
-                await page.fill('input[type="text"]', self.LOGIN_EMAIL)
-                await page.fill('input[type="password"]', self.LOGIN_PASSWORD)
-                await page.click('button:has-text("Sign in")')
-                await page.wait_for_url("**/dashboard/main", timeout=10000)
-                await page.click('button:has-text("תבניות")')
-                await page.wait_for_url("**/dashboard/templates", timeout=10000)
+                # Login and navigate using helper method
+                await self.login_and_navigate_to_templates(page)
                 await page.wait_for_timeout(1000)
 
                 # Get template name before editing (from first cell after checkbox)

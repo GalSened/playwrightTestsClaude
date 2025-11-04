@@ -1,0 +1,12 @@
+Upload failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("text=העלאת קובץ, text=Upload File, button:has-text(\"העלאת קובץ\"), input[type=\"file\"], [data-action=\"upload\"]").first
+
+Upload failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("text=העלאת קובץ, text=Upload File, button:has-text(\"העלאת קובץ\"), input[type=\"file\"], [data-action=\"upload\"]").first
+
+Upload failed: Locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("text=העלאת קובץ, text=Upload File, button:has-text(\"העלאת קובץ\"), input[type=\"file\"], [data-action=\"upload\"]").first
+

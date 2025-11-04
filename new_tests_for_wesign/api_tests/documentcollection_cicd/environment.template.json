@@ -1,0 +1,33 @@
+{
+  "id": "documentcollection-env-template",
+  "name": "WeSign DocumentCollection Environment - TEMPLATE",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "https://devtest.comda.co.il/userapi",
+      "enabled": true,
+      "type": "default"
+    },
+    {
+      "key": "loginEmail",
+      "value": "YOUR_TEST_EMAIL@example.com",
+      "enabled": true,
+      "type": "secret"
+    },
+    {
+      "key": "loginPassword",
+      "value": "YOUR_TEST_PASSWORD",
+      "enabled": true,
+      "type": "secret"
+    },
+    {
+      "key": "jwtToken",
+      "value": "",
+      "enabled": true,
+      "type": "default"
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2025-11-04T00:00:00.000Z",
+  "_postman_exported_using": "Claude Code - Template for CI/CD"
+}

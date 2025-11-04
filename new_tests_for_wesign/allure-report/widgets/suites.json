@@ -1,0 +1,1 @@
+{"total":2,"items":[{"uid":"fdf22cd81183da7b00a3698f51e1faf2","name":"tests.documents","statistic":{"failed":1,"broken":0,"skipped":0,"passed":14,"unknown":0,"total":15}},{"uid":"9538a71e846a156d7347b65ac181e184","name":"tests.self_signing","statistic":{"failed":0,"broken":0,"skipped":0,"passed":2,"unknown":0,"total":2}}]}

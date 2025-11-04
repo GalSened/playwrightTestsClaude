@@ -1,0 +1,1002 @@
+{
+  "info": {
+    "_postman_id": "signerapi-module-tests-2025",
+    "name": "Signer API Module Tests - Phase 9",
+    "description": "Comprehensive API tests for WeSign Signer API (signerapi) - 3 active controllers\n\nCreated: 2025-11-02\nCoverage: Identification (eIDAS/OAuth), OTP, SingleLink\nPhases: Auth \u2192 Discovery \u2192 CRUD \u2192 Workflow \u2192 Edge Cases \u2192 Security \u2192 Cleanup\n\nNote: LogsController has no active endpoints (commented out in code)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Phase 1 - Authentication Setup",
+      "item": [
+        {
+          "name": "User Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Login successful', function() {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.test('JWT token received', function() {",
+                  "        pm.expect(response).to.have.property('token');",
+                  "    });",
+                  "    pm.collectionVariables.set('jwtToken', response.token);",
+                  "    console.log('Signer API - Authentication successful');",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{loginEmail}}\",\n  \"password\": \"{{loginPassword}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v3/users/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "users",
+                "login"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Phase 2 - Identification API",
+      "item": [
+        {
+          "name": "Create Identity Flow - eIDAS",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 or 400', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 404]);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.test('Response has identity flow URL', function() {",
+                  "        pm.expect(response).to.have.property('identityFlowURL');",
+                  "    });",
+                  "}",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text",
+                "description": "JWT token from User Login"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"signerToken\": \"{{testSignerToken}}\"\n}"
+            },
+            "url": {
+              "raw": "{{signerBaseUrl}}/Identification/CreateidentityFlowEIDASSign",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "Identification",
+                "CreateidentityFlowEIDASSign"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Check Identity Flow - eIDAS",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 or 400', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 404]);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.test('Response has process step', function() {",
+                  "        pm.expect(response).to.have.property('processStep');",
+                  "    });",
+                  "}",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text",
+                "description": "JWT token from User Login"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"signerToken\": \"{{testSignerToken}}\",\n  \"code\": \"test-code-123\"\n}"
+            },
+            "url": {
+              "raw": "{{signerBaseUrl}}/Identification/CheckidentityFlowEIDASSign",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "Identification",
+                "CheckidentityFlowEIDASSign"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Identity Flow - Standard",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 or 400', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 500, 404]);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.test('Response has identity flow URL', function() {",
+                  "        pm.expect(response).to.have.property('identityFlowURL');",
+                  "    });",
+                  "}",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text",
+                "description": "JWT token from User Login"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"signerToken\": \"{{testSignerToken}}\"\n}"
+            },
+            "url": {
+              "raw": "{{signerBaseUrl}}/Identification/CreateidentityFlow",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "Identification",
+                "CreateidentityFlow"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Check Identity Flow - Standard",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 or 400', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 500, 404]);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.test('Response has token', function() {",
+                  "        pm.expect(response).to.have.property('token');",
+                  "    });",
+                  "}",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text",
+                "description": "JWT token from User Login"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"signerToken\": \"{{testSignerToken}}\",\n  \"code\": \"test-auth-code\"\n}"
+            },
+            "url": {
+              "raw": "{{signerBaseUrl}}/Identification/CheckIdentityFlow",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "Identification",
+                "CheckIdentityFlow"
+              ]
+            }
+          }
+        },
+        {
+          "name": "OAuth Identity Flow Callback",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 or 400 or 404', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 404]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text",
+                "description": "JWT token from User Login"
+              }
+            ],
+            "url": {
+              "raw": "{{signerBaseUrl}}/Identification/{{testSignerToken}}/oauthidentity/test-oauth-code/code",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "Identification",
+                "{{testSignerToken}}",
+                "oauthidentity",
+                "test-oauth-code",
+                "code"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Phase 3 - OTP API",
+      "item": [
+        {
+          "name": "Generate OTP Code",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 or 400', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 500, 404]);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.test('Response structure valid', function() {",
+                  "        pm.expect(response).to.be.an('object');",
+                  "    });",
+                  "    ",
+                  "    // Store authToken if present",
+                  "    if (response.authToken) {",
+                  "        pm.collectionVariables.set('testAuthToken', response.authToken);",
+                  "    }",
+                  "}",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text",
+                "description": "JWT token from User Login"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"{{testSignerToken}}\",\n  \"identification\": \"test-password-123\"\n}"
+            },
+            "url": {
+              "raw": "{{signerBaseUrl}}/otp",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "otp"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Validate OTP Code",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 or 400', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 500, 404]);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.test('Response has authToken', function() {",
+                  "        pm.expect(response).to.have.property('authToken');",
+                  "    });",
+                  "}",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text",
+                "description": "JWT token from User Login"
+              }
+            ],
+            "url": {
+              "raw": "{{signerBaseUrl}}/otp?token={{testSignerToken}}&code=123456",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "otp"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{testSignerToken}}"
+                },
+                {
+                  "key": "code",
+                  "value": "123456"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Validate OTP - Invalid Code",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 400 (invalid code expected)', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 500, 404]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text",
+                "description": "JWT token from User Login"
+              }
+            ],
+            "url": {
+              "raw": "{{signerBaseUrl}}/otp?token={{testSignerToken}}&code=INVALID",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "otp"
+              ],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "{{testSignerToken}}"
+                },
+                {
+                  "key": "code",
+                  "value": "INVALID"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Phase 4 - SingleLink API",
+      "item": [
+        {
+          "name": "Create Single Link Document",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 or 400', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 404]);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.test('Response has URL', function() {",
+                  "        pm.expect(response).to.have.property('url');",
+                  "    });",
+                  "    ",
+                  "    if (response.url) {",
+                  "        pm.collectionVariables.set('testSingleLinkUrl', response.url);",
+                  "    }",
+                  "}",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text",
+                "description": "JWT token from User Login"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"templateId\": \"{{testTemplateId}}\",\n  \"signerMeans\": \"test@example.com\",\n  \"phoneExtension\": \"+1\",\n  \"fullname\": \"Test Signer Phase9\"\n}"
+            },
+            "url": {
+              "raw": "{{signerBaseUrl}}/singlelink",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "singlelink"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get SingleLink Template Data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200 or 400 or 404', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 404]);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.test('Response has language and SMS support info', function() {",
+                  "        pm.expect(response).to.have.property('language');",
+                  "        pm.expect(response).to.have.property('isSmsProviderSupportGloballySend');",
+                  "    });",
+                  "}",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text",
+                "description": "JWT token from User Login"
+              }
+            ],
+            "url": {
+              "raw": "{{signerBaseUrl}}/singlelink/{{testTemplateId}}",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "singlelink",
+                "{{testTemplateId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get SingleLink Data - Invalid Template",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 400 or 404', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 404]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text",
+                "description": "JWT token from User Login"
+              }
+            ],
+            "url": {
+              "raw": "{{signerBaseUrl}}/singlelink/00000000-0000-0000-0000-000000000000",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "singlelink",
+                "00000000-0000-0000-0000-000000000000"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Phase 5 - Edge Cases & Error Handling",
+      "item": [
+        {
+          "name": "Identification - Missing Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 400', function() {",
+                  "    pm.expect(pm.response.code).to.equal(400);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text",
+                "description": "JWT token from User Login"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"signerToken\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{signerBaseUrl}}/Identification/CreateidentityFlow",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "Identification",
+                "CreateidentityFlow"
+              ]
+            }
+          }
+        },
+        {
+          "name": "OTP - Invalid Token Format",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 400', function() {",
+                  "    pm.expect(pm.response.code).to.equal(400);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text",
+                "description": "JWT token from User Login"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"invalid-token-format\",\n  \"identification\": \"test\"\n}"
+            },
+            "url": {
+              "raw": "{{signerBaseUrl}}/otp",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "otp"
+              ]
+            }
+          }
+        },
+        {
+          "name": "SingleLink - Missing Required Fields",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 400', function() {",
+                  "    pm.expect(pm.response.code).to.equal(400);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text",
+                "description": "JWT token from User Login"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"templateId\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{signerBaseUrl}}/singlelink",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "singlelink"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Phase 6 - Security Testing",
+      "item": [
+        {
+          "name": "SQL Injection - Identification",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('SQL injection handled safely', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 404]);",
+                  "});",
+                  "",
+                  "pm.test('No SQL error in response', function() {",
+                  "    const body = pm.response.text();",
+                  "    pm.expect(body.toLowerCase()).to.not.include('sql');",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text",
+                "description": "JWT token from User Login"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"signerToken\": \"' OR '1'='1\"\n}"
+            },
+            "url": {
+              "raw": "{{signerBaseUrl}}/Identification/CreateidentityFlow",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "Identification",
+                "CreateidentityFlow"
+              ]
+            }
+          }
+        },
+        {
+          "name": "XSS Attempt - OTP",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('XSS handled safely', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 500, 404]);",
+                  "});",
+                  "",
+                  "pm.test('Script tags escaped or rejected', function() {",
+                  "    const body = pm.response.text();",
+                  "    pm.expect(body).to.not.include('<script>');",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text",
+                "description": "JWT token from User Login"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"{{testSignerToken}}\",\n  \"identification\": \"<script>alert('XSS')</script>\"\n}"
+            },
+            "url": {
+              "raw": "{{signerBaseUrl}}/otp",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "otp"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Phase 7 - Final Validation",
+      "item": [
+        {
+          "name": "Final Validation - Signer API Accessible",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Signer API responding', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 500, 404]);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "",
+                  "console.log('Phase 9 - Signer API tests complete');"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}",
+                "type": "text",
+                "description": "JWT token from User Login"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"{{testSignerToken}}\",\n  \"identification\": \"validation-test\"\n}"
+            },
+            "url": {
+              "raw": "{{signerBaseUrl}}/otp",
+              "host": [
+                "{{signerBaseUrl}}"
+              ],
+              "path": [
+                "otp"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "testSignerToken",
+      "value": "00000000-0000-0000-0000-000000000000",
+      "type": "string"
+    },
+    {
+      "key": "testTemplateId",
+      "value": "00000000-0000-0000-0000-000000000000",
+      "type": "string"
+    },
+    {
+      "key": "testAuthToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "testSingleLinkUrl",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

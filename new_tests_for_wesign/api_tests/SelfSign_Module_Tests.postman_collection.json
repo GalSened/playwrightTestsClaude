@@ -1,0 +1,756 @@
+{
+	"info": {
+		"_postman_id": "selfsign-module-tests-2025",
+		"name": "SelfSign Module Tests",
+		"description": "Comprehensive API tests for WeSign SelfSign module - 8 endpoints across 8 phases\n\nCreated: 2025-11-02\nCoverage: SelfSign CRUD, Document operations, SmartCard signing, eIDAS flows\nPhases: Auth → Discovery → CRUD → Workflow → Management → Edge Cases → Security → Cleanup",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Phase 1 - Authentication Setup",
+			"item": [
+				{
+					"name": "User Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Login successful', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('JWT token received', function() {",
+									"        pm.expect(response).to.have.property('token');",
+									"    });",
+									"    pm.collectionVariables.set('jwtToken', response.token);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"{{userPassword}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/users/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "users", "login"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 2 - Data Discovery & Exploration",
+			"item": [
+				{
+					"name": "Get Document Collections (for SelfSign)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('Response contains document collections', function() {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.have.property('documentCollections');",
+									"    pm.expect(response.documentCollections).to.be.an('array');",
+									"});",
+									"",
+									"pm.test('Response time acceptable', function() {",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections?offset=0&limit=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "documentcollections"],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 3 - CRUD Operations",
+			"item": [
+				{
+					"name": "Create SelfSign Document - Happy Path",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('SelfSign document created successfully', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('Response contains document IDs', function() {",
+									"        pm.expect(response).to.have.property('documentCollectionId');",
+									"        pm.expect(response).to.have.property('documentId');",
+									"        pm.expect(response).to.have.property('name');",
+									"        pm.expect(response).to.have.property('pagesCount');",
+									"    });",
+									"    pm.collectionVariables.set('selfSignDocCollectionId', response.documentCollectionId);",
+									"    pm.collectionVariables.set('selfSignDocumentId', response.documentId);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test SelfSign Document\",\n  \"base64File\": \"{{samplePdfBase64}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/selfsign",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "selfsign"]
+						}
+					}
+				},
+				{
+					"name": "Create Second SelfSign Document",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Second document created', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.collectionVariables.set('selfSignDocCollectionId2', response.documentCollectionId);",
+									"    pm.collectionVariables.set('selfSignDocumentId2', response.documentId);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Second SelfSign Document\",\n  \"base64File\": \"{{samplePdfBase64}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/selfsign",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "selfsign"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 4 - Workflow Testing",
+			"item": [
+				{
+					"name": "Update SelfSign Document - Save Operation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Document saved successfully', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('Update result contains data', function() {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.be.an('object');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"documentCollectionId\": \"{{selfSignDocCollectionId}}\",\n  \"documentId\": \"{{selfSignDocumentId}}\",\n  \"name\": \"Updated SelfSign Document\",\n  \"operation\": 1,\n  \"fields\": [],\n  \"signerAuthentication\": {\n    \"name\": \"Test User\",\n    \"idNumber\": \"123456789\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/selfsign",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "selfsign"]
+						}
+					}
+				},
+				{
+					"name": "Create SelfSign from Template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Document created from template', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.collectionVariables.set('selfSignFromTemplateId', response.documentCollectionId);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"SelfSign from Template\",\n  \"base64File\": \"{{samplePdfBase64}}\",\n  \"sourceTemplateId\": \"{{testTemplateId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/selfsign",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "selfsign"]
+						}
+					}
+				},
+				{
+					"name": "Verify Signer Credential",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Credential verification attempted', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400, 500]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test User\",\n  \"idNumber\": \"123456789\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/selfsign/sign/verify",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "selfsign", "sign", "verify"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 5 - Management Operations",
+			"item": [
+				{
+					"name": "Download SmartCard Installer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('SmartCard installer download', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    pm.test('File name header present', function() {",
+									"        pm.expect(pm.response.headers.get('x-file-name')).to.exist;",
+									"    });",
+									"    ",
+									"    pm.test('Content type is binary', function() {",
+									"        const contentType = pm.response.headers.get('Content-Type');",
+									"        pm.expect(contentType).to.include('octet');",
+									"    });",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/selfsign/download/smartcard",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "selfsign", "download", "smartcard"]
+						}
+					}
+				},
+				{
+					"name": "Create SmartCard Signing Flow",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('SmartCard flow creation attempted', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400, 500]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [\n    {\n      \"documentId\": \"{{selfSignDocumentId}}\",\n      \"fieldName\": \"Signature1\",\n      \"image\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/selfsign/CreateSmartCardSigningFlow",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "selfsign", "CreateSmartCardSigningFlow"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 6 - Edge Cases & Error Handling",
+			"item": [
+				{
+					"name": "Create SelfSign - Missing Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Validation error for missing name', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 500]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"base64File\": \"{{samplePdfBase64}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/selfsign",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "selfsign"]
+						}
+					}
+				},
+				{
+					"name": "Update Non-Existent Document",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Error for non-existent document', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([404, 400, 500]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"documentCollectionId\": \"00000000-0000-0000-0000-000000000000\",\n  \"documentId\": \"00000000-0000-0000-0000-000000000000\",\n  \"name\": \"Ghost Document\",\n  \"operation\": 1,\n  \"fields\": []\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/selfsign",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "selfsign"]
+						}
+					}
+				},
+				{
+					"name": "Delete Non-Existent Document",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Handles non-existent delete gracefully', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 404, 400, 500]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/selfsign/00000000-0000-0000-0000-000000000000",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "selfsign", "00000000-0000-0000-0000-000000000000"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 7 - Security Testing",
+			"item": [
+				{
+					"name": "Create SelfSign - No Auth Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Unauthorized without token', function() {",
+									"    pm.expect(pm.response.code).to.equal(401);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Unauthorized Test\",\n  \"base64File\": \"{{samplePdfBase64}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/selfsign",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "selfsign"]
+						}
+					}
+				},
+				{
+					"name": "Update Document - Invalid Operation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Invalid operation handled', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 500]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"documentCollectionId\": \"{{selfSignDocCollectionId}}\",\n  \"documentId\": \"{{selfSignDocumentId}}\",\n  \"name\": \"Test\",\n  \"operation\": 999,\n  \"fields\": []\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/selfsign",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "selfsign"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 8 - Final Validation & Cleanup",
+			"item": [
+				{
+					"name": "Verify Documents Exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Document collections accessible', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('Can retrieve document collections', function() {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response.documentCollections).to.be.an('array');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/documentcollections",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "documentcollections"]
+						}
+					}
+				},
+				{
+					"name": "Delete First SelfSign Document",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('First document deleted', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/selfsign/{{selfSignDocCollectionId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "selfsign", "{{selfSignDocCollectionId}}"]
+						}
+					}
+				},
+				{
+					"name": "Delete Second SelfSign Document",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Second document deleted', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/selfsign/{{selfSignDocCollectionId2}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "selfsign", "{{selfSignDocCollectionId2}}"]
+						}
+					}
+				},
+				{
+					"name": "Delete Template-based Document",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Template-based document deleted', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/selfsign/{{selfSignFromTemplateId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "selfsign", "{{selfSignFromTemplateId}}"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "jwtToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "selfSignDocCollectionId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "selfSignDocumentId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "selfSignDocCollectionId2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "selfSignDocumentId2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "selfSignFromTemplateId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

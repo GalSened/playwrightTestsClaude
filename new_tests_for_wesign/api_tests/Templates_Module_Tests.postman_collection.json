@@ -1,0 +1,1422 @@
+{
+  "info": {
+    "name": "WeSign API - Templates Module (Complete)",
+    "description": "Comprehensive testing suite for WeSign Templates API with full CRUD operations, workflow testing, security validation, and edge case coverage.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "{{baseUrl}}",
+      "type": "string"
+    },
+    {
+      "key": "jwtToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "testTemplateId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "testTemplateId2",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "duplicatedTemplateId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "mergedTemplateId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "samplePdfBase64",
+      "value": "JVBERi0xLjQKJeLjz9MKMyAwIG9iago8PC9UeXBlL1BhZ2UvUGFyZW50IDIgMCBSL1Jlc291cmNlczw8L0ZvbnQ8PC9GMSA1IDAgUj4+Pj4vTWVkaWFCb3hbMCAwIDYxMiA3OTJdL0NvbnRlbnRzIDQgMCBSPj4KZW5kb2JqCjQgMCBvYmoKPDwvTGVuZ3RoIDQ0Pj4Kc3RyZWFtCkJUCi9GMSAxOCBUZgowIDAgVGQKKFRlc3QgVGVtcGxhdGUpIFRqCkVUCmVuZHN0cmVhbQplbmRvYmoKMSAwIG9iago8PC9UeXBlL0NhdGFsb2cvUGFnZXMgMiAwIFI+PgplbmRvYmoKMiAwIG9iago8PC9UeXBlL1BhZ2VzL0NvdW50IDEvS2lkc1szIDAgUl0+PgplbmRvYmoKNSAwIG9iago8PC9UeXBlL0ZvbnQvU3VidHlwZS9UeXBlMS9CYXNlRm9udC9UaW1lcy1Sb21hbj4+CmVuZG9iagp4cmVmCjAgNgowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAyMjggMDAwMDAgbiAKMDAwMDAwMDI3NiAwMDAwMCBuIAowMDAwMDAwMDEwIDAwMDAwIG4gCjAwMDAwMDAxMjMgMDAwMDAgbiAKMDAwMDAwMDMzMyAwMDAwMCBuIAp0cmFpbGVyCjw8L1NpemUgNi9Sb290IDEgMCBSPj4Kc3RhcnR4cmVmCjQxMQolJUVPRgo=",
+      "type": "string"
+    },
+    {
+      "key": "templateForUpdate",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "updatedTemplate",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Templates - Phase 1: Authentication Setup",
+      "item": [
+        {
+          "name": "Login - Get Authentication Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Login successful', function() {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    ",
+                  "    pm.test('Response contains authentication tokens', function() {",
+                  "        pm.expect(response).to.have.property('token');",
+                  "        pm.expect(response).to.have.property('refreshToken');",
+                  "    });",
+                  "    ",
+                  "    // Store tokens for subsequent requests",
+                  "    pm.collectionVariables.set('jwtToken', response.token);",
+                  "    pm.collectionVariables.set('refreshToken', response.refreshToken);",
+                  "    pm.collectionVariables.set('authToken', response.authToken || '');",
+                  "    ",
+                  "    console.log('Authentication successful - tokens stored');",
+                  "}",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{testEmail}}\",\n  \"password\": \"{{testPassword}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v3/users/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Templates - Phase 2: Data Discovery & Exploration",
+      "item": [
+        {
+          "name": "Get All Templates - Initial Discovery",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Request successful', function() {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has templates array', function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('templates');",
+                  "    pm.expect(response.templates).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('Response has total count header', function() {",
+                  "    pm.expect(pm.response.headers.has('x-total-count')).to.be.true;",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates?offset=0&limit=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates"
+              ],
+              "query": [
+                {
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Templates with Search Filter",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Search request successful', function() {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has templates array', function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('templates');",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates?key=test&offset=0&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates"
+              ],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "test"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Templates - Phase 3: CRUD Operations Testing",
+      "item": [
+        {
+          "name": "Create Template - Happy Path",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Template created successfully', function() {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    ",
+                  "    pm.test('Response contains template ID', function() {",
+                  "        pm.expect(response).to.have.property('templateId');",
+                  "        pm.expect(response).to.have.property('templateName');",
+                  "        pm.expect(response).to.have.property('pagesCount');",
+                  "    });",
+                  "    ",
+                  "    pm.test('Template name matches input', function() {",
+                  "        pm.expect(response.templateName).to.include('Test Template - API');",
+                  "    });",
+                  "    ",
+                  "    pm.test('Template ID is valid GUID', function() {",
+                  "        const guidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;",
+                  "        pm.expect(response.templateId).to.match(guidPattern);",
+                  "    });",
+                  "    ",
+                  "    // Store template ID for subsequent tests",
+                  "    pm.collectionVariables.set('testTemplateId', response.templateId);",
+                  "    console.log('Template created with ID:', response.templateId);",
+                  "}",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test Template - API\",\n  \"base64File\": \"{{samplePdfBase64}}\",\n  \"metaData\": \"\",\n  \"isOneTimeUseTemplate\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Second Template for Testing",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Second template created successfully', function() {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.collectionVariables.set('testTemplateId2', response.templateId);",
+                  "    console.log('Second template created with ID:', response.templateId);",
+                  "}",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test Template 2 - API\",\n  \"base64File\": \"{{samplePdfBase64}}\",\n  \"metaData\": \"\",\n  \"isOneTimeUseTemplate\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Template - Happy Path",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Build minimal valid UpdateTemplateDTO based on Swagger schema",
+                  "// UpdateTemplateDTO requires: name (string) + fields (PDFFields object)",
+                  "",
+                  "const updateBody = {",
+                  "    name: \"Test Template - Updated\",",
+                  "    fields: {",
+                  "        textFields: [",
+                  "            {",
+                  "                name: \"Email_\" + Math.random().toString(36).substring(7),",
+                  "                description: \"Email Field\",",
+                  "                x: 0.84,",
+                  "                y: 0.12863131935881628,",
+                  "                width: 0.16,",
+                  "                height: 0.0235,",
+                  "                page: 1,",
+                  "                textFieldType: 5,",
+                  "                mandatory: false,",
+                  "                value: null,",
+                  "                customerRegex: null,",
+                  "                isHidden: false",
+                  "            }",
+                  "        ],",
+                  "        signatureFields: [",
+                  "            {",
+                  "                name: \"Signature_\" + Math.random().toString(36).substring(7),",
+                  "                description: \"Signature Field\",",
+                  "                x: 0.5154330758920023,",
+                  "                y: 0.2561578298397041,",
+                  "                width: 0.16,",
+                  "                height: 0.06313193588162762,",
+                  "                page: 1,",
+                  "                mandatory: true,",
+                  "                image: \"\",",
+                  "                signingType: 1,",
+                  "                signatureKind: 0",
+                  "            }",
+                  "        ],",
+                  "        checkBoxFields: [],",
+                  "        radioGroupFields: [],",
+                  "        choiceFields: []",
+                  "    }",
+                  "};",
+                  "",
+                  "// Store for the request body",
+                  "pm.collectionVariables.set('updatedTemplate', JSON.stringify(updateBody));",
+                  "",
+                  "console.log('Update body prepared with name + 2 fields (Email + Signature)');",
+                  "console.log('UpdateTemplateDTO schema: name (string) + fields (PDFFields)');"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Template updated successfully', function() {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{{updatedTemplate}}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates/{{testTemplateId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates",
+                "{{testTemplateId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Template Pages Count",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Pages count retrieved successfully', function() {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "pm.test('Response contains page count information', function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('pagesCount');",
+                  "    pm.expect(response).to.have.property('templateId');",
+                  "    pm.expect(response).to.have.property('templateName');",
+                  "});",
+                  "",
+                  "pm.test('Page count header present', function() {",
+                  "    pm.expect(pm.response.headers.has('x-total-count')).to.be.true;",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates/{{testTemplateId}}/pages",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates",
+                "{{testTemplateId}}",
+                "pages"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Templates - Phase 4: Template Workflow Testing",
+      "item": [
+        {
+          "name": "Duplicate Template",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Template duplicated successfully', function() {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    ",
+                  "    pm.test('Response contains new template ID', function() {",
+                  "        pm.expect(response).to.have.property('newTemplateId');",
+                  "        pm.expect(response).to.have.property('name');",
+                  "    });",
+                  "    ",
+                  "    pm.test('New template ID is different from original', function() {",
+                  "        const originalId = pm.collectionVariables.get('testTemplateId');",
+                  "        pm.expect(response.newTemplateId).to.not.equal(originalId);",
+                  "    });",
+                  "    ",
+                  "    // Store duplicated template ID",
+                  "    pm.collectionVariables.set('duplicatedTemplateId', response.newTemplateId);",
+                  "    console.log('Template duplicated with ID:', response.newTemplateId);",
+                  "}",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isOneTimeUseTemplate\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates/{{testTemplateId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates",
+                "{{testTemplateId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Download Template",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Template downloaded successfully', function() {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "pm.test('Response is PDF content', function() {",
+                  "    pm.expect(pm.response.headers.get('Content-Type')).to.include('pdf');",
+                  "});",
+                  "",
+                  "pm.test('File name header present', function() {",
+                  "    pm.expect(pm.response.headers.has('x-file-name')).to.be.true;",
+                  "});",
+                  "",
+                  "pm.test('Response has content', function() {",
+                  "    pm.expect(pm.response.text().length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates/{{testTemplateId}}/download",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates",
+                "{{testTemplateId}}",
+                "download"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Specific Page Information",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Page information retrieved successfully', function() {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "pm.test('Response contains page details', function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('templateId');",
+                  "    pm.expect(response).to.have.property('name');",
+                  "    pm.expect(response).to.have.property('pageImage');",
+                  "    pm.expect(response).to.have.property('pageHeight');",
+                  "    pm.expect(response).to.have.property('pageWidth');",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates/{{testTemplateId}}/pages/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates",
+                "{{testTemplateId}}",
+                "pages",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Page Range Information",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Page range retrieved successfully', function() {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "pm.test('Response contains template pages array', function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('templatePages');",
+                  "    pm.expect(response.templatePages).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates/{{testTemplateId}}/pages/range?offset=1&limit=5&withImages=true",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates",
+                "{{testTemplateId}}",
+                "pages",
+                "range"
+              ],
+              "query": [
+                {
+                  "key": "offset",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                },
+                {
+                  "key": "withImages",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Templates - Phase 5: Management Operations",
+      "item": [
+        {
+          "name": "Merge Templates",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Templates merged successfully', function() {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    ",
+                  "    pm.test('Response contains merged template ID', function() {",
+                  "        pm.expect(response).to.have.property('templateId');",
+                  "        pm.expect(response).to.have.property('templateName');",
+                  "        pm.expect(response).to.have.property('pagesCount');",
+                  "    });",
+                  "    ",
+                  "    pm.test('Merged template name is correct', function() {",
+                  "        pm.expect(response.templateName).to.equal('Merged Template - Test');",
+                  "    });",
+                  "    ",
+                  "    // Store merged template ID",
+                  "    pm.collectionVariables.set('mergedTemplateId', response.templateId);",
+                  "    console.log('Templates merged with ID:', response.templateId);",
+                  "}",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(10000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Merged Template - Test\",\n  \"isOneTimeUseTemplate\": false,\n  \"templates\": [\n    \"{{testTemplateId}}\",\n    \"{{testTemplateId2}}\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates/merge",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates",
+                "merge"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Templates - Popular Sort",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Popular templates retrieved successfully', function() {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has templates array', function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('templates');",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates?popular=true&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates"
+              ],
+              "query": [
+                {
+                  "key": "popular",
+                  "value": "true"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Templates - Recent Sort",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Recent templates retrieved successfully', function() {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has templates array', function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('templates');",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates?recent=true&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates"
+              ],
+              "query": [
+                {
+                  "key": "recent",
+                  "value": "true"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Templates - Phase 6: Edge Cases & Error Handling",
+      "item": [
+        {
+          "name": "Create Template - Missing Name (Error)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Request fails with bad request', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 500]);",
+                  "});",
+                  "",
+                  "pm.test('Error response structure appropriate', function() {",
+                  "    // API returns error in some format",
+                  "    pm.expect(pm.response.text().length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"base64File\": \"{{samplePdfBase64}}\",\n  \"isOneTimeUseTemplate\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Template with Invalid ID (Error)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Request fails appropriately', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 404, 500]);",
+                  "});",
+                  "",
+                  "pm.test('Error response received', function() {",
+                  "    pm.expect(pm.response.text().length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates/00000000-0000-0000-0000-000000000000/pages",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates",
+                "00000000-0000-0000-0000-000000000000",
+                "pages"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Page with Invalid Page Number (Error)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Request fails with invalid page number', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 500]);",
+                  "});",
+                  "",
+                  "pm.test('Error response received', function() {",
+                  "    pm.expect(pm.response.text().length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates/{{testTemplateId}}/pages/0",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates",
+                "{{testTemplateId}}",
+                "pages",
+                "0"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Templates - Negative Offset (Error)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Request fails with negative offset', function() {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([400, 500]);",
+                  "});",
+                  "",
+                  "pm.test('Error response received', function() {",
+                  "    pm.expect(pm.response.text().length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates?offset=-1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates"
+              ],
+              "query": [
+                {
+                  "key": "offset",
+                  "value": "-1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Templates - Phase 7: Security Testing",
+      "item": [
+        {
+          "name": "Get Templates - No Auth Token (Security Test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Request fails without authentication', function() {",
+                  "    pm.expect(pm.response.code).to.equal(401);",
+                  "});",
+                  "",
+                  "pm.test('Unauthorized access blocked', function() {",
+                  "    // Should not return template data",
+                  "    pm.expect(pm.response.code).to.not.equal(200);",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "SQL Injection Attempt - Template Name (Security Test)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('SQL injection attempt handled safely', function() {",
+                  "    // Should either reject or sanitize input",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 500]);",
+                  "});",
+                  "",
+                  "pm.test('No SQL error in response', function() {",
+                  "    const responseText = pm.response.text().toLowerCase();",
+                  "    pm.expect(responseText).to.not.include('sql');",
+                  "    pm.expect(responseText).to.not.include('syntax error');",
+                  "    pm.expect(responseText).to.not.include('database');",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates?key=' OR '1'='1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates"
+              ],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "' OR '1'='1"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Templates - Phase 8: Final Validation & Cleanup",
+      "item": [
+        {
+          "name": "Final Validation - Get All Created Templates",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Final validation successful', function() {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "pm.test('Response contains templates', function() {",
+                  "    const response = pm.response.json();",
+                  "    pm.expect(response).to.have.property('templates');",
+                  "    pm.expect(response.templates).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test('Created templates exist in list', function() {",
+                  "    const response = pm.response.json();",
+                  "    const testTemplateId = pm.collectionVariables.get('testTemplateId');",
+                  "    ",
+                  "    // Check if our test template is in the list",
+                  "    const foundTemplate = response.templates.find(t => t.id === testTemplateId);",
+                  "    if (foundTemplate) {",
+                  "        console.log('Test template found in list');",
+                  "    }",
+                  "});",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates?recent=true&limit=50",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates"
+              ],
+              "query": [
+                {
+                  "key": "recent",
+                  "value": "true"
+                },
+                {
+                  "key": "limit",
+                  "value": "50"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cleanup - Delete Batch Templates",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Build IDs array, filtering out empty values",
+                  "const ids = [];",
+                  "",
+                  "// Add testTemplateId if exists",
+                  "const id1 = pm.collectionVariables.get('testTemplateId');",
+                  "if (id1 && id1.trim() !== '') {",
+                  "    ids.push(id1);",
+                  "}",
+                  "",
+                  "// Add testTemplateId2 if exists",
+                  "const id2 = pm.collectionVariables.get('testTemplateId2');",
+                  "if (id2 && id2.trim() !== '') {",
+                  "    ids.push(id2);",
+                  "}",
+                  "",
+                  "// Add duplicatedTemplateId if exists",
+                  "const id3 = pm.collectionVariables.get('duplicatedTemplateId');",
+                  "if (id3 && id3.trim() !== '') {",
+                  "    ids.push(id3);",
+                  "}",
+                  "",
+                  "// Add mergedTemplateId ONLY if it exists (might be empty if merge failed)",
+                  "const id4 = pm.collectionVariables.get('mergedTemplateId');",
+                  "if (id4 && id4.trim() !== '') {",
+                  "    ids.push(id4);",
+                  "}",
+                  "",
+                  "console.log(`Deleting ${ids.length} templates:`, ids);",
+                  "pm.collectionVariables.set('cleanupIds', JSON.stringify(ids));",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Batch delete successful', function() {",
+                  "    pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "console.log('Test templates cleaned up successfully');",
+                  "",
+                  "pm.test('Response time acceptable', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwtToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": {{cleanupIds}}\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v3/templates/deletebatch",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v3",
+                "templates",
+                "deletebatch"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1061 @@
+{
+	"info": {
+		"_postman_id": "contacts-module-tests-2025",
+		"name": "Contacts Module Tests",
+		"description": "Comprehensive API tests for WeSign Contacts module - 14 endpoints across 8 phases\n\nCreated: 2025-11-02\nCoverage: Contacts CRUD, Groups CRUD, Bulk Import, Signatures\nPhases: Auth → Discovery → CRUD → Workflow → Management → Edge Cases → Security → Cleanup",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Phase 1 - Authentication Setup",
+			"item": [
+				{
+					"name": "User Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Login successful', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('JWT token received', function() {",
+									"        pm.expect(response).to.have.property('jwtToken');",
+									"    });",
+									"    pm.collectionVariables.set('jwtToken', response.jwtToken);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"{{userPassword}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/users/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "users", "login"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 2 - Data Discovery & Exploration",
+			"item": [
+				{
+					"name": "Get All Contacts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('Response contains contacts array', function() {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.have.property('contacts');",
+									"    pm.expect(response.contacts).to.be.an('array');",
+									"});",
+									"",
+									"pm.test('Total count header present', function() {",
+									"    pm.expect(pm.response.headers.get('x-total-count')).to.exist;",
+									"});",
+									"",
+									"pm.test('Response time acceptable', function() {",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts?offset=0&limit=20",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts"],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search Contacts by Key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('Search returns contacts', function() {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.have.property('contacts');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts?key=Test",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts"],
+							"query": [
+								{
+									"key": "key",
+									"value": "Test"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Contact Groups",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('Response contains contact groups', function() {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.have.property('contactGroups');",
+									"    pm.expect(response.contactGroups).to.be.an('array');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts/Groups",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts", "Groups"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 3 - CRUD Operations",
+			"item": [
+				{
+					"name": "Create Contact - Happy Path",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Contact created successfully', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('Response contains contact ID', function() {",
+									"        pm.expect(response).to.have.property('contactId');",
+									"    });",
+									"    pm.collectionVariables.set('testContactId', response.contactId);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test Contact - API\",\n  \"email\": \"testcontact@example.com\",\n  \"phone\": \"0501234567\",\n  \"phoneExtension\": \"+972\",\n  \"defaultSendingMethod\": 2,\n  \"searchTag\": \"API Test\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts"]
+						}
+					}
+				},
+				{
+					"name": "Create Second Contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Second contact created', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.collectionVariables.set('testContactId2', response.contactId);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Second Test Contact\",\n  \"email\": \"secondcontact@example.com\",\n  \"phone\": \"0507654321\",\n  \"phoneExtension\": \"+972\",\n  \"defaultSendingMethod\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts"]
+						}
+					}
+				},
+				{
+					"name": "Get Contact by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('Contact details returned', function() {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.have.property('id');",
+									"    pm.expect(response).to.have.property('name');",
+									"    pm.expect(response).to.have.property('email');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts/{{testContactId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts", "{{testContactId}}"]
+						}
+					}
+				},
+				{
+					"name": "Update Contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Contact updated successfully', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated Test Contact\",\n  \"email\": \"updatedcontact@example.com\",\n  \"phone\": \"0509876543\",\n  \"phoneExtension\": \"+972\",\n  \"defaultSendingMethod\": 2,\n  \"seals\": []\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts/{{testContactId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts", "{{testContactId}}"]
+						}
+					}
+				},
+				{
+					"name": "Create Contact Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Group created successfully', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.test('Response contains group ID', function() {",
+									"        pm.expect(response).to.have.property('id');",
+									"    });",
+									"    pm.collectionVariables.set('testGroupId', response.id);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test Contact Group\",\n  \"contactsGroupMembers\": [\n    {\n      \"contactId\": \"{{testContactId}}\",\n      \"order\": 1\n    },\n    {\n      \"contactId\": \"{{testContactId2}}\",\n      \"order\": 2\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts/Group",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts", "Group"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 4 - Workflow Testing",
+			"item": [
+				{
+					"name": "Get Popular Contacts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('Popular contacts returned', function() {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.have.property('contacts');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts?popular=true&limit=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts"],
+							"query": [
+								{
+									"key": "popular",
+									"value": "true"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Recent Contacts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('Recent contacts returned', function() {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.have.property('contacts');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts?recent=true&limit=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts"],
+							"query": [
+								{
+									"key": "recent",
+									"value": "true"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Contact Group by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('Group details returned', function() {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.have.property('id');",
+									"    pm.expect(response).to.have.property('name');",
+									"    pm.expect(response).to.have.property('contactsGroupMembers');",
+									"    pm.expect(response.contactsGroupMembers).to.be.an('array');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts/Group/{{testGroupId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts", "Group", "{{testGroupId}}"]
+						}
+					}
+				},
+				{
+					"name": "Update Contact Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Group updated successfully', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated Contact Group\",\n  \"contactsGroupMembers\": [\n    {\n      \"contactId\": \"{{testContactId}}\",\n      \"order\": 1\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts/Group/{{testGroupId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts", "Group", "{{testGroupId}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 5 - Management Operations",
+			"item": [
+				{
+					"name": "Bulk Import Contacts (Excel)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('Bulk import response contains IDs', function() {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.have.property('contactsId');",
+									"    pm.expect(response.contactsId).to.be.an('array');",
+									"});",
+									"",
+									"pm.test('Total count header present', function() {",
+									"    pm.expect(pm.response.headers.get('x-total-count')).to.exist;",
+									"});",
+									"",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    if (response.contactsId && response.contactsId.length > 0) {",
+									"        pm.collectionVariables.set('bulkContactIds', JSON.stringify(response.contactsId));",
+									"    }",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"base64File\": \"{{sampleExcelBase64}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts/bulk",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts", "bulk"]
+						}
+					}
+				},
+				{
+					"name": "Search Groups by Key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('Groups search returns results', function() {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response).to.have.property('contactGroups');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts/Groups?key=Test",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts", "Groups"],
+							"query": [
+								{
+									"key": "key",
+									"value": "Test"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Pagination - Offset and Limit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('Pagination works correctly', function() {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response.contacts).to.be.an('array');",
+									"    pm.expect(response.contacts.length).to.be.at.most(5);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts?offset=0&limit=5",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts"],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 6 - Edge Cases & Error Handling",
+			"item": [
+				{
+					"name": "Create Contact - Missing Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Validation error for missing name', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 500]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"noname@example.com\",\n  \"phone\": \"0501234567\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts"]
+						}
+					}
+				},
+				{
+					"name": "Get Contact - Invalid ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Not found error for invalid ID', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([404, 400, 500]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts/00000000-0000-0000-0000-000000000000",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts", "00000000-0000-0000-0000-000000000000"]
+						}
+					}
+				},
+				{
+					"name": "Get Contacts - Negative Offset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Handles negative offset gracefully', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts?offset=-1",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts"],
+							"query": [
+								{
+									"key": "offset",
+									"value": "-1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Non-Existent Contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Error for non-existent contact update', function() {",
+									"    pm.expect(pm.response.code).to.be.oneOf([404, 400, 500]);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Ghost Contact\",\n  \"email\": \"ghost@example.com\",\n  \"phone\": \"0501234567\",\n  \"seals\": []\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts/00000000-0000-0000-0000-000000000000",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts", "00000000-0000-0000-0000-000000000000"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 7 - Security Testing",
+			"item": [
+				{
+					"name": "Get Contacts - No Auth Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Unauthorized without token', function() {",
+									"    pm.expect(pm.response.code).to.equal(401);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts"]
+						}
+					}
+				},
+				{
+					"name": "Search Contacts - SQL Injection Attempt",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('SQL injection safely handled', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('No SQL errors in response', function() {",
+									"    const responseText = pm.response.text();",
+									"    pm.expect(responseText.toLowerCase()).to.not.include('sql');",
+									"    pm.expect(responseText.toLowerCase()).to.not.include('syntax');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts?key=' OR '1'='1",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts"],
+							"query": [
+								{
+									"key": "key",
+									"value": "' OR '1'='1"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Phase 8 - Final Validation & Cleanup",
+			"item": [
+				{
+					"name": "Verify Test Data Integrity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Test contacts exist', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"pm.test('Can search for test contacts', function() {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response.contacts).to.be.an('array');",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts?key=Test",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts"],
+							"query": [
+								{
+									"key": "key",
+									"value": "Test"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Contact Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Group deleted successfully', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts/Group/{{testGroupId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts", "Group", "{{testGroupId}}"]
+						}
+					}
+				},
+				{
+					"name": "Delete Contacts - Batch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Batch delete successful', function() {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwtToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ids\": [\n    \"{{testContactId}}\",\n    \"{{testContactId2}}\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v3/contacts/deletebatch",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "contacts", "deletebatch"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "jwtToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "testContactId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "testContactId2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "testGroupId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "bulkContactIds",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

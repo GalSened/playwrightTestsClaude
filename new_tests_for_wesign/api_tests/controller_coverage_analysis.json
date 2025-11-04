@@ -1,0 +1,470 @@
+{
+  "summary": {
+    "total_controllers": 36,
+    "tested": 6,
+    "untested": 30,
+    "coverage_percentage": 16.666666666666664
+  },
+  "all_controllers": [
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "Admins",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\AdminsController.cs",
+      "tested": true,
+      "collections": [
+        "Admins_Module_Tests.postman_collection"
+      ]
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "Configuration",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\ConfigurationController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "Contacts",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\ContactsController.cs",
+      "tested": true,
+      "collections": [
+        "Contacts_Module_Tests.postman_collection"
+      ]
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "Dashboard",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\DashboardController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "Distribution",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\DistributionController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "DocumentCollections",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\DocumentCollectionsController.cs",
+      "tested": true,
+      "collections": [
+        "DocumentCollections_Expansion_Tests.postman_collection"
+      ]
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "Links",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\LinksController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "Reports",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\ReportsController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "SelfSign",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\SelfSignController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "Signers",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\SignersController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "Templates",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\TemplatesController.cs",
+      "tested": true,
+      "collections": [
+        "Templates_Module_Tests.postman_collection"
+      ]
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "Users",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\UsersController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign Signer API (signerapi)",
+      "controller": "Contacts",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignSigner\\Controllers\\ContactsController.cs",
+      "tested": true,
+      "collections": [
+        "Contacts_Module_Tests.postman_collection"
+      ]
+    },
+    {
+      "category": "WeSign Signer API (signerapi)",
+      "controller": "Documents",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignSigner\\Controllers\\DocumentsController.cs",
+      "tested": true,
+      "collections": [
+        "DocumentCollections_Expansion_Tests.postman_collection"
+      ]
+    },
+    {
+      "category": "WeSign Signer API (signerapi)",
+      "controller": "Identification",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignSigner\\Controllers\\IdentificationController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign Signer API (signerapi)",
+      "controller": "Logs",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignSigner\\Controllers\\LogsController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign Signer API (signerapi)",
+      "controller": "OTP",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignSigner\\Controllers\\OTPController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign Signer API (signerapi)",
+      "controller": "SingleLink",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignSigner\\Controllers\\SingleLinkController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "ActiveDirectory",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\ActiveDirectoryController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "Companies",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\CompaniesController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "Configuration",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\ConfigurationController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "Licenses",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\LicensesController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "Logs",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\LogsController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "OTP",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\OTPController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "Payment",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\PaymentController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "Programs",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\ProgramsController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "Reports",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\ReportsController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "Users",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\UsersController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "Mongo Integrator Service",
+      "controller": "DocumentCollection",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\MongoIntegratorService\\Controllers\\DocumentCollectionController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "Mongo Integrator Service",
+      "controller": "ManagementReports",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\MongoIntegratorService\\Controllers\\ManagementReportsController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "Mongo Integrator Service",
+      "controller": "WeSignReports",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\MongoIntegratorService\\Controllers\\WeSignReportsController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "PDF External Service",
+      "controller": "Operations",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\PdfExternalService\\Controllers\\OperationsController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WSE-ADAuth Service",
+      "controller": "SAML",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WSE-ADAuth\\Controllers\\SAMLController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WSE-ADAuth Service",
+      "controller": "Signer",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WSE-ADAuth\\Controllers\\SignerController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WSE-ADAuth Service",
+      "controller": "UserAuth",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WSE-ADAuth\\Controllers\\UserAuthController.cs",
+      "tested": false,
+      "collections": []
+    },
+    {
+      "category": "WSE-ADAuth Service",
+      "controller": "Values",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WSE-ADAuth\\Controllers\\ValuesController.cs",
+      "tested": false,
+      "collections": []
+    }
+  ],
+  "untested_controllers": [
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "Configuration",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\ConfigurationController.cs"
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "Dashboard",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\DashboardController.cs"
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "Distribution",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\DistributionController.cs"
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "Links",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\LinksController.cs"
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "Reports",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\ReportsController.cs"
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "SelfSign",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\SelfSignController.cs"
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "Signers",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\SignersController.cs"
+    },
+    {
+      "category": "WeSign User API (userapi)",
+      "controller": "Users",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSign\\Areas\\Api\\Controllers\\UsersController.cs"
+    },
+    {
+      "category": "WeSign Signer API (signerapi)",
+      "controller": "Identification",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignSigner\\Controllers\\IdentificationController.cs"
+    },
+    {
+      "category": "WeSign Signer API (signerapi)",
+      "controller": "Logs",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignSigner\\Controllers\\LogsController.cs"
+    },
+    {
+      "category": "WeSign Signer API (signerapi)",
+      "controller": "OTP",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignSigner\\Controllers\\OTPController.cs"
+    },
+    {
+      "category": "WeSign Signer API (signerapi)",
+      "controller": "SingleLink",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignSigner\\Controllers\\SingleLinkController.cs"
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "ActiveDirectory",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\ActiveDirectoryController.cs"
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "Companies",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\CompaniesController.cs"
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "Configuration",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\ConfigurationController.cs"
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "Licenses",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\LicensesController.cs"
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "Logs",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\LogsController.cs"
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "OTP",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\OTPController.cs"
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "Payment",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\PaymentController.cs"
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "Programs",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\ProgramsController.cs"
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "Reports",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\ReportsController.cs"
+    },
+    {
+      "category": "WeSign Management API",
+      "controller": "Users",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WeSignManagement\\Controllers\\UsersController.cs"
+    },
+    {
+      "category": "Mongo Integrator Service",
+      "controller": "DocumentCollection",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\MongoIntegratorService\\Controllers\\DocumentCollectionController.cs"
+    },
+    {
+      "category": "Mongo Integrator Service",
+      "controller": "ManagementReports",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\MongoIntegratorService\\Controllers\\ManagementReportsController.cs"
+    },
+    {
+      "category": "Mongo Integrator Service",
+      "controller": "WeSignReports",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\MongoIntegratorService\\Controllers\\WeSignReportsController.cs"
+    },
+    {
+      "category": "PDF External Service",
+      "controller": "Operations",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\PdfExternalService\\Controllers\\OperationsController.cs"
+    },
+    {
+      "category": "WSE-ADAuth Service",
+      "controller": "SAML",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WSE-ADAuth\\Controllers\\SAMLController.cs"
+    },
+    {
+      "category": "WSE-ADAuth Service",
+      "controller": "Signer",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WSE-ADAuth\\Controllers\\SignerController.cs"
+    },
+    {
+      "category": "WSE-ADAuth Service",
+      "controller": "UserAuth",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WSE-ADAuth\\Controllers\\UserAuthController.cs"
+    },
+    {
+      "category": "WSE-ADAuth Service",
+      "controller": "Values",
+      "path": "C:\\Users\\gals\\Desktop\\user-backend-DEV\\WSE-ADAuth\\Controllers\\ValuesController.cs"
+    }
+  ],
+  "untested_by_category": {
+    "WeSign User API (userapi)": [
+      "Configuration",
+      "Dashboard",
+      "Distribution",
+      "Links",
+      "Reports",
+      "SelfSign",
+      "Signers",
+      "Users"
+    ],
+    "WeSign Signer API (signerapi)": [
+      "Identification",
+      "Logs",
+      "OTP",
+      "SingleLink"
+    ],
+    "WeSign Management API": [
+      "ActiveDirectory",
+      "Companies",
+      "Configuration",
+      "Licenses",
+      "Logs",
+      "OTP",
+      "Payment",
+      "Programs",
+      "Reports",
+      "Users"
+    ],
+    "Mongo Integrator Service": [
+      "DocumentCollection",
+      "ManagementReports",
+      "WeSignReports"
+    ],
+    "PDF External Service": [
+      "Operations"
+    ],
+    "WSE-ADAuth Service": [
+      "SAML",
+      "Signer",
+      "UserAuth",
+      "Values"
+    ]
+  }
+}

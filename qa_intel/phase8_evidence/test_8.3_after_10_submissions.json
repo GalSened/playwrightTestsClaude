@@ -1,0 +1,152 @@
+{
+    "success": true,
+    "data": {
+        "executions": [
+            {
+                "executionId": "a4e48158-cf29-404b-99d9-942c58f0cc1f",
+                "status": "queued",
+                "framework": "wesign",
+                "priority": "normal",
+                "queuedAt": "2025-10-27T13:03:17.976Z",
+                "estimatedDuration": 180000,
+                "requestedBy": "api"
+            },
+            {
+                "executionId": "56feb9ba-c5b6-4bba-a032-50b6dbe78c69",
+                "status": "queued",
+                "framework": "wesign",
+                "priority": "normal",
+                "queuedAt": "2025-10-27T13:03:20.590Z",
+                "estimatedDuration": 180000,
+                "requestedBy": "api"
+            },
+            {
+                "executionId": "82e6ac91-7213-4ebc-82b6-84b269ce3667",
+                "status": "queued",
+                "framework": "wesign",
+                "priority": "normal",
+                "queuedAt": "2025-10-27T13:03:23.186Z",
+                "estimatedDuration": 180000,
+                "requestedBy": "api"
+            },
+            {
+                "executionId": "791a90f3-3da2-485f-9e2e-3f435db8dd3e",
+                "status": "queued",
+                "framework": "wesign",
+                "priority": "normal",
+                "queuedAt": "2025-10-27T13:31:19.207Z",
+                "estimatedDuration": 180000,
+                "requestedBy": "api"
+            },
+            {
+                "executionId": "4004d76d-7a27-40d7-a3e5-8fa7295079f6",
+                "status": "queued",
+                "framework": "wesign",
+                "priority": "normal",
+                "queuedAt": "2025-10-27T13:31:19.275Z",
+                "estimatedDuration": 180000,
+                "requestedBy": "api"
+            },
+            {
+                "executionId": "2879784b-cecc-43f4-9df4-8ed484bdd633",
+                "status": "queued",
+                "framework": "wesign",
+                "priority": "normal",
+                "queuedAt": "2025-10-27T13:31:19.346Z",
+                "estimatedDuration": 180000,
+                "requestedBy": "api"
+            },
+            {
+                "executionId": "58091376-9a22-4327-b577-19312efabc6b",
+                "status": "queued",
+                "framework": "wesign",
+                "priority": "normal",
+                "queuedAt": "2025-10-27T13:31:19.464Z",
+                "estimatedDuration": 180000,
+                "requestedBy": "api"
+            },
+            {
+                "executionId": "a66aadf6-2692-4ca8-a3c3-b432d21325d1",
+                "status": "queued",
+                "framework": "wesign",
+                "priority": "normal",
+                "queuedAt": "2025-10-27T13:31:19.554Z",
+                "estimatedDuration": 180000,
+                "requestedBy": "api"
+            },
+            {
+                "executionId": "91243d1c-3446-4564-8b2b-3bca53c6215e",
+                "status": "queued",
+                "framework": "wesign",
+                "priority": "normal",
+                "queuedAt": "2025-10-27T13:31:19.623Z",
+                "estimatedDuration": 180000,
+                "requestedBy": "api"
+            },
+            {
+                "executionId": "3da377df-0b67-4874-b9f7-f1fe15bdec94",
+                "status": "queued",
+                "framework": "wesign",
+                "priority": "normal",
+                "queuedAt": "2025-10-27T13:31:19.689Z",
+                "estimatedDuration": 180000,
+                "requestedBy": "api"
+            },
+            {
+                "executionId": "3ec17dd7-1d4c-41eb-8f28-030907610ac6",
+                "status": "queued",
+                "framework": "wesign",
+                "priority": "normal",
+                "queuedAt": "2025-10-27T13:31:19.772Z",
+                "estimatedDuration": 180000,
+                "requestedBy": "api"
+            },
+            {
+                "executionId": "68ea51bc-1fe1-4a1d-a454-65148ac55806",
+                "status": "queued",
+                "framework": "wesign",
+                "priority": "normal",
+                "queuedAt": "2025-10-27T13:31:19.838Z",
+                "estimatedDuration": 180000,
+                "requestedBy": "api"
+            },
+            {
+                "executionId": "1a1c9cd2-a76b-461c-9edc-aa351b450bd6",
+                "status": "queued",
+                "framework": "wesign",
+                "priority": "normal",
+                "queuedAt": "2025-10-27T13:31:19.904Z",
+                "estimatedDuration": 180000,
+                "requestedBy": "api"
+            },
+            {
+                "executionId": "871f8916-2fc2-4577-8e0f-10ad6aa979ba",
+                "status": "running",
+                "framework": "wesign",
+                "startTime": "2025-10-27T12:04:40.204Z",
+                "pool": "WeSign Tests"
+            },
+            {
+                "executionId": "c7dfdc59-2683-4ac4-9c1d-f4a85907bd32",
+                "status": "running",
+                "framework": "wesign",
+                "startTime": "2025-10-27T13:03:12.662Z",
+                "pool": "WeSign Tests"
+            },
+            {
+                "executionId": "f06f6ae0-1565-4683-8954-36364d54c121",
+                "status": "running",
+                "framework": "wesign",
+                "startTime": "2025-10-27T13:03:15.286Z",
+                "pool": "WeSign Tests"
+            }
+        ],
+        "summary": {
+            "total": 16,
+            "running": 3,
+            "completed": 0,
+            "failed": 0,
+            "queued": 13
+        }
+    }
+}

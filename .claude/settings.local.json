@@ -1,17 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(py -m pytest tests/self_signing/test_self_signing_core_fixed.py -v --tb=short --maxfail=999)",
-      "Bash(py -m pytest tests/self_signing/test_self_signing_core_fixed.py::TestSelfSigningFixed::test_upload_new_pdf_file_and_add_signature_field_success -v -s --headed --browser chromium --slowmo 100)",
-      "Bash(py -m pip show pytest-playwright)",
-      "Bash(py -m pytest tests/self_signing/test_self_signing_core_fixed.py -v --maxfail=999)",
-      "Bash(py -c \"import time; time.sleep(10)\")",
-      "Bash(py -c \"import time; time.sleep(5)\")",
-      "Bash(grep -n '\\\\`' wesign-tests.ts)",
-      "Bash(gh repo view)",
-      "Bash(gh repo list --limit 20)",
-      "Bash(gh repo create playwrightTestsClaude --public --source=. --description=\"WeSign Testing Platform - QA Intelligence with Playwright automation and multi-MCP integration\")",
-      "Bash(git add -A)"
+      "Bash(git remote add:*)",
+      "Bash(ssh -T:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
