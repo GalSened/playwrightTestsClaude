@@ -1,15 +1,22 @@
-# GitLab CI/CD Pipeline for WeSign Playwright Tests
-# Optimized for systematic test execution with strong assertions
+# GitLab CI/CD Pipeline Configuration
+#
+# IMPORTANT: This repository contains TWO SEPARATE TEST SUITES:
+# 1. WeSign Application Tests (new_tests_for_wesign/) - Python/Pytest - THIS PIPELINE
+# 2. QA Intelligence Platform Tests (tests/, apps/*/tests/) - TypeScript/Playwright - SEPARATE PIPELINE
+#
+# This pipeline ONLY runs WeSign application tests.
+# For platform tests, see: tests/e2e/README.md
+#
+# Reference: TEST_DIRECTORIES_MAPPING.md
 
 stages:
-  - setup
-  - lint
-  - test-smoke
-  - test-unit
-  - test-api
-  - test-e2e
-  - report
-  - deploy
+  - setup-wesign
+  - lint-wesign
+  - test-wesign-smoke
+  - test-wesign-api
+  - test-wesign-e2e
+  - report-wesign
+  - deploy-wesign
 
 variables:
   PYTHON_VERSION: "3.12"
@@ -46,32 +53,40 @@ cache:
     expire_in: 30 days
 
 # ========================================
-# STAGE: Setup
+# STAGE: Setup WeSign Tests
 # ========================================
-setup:dependencies:
-  stage: setup
+setup:wesign:dependencies:
+  stage: setup-wesign
   image: python:${PYTHON_VERSION}
   script:
-    - echo "Installing dependencies..."
+    - echo "========================================="
+    - echo "Setting up WeSign Application Tests"
+    - echo "========================================="
+    - echo "Directory: new_tests_for_wesign/"
+    - echo "Technology: Python ${PYTHON_VERSION} + Pytest + Playwright"
+    - echo "Target: WeSign application at ${BASE_URL}"
+    - echo "========================================="
     - pip install --upgrade pip
     - pip install -r new_tests_for_wesign/requirements.txt
     - playwright install chromium --with-deps
+    - echo "✅ WeSign test dependencies installed"
   only:
     - master
     - develop
     - merge_requests
 
 # ========================================
-# STAGE: Lint
+# STAGE: Lint WeSign Tests
 # ========================================
-lint:python:
-  stage: lint
+lint:wesign:python:
+  stage: lint-wesign
   image: python:${PYTHON_VERSION}
   script:
+    - echo "Running Python linters on WeSign tests..."
     - pip install flake8 black pylint
-    - echo "Running Python linters..."
     - flake8 new_tests_for_wesign/tests/ --max-line-length=120 --exclude=__pycache__
     - black --check new_tests_for_wesign/tests/ || true  # Don't fail on formatting
+    - echo "✅ Linting complete"
   allow_failure: true
   only:
     - master
@@ -79,31 +94,32 @@ lint:python:
     - merge_requests
 
 # ========================================
-# STAGE: Smoke Tests
+# STAGE: WeSign Smoke Tests
 # ========================================
-test:smoke:
-  stage: test-smoke
+test:wesign:smoke:
+  stage: test-wesign-smoke
   image: mcr.microsoft.com/playwright/python:v1.40.0-focal
   <<: *test_template
   script:
-    - echo "Running smoke tests..."
+    - echo "Running WeSign smoke tests..."
     - cd new_tests_for_wesign
     - pytest tests/ -m "smoke" -v --maxfail=1 --tb=short --junit-xml=reports/junit/smoke.xml || true
+    - echo "✅ Smoke tests complete"
   only:
     - master
     - develop
     - merge_requests
 
 # ========================================
-# STAGE: API Tests
+# STAGE: WeSign API Tests (Postman/Newman)
 # ========================================
-test:api:
-  stage: test-api
+test:wesign:api:
+  stage: test-wesign-api
   image: node:18
   before_script:
     - npm install -g newman newman-reporter-htmlextra
   script:
-    - echo "Running API tests..."
+    - echo "Running WeSign API tests (Postman collections)..."
     - cd new_tests_for_wesign/api_tests
     - |
       for collection in *.postman_collection.json; do
@@ -114,6 +130,7 @@ test:api:
           --reporter-htmlextra-export ../reports/api/${collection%.postman_collection.json}.html \
           || true
       done
+    - echo "✅ API tests complete"
   artifacts:
     when: always
     paths:
@@ -125,14 +142,14 @@ test:api:
     - merge_requests
 
 # ========================================
-# STAGE: E2E Tests - Contacts Module
+# STAGE: WeSign E2E Tests - Contacts Module
 # ========================================
-test:e2e:contacts:
-  stage: test-e2e
+test:wesign:e2e:contacts:
+  stage: test-wesign-e2e
   image: mcr.microsoft.com/playwright/python:v1.40.0-focal
   <<: *test_template
   script:
-    - echo "Running Contacts module E2E tests..."
+    - echo "Running WeSign Contacts module E2E tests..."
     - cd new_tests_for_wesign
     - |
       pytest tests/contacts/ \
@@ -141,21 +158,23 @@ test:e2e:contacts:
         --tb=short \
         --junit-xml=reports/junit/contacts.xml \
         --html=reports/html/contacts.html \
-        --self-contained-html
+        --self-contained-html \
+        --alluredir=allure-results
+    - echo "✅ Contacts E2E tests complete"
   only:
     - master
     - develop
     - merge_requests
 
 # ========================================
-# STAGE: E2E Tests - Documents Module
+# STAGE: WeSign E2E Tests - Documents Module
 # ========================================
-test:e2e:documents:
-  stage: test-e2e
+test:wesign:e2e:documents:
+  stage: test-wesign-e2e
   image: mcr.microsoft.com/playwright/python:v1.40.0-focal
   <<: *test_template
   script:
-    - echo "Running Documents module E2E tests..."
+    - echo "Running WeSign Documents module E2E tests..."
     - cd new_tests_for_wesign
     - |
       pytest tests/documents/ \
@@ -164,21 +183,23 @@ test:e2e:documents:
         --tb=short \
         --junit-xml=reports/junit/documents.xml \
         --html=reports/html/documents.html \
-        --self-contained-html
+        --self-contained-html \
+        --alluredir=allure-results
+    - echo "✅ Documents E2E tests complete"
   only:
     - master
     - develop
     - merge_requests
 
 # ========================================
-# STAGE: E2E Tests - Templates Module
+# STAGE: WeSign E2E Tests - Templates Module (STRONG Assertions)
 # ========================================
-test:e2e:templates:
-  stage: test-e2e
+test:wesign:e2e:templates:
+  stage: test-wesign-e2e
   image: mcr.microsoft.com/playwright/python:v1.40.0-focal
   <<: *test_template
   script:
-    - echo "Running Templates module E2E tests..."
+    - echo "Running WeSign Templates module E2E tests (STRONG assertions methodology)..."
     - cd new_tests_for_wesign
     - |
       pytest tests/templates/test_templates_real_validation.py \
@@ -187,21 +208,23 @@ test:e2e:templates:
         --tb=short \
         --junit-xml=reports/junit/templates.xml \
         --html=reports/html/templates.html \
-        --self-contained-html
+        --self-contained-html \
+        --alluredir=allure-results
+    - echo "✅ Templates E2E tests complete"
   only:
     - master
     - develop
     - merge_requests
 
 # ========================================
-# STAGE: E2E Tests - Self-Signing Module
+# STAGE: WeSign E2E Tests - Self-Signing Module
 # ========================================
-test:e2e:self-signing:
-  stage: test-e2e
+test:wesign:e2e:self-signing:
+  stage: test-wesign-e2e
   image: mcr.microsoft.com/playwright/python:v1.40.0-focal
   <<: *test_template
   script:
-    - echo "Running Self-Signing module E2E tests..."
+    - echo "Running WeSign Self-Signing module E2E tests..."
     - cd new_tests_for_wesign
     - |
       pytest tests/self_signing/ \
@@ -210,21 +233,48 @@ test:e2e:self-signing:
         --tb=short \
         --junit-xml=reports/junit/self-signing.xml \
         --html=reports/html/self-signing.html \
-        --self-contained-html
+        --self-contained-html \
+        --alluredir=allure-results
+    - echo "✅ Self-Signing E2E tests complete"
   only:
     - master
     - develop
     - merge_requests
 
 # ========================================
-# STAGE: Test Report Generation
+# STAGE: WeSign Test Report Generation
 # ========================================
-report:generate:
-  stage: report
+report:wesign:generate:
+  stage: report-wesign
   image: python:${PYTHON_VERSION}
+  dependencies:
+    - test:wesign:e2e:contacts
+    - test:wesign:e2e:documents
+    - test:wesign:e2e:templates
+    - test:wesign:e2e:self-signing
+    - test:wesign:api
+  before_script:
+    - pip install allure-pytest
+    - apt-get update && apt-get install -y default-jre-headless wget
+    - wget https://github.com/allure-framework/allure2/releases/download/2.24.0/allure-2.24.0.tgz
+    - tar -zxvf allure-2.24.0.tgz -C /opt/
+    - ln -s /opt/allure-2.24.0/bin/allure /usr/bin/allure
   script:
-    - echo "Generating comprehensive test report..."
+    - echo "Generating comprehensive WeSign test reports..."
     - cd new_tests_for_wesign
+
+    # Generate Allure report from all test results
+    - echo "📊 Generating Allure report..."
+    - |
+      if [ -d "allure-results" ]; then
+        allure generate allure-results --clean -o reports/allure-report
+        echo "✅ Allure report generated at reports/allure-report"
+      else
+        echo "⚠️ No allure-results directory found, skipping Allure report"
+      fi
+
+    # Generate summary markdown
+    - echo "📝 Generating pipeline summary..."
     - |
       cat > reports/PIPELINE_SUMMARY.md << 'EOF'
       # WeSign Test Execution Report
@@ -238,40 +288,72 @@ report:generate:
       ## Test Results by Module
 
       ### Contacts Module
-      - Test File: tests/contacts/
-      - Report: [contacts.html](html/contacts.html)
+      - Test File: `tests/contacts/`
+      - HTML Report: [contacts.html](html/contacts.html)
+      - JUnit: [contacts.xml](junit/contacts.xml)
 
       ### Documents Module
-      - Test File: tests/documents/
-      - Report: [documents.html](html/documents.html)
+      - Test File: `tests/documents/`
+      - HTML Report: [documents.html](html/documents.html)
+      - JUnit: [documents.xml](junit/documents.xml)
 
-      ### Templates Module
-      - Test File: tests/templates/test_templates_real_validation.py
-      - Report: [templates.html](html/templates.html)
-      - **Note**: Uses STRONG assertions methodology
+      ### Templates Module (STRONG Assertions)
+      - Test File: `tests/templates/test_templates_real_validation.py`
+      - HTML Report: [templates.html](html/templates.html)
+      - JUnit: [templates.xml](junit/templates.xml)
+      - **Methodology**: STRONG assertions (7/7 passing)
 
       ### Self-Signing Module
-      - Test File: tests/self_signing/
-      - Report: [self-signing.html](html/self-signing.html)
+      - Test File: `tests/self_signing/`
+      - HTML Report: [self-signing.html](html/self-signing.html)
+      - JUnit: [self-signing.xml](junit/self-signing.xml)
 
       ### API Tests
-      - Collections: api_tests/*.postman_collection.json
-      - Reports: api/*.html
+      - Collections: `api_tests/*.postman_collection.json`
+      - Reports: [api/](api/)
+
+      ## Comprehensive Reports
+
+      ### Allure Report
+      - **Full Report**: [allure-report/index.html](allure-report/index.html)
+      - **Features**: Timeline, graphs, test history, screenshots, videos
+      - **Access**: Open in browser for interactive dashboard
 
       ## Key Metrics
 
-      - **Total Test Execution Time**: See individual reports
-      - **Pass Rate**: Calculated from JUnit XML files
-      - **Coverage**: See coverage reports (if available)
+      - **Total Test Execution Time**: See Allure timeline
+      - **Pass Rate**: See individual JUnit reports
+      - **Coverage**: Available in Allure report
 
       ## Artifacts
 
-      All test artifacts (screenshots, videos, traces) are available in the pipeline artifacts.
+      All test artifacts are available in this pipeline:
+      - Screenshots: `screenshots/`
+      - Videos: `videos/`
+      - Traces: `traces/`
+      - Allure Results: `allure-results/`
+      - Allure Report: `allure-report/`
+
+      ## CI/CD Information
+
+      - **Repository**: ${CI_PROJECT_URL}
+      - **Pipeline**: ${CI_PIPELINE_URL}
+      - **Job**: ${CI_JOB_URL}
+      - **Artifacts**: ${CI_PROJECT_URL}/-/jobs/${CI_JOB_ID}/artifacts/browse/new_tests_for_wesign/reports/
       EOF
+
+    - echo "✅ All reports generated successfully"
+
   artifacts:
     when: always
     paths:
       - new_tests_for_wesign/reports/
+      - new_tests_for_wesign/allure-results/
+      - new_tests_for_wesign/screenshots/
+      - new_tests_for_wesign/videos/
+      - new_tests_for_wesign/traces/
+    reports:
+      junit: new_tests_for_wesign/reports/junit/*.xml
     expire_in: 90 days
   only:
     - master
@@ -279,14 +361,29 @@ report:generate:
     - merge_requests
 
 # ========================================
-# STAGE: Deploy Test Results (Optional)
+# STAGE: Deploy WeSign Test Results (Optional)
 # ========================================
-deploy:test-results:
-  stage: deploy
+deploy:wesign:test-results:
+  stage: deploy-wesign
   image: alpine:latest
   script:
-    - echo "Deploying test results to artifact storage..."
-    - echo "Results available at: ${CI_PROJECT_URL}/-/jobs/${CI_JOB_ID}/artifacts/browse/new_tests_for_wesign/reports/"
+    - echo "========================================="
+    - echo "WeSign Test Results Deployment"
+    - echo "========================================="
+    - echo "📦 Artifacts available at:"
+    - echo "   ${CI_PROJECT_URL}/-/jobs/${CI_JOB_ID}/artifacts/browse/new_tests_for_wesign/reports/"
+    - echo ""
+    - echo "📊 Reports:"
+    - echo "   - Allure: reports/allure-report/index.html"
+    - echo "   - HTML: reports/html/*.html"
+    - echo "   - JUnit: reports/junit/*.xml"
+    - echo "   - API: reports/api/*.html"
+    - echo ""
+    - echo "🎥 Test Artifacts:"
+    - echo "   - Screenshots: screenshots/"
+    - echo "   - Videos: videos/"
+    - echo "   - Traces: traces/"
+    - echo "========================================="
   only:
     - master
   when: manual
