@@ -127,7 +127,9 @@ class TestTemplatesRealValidation:
                     "Column header 'תאריך יצירה' (Creation date) should be visible"
 
                 # STRONG ASSERTION 3: At least one template row exists
-                rows = await table.locator('tbody tr').count()
+                # Note: Table has NO tbody element, rows are directly in table
+                # Use tr:not(:first-child) to skip header row
+                rows = await table.locator('tr:not(:first-child)').count()
                 assert rows > 0, f"Expected at least 1 template row, found {rows}"
 
                 print(f"✅ STRONG VALIDATION PASSED: Table has {rows} template rows")
@@ -155,8 +157,8 @@ class TestTemplatesRealValidation:
                 await self.login_and_navigate_to_templates(page)
                 await page.wait_for_timeout(1000)  # Wait for table to load
 
-                # Get first template row
-                first_row = page.locator('tbody tr').first
+                # Get first template row (skip header row)
+                first_row = page.locator('tr:not(:first-child)').first
 
                 # STRONG ASSERTION: Verify each action button by Hebrew text (from MCP)
                 # These exact labels were discovered via MCP hover
@@ -207,7 +209,7 @@ class TestTemplatesRealValidation:
                 await page.wait_for_timeout(1000)
 
                 # Get template name before editing (from first cell after checkbox)
-                first_row = page.locator('tbody tr').first
+                first_row = page.locator('tr:not(:first-child)').first
                 # Template name is in the second cell (index 1, after checkbox)
                 template_name = await first_row.locator('td').nth(1).text_content()
                 template_name = template_name.strip()
@@ -270,7 +272,7 @@ class TestTemplatesRealValidation:
                 await page.wait_for_timeout(1000)
 
                 # Click edit on first template
-                first_row = page.locator('tbody tr').first
+                first_row = page.locator('tr:not(:first-child)').first
                 await first_row.locator('button:has-text("ערוך")').click()
                 await page.wait_for_timeout(2000)
 
@@ -330,7 +332,7 @@ class TestTemplatesRealValidation:
                 await page.wait_for_timeout(1000)
 
                 # Click edit on first template
-                first_row = page.locator('tbody tr').first
+                first_row = page.locator('tr:not(:first-child)').first
                 await first_row.locator('button:has-text("ערוך")').click()
                 await page.wait_for_timeout(2000)
                 await page.wait_for_selector('h1:has-text("עריכת תבנית")', timeout=10000)
@@ -389,7 +391,7 @@ class TestTemplatesRealValidation:
                 await page.wait_for_timeout(1000)
 
                 # Click edit on first template
-                first_row = page.locator('tbody tr').first
+                first_row = page.locator('tr:not(:first-child)').first
                 await first_row.locator('button:has-text("ערוך")').click()
                 await page.wait_for_timeout(2000)
                 await page.wait_for_selector('h1:has-text("עריכת תבנית")', timeout=10000)
