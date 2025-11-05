@@ -9,11 +9,18 @@ from playwright.sync_api import sync_playwright, Browser, BrowserContext, Page
 
 @pytest.fixture(scope="session")
 def browser():
-    """Create a SYNC browser instance for the test session."""
+    """Create a SYNC browser instance for the test session.
+
+    Execution modes (controlled by pytest-playwright plugin):
+    - Default (CI/CD): Headless, fast execution
+    - Debug mode: pytest --headed --slowmo 100
+    - Interactive: pytest --headed
+
+    Note: pytest-playwright plugin provides --headed and --slowmo options automatically
+    """
     with sync_playwright() as p:
         browser = p.chromium.launch(
-            headless=False,  # Run in HEADED mode for visibility and debugging
-            slow_mo=50,      # Add 50ms delay between actions for observation
+            headless=True,  # Default to headless (use --headed to override)
             timeout=10000,   # 10 second timeout for browser launch
             args=[
                 '--no-sandbox',
@@ -149,3 +156,4 @@ def security_test_data():
 
 
 # Removed autouse fixture to avoid conflicts with page fixture
+# Note: --headed and --slowmo options are provided by pytest-playwright plugin automatically
