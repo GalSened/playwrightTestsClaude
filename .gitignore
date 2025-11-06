@@ -42,3 +42,4 @@ nul
 
 # Tech stack inventory (generated files)
 .inventory/report.json
+venv/
