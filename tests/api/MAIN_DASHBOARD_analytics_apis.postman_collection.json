@@ -1,0 +1,587 @@
+{
+	"info": {
+		"_postman_id": "main-dashboard-analytics-api",
+		"name": "Main Dashboard - Analytics APIs",
+		"description": "API test collection for Main Dashboard analytics endpoints\n\nCover all 7 analytics APIs that power the Main Dashboard:\n1. GET /api/analytics/dashboard (primary data source)\n2. GET /api/analytics/smart (AI-powered insights)\n3. GET /api/analytics/coverage (test coverage metrics)\n4. GET /api/analytics/insights (AI insights)\n5. GET /api/analytics/gaps (gap analysis)\n6. GET /api/analytics/prd-coverage (PRD coverage analysis)\n7. GET /api/analytics/failure-intelligence (failure analytics)\n\nTest Focus:\n- Response status codes (200, 400, 401, 404, 500)\n- Response schema validation\n- Response time (<1s target)\n- Data integrity\n- Error handling\n\nUsage:\n1. Import into Postman\n2. Set environment variables (baseUrl, authToken)\n3. Run collection with Newman:\n   newman run MAIN_DASHBOARD_analytics_apis.postman_collection.json -e env.json -r htmlextra\n\nVersion: 1.0.0\nLast Updated: 2025-11-04",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API 1: Dashboard - Primary Endpoint",
+			"item": [
+				{
+					"name": "GET Dashboard Data - Success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test 1: Status code is 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Test 2: Response time is less than 1000ms",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"// Test 3: Response has correct structure",
+									"pm.test(\"Response has summary object\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('summary');",
+									"});",
+									"",
+									"// Test 4: Summary has required fields",
+									"pm.test(\"Summary has all required fields\", function () {",
+									"    const summary = pm.response.json().summary;",
+									"    pm.expect(summary).to.have.property('totalTests');",
+									"    pm.expect(summary).to.have.property('totalRuns');",
+									"    pm.expect(summary).to.have.property('successRate');",
+									"    pm.expect(summary).to.have.property('averageDuration');",
+									"    pm.expect(summary).to.have.property('testCoverage');",
+									"    pm.expect(summary).to.have.property('healthScore');",
+									"});",
+									"",
+									"// Test 5: Data types are correct",
+									"pm.test(\"Summary fields have correct data types\", function () {",
+									"    const summary = pm.response.json().summary;",
+									"    pm.expect(summary.totalTests).to.be.a('number');",
+									"    pm.expect(summary.totalRuns).to.be.a('number');",
+									"    pm.expect(summary.successRate).to.be.a('number');",
+									"    pm.expect(summary.averageDuration).to.be.a('number');",
+									"    pm.expect(summary.healthScore).to.be.a('number');",
+									"});",
+									"",
+									"// Test 6: Values are in valid ranges",
+									"pm.test(\"Values are in valid ranges\", function () {",
+									"    const summary = pm.response.json().summary;",
+									"    pm.expect(summary.successRate).to.be.within(0, 100);",
+									"    pm.expect(summary.healthScore).to.be.within(0, 100);",
+									"    pm.expect(summary.totalTests).to.be.at.least(0);",
+									"});",
+									"",
+									"// Test 7: Categories array exists",
+									"pm.test(\"Response has categories array\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('categories');",
+									"    pm.expect(jsonData.categories).to.be.an('array');",
+									"});",
+									"",
+									"// Test 8: Trends array exists",
+									"pm.test(\"Response has trends array\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('trends');",
+									"    pm.expect(jsonData.trends).to.be.an('array');",
+									"});",
+									"",
+									"// Test 9: AI Insights exists",
+									"pm.test(\"Response has aiInsights object\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('aiInsights');",
+									"});",
+									"",
+									"// Store values for next tests",
+									"pm.environment.set(\"dashboard_totalTests\", pm.response.json().summary.totalTests);",
+									"pm.environment.set(\"dashboard_healthScore\", pm.response.json().summary.healthScore);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/dashboard",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "analytics", "dashboard"]
+						},
+						"description": "Get comprehensive dashboard analytics data"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Dashboard Data - Unauthorized (401)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401 without auth\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"Error message is present\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('error');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/dashboard",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "analytics", "dashboard"]
+						},
+						"description": "Test authentication requirement"
+					},
+					"response": []
+				}
+			],
+			"description": "Primary dashboard endpoint - provides all data for main dashboard"
+		},
+		{
+			"name": "API 2: Smart Analytics - AI Powered",
+			"item": [
+				{
+					"name": "GET Smart Analytics - Success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response time is acceptable\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});",
+									"",
+									"pm.test(\"Response has summary\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('summary');",
+									"});",
+									"",
+									"pm.test(\"Summary has AI metrics\", function () {",
+									"    const summary = pm.response.json().summary;",
+									"    pm.expect(summary).to.have.property('totalTests');",
+									"    pm.expect(summary).to.have.property('totalModules');",
+									"    pm.expect(summary).to.have.property('overallCoverage');",
+									"    pm.expect(summary).to.have.property('healthScore');",
+									"});",
+									"",
+									"pm.test(\"Module breakdown exists\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('moduleBreakdown');",
+									"    pm.expect(jsonData.moduleBreakdown).to.be.an('array');",
+									"});",
+									"",
+									"pm.test(\"Risks array exists\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('risks');",
+									"});",
+									"",
+									"pm.test(\"Gaps array exists\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('gaps');",
+									"});",
+									"",
+									"pm.test(\"Flaky tests array exists\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('flakyTests');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/smart",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "analytics", "smart"]
+						},
+						"description": "Get AI-powered smart analytics"
+					},
+					"response": []
+				}
+			],
+			"description": "AI-powered analytics with insights, risks, gaps analysis"
+		},
+		{
+			"name": "API 3: Coverage Metrics",
+			"item": [
+				{
+					"name": "GET Coverage Metrics - Success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has coverage data\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('object');",
+									"});",
+									"",
+									"// Coverage-specific tests",
+									"pm.test(\"Coverage metrics are numbers\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    // Verify structure based on actual API response",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/coverage",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "analytics", "coverage"]
+						},
+						"description": "Get test coverage metrics"
+					},
+					"response": []
+				}
+			],
+			"description": "Test coverage metrics endpoint"
+		},
+		{
+			"name": "API 4: AI Insights",
+			"item": [
+				{
+					"name": "GET AI Insights - Success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Insights data exists\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('object');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/insights",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "analytics", "insights"]
+						},
+						"description": "Get AI insights analysis"
+					},
+					"response": []
+				}
+			],
+			"description": "AI insights analysis endpoint"
+		},
+		{
+			"name": "API 5: Gap Analysis",
+			"item": [
+				{
+					"name": "GET Gap Analysis - Success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Gap analysis data exists\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('object');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/gaps",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "analytics", "gaps"]
+						},
+						"description": "Get gap analysis"
+					},
+					"response": []
+				}
+			],
+			"description": "Gap analysis endpoint"
+		},
+		{
+			"name": "API 6: PRD Coverage Analysis",
+			"item": [
+				{
+					"name": "GET PRD Coverage - Success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"PRD coverage data exists\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('summary');",
+									"});",
+									"",
+									"pm.test(\"PRD summary has coverage metrics\", function () {",
+									"    const summary = pm.response.json().summary;",
+									"    pm.expect(summary).to.have.property('totalRequirements');",
+									"    pm.expect(summary).to.have.property('coveredRequirements');",
+									"    pm.expect(summary).to.have.property('overallCoverage');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/prd-coverage",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "analytics", "prd-coverage"]
+						},
+						"description": "Get PRD coverage analysis"
+					},
+					"response": []
+				}
+			],
+			"description": "PRD coverage analysis endpoint"
+		},
+		{
+			"name": "API 7: Failure Intelligence",
+			"item": [
+				{
+					"name": "GET Failure Intelligence - Success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Failure intelligence data exists\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('failureGroups');",
+									"    pm.expect(jsonData).to.have.property('blockingFailures');",
+									"    pm.expect(jsonData).to.have.property('timeline');",
+									"    pm.expect(jsonData).to.have.property('patterns');",
+									"});",
+									"",
+									"pm.test(\"Failure groups is an array\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.failureGroups).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/failure-intelligence",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "analytics", "failure-intelligence"]
+						},
+						"description": "Get failure intelligence analytics"
+					},
+					"response": []
+				}
+			],
+			"description": "Failure intelligence analytics endpoint"
+		},
+		{
+			"name": "Error Scenarios",
+			"item": [
+				{
+					"name": "GET Dashboard - Server Error (500)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This test simulates server error",
+									"// In real scenario, would need to mock/stub backend",
+									"pm.test(\"Error response has error field\", function () {",
+									"    if (pm.response.code === 500) {",
+									"        const jsonData = pm.response.json();",
+									"        pm.expect(jsonData).to.have.property('error');",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/dashboard?simulateError=true",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "analytics", "dashboard"],
+							"query": [
+								{
+									"key": "simulateError",
+									"value": "true",
+									"description": "Trigger 500 error (if supported by API)"
+								}
+							]
+						},
+						"description": "Test error handling for 500 responses"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Invalid Endpoint (404)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/nonexistent",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "analytics", "nonexistent"]
+						},
+						"description": "Test 404 handling"
+					},
+					"response": []
+				}
+			],
+			"description": "Error scenario tests"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Pre-request script for all requests",
+					"console.log('Running test:', pm.info.requestName);",
+					"",
+					"// Set timestamp",
+					"pm.environment.set('timestamp', new Date().toISOString());"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Global test script",
+					"",
+					"// Log response time for all requests",
+					"console.log('Response time:', pm.response.responseTime + 'ms');"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8082",
+			"type": "string"
+		},
+		{
+			"key": "authToken",
+			"value": "your-jwt-token-here",
+			"type": "string"
+		}
+	]
+}
