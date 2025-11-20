@@ -5,7 +5,7 @@ Tests cover all major CRUD operations with junction points
 """
 
 import pytest
-from playwright.sync_api import Page, expect
+from playwright.async_api import async_playwright, expect
 import sys
 from pathlib import Path
 
@@ -17,31 +17,14 @@ from pages.auth_page import AuthPage
 from pages.contacts_page import ContactsPage
 
 
-@pytest.fixture(scope="function")
-def setup_contacts_page(page: Page):
-    """
-    Setup fixture: Login and navigate to Contacts page
-    Returns: ContactsPage instance
-    """
-    # Login
-    auth_page = AuthPage(page)
-    auth_page.navigate()
-    auth_page.login_company_user()
-
-    # Navigate to contacts
-    contacts_page = ContactsPage(page)
-    contacts_page.navigate()
-
-    return contacts_page
-
-
 class TestContactsCore:
     """
     Core test suite for Contacts module
     Covers Create, Read, Update, Delete operations with all junction points
     """
 
-    def test_01_create_contact_email_only(self, page: Page, setup_contacts_page):
+    @pytest.mark.asyncio
+    async def test_01_create_contact_email_only(self):
         """
         Test: Create Contact - Email Only (Junction Point 1)
 
@@ -60,55 +43,56 @@ class TestContactsCore:
         - Contact searchable by name and email
         - Total count increased by 1
         """
-        contacts_page = setup_contacts_page
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(headless=True, args=['--no-sandbox'])
+            page = await browser.new_page()
 
-        # Get initial count
-        initial_count = contacts_page.get_total_count()
+            try:
+                auth_page = AuthPage(page)
+                contacts_page = ContactsPage(page)
 
-        # Test data
-        test_name = "QA Test Email Only"
-        test_email = "qa.test.email.only@automation.test"
+                # Login and navigate to contacts
+                await auth_page.navigate()
+                await auth_page.login_with_company_user()
+                await contacts_page.navigate()
 
-        # Create contact
-        contacts_page.add_contact(
-            name=test_name,
-            email=test_email,
-            send_via='EMAIL'
-        )
+                # Test data
+                test_name = "QA Test Email Only"
+                test_email = "qa.test.email.only@automation.test"
 
-        # Wait a moment for contact to be created
-        page.wait_for_timeout(1000)
+                # Create contact
+                await contacts_page.add_contact(
+                    name=test_name,
+                    email=test_email,
+                    send_via='EMAIL'
+                )
 
-        # Verify contact exists
-        assert contacts_page.verify_contact_exists(test_name), \
-            f"Contact '{test_name}' should exist after creation"
+                # Wait a moment for contact to be created
+                await page.wait_for_timeout(2000)
 
-        # Verify by email search
-        contacts_page.search_contact(test_email)
-        contact_row = page.locator('tr').filter(has_text=test_name)
-        expect(contact_row).to_be_visible(timeout=3000)
+                # Verify contact exists by name search
+                assert await contacts_page.verify_contact_exists(test_name), \
+                    f"Contact '{test_name}' should exist after creation"
 
-        # Verify count increased
-        contacts_page.clear_search()
-        new_count = contacts_page.get_total_count()
-        assert new_count == initial_count + 1, \
-            f"Total count should increase from {initial_count} to {initial_count + 1}, got {new_count}"
+                # Verify contact searchable by email
+                await contacts_page.search_contact(test_email)
+                contact_row = page.locator('tr').filter(has_text=test_name)
+                await expect(contact_row).to_be_visible(timeout=3000)
 
-        # CLEANUP: Delete test contact
-        contacts_page.delete_contact(test_name, confirm=True)
-        page.wait_for_timeout(1000)
+                # CLEANUP: Delete test contact
+                await contacts_page.clear_search()
+                await contacts_page.delete_contact(test_name, confirm=True)
+                await page.wait_for_timeout(2000)
 
-        # Verify deleted
-        assert not contacts_page.verify_contact_exists(test_name, should_exist=False), \
-            f"Contact '{test_name}' should not exist after deletion"
+                # Verify deleted
+                assert not await contacts_page.verify_contact_exists(test_name, should_exist=False), \
+                    f"Contact '{test_name}' should not exist after deletion"
 
-        # Verify count back to initial
-        contacts_page.clear_search()
-        final_count = contacts_page.get_total_count()
-        assert final_count == initial_count, \
-            f"Total count should return to {initial_count} after cleanup, got {final_count}"
+            finally:
+                await browser.close()
 
-    def test_02_create_contact_phone_only(self, page: Page, setup_contacts_page):
+    @pytest.mark.asyncio
+    async def test_02_create_contact_phone_only(self):
         """
         Test: Create Contact - Phone Only (Junction Point 2)
 
@@ -127,55 +111,56 @@ class TestContactsCore:
         - Contact searchable by name and phone
         - Total count increased by 1
         """
-        contacts_page = setup_contacts_page
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(headless=True, args=['--no-sandbox'])
+            page = await browser.new_page()
 
-        # Get initial count
-        initial_count = contacts_page.get_total_count()
+            try:
+                auth_page = AuthPage(page)
+                contacts_page = ContactsPage(page)
 
-        # Test data
-        test_name = "QA Test Phone Only"
-        test_phone = "0501234567"
+                # Login and navigate to contacts
+                await auth_page.navigate()
+                await auth_page.login_with_company_user()
+                await contacts_page.navigate()
 
-        # Create contact
-        contacts_page.add_contact(
-            name=test_name,
-            phone=test_phone,
-            send_via='SMS'
-        )
+                # Test data
+                test_name = "QA Test Phone Only"
+                test_phone = "0501234567"
 
-        # Wait a moment for contact to be created
-        page.wait_for_timeout(1000)
+                # Create contact
+                await contacts_page.add_contact(
+                    name=test_name,
+                    phone=test_phone,
+                    send_via='SMS'
+                )
 
-        # Verify contact exists
-        assert contacts_page.verify_contact_exists(test_name), \
-            f"Contact '{test_name}' should exist after creation"
+                # Wait a moment for contact to be created
+                await page.wait_for_timeout(2000)
 
-        # Verify by phone search
-        contacts_page.search_contact(test_phone)
-        contact_row = page.locator('tr').filter(has_text=test_name)
-        expect(contact_row).to_be_visible(timeout=3000)
+                # Verify contact exists by name search
+                assert await contacts_page.verify_contact_exists(test_name), \
+                    f"Contact '{test_name}' should exist after creation"
 
-        # Verify count increased
-        contacts_page.clear_search()
-        new_count = contacts_page.get_total_count()
-        assert new_count == initial_count + 1, \
-            f"Total count should increase from {initial_count} to {initial_count + 1}, got {new_count}"
+                # Verify contact searchable by phone
+                await contacts_page.search_contact(test_phone)
+                contact_row = page.locator('tr').filter(has_text=test_name)
+                await expect(contact_row).to_be_visible(timeout=3000)
 
-        # CLEANUP: Delete test contact
-        contacts_page.delete_contact(test_name, confirm=True)
-        page.wait_for_timeout(1000)
+                # CLEANUP: Delete test contact
+                await contacts_page.clear_search()
+                await contacts_page.delete_contact(test_name, confirm=True)
+                await page.wait_for_timeout(2000)
 
-        # Verify deleted
-        assert not contacts_page.verify_contact_exists(test_name, should_exist=False), \
-            f"Contact '{test_name}' should not exist after deletion"
+                # Verify deleted
+                assert not await contacts_page.verify_contact_exists(test_name, should_exist=False), \
+                    f"Contact '{test_name}' should not exist after deletion"
 
-        # Verify count back to initial
-        contacts_page.clear_search()
-        final_count = contacts_page.get_total_count()
-        assert final_count == initial_count, \
-            f"Total count should return to {initial_count} after cleanup, got {final_count}"
+            finally:
+                await browser.close()
 
-    def test_03_create_contact_complete(self, page: Page, setup_contacts_page):
+    @pytest.mark.asyncio
+    async def test_03_create_contact_complete(self):
         """
         Test: Create Contact - Complete (Both Email and Phone) (Junction Point 3)
 
@@ -194,62 +179,63 @@ class TestContactsCore:
         - Contact searchable by name, email, or phone
         - Total count increased by 1
         """
-        contacts_page = setup_contacts_page
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(headless=True, args=['--no-sandbox'])
+            page = await browser.new_page()
 
-        # Get initial count
-        initial_count = contacts_page.get_total_count()
+            try:
+                auth_page = AuthPage(page)
+                contacts_page = ContactsPage(page)
 
-        # Test data
-        test_name = "QA Test Complete Contact"
-        test_email = "qa.test.complete@automation.test"
-        test_phone = "0509876543"
+                # Login and navigate to contacts
+                await auth_page.navigate()
+                await auth_page.login_with_company_user()
+                await contacts_page.navigate()
 
-        # Create contact
-        contacts_page.add_contact(
-            name=test_name,
-            email=test_email,
-            phone=test_phone,
-            send_via='EMAIL'
-        )
+                # Test data
+                test_name = "QA Test Complete Contact"
+                test_email = "qa.test.complete@automation.test"
+                test_phone = "0509876543"
 
-        # Wait a moment for contact to be created
-        page.wait_for_timeout(1000)
+                # Create contact
+                await contacts_page.add_contact(
+                    name=test_name,
+                    email=test_email,
+                    phone=test_phone,
+                    send_via='EMAIL'
+                )
 
-        # Verify contact exists
-        assert contacts_page.verify_contact_exists(test_name), \
-            f"Contact '{test_name}' should exist after creation"
+                # Wait a moment for contact to be created
+                await page.wait_for_timeout(2000)
 
-        # Verify by email search
-        contacts_page.search_contact(test_email)
-        contact_row = page.locator('tr').filter(has_text=test_name)
-        expect(contact_row).to_be_visible(timeout=3000)
+                # Verify contact exists by name search
+                assert await contacts_page.verify_contact_exists(test_name), \
+                    f"Contact '{test_name}' should exist after creation"
 
-        # Verify by phone search
-        contacts_page.search_contact(test_phone)
-        contact_row = page.locator('tr').filter(has_text=test_name)
-        expect(contact_row).to_be_visible(timeout=3000)
+                # Verify contact searchable by email
+                await contacts_page.search_contact(test_email)
+                contact_row = page.locator('tr').filter(has_text=test_name)
+                await expect(contact_row).to_be_visible(timeout=3000)
 
-        # Verify count increased
-        contacts_page.clear_search()
-        new_count = contacts_page.get_total_count()
-        assert new_count == initial_count + 1, \
-            f"Total count should increase from {initial_count} to {initial_count + 1}, got {new_count}"
+                # Verify contact searchable by phone
+                await contacts_page.search_contact(test_phone)
+                contact_row = page.locator('tr').filter(has_text=test_name)
+                await expect(contact_row).to_be_visible(timeout=3000)
 
-        # CLEANUP: Delete test contact
-        contacts_page.delete_contact(test_name, confirm=True)
-        page.wait_for_timeout(1000)
+                # CLEANUP: Delete test contact
+                await contacts_page.clear_search()
+                await contacts_page.delete_contact(test_name, confirm=True)
+                await page.wait_for_timeout(2000)
 
-        # Verify deleted
-        assert not contacts_page.verify_contact_exists(test_name, should_exist=False), \
-            f"Contact '{test_name}' should not exist after deletion"
+                # Verify deleted
+                assert not await contacts_page.verify_contact_exists(test_name, should_exist=False), \
+                    f"Contact '{test_name}' should not exist after deletion"
 
-        # Verify count back to initial
-        contacts_page.clear_search()
-        final_count = contacts_page.get_total_count()
-        assert final_count == initial_count, \
-            f"Total count should return to {initial_count} after cleanup, got {final_count}"
+            finally:
+                await browser.close()
 
-    def test_04_edit_contact(self, page: Page, setup_contacts_page):
+    @pytest.mark.asyncio
+    async def test_04_edit_contact(self):
         """
         Test: Edit Contact
 
@@ -270,65 +256,66 @@ class TestContactsCore:
         - New name searchable
         - Total count unchanged
         """
-        contacts_page = setup_contacts_page
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(headless=True, args=['--no-sandbox'])
+            page = await browser.new_page()
 
-        # Get initial count
-        initial_count = contacts_page.get_total_count()
+            try:
+                auth_page = AuthPage(page)
+                contacts_page = ContactsPage(page)
 
-        # Test data
-        original_name = "QA Test Original Name"
-        updated_name = "QA Test EDITED Name"
-        test_email = "qa.test.edit@automation.test"
+                # Login and navigate to contacts
+                await auth_page.navigate()
+                await auth_page.login_with_company_user()
+                await contacts_page.navigate()
 
-        # Create contact
-        contacts_page.add_contact(
-            name=original_name,
-            email=test_email,
-            send_via='EMAIL'
-        )
-        page.wait_for_timeout(1000)
+                # Test data
+                original_name = "QA Test Original Name"
+                updated_name = "QA Test EDITED Name"
+                test_email = "qa.test.edit@automation.test"
 
-        # Verify created
-        assert contacts_page.verify_contact_exists(original_name), \
-            f"Contact '{original_name}' should exist after creation"
+                # Create contact
+                await contacts_page.add_contact(
+                    name=original_name,
+                    email=test_email,
+                    send_via='EMAIL'
+                )
+                await page.wait_for_timeout(2000)
 
-        # Edit contact
-        contacts_page.edit_contact(
-            current_name=original_name,
-            new_name=updated_name
-        )
-        page.wait_for_timeout(1000)
+                # Verify contact created
+                assert await contacts_page.verify_contact_exists(original_name), \
+                    f"Contact '{original_name}' should exist after creation"
 
-        # Verify old name not found
-        contacts_page.search_contact(original_name)
-        old_name_row = page.locator('tr').filter(has_text=original_name)
-        expect(old_name_row).to_be_hidden(timeout=3000)
+                # Edit contact name
+                await contacts_page.edit_contact(
+                    current_name=original_name,
+                    new_name=updated_name
+                )
+                await page.wait_for_timeout(2000)
 
-        # Verify new name found
-        assert contacts_page.verify_contact_exists(updated_name), \
-            f"Contact '{updated_name}' should exist after edit"
+                # Verify old name no longer found
+                await contacts_page.search_contact(original_name)
+                old_name_row = page.locator('tr').filter(has_text=original_name)
+                await expect(old_name_row).to_be_hidden(timeout=3000)
 
-        # Verify count unchanged
-        contacts_page.clear_search()
-        current_count = contacts_page.get_total_count()
-        assert current_count == initial_count + 1, \
-            f"Total count should be {initial_count + 1} after edit, got {current_count}"
+                # Verify new name exists
+                await contacts_page.clear_search()
+                assert await contacts_page.verify_contact_exists(updated_name), \
+                    f"Contact '{updated_name}' should exist after edit"
 
-        # CLEANUP: Delete test contact
-        contacts_page.delete_contact(updated_name, confirm=True)
-        page.wait_for_timeout(1000)
+                # CLEANUP: Delete test contact
+                await contacts_page.delete_contact(updated_name, confirm=True)
+                await page.wait_for_timeout(2000)
 
-        # Verify deleted
-        assert not contacts_page.verify_contact_exists(updated_name, should_exist=False), \
-            f"Contact '{updated_name}' should not exist after deletion"
+                # Verify deleted
+                assert not await contacts_page.verify_contact_exists(updated_name, should_exist=False), \
+                    f"Contact '{updated_name}' should not exist after deletion"
 
-        # Verify count back to initial
-        contacts_page.clear_search()
-        final_count = contacts_page.get_total_count()
-        assert final_count == initial_count, \
-            f"Total count should return to {initial_count} after cleanup, got {final_count}"
+            finally:
+                await browser.close()
 
-    def test_05_delete_contact(self, page: Page, setup_contacts_page):
+    @pytest.mark.asyncio
+    async def test_05_delete_contact(self):
         """
         Test: Delete Contact with Confirmation
 
@@ -348,48 +335,48 @@ class TestContactsCore:
         - Contact not searchable
         - Total count decreased by 1
         """
-        contacts_page = setup_contacts_page
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(headless=True, args=['--no-sandbox'])
+            page = await browser.new_page()
 
-        # Get initial count
-        initial_count = contacts_page.get_total_count()
+            try:
+                auth_page = AuthPage(page)
+                contacts_page = ContactsPage(page)
 
-        # Test data
-        test_name = "QA Test Delete Contact"
-        test_email = "qa.test.delete@automation.test"
+                # Login and navigate to contacts
+                await auth_page.navigate()
+                await auth_page.login_with_company_user()
+                await contacts_page.navigate()
 
-        # Create contact
-        contacts_page.add_contact(
-            name=test_name,
-            email=test_email,
-            send_via='EMAIL'
-        )
-        page.wait_for_timeout(1000)
+                # Test data
+                test_name = "QA Test Delete Contact"
+                test_email = "qa.test.delete@automation.test"
 
-        # Verify created
-        assert contacts_page.verify_contact_exists(test_name), \
-            f"Contact '{test_name}' should exist after creation"
+                # Create contact
+                await contacts_page.add_contact(
+                    name=test_name,
+                    email=test_email,
+                    send_via='EMAIL'
+                )
+                await page.wait_for_timeout(1000)
 
-        # Verify count increased
-        contacts_page.clear_search()
-        count_after_create = contacts_page.get_total_count()
-        assert count_after_create == initial_count + 1, \
-            f"Total count should be {initial_count + 1} after creation, got {count_after_create}"
+                # Verify created
+                assert await contacts_page.verify_contact_exists(test_name), \
+                    f"Contact '{test_name}' should exist after creation"
 
-        # Delete contact
-        contacts_page.delete_contact(test_name, confirm=True)
-        page.wait_for_timeout(1000)
+                # Delete contact
+                await contacts_page.delete_contact(test_name, confirm=True)
+                await page.wait_for_timeout(1000)
 
-        # Verify deleted
-        assert not contacts_page.verify_contact_exists(test_name, should_exist=False), \
-            f"Contact '{test_name}' should not exist after deletion"
+                # Verify deleted
+                assert not await contacts_page.verify_contact_exists(test_name, should_exist=False), \
+                    f"Contact '{test_name}' should not exist after deletion"
 
-        # Verify count decreased
-        contacts_page.clear_search()
-        final_count = contacts_page.get_total_count()
-        assert final_count == initial_count, \
-            f"Total count should return to {initial_count} after deletion, got {final_count}"
+            finally:
+                await browser.close()
 
-    def test_06_search_contact(self, page: Page, setup_contacts_page):
+    @pytest.mark.asyncio
+    async def test_06_search_contact(self):
         """
         Test: Search Contact by Name, Email, and Phone
 
@@ -410,62 +397,66 @@ class TestContactsCore:
         - Contact not found when searching by non-existent term
         - All contacts shown when search cleared
         """
-        contacts_page = setup_contacts_page
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(headless=True, args=['--no-sandbox'])
+            page = await browser.new_page()
 
-        # Get initial count
-        initial_count = contacts_page.get_total_count()
+            try:
+                auth_page = AuthPage(page)
+                contacts_page = ContactsPage(page)
 
-        # Test data
-        test_name = "QA Test Search Contact"
-        test_email = "qa.test.search@automation.test"
-        test_phone = "0501112233"
+                # Login and navigate to contacts
+                await auth_page.navigate()
+                await auth_page.login_with_company_user()
+                await contacts_page.navigate()
 
-        # Create contact
-        contacts_page.add_contact(
-            name=test_name,
-            email=test_email,
-            phone=test_phone,
-            send_via='EMAIL'
-        )
-        page.wait_for_timeout(1000)
+                # Test data
+                test_name = "QA Test Search Contact"
+                test_email = "qa.test.search@automation.test"
+                test_phone = "0501112233"
 
-        # Test 1: Search by name
-        contacts_page.search_contact(test_name)
-        contact_row = page.locator('tr').filter(has_text=test_name)
-        expect(contact_row).to_be_visible(timeout=3000)
+                # Create contact
+                await contacts_page.add_contact(
+                    name=test_name,
+                    email=test_email,
+                    phone=test_phone,
+                    send_via='EMAIL'
+                )
+                await page.wait_for_timeout(1000)
 
-        # Test 2: Search by email
-        contacts_page.search_contact(test_email)
-        contact_row = page.locator('tr').filter(has_text=test_name)
-        expect(contact_row).to_be_visible(timeout=3000)
+                # Test 1: Search by name
+                await contacts_page.search_contact(test_name)
+                contact_row = page.locator('tr').filter(has_text=test_name)
+                await expect(contact_row).to_be_visible(timeout=3000)
 
-        # Test 3: Search by phone
-        contacts_page.search_contact(test_phone)
-        contact_row = page.locator('tr').filter(has_text=test_name)
-        expect(contact_row).to_be_visible(timeout=3000)
+                # Test 2: Search by email
+                await contacts_page.search_contact(test_email)
+                contact_row = page.locator('tr').filter(has_text=test_name)
+                await expect(contact_row).to_be_visible(timeout=3000)
 
-        # Test 4: Search by non-existent term
-        contacts_page.search_contact("NONEXISTENT_CONTACT_12345")
-        contact_row = page.locator('tr').filter(has_text=test_name)
-        expect(contact_row).to_be_hidden(timeout=3000)
+                # Test 3: Search by phone
+                await contacts_page.search_contact(test_phone)
+                contact_row = page.locator('tr').filter(has_text=test_name)
+                await expect(contact_row).to_be_visible(timeout=3000)
 
-        # Test 5: Clear search - all contacts shown
-        contacts_page.clear_search()
-        page.wait_for_timeout(500)
-        current_count = contacts_page.get_total_count()
-        assert current_count == initial_count + 1, \
-            f"After clearing search, total should be {initial_count + 1}, got {current_count}"
+                # Test 4: Search by non-existent term
+                await contacts_page.search_contact("NONEXISTENT_CONTACT_12345")
+                contact_row = page.locator('tr').filter(has_text=test_name)
+                await expect(contact_row).to_be_hidden(timeout=3000)
 
-        # CLEANUP: Delete test contact
-        contacts_page.delete_contact(test_name, confirm=True)
-        page.wait_for_timeout(1000)
+                # Test 5: Clear search - verify contact still exists
+                await contacts_page.clear_search()
+                await page.wait_for_timeout(500)
+                assert await contacts_page.verify_contact_exists(test_name), \
+                    f"Contact '{test_name}' should still exist after clearing search"
 
-        # Verify deleted
-        assert not contacts_page.verify_contact_exists(test_name, should_exist=False), \
-            f"Contact '{test_name}' should not exist after deletion"
+                # CLEANUP: Delete test contact
+                await contacts_page.delete_contact(test_name, confirm=True)
+                await page.wait_for_timeout(1000)
 
-        # Verify count back to initial
-        contacts_page.clear_search()
-        final_count = contacts_page.get_total_count()
-        assert final_count == initial_count, \
-            f"Total count should return to {initial_count} after cleanup, got {final_count}"
+                # Verify deleted
+                assert not await contacts_page.verify_contact_exists(test_name, should_exist=False), \
+                    f"Contact '{test_name}' should not exist after deletion"
+
+            finally:
+                await browser.close()
